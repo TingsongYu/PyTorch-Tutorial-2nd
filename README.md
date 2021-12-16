@@ -4,5 +4,7 @@
 
 噢对了，第一版在这里：<a href="https://github.com/TingsongYu/PyTorch_Tutorial/">PyTorch模型训练实用教程</a> 也可以关注一下。
 
+第二版在这里：<a href="https://tingsongyu.github.io/PyTorch-Tutorial-2nd/">PyTorch实用教程第二版</a> 
+
 
 
