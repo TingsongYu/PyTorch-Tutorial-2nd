@@ -2,6 +2,9 @@
     This CSS only styled the search results section, not the search input
     It defines the basic interraction to hide content when displaying results, etc
 */
+#book-search-input {
+  background: inherit;
+}
 #book-search-results .search-results {
   display: none;
 }
@@ -32,4 +35,7 @@
 }
 #book-search-results.no-results .search-results .no-results {
   display: block;
+}
+#book-search-results span.search-highlight-keyword {
+  background: #ff0;
 }
