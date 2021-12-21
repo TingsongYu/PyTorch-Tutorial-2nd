@@ -1,0 +1,10 @@
+# ignore some files
+.idea/
+*.pyc
+*.png
+*.jpg
+*.log
+.DS_Store
+.log/
+/tmp/
+/data/
