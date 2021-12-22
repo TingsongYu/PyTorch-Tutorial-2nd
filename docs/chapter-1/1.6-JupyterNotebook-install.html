@@ -1,0 +1,578 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>1.6 环境配置之Jupyter Notebook · PyTorch实用教程（第二版）</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="余霆嵩">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-intopic-toc/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="1.5-PyTorch-install.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">上篇：PyTorch基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第一章 PyTorch 简介与安装
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="1.1-PyTorch-Introduction.html">
+            
+                <a href="1.1-PyTorch-Introduction.html">
+            
+                    
+                    1.1 PyTorch 初认识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="1.2-Anaconda.html">
+            
+                <a href="1.2-Anaconda.html">
+            
+                    
+                    1.2 环境配置之Anaconda
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="1.3-Pycharm.html">
+            
+                <a href="1.3-Pycharm.html">
+            
+                    
+                    1.3 环境配置之Pycharm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="1.4-CUDA&cuDNN.html">
+            
+                <a href="1.4-CUDA&cuDNN.html">
+            
+                    
+                    1.4 环境配置之CUDA&cuDNN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="1.5-PyTorch-install.html">
+            
+                <a href="1.5-PyTorch-install.html">
+            
+                    
+                    1.5 环境配置之PyTorch系列包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.1.6" data-path="1.6-JupyterNotebook-install.html">
+            
+                <a href="1.6-JupyterNotebook-install.html">
+            
+                    
+                    1.6 环境配置之Jupyter Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">中篇：PyTorch 案例应用</li>
+        
+        
+    
+
+    
+        
+        <li class="header">下篇：PyTorch 模型部署</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >1.6 环境配置之Jupyter Notebook</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="16-&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x4E4B;jupyter-notebook">1.6 &#x73AF;&#x5883;&#x914D;&#x7F6E;&#x4E4B;Jupyter Notebook</h1>
+<h2 id="&#x4EC0;&#x4E48;&#x662F;-jupyter-notebook">&#x4EC0;&#x4E48;&#x662F; jupyter notebook</h2>
+<p>&#x7ECF;&#x8FC7;&#x524D;&#x51E0;&#x4E2A;&#x5C0F;&#x8282;&#xFF0C;&#x5927;&#x5BB6;&#x5DF2;&#x7ECF;&#x5177;&#x5907;&#x4E86;PyTorch&#x5F00;&#x53D1;&#x73AF;&#x5883;&#xFF0C;&#x4F46;&#x672C;&#x6559;&#x7A0B;&#x9700;&#x8981;&#x7167;&#x987E;&#x521D;&#x5B66;&#x8005;&#x4F7F;&#x7528;&#x4EE3;&#x7801;&#xFF0C;&#x8BA9;&#x521A;&#x5165;&#x95E8;&#x7684;&#x540C;&#x5B66;&#x6709;&#x66F4;&#x597D;&#x7684;&#x4EE3;&#x7801;&#x5B66;&#x4E60;&#x4F53;&#x9A8C;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x4E0A;&#x7BC7;&#xFF0C;&#x4E3B;&#x8981;&#x91C7;&#x7528;Jupyter Notebook&#x8FDB;&#x884C;&#x4EE3;&#x7801;&#x6F14;&#x793A;&#x3002;</p>
+<p><strong>&#x6CE8;&#x610F;</strong>&#xFF1A;&quot;Notebook&#x53EA;&#x5EFA;&#x8BAE;&#x7528;&#x4E8E;&#x5B66;&#x4E60;&#x76EE;&#x7684;&#xFF0C;&#x4E0D;&#x5EFA;&#x8BAE;&#x7528;&#x4E8E;&#x9879;&#x76EE;&#x5F00;&#x53D1;&quot; <strong>* 3</strong>&#xFF0C; &#x91CD;&#x8981;&#x4E8B;&#x8BF4;&#x4E09;&#x904D;&#xFF01;</p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#xFF1F;&#x8FD9;&#x662F;&#x7531;&#x4E8E;notebook&#x81EA;&#x8EAB;&#x5B9A;&#x4F4D;&#x51B3;&#x5B9A;&#x7684;&#xFF0C;&#x5148;&#x6765;&#x770B;&#x770B;jupyter notebook &#x7684;&#x5B9A;&#x4E49;&#x201C;The Jupyter Notebook is a web application for creating and sharing documents that contain code, visualizations, and text. It can be used for data science, statistical modeling, machine learning, and much more.&#x201D;&#x2014;&#x2014;<a href="https://jupyter.org/" target="_blank">&#x5B98;&#x7F51;</a></p>
+<p>Jupyter  notebook &#x662F;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#x5E94;&#x7528;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x7F51;&#x9875;&#x4E0A;&#x53EF;&#x4EE5;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#x3001;&#x505A;&#x53EF;&#x89C6;&#x5316;&#x3001;&#x5199;&#x6587;&#x672C;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x975E;&#x5E38;&#x597D;&#x7684;&#x6559;&#x5B66;&#x5C55;&#x793A;&#x5E73;&#x53F0;&#x3002;&#x53EF;&#x4EE5;&#x5728;&#x4E0A;&#x9762;&#x8FDB;&#x884C;&#x6982;&#x5FF5;&#x63CF;&#x8FF0;&#x3001;&#x914D;&#x4E0A;&#x4EE3;&#x7801;&#x3001;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x6309;&#x5C0F;&#x6BB5;&#x8FDB;&#x884C;&#x4EE3;&#x7801;&#x8FD0;&#x884C;&#xFF0C;&#x7ED9;&#x7528;&#x6237;&#x66F4;&#x591A;&#x7684;&#x4EA4;&#x4E92;&#x4F53;&#x9A8C;&#xFF0C;&#x4FBF;&#x4E8E;&#x7528;&#x6237;&#x7406;&#x89E3;&#x4EE3;&#x7801;&#x7EC6;&#x8282;&#x3002;</p>
+<p>&#x57FA;&#x4E8E;&#x6B64;&#xFF0C;&#x4E0A;&#x7BC7;&#x4E3B;&#x8981;&#x91C7;&#x7528;notebook&#x8FDB;&#x884C;&#x4EE3;&#x7801;&#x8BB2;&#x89E3;&#xFF0C;&#x5230;&#x4E86;&#x4E2D;&#x7BC7;&#xFF0C;&#x57FA;&#x4E8E;&#x5B8C;&#x6574;&#x7684;&#x9879;&#x76EE;&#x4EE3;&#x7801;&#x6846;&#x67B6;&#x8FDB;&#x884C;&#x5E94;&#x7528;&#x5F00;&#x53D1;&#x3002;</p>
+<p>&#x5173;&#x4E8E;jupyter&#x4E0E;jupyter notebook&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x8BF7;&#x5927;&#x5BB6;&#x67E5;&#x770B;<a href="https://jupyter.org/" target="_blank">&#x5B98;&#x7F51;</a>&#xFF08;&#x4EE5;&#x4E0B;&#x5F00;&#x59CB;&#xFF0C;notebook &#x6307;&#x4EE3; jupyter notebook&#xFF09;</p>
+<h2 id="notebook-&#x8FD0;&#x884C;&#x903B;&#x8F91;">notebook &#x8FD0;&#x884C;&#x903B;&#x8F91;</h2>
+<p>notebook&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;web&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x5B83;&#x8FD8;&#x9700;&#x8981;&#x5173;&#x8054;&#x6307;&#x5B9A;&#x7684;kernel&#xFF0C;&#x7528;&#x4E8E;&#x6267;&#x884C;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x76F8;&#x4FE1;&#x521A;&#x63A5;&#x89E6;notebook&#x7684;&#x670B;&#x53CB;&#x5927;&#x591A;&#x90FD;&#x88AB;notebook, kernel&#x7684;&#x6982;&#x5FF5;&#x641E;&#x7684;&#x4E00;&#x5934;&#x96FE;&#x6C34;&#x3002;&#x5982;&#x679C;&#x4E0A;&#x8FF0;&#x6982;&#x5FF5;&#x7406;&#x4E0D;&#x6E05;&#x695A;&#xFF0C;&#x5C31;&#x66F4;&#x4E0D;&#x6E05;&#x695A;&#x5982;&#x4F55;&#x914D;&#x7F6E;kernel&#xFF0C;&#x9009;&#x62E9;&#x6307;&#x5B9A;&#x7684;&#x865A;&#x62DF;&#x73AF;&#x5883;&#x4E86;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x6765;&#x770B;&#x770B;notebook&#x7684;&#x7ED3;&#x6784;</p>
+<p><img src="imgs/notebook-arch.png" alt="&#x56FE;&#x7247;&#x6765;&#x81EA;"></p>
+<center style="font-size:14px;color:#C0C0C0;text-decoration:underline">&#x56FE;&#x7247;&#x6765;&#x81EA;&#x5B98;&#x7F51;</center>
+
+<p>&#x56FE;&#x4E2D;&#x5DE6;&#x8FB9;&#x662F;&#x7528;&#x6237;&#x5199;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x4F20;&#x8F93;&#x5230;&#x4E2D;&#x95F4;&#x7684;Jupyter server, server&#x672C;&#x8EAB;&#x4E0D;&#x80FD;&#x6267;&#x884C;&#x4EE3;&#x7801;&#xFF08;python.exe&#x5E72;&#x7684;&#x6D3B;&#xFF0C;server&#x662F;&#x4E0D;&#x4F1A;&#x7684;&#xFF09;&#xFF0C;server&#x628A;&#x4EE3;&#x7801;&#x4F20;&#x7ED9;Kernel&#xFF0C;Kernel&#x624D;&#x662F;&#x771F;&#x6B63;&#x5E72;&#x6D3B;&#xFF0C;&#x6267;&#x884C;&#x4EE3;&#x7801;&#x7684;&#x5730;&#x65B9;&#x3002;Kernel&#x6267;&#x884C;&#x5B8C;&#x4EE3;&#x7801;&#xFF0C;&#x628A;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#x7ED9;server&#xFF0C;&#x518D;&#x8FD4;&#x56DE;&#x5230;&#x7528;&#x6237;&#x7684;&#x7F51;&#x9875;&#x3002;</p>
+<p>&#x4ECE;&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x51FA;Kernel&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x662F;python.exe&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x7684;&#x89E3;&#x91CA;&#x5668;&#xFF0C;&#x5982;Julia, R&#x7B49;&#xFF0C;&#x66F4;&#x591A;kernel&#x53EF;&#x4EE5;&#x770B;<a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels" target="_blank">&#x652F;&#x6301;&#x7684;kernel&#x5217;&#x8868;</a>.</p>
+<p>&#x901A;&#x8FC7;&#x4E0A;&#x8FF0;&#x793A;&#x610F;&#x56FE;&#x6211;&#x4EEC;&#x5C31;&#x77E5;&#x9053;&#x4E86;&#xFF0C;&#x5728;pytorch&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;kernel&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x67D0;&#x4E00;&#x4E2A;python&#x89E3;&#x91CA;&#x5668;&#x2014;&#x2014;python.exe&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8BA9;&#x5F53;&#x524D;&#x7684;notebook&#x542F;&#x7528;&#x5BF9;&#x5E94;&#x7684;kernel&#xFF0C;&#x6765;&#x8FDB;&#x5165;&#x76F8;&#x5E94;&#x7684;&#x865A;&#x62DF;&#x73AF;&#x5883;&#xFF0C;&#x8FD9;&#x6837;&#x624D;&#x80FD;&#x8FD0;&#x884C;&#x4EE3;&#x7801;&#x3002;</p>
+<h2 id="notebook-&#x5B89;&#x88C5;">notebook &#x5B89;&#x88C5;</h2>
+<p>&#x7406;&#x6E05;&#x6982;&#x5FF5;&#xFF0C;&#x4E0B;&#x9762;&#x8FDB;&#x884C;notebook&#x5B89;&#x88C5;&#xFF0C;&#x6211;&#x4EEC;&#x7EED;&#x671F;&#x662F;&#x6B63;&#x786E;&#x8C03;&#x7528;pytorch_1.10_gpu&#x8FD9;&#x4E2A;&#x865A;&#x62DF;&#x73AF;&#x5883;&#x6765;&#x6267;&#x884C;notebook&#x4E0A;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
+<p> &#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x5206;3&#x6B65;&#xFF1A;</p>
+<ol>
+<li><p>&#x8FDB;&#x5165;&#x865A;&#x62DF;&#x73AF;&#x5883;&#xFF1A;conda activate pytorch_1.10_gpu</p>
+</li>
+<li><p>&#x5B89;&#x88C5;ipykernel&#x5DE5;&#x5177;&#x5305;&#xFF08;&#x5B89;&#x88C5;jupyter&#xFF09;: pip install jupyter</p>
+</li>
+<li><p>&#x6DFB;&#x52A0;kernel&#x5230;notebook&#xFF1A; python -m ipykernel install --user --name pytorch_1.10_gpu</p>
+<p>(&#x610F;&#x601D;&#x662F;&#xFF0C;&#x5C06;python&#x8FD9;&#x4E2A;kernel&#x6DFB;&#x52A0;&#x5230;jupyter&#x7684;kernel&#x4E2D;&#xFF0C;&#x7531;&#x4E8E;&#x5F53;&#x524D;&#x5DF2;&#x7ECF;&#x5728;&#x865A;&#x62DF;&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x6240;&#x4EE5;&#x7B2C;&#x4E00;&#x4E2A;python&#x8868;&#x793A;&#x7684;&#x542B;&#x4E49;&#x662F;&#xFF1A;D:\Anaconda_data\envs\pytorch_1.10_gpu\python.exe&#xFF1B;&#x800C;pytorch_1.10_gpu&#x662F;kernel&#x7684;&#x522B;&#x540D;&#xFF0C;&#x7528;&#x4E8E;&#x533A;&#x5206;&#x4E0D;&#x540C;&#x7684;kernel&#xFF0C;&#x8FD9;&#x91CC;&#x5EFA;&#x8BAE;&#x4E0E;&#x865A;&#x62DF;&#x73AF;&#x5883;&#x540D;&#x79F0;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#x5C31;&#x597D;)</p>
+<p><img src="imgs/kernel-install.png" alt="image-20211222115111631"></p>
+</li>
+</ol>
+<h3 id="&#x542F;&#x52A8;"><strong>&#x542F;&#x52A8;</strong></h3>
+<p>&#x5728;&#x547D;&#x4EE4;&#x7A97;&#x4E2D;&#x6267;&#x884C;jupyter notebook&#x5C31;&#x53EF;&#x4EE5;&#x6253;&#x5F00;web&#x5E94;&#x7528;&#x4E86;&#xFF0C;&#x7F51;&#x5740;&#x4E3A;:<a href="http://localhost:8888" target="_blank">http://localhost:8888</a>; &#x8FD9;&#x91CC;&#x9ED8;&#x8BA4;&#x7AEF;&#x53E3;&#x4E3A;8888&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x518D;&#x6B21;&#x542F;&#x52A8;&#x4E00;&#x4E2A;jupyter notebook&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x7AEF;&#x53E3;&#x53F7;&#x53D8;&#x4E3A;&#x4E86;8889&#xFF0C;&#x5373;&#x5B83;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x4E2A;web&#x670D;&#x52A1;&#x3002;</p>
+<p>&#x8FDB;&#x5165;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6709;&#x4E00;&#x4E2A;/&#x76EE;&#x5F55;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x627E;&#x5230;&#x6211;&#x4EEC;&#x7684;notebook&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x6253;&#x5F00;&#xFF0C;&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x4E2A;&#x5C0F;&#x6280;&#x5DE7;&#xFF0C;&#x5C31;&#x662F;&#x8FDB;&#x5165;&#x5230;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x5939;&#x540E;&#xFF0C;&#x518D;&#x8FD0;&#x884C;notebook&#xFF0C;&#x8FD9;&#x6837;notebook&#x7684;&#x8DEF;&#x5F84;&#x5C31;&#x8FDB;&#x5165;&#x4E86;&#x60F3;&#x8981;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x3002;</p>
+<p><img src="imgs/notebook-start.png" alt="1"></p>
+<p><img src="imgs/notebook-info.png" alt=""></p>
+<p><img src="imgs/notebook-interface.png" alt="1"></p>
+<h3 id="&#x914D;&#x7F6E;kernel">&#x914D;&#x7F6E;kernel</h3>
+<p>&#x6211;&#x4EEC;&#x8FDB;&#x5165; chapter-1/02-notebook-demo.ipynb&#xFF0C;&#x70B9;&#x51FB;run&#xFF0C;&#x53EF;&#x53D1;&#x73B0;&#x5982;&#x4E0B;&#x62A5;&#x9519;</p>
+<blockquote>
+<pre><code>---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+&lt;ipython-input-1-4e3917ed4a01&gt; in &lt;module&gt;
+      7 &quot;&quot;&quot;
+      8 
+----&gt; 9 import torch
+     10 
+     11 print(&quot;Hello World, Hello PyTorch {}&quot;.format(torch.__version__))
+
+ModuleNotFoundError: No module named &apos;torch&apos;
+</code></pre></blockquote>
+<p>&#x544A;&#x8BC9;&#x6211;&#x4EEC;&#x627E;&#x4E0D;&#x5230;torch&#x8FD9;&#x4E2A;&#x5305;&#xFF0C;&#x8FD9;&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x4F7F;&#x7528;&#x7684;kernel&#x4E0D;&#x662F;&#x6211;&#x4EEC;&#x7684;D:\Anaconda_data\envs\pytorch_1.10_gpu\python.exe&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6765;&#x8BBE;&#x7F6E;&#x4E00;&#x4E0B;&#xFF0C;&#x65B9;&#x6CD5;&#x5F88;&#x7B80;&#x5355;&#xFF1A;</p>
+<p><img src="imgs/kernel-change.png" alt="1"></p>
+<p>&#x518D;&#x6B21;&#x8FD0;&#x884C;&#xFF0C;&#x53EF;&#x770B;&#x5230;&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#xFF0C;&#x8868;&#x660E;notebook&#x7684;&#x73AF;&#x5883;&#x5C31;&#x914D;&#x7F6E;&#x597D;&#x4E86;&#x3002;</p>
+<blockquote>
+<pre><code>Hello World, Hello PyTorch 1.10.1+cu102
+
+CUDA is available:True, version is 10.2
+
+device_name: NVIDIA GeForce GTX 1660 Ti with Max-Q Design
+</code></pre></blockquote>
+<p>&#x5B9E;&#x7528;&#x63D2;&#x4EF6;&#x2014;&#x2014;jupyter_contrib_nbextensions</p>
+<p>&#x539F;&#x751F;&#x7684;notebook&#x8FD8;&#x662F;&#x7F3A;&#x70B9;&#x610F;&#x601D;&#xFF0C;&#x8FD9;&#x91CC;&#x63A8;&#x8350;&#x5927;&#x5BB6;&#x5B89;&#x88C5;jupyter_contrib_nbextensions&#x63D2;&#x4EF6;&#xFF0C;<a href="https://github.com/DandanW924/jupyter_contrib_nbextensions" target="_blank">jupyter_contrib_nbextensions</a>&#x63D0;&#x4F9B;&#x4E86;&#x975E;&#x5E38;&#x4E30;&#x5BCC;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4F8B;&#x5982;&#x4EE3;&#x7801;&#x6298;&#x53E0;&#x3001;&#x5206;&#x6BB5;&#x6298;&#x53E0;&#x3001;&#x4EE3;&#x7801;&#x81EA;&#x52A8;&#x8865;&#x5168;&#x3001;&#x5B57;&#x4F53;&#x5927;&#x5C0F;&#x3001;&#x884C;&#x53F7;&#x663E;&#x793A;&#x3001;&#x76EE;&#x5F55;&#x7D22;&#x5F15;&#x7B49;&#x7B49;&#xFF0C;&#x8BE6;&#x89C1;&#x4E0B;&#x56FE;</p>
+<p><img src="imgs/notebook-extend.png" alt="1"></p>
+<p> &#x63D2;&#x4EF6;&#x5B89;&#x88C5;&#x5341;&#x5206;&#x7B80;&#x5355;&#xFF0C;&#x6253;&#x5F00;&#x547D;&#x4EE4;&#x7A97;&#xFF0C;&#x8FDB;&#x5165;<strong>&#x865A;&#x62DF;&#x73AF;&#x5883;</strong>&#xFF0C;&#x5206;&#x522B;&#x4F9D;&#x6B21;&#x6267;&#x884C; :</p>
+<blockquote>
+<p>pip install jupyter_contrib_nbextensions
+jupyter contrib nbextension install --user</p>
+</blockquote>
+<p>&#x7136;&#x540E;&#x91CD;&#x542F;notebook&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5BFC;&#x822A;&#x680F;&#x91CC;&#x6709;<strong>Nbextensions</strong>&#xFF0C;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x559C;&#x597D;&#x8FDB;&#x884C;&#x8C03;&#x6574;&#xFF0C;&#x66F4;&#x591A;&#x5185;&#x5BB9;&#x8BF7;&#x67E5;&#x770B;<a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions" target="_blank">Github</a></p>
+<h2 id="notebook-&#x5FEB;&#x901F;&#x4E0A;&#x624B;">Notebook &#x5FEB;&#x901F;&#x4E0A;&#x624B;</h2>
+<p>notebook&#x6240;&#x4F7F;&#x7528;&#x7684;&#x6587;&#x4EF6;&#x683C;&#x5F0F;&#x4E3A;.ipynb&#xFF0C;jupyter&#x4F1A;&#x5C06;.ipynb&#x8F6C;&#x4E3A;json&#x8FDB;&#x884C;&#x4FDD;&#x5B58;&#xFF0C;&#x8FD9;&#x6837;&#x4FBF;&#x4E8E;&#x7248;&#x672C;&#x8BB0;&#x5F55;&#x4EE5;&#x53CA;&#x5206;&#x4EAB;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#x4E0B;&#x56FE;&#x662F;&#x7528;sublime&#x6253;&#x5F00;&#x7684; 02-notebook-demo.ipynb</p>
+<p><img src="imgs/nb-json.png" alt="1"></p>
+<p>&#x4E0B;&#x9762;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x7814;&#x7A76;notebook&#x754C;&#x9762;&#x548C;&#x5E38;&#x7528;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x754C;&#x9762;&#x4E2D;&#x9700;&#x8981;&#x8BA4;&#x8BC6;&#x7684;&#x51E0;&#x4E2A;&#x6A21;&#x5757;&#x5206;&#x522B;&#x662F;&#xFF1A;&#x83DC;&#x5355;&#x680F;&#x3001;&#x5DE5;&#x5177;&#x680F;&#x3001;&#x5355;&#x5143;&#x683C;&#xFF08;cell&#xFF09;</p>
+<p><strong>&#x83DC;&#x5355;&#x680F;</strong>&#xFF1A;&#x7528;&#x5F97;&#x6700;&#x591A;&#x7684;&#x662F;Kernel&#xFF0C;&#x7528;&#x4E8E;&#x4E2D;&#x65AD;&#x7A0B;&#x5E8F;&#x3001;&#x91CD;&#x542F;&#x89E3;&#x91CA;&#x5668;&#x73AF;&#x5883;&#x3001;&#x5207;&#x6362;&#x89E3;&#x91CA;&#x5668;&#x7B49;&#xFF1B;&#x5176;&#x5B83;&#x6309;&#x952E;&#x987E;&#x540D;&#x601D;&#x4E49;&#x3002;</p>
+<p><strong>&#x5DE5;&#x5177;&#x680F;</strong>&#xFF1A;&#x4E00;&#x4E9B;&#x529F;&#x80FD;&#x7684;&#x6309;&#x94AE;&#xFF0C;&#x9AD8;&#x624B;&#x90FD;&#x662F;&#x7528;&#x5FEB;&#x6377;&#x952E;&#x7684;&#x3002;</p>
+<p><strong>&#x5355;&#x5143;&#x683C;</strong>&#xFF1A;&#x8FD9;&#x5C31;&#x662F;&#x627F;&#x8F7D;&#x4FE1;&#x606F;&#x7684;&#x5730;&#x65B9;&#xFF0C;cell&#x53EF;&#x5206;&#x4E3A;code cells, markdown cells, raw cells&#x3002;&#x7528;&#x5F97;&#x6700;&#x591A;&#x7684;&#x662F;code cells&#x548C;markdown cells&#x3002;</p>
+<p>&#x53F3;&#x4E0A;&#x89D2;&#x6709;&#x4E00;&#x4E2A;&#x5C0F;&#x5706;&#x5708;&#xFF0C;&#x7528;&#x4E8E;&#x89C2;&#x5BDF;&#x5F53;&#x524D;kernel&#x8FD0;&#x884C;&#x72B6;&#x6001;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5B9E;&#x5FC3;&#x7684;&#xFF0C;&#x8868;&#x660E;kernel&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x67D0;&#x4E2A;cell&#xFF0C;&#x88AB;&#x8FD0;&#x884C;&#x7684;cell&#x4EE5;&#x53CA;&#x7B49;&#x5F85;&#x8FD0;&#x884C;&#x7684;cell&#x7684;&#x5DE6;&#x8FB9;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;<strong>*</strong></p>
+<p><img src="imgs/nb-interface.png" alt="1"></p>
+<p>notebook &#x7684;&#x4E24;&#x79CD;&#x6A21;&#x5F0F;</p>
+<p>Notebook&#x4E2D;&#x7684;&#x5355;&#x5143;&#xFF0C;&#x6709;&#x4E24;&#x79CD;&#x6A21;&#x5F0F;&#xFF1A;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;(Command Mode)&#x4E0E;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;(Edit Mode)&#xFF0C;&#x5728;&#x4E0D;&#x540C;&#x6A21;&#x5F0F;&#x4E0B;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#xFF1A;cell&#x7684;&#x8FB9;&#x6846;&#x4E3A;&#x84DD;&#x8272;&#xFF0C;&#x6B64;&#x65F6;&#x53EF;&#x5BF9;cell&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;&#x5728;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x6309;<code>esc</code>&#x952E;&#x8FDB;&#x5165;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x3002;</p>
+<p>&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#xFF1A;cell&#x7684;&#x8FB9;&#x6846;&#x4E3A;&#x7EFF;&#x8272;&#xFF0C;&#x6B64;&#x65F6;&#x53EF;&#x5728;&#x5355;&#x5143;&#x683C;&#x5185;&#x7F16;&#x8F91;&#x4EE3;&#x7801;&#x6216;&#x6587;&#x6863;&#x3002;&#x5728;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x6309;<code>enter</code>&#x6216;<code>return</code>&#x952E;&#x8FDB;&#x5165;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#x3002;</p>
+<p>&#x5E38;&#x7528;&#x5FEB;&#x6377;&#x952E;</p>
+<p>&#x5728;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x6309;&#x4E0B;&#x201C;h&#x201D;&#x952E;&#xFF0C;&#x5C31;&#x4F1A;&#x5F39;&#x51FA;&#x5FEB;&#x6377;&#x952E;&#x7684;&#x4ECB;&#x7ECD;&#xFF0C;&#x4F46;&#x662F;&#x592A;&#x591A;&#x4E86;&#xFF0C;&#x4E0D;&#x65B9;&#x4FBF;&#x521D;&#x5B66;&#x8005;&#x4F7F;&#x7528;&#xFF0C;&#x8FD9;&#x91CC;&#x603B;&#x7ED3;&#x4E00;&#x4E9B;&#x5E38;&#x7528;&#x7684;&#xFF0C;&#x5B9E;&#x7528;&#x7684;&#x5FEB;&#x6377;&#x952E;&#x4F9B;&#x5927;&#x5BB6;&#x53C2;&#x8003;&#x3002;</p>
+<p><img src="imgs/shortcuts.png" alt="1"></p>
+<p><strong>&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#xFF1A;</strong></p>
+<p>&#x63D2;&#x5165;&#x5355;&#x5143;&#x683C;&#xFF1A; A &#x952E;&#x4E0A;&#x65B9;&#x63D2;&#x5165;&#xFF0C;B &#x952E;&#x5728;&#x4E0B;&#x65B9;&#x63D2;&#x5165;</p>
+<p>&#x5408;&#x5E76;&#x5355;&#x5143;&#x683C;&#xFF1A;&#x9009;&#x4E2D;&#x591A;&#x4E2A;&#x5355;&#x5143;&#x683C;&#xFF0C;Shift + M</p>
+<p>&#x663E;&#x793A;&#x884C;&#x53F7;&#xFF1A;L</p>
+<p>&#x5220;&#x9664;&#x5355;&#x5143;&#x683C;&#xFF1A;&#x8FDE;&#x7EED;&#x6309;&#x4E24;&#x6B21;D</p>
+<p>&#x526A;&#x5207;&#x5355;&#x5143;&#x683C;&#xFF1A;X&#x3002; &#x901A;&#x5E38;&#x6211;&#x7528;X&#x4EE3;&#x66FF;&#x5220;&#x9664;&#xFF0C;&#x6BD5;&#x7ADF;&#x53EA;&#x7528;&#x6309;&#x4E00;&#x4E2A;&#x952E;&#xFF0C;&#x54C8;&#x54C8;&#x3002;</p>
+<p>&#x590D;&#x5236;&#x7C98;&#x8D34;&#x5355;&#x5143;&#x683C;&#xFF1A; C/V</p>
+<p>&#x64A4;&#x9500;&#x5220;&#x9664;&#x7684;&#x5355;&#x5143;&#x683C;&#xFF1A;&#x8981;&#x64A4;&#x6D88;&#x5DF2;&#x5220;&#x9664;&#x7684;&#x5355;&#x5143;&#x683C;&#xFF0C;&#x8BF7;&#x6309; Z &#x952E;</p>
+<p><strong>&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#xFF1A;</strong></p>
+<p><strong>&#x8FD0;&#x884C;&#x5355;&#x5143;&#x683C;</strong>&#xFF1A;Ctrl + Enter </p>
+<p><strong>&#x8FD0;&#x884C;&#x5E76;&#x521B;&#x5EFA;&#x65B0;&#x5355;&#x5143;&#x683C;</strong>&#xFF1A;Alt + Enter </p>
+<p>&#x5206;&#x5272;&#x5355;&#x5143;&#x683C;&#xFF1A;&#x5149;&#x6807;&#x653E;&#x5230;&#x60F3;&#x8981;&#x5206;&#x5272;&#x7684;&#x5730;&#x65B9;&#xFF0C;Ctrl + Shift + - </p>
+<p>&#x51FD;&#x6570;&#x8BE6;&#x60C5;&#xFF1A;Shift+Tab &#xFF08;&#x6CE8;&#x610F;&#xFF0C;&#x8981;&#x628A;&#x6A21;&#x5757;&#x5BFC;&#x5165;&#x624D;&#x4F1A;&#x63D0;&#x793A;&#x51FD;&#x6570;&#x8BE6;&#x60C5;&#xFF01;&#xFF09;</p>
+<p>&#x8BF7;&#x5927;&#x5BB6;&#x5C06;&#x4EE5;&#x4E0A;&#x5FEB;&#x6377;&#x952E;&#x90FD;&#x8BD5;&#x7528;&#x4E00;&#x904D;&#xFF0C;&#x8FD9;&#x4E9B;&#x662F;&#x9AD8;&#x9891;&#x5FEB;&#x6377;&#x952E;&#xFF0C;&#x4E0B;&#x9762;&#x7ED9;&#x5927;&#x5BB6;&#x5217;&#x4E3E;&#x6240;&#x6709;&#x5FEB;&#x6377;&#x952E;&#xFF0C;&#x8BF7;&#x6536;&#x85CF;&#x3002;</p>
+<p><img src="imgs/shortcuts-tabel1.png" alt="1"></p>
+<p><img src="imgs/shortcuts-tabel2.png" alt="1"></p>
+<p>&#x4E0B;&#x9762;&#x518D;&#x4ECB;&#x7ECD;&#x4E24;&#x4E2A;&#x795E;&#x5947;&#x64CD;&#x4F5C;&#xFF0C;&#x5206;&#x522B;&#x662F;&#x5728;&#x5355;&#x5143;&#x683C;&#x4E2D;&#x6267;&#x884C;shell&#x547D;&#x4EE4;&#x4EE5;&#x53CA;magic&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x8BF7;&#x81EA;&#x884C;&#x5C1D;&#x8BD5;!+shell&#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x4F53;&#x4F1A;&#x3002;</p>
+<p><strong>magic commands</strong></p>
+<p>Magic&#x5173;&#x952E;&#x5B57;&#x662F; IPython &#x7684;&#x9AD8;&#x7EA7;&#x7528;&#x6CD5;&#xFF0C;&#x5982;%matplotlib&#x5C06;matplolib&#x8BBE;&#x7F6E;&#x4E3A;&#x4EA4;&#x4E92;&#x5F0F;</p>
+<p>%&#x548C;%%&#x5206;&#x522B;&#x4EE3;&#x8868; <strong>&#x884C;Magic&#x547D;&#x4EE4;</strong> &#x548C; <strong>&#x5355;&#x5143;&#x683C;Magic&#x547D;&#x4EE4;</strong></p>
+<p>&#x6F14;&#x793A;&#x4E00;&#x4E2A;&#x9B54;&#x6CD5;&#x547D;&#x4EE4; %%timeit</p>
+<pre><code>%%timeit
+a = []
+for i in range(10):
+    a.append(i)
+</code></pre><blockquote>
+<pre><code>858 ns &#xB1; 50.3 ns per loop (mean &#xB1; std. dev. of 7 runs, 1000000 loops each)
+</code></pre></blockquote>
+<p>&#x8868;&#x793A;&#x5C06;&#x4EE3;&#x7801;&#x6BB5;&#x8FD0;&#x884C;&#x4E86;100&#x4E07;&#x6B21;&#xFF0C;&#x5E76;&#x7EDF;&#x8BA1;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#x3002;</p>
+<p>&#x66F4;&#x591A;&#x66F4;&#x5168;&#x7684;magic commands&#x8BF7;&#x770B;&#x8FD9;&#x91CC;<a href="https://www.cnblogs.com/bind/p/11958317.html" target="_blank">Jupyter &#x9B54;&#x672F;&#x547D;&#x4EE4;&#xFF08;magic commands&#xFF09;</a></p>
+<p>&#x66F4;&#x591A;&#x5947;&#x6DEB;&#x6280;&#x5DE7;&#x63A8;&#x8350;&#x5927;&#x5BB6;&#x770B;&#x770B;<a href="https://www.zhihu.com/question/266988943" target="_blank">Jupyter Notebook &#x6709;&#x54EA;&#x4E9B;&#x5947;&#x6280;&#x6DEB;&#x5DE7;&#xFF1F;</a></p>
+<p>&#x66F4;&#x591A;&#x5B98;&#x65B9;&#x4FE1;&#x606F;&#x8BF7;&#x67E5;&#x770B;<a href="https://jupyter-notebook.readthedocs.io/en/stable/index.html" target="_blank">Jupyter Notebook docs</a> </p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; TingsongYu 2021 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2021&#x5E74;12&#x6708;19&#x65E5;11:48:10
+</span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1.5-PyTorch-install.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 1.5 环境配置之PyTorch系列包">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1.6 环境配置之Jupyter Notebook","level":"2.1.6","depth":2,"previous":{"title":"1.5 环境配置之PyTorch系列包","level":"2.1.5","depth":2,"path":"chapter-1/1.5-PyTorch-install.md","ref":"chapter-1/1.5-PyTorch-install.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2021年12月19日11:48:10"},"chapter-fold":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://pic4.zhimg.com/80/v2-67964c296524d614291c1363dbd84cc3_720w.jpg","alipayText":" 支付宝 ↑ ","button":"赏","title":"喂！三点几，饮茶先啦","wechat":"https://pic2.zhimg.com/80/v2-07c656b1fca8643c6d01236d8e313dc5_720w.jpg","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-1/1.6-JupyterNotebook-install.md","mtime":"2021-12-22T13:59:12.299Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-12-22T14:01:07.162Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/gumshoe.polyfills.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-3-ba/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
