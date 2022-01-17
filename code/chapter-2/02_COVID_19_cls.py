@@ -68,8 +68,9 @@ def main():
 
             self.img_info = [(os.path.join(self.root_dir, i.split()[0]), int(i.split()[2]))
                              for i in txt_data]
-
-    root_dir = r"E:\pytorch-tutorial-2nd\data\datasets\covid-19-demo"
+    # you can download the datasets from
+    # https://pan.baidu.com/s/18BsxploWR3pbybFtNsw5fA  code：pyto
+    root_dir = r"E:\pytorch-tutorial-2nd\data\datasets\covid-19-demo"  # path to datasets——covid-19-demo
     img_dir = os.path.join(root_dir, "imgs")
     path_txt_train = os.path.join(root_dir, "labels", "train.txt")
     path_txt_valid = os.path.join(root_dir, "labels", "valid.txt")
