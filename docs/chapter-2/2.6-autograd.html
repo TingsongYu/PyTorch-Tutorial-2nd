@@ -1,0 +1,1016 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>2.6 Autograd——自动微分 · PyTorch实用教程（第二版）</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="余霆嵩">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-intopic-toc/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="2.5-computational-graphs.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">上篇：PyTorch基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    第一章 PyTorch 简介与安装
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                <a href="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                    
+                    1.1 PyTorch 初认识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../chapter-1/1.2-Anaconda.html">
+            
+                <a href="../chapter-1/1.2-Anaconda.html">
+            
+                    
+                    1.2 环境配置之Anaconda
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../chapter-1/1.3-Pycharm.html">
+            
+                <a href="../chapter-1/1.3-Pycharm.html">
+            
+                    
+                    1.3 环境配置之Pycharm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                <a href="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                    
+                    1.4 环境配置之CUDA&cuDNN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../chapter-1/1.5-PyTorch-install.html">
+            
+                <a href="../chapter-1/1.5-PyTorch-install.html">
+            
+                    
+                    1.5 环境配置之PyTorch系列包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                <a href="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                    
+                    1.6 环境配置之Jupyter Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第二章 PyTorch 核心模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="2.1-module-tree.html">
+            
+                <a href="2.1-module-tree.html">
+            
+                    
+                    2.1 PyTorch 模块结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="2.2-covid-19-cls.html">
+            
+                <a href="2.2-covid-19-cls.html">
+            
+                    
+                    2.2 新冠肺炎分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="2.3-datastruct-tensor.html">
+            
+                <a href="2.3-datastruct-tensor.html">
+            
+                    
+                    2.3 核心数据结构——Tensor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="2.4-method-tensor.html">
+            
+                <a href="2.4-method-tensor.html">
+            
+                    
+                    2.4 张量的相关函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="2.5-computational-graphs.html">
+            
+                <a href="2.5-computational-graphs.html">
+            
+                    
+                    2.5 自动求导核心——计算图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.2.6" data-path="2.6-autograd.html">
+            
+                <a href="2.6-autograd.html">
+            
+                    
+                    2.6 Autograd——自动微分
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">中篇：PyTorch 案例应用</li>
+        
+        
+    
+
+    
+        
+        <li class="header">下篇：PyTorch 模型部署</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >2.6 Autograd——自动微分</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="26-autograd">2.6 Autograd</h1>
+<p>&#x4E86;&#x89E3;&#x8BA1;&#x7B97;&#x56FE;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F00;&#x59CB;&#x5B66;&#x4E60;autograd&#x3002;&#x8FD9;&#x91CC;&#x518D;&#x6B21;&#x56DE;&#x987E;pytorch&#x5B98;&#x7F51;&#x7684;&#x4E00;&#x5F20;&#x793A;&#x610F;&#x56FE;</p>
+<p><img src="imgs/dynamic_graph.gif" alt=""></p>
+<p>&#x5728;&#x8FDB;&#x884C;h2h&#x3001;i2h&#x3001;next_h&#x3001;loss&#x7684;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x9010;&#x6B65;&#x7684;&#x642D;&#x5EFA;&#x8BA1;&#x7B97;&#x56FE;&#xFF0C;&#x540C;&#x65F6;&#x9488;&#x5BF9;&#x6BCF;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#xFF08;tensor&#xFF09;&#x90FD;&#x5B58;&#x50A8;&#x8BA1;&#x7B97;&#x68AF;&#x5EA6;&#x6240;&#x5FC5;&#x5907;&#x7684;grad_fn&#xFF0C;&#x4FBF;&#x4E8E;&#x81EA;&#x52A8;&#x6C42;&#x5BFC;&#x7CFB;&#x7EDF;&#x4F7F;&#x7528;&#x3002;&#x5F53;&#x8BA1;&#x7B97;&#x5230;&#x6839;&#x8282;&#x70B9;&#x540E;&#xFF0C;&#x5728;&#x6839;&#x8282;&#x70B9;&#x8C03;&#x7528;.backward()&#x51FD;&#x6570;&#xFF0C;&#x5373;&#x53EF;&#x81EA;&#x52A8;&#x53CD;&#x5411;&#x4F20;&#x64AD;&#x8BA1;&#x7B97;&#x8BA1;&#x7B97;&#x56FE;&#x4E2D;&#x6240;&#x6709;&#x8282;&#x70B9;&#x7684;&#x68AF;&#x5EA6;&#x3002;&#x8FD9;&#x5C31;&#x662F;pytorch&#x81EA;&#x52A8;&#x6C42;&#x5BFC;&#x673A;&#x5236;&#xFF0C;&#x5176;&#x4E2D;&#x6D89;&#x53CA;&#x5F20;&#x91CF;&#x7C7B;&#x3001;&#x8BA1;&#x7B97;&#x56FE;&#x3001;grad_fn&#x3001;&#x94FE;&#x5F0F;&#x6C42;&#x5BFC;&#x6CD5;&#x5219;&#x7B49;&#x57FA;&#x7840;&#x6982;&#x5FF5;&#xFF0C;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x8865;&#x5145;&#x5B66;&#x4E60;&#x3002;</p>
+<h2 id="autograd-&#x5B98;&#x65B9;&#x5B9A;&#x4E49;">autograd &#x5B98;&#x65B9;&#x5B9A;&#x4E49;</h2>
+<p>&#x6765;&#x770B;&#x770B;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x4E2D;&#x5BF9;autograd&#x7684;&#x89E3;&#x91CA;&#xFF1A;</p>
+<p>Conceptually, autograd keeps a record of data (tensors) and all executed operations (along with the resulting new tensors) in a directed acyclic graph (DAG) consisting of <a href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" target="_blank">Function</a> objects. In this DAG, leaves are the input tensors, roots are the output tensors. By tracing this graph from roots to leaves, you can automatically compute the gradients using the chain rule.</p>
+<p>In a forward pass, autograd does two things simultaneously:</p>
+<ul>
+<li>run the requested operation to compute a resulting tensor</li>
+<li>maintain the operation&#x2019;s <em>gradient function</em> in the DAG.</li>
+</ul>
+<p>The backward pass kicks off when .backward() is called on the DAG root. autograd then:</p>
+<ul>
+<li>computes the gradients from each .grad_fn,</li>
+<li>accumulates them in the respective tensor&#x2019;s .grad attribute</li>
+<li>using the chain rule, propagates all the way to the leaf tensors.</li>
+</ul>
+<p>from&#xFF1A; <a href="https://pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html#more-on-computational-graphs" target="_blank">https://pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html#more-on-computational-graphs</a></p>
+<p><strong>&#x5212;&#x91CD;&#x70B9;&#xFF1A;</strong></p>
+<ul>
+<li>&#x81EA;&#x52A8;&#x6C42;&#x5BFC;&#x673A;&#x5236;&#x901A;&#x8FC7;&#x6709;&#x5411;&#x65E0;&#x73AF;&#x56FE;&#xFF08;directed acyclic graph &#xFF0C;<strong>DAG</strong>&#xFF09;&#x5B9E;&#x73B0;</li>
+<li>&#x5728;DAG&#x4E2D;&#xFF0C;&#x8BB0;&#x5F55;&#x6570;&#x636E;&#xFF08;&#x5BF9;&#x5E94;tensor.<strong>data</strong>&#xFF09;&#x4EE5;&#x53CA;&#x64CD;&#x4F5C;&#xFF08;&#x5BF9;&#x5E94;tensor.<strong>grad_fn</strong>&#xFF09;</li>
+<li>&#x64CD;&#x4F5C;&#x5728;pytorch&#x4E2D;&#x7EDF;&#x79F0;&#x4E3A;Function&#xFF0C;&#x5982;&#x52A0;&#x6CD5;&#x3001;&#x51CF;&#x6CD5;&#x3001;&#x4E58;&#x6CD5;&#x3001;ReLU&#x3001;conv&#x3001;Pooling&#x7B49;&#xFF0C;&#x7EDF;&#x7EDF;&#x662F;<font color="red"><strong>Function</strong></font></li>
+</ul>
+<h2 id="autograd-&#x7684;&#x4F7F;&#x7528;">autograd &#x7684;&#x4F7F;&#x7528;</h2>
+<p>autograd&#x7684;&#x4F7F;&#x7528;&#x6709;&#x5F88;&#x591A;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x91CC;&#x91CD;&#x70B9;&#x8BB2;&#x89E3;&#x4E00;&#x4E0B;&#x4E09;&#x4E2A;&#xFF0C;&#x5E76;&#x5728;&#x6700;&#x540E;&#x6C47;&#x603B;&#x4E00;&#x4E9B;&#x77E5;&#x8BC6;&#x70B9;&#x3002;&#x66F4;&#x591A;API&#x63A8;&#x8350;&#x9605;&#x8BFB;<a href="https://pytorch.org/docs/stable/autograd.html" target="_blank">&#x5B98;&#x65B9;&#x6587;&#x6863;</a></p>
+<ul>
+<li><strong>torch.autograd.backward</strong></li>
+<li><strong>torch.autograd.grad</strong></li>
+<li><strong>torch.autograd.Function</strong></li>
+</ul>
+<h3 id="torchautogradbackward">torch.autograd.backward</h3>
+<p>backward&#x51FD;&#x6570;&#x662F;&#x4F7F;&#x7528;&#x9891;&#x7387;&#x6700;&#x9AD8;&#x7684;&#x81EA;&#x52A8;&#x6C42;&#x5BFC;&#x51FD;&#x6570;&#xFF0C;&#x6CA1;&#x6709;&#x4E4B;&#x4E00;&#x3002;99%&#x7684;&#x8BAD;&#x7EC3;&#x4EE3;&#x7801;&#x4E2D;&#x90FD;&#x4F1A;&#x7528;&#x5B83;&#x8FDB;&#x884C;&#x68AF;&#x5EA6;&#x6C42;&#x5BFC;&#xFF0C;&#x7136;&#x540E;&#x66F4;&#x65B0;&#x6743;&#x91CD;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x7B2C;&#x4E8C;&#x7AE0;&#x7B2C;&#x4E8C;&#x8282;-&#x65B0;&#x51A0;&#x80BA;&#x708E;&#x5206;&#x7C7B;&#x7684;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/tree/main/code/chapter-2" target="_blank">&#x4EE3;&#x7801;</a>&#xFF0C;loss.backward()&#x5C31;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x8BA1;&#x7B97;&#x56FE;&#x4E2D;&#x6240;&#x6709;&#x5F20;&#x91CF;&#x7684;&#x68AF;&#x5EA6;&#x6C42;&#x89E3;&#x3002;</p>
+<p>&#x867D;&#x7136;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x90FD;&#x662F;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#xFF0C;&#x4F46;&#x662F;backward()&#x91CC;&#x8FB9;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x9AD8;&#x7EA7;&#x53C2;&#x6570;&#xFF0C;&#x503C;&#x5F97;&#x4E86;&#x89E3;&#x3002;</p>
+<p><strong>torch.autograd.backward(tensors, grad_tensors=None, retain_graph=None, create_graph=False, grad_variables=None, inputs=None)</strong></p>
+<ul>
+<li><strong>tensors</strong> (<em>Sequence[</em><a href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" target="_blank"><em>Tensor</em></a><em>] or</em> <a href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" target="_blank"><em>Tensor</em></a>) &#x2013; &#x7528;&#x4E8E;&#x6C42;&#x5BFC;&#x7684;&#x5F20;&#x91CF;&#x3002;&#x5982;&#x4E0A;&#x4F8B;&#x7684;loss&#x3002;</li>
+<li><strong>grad_tensors</strong> (<em>Sequence[</em><a href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" target="_blank"><em>Tensor</em></a> <em>or</em> <a href="https://docs.python.org/3/library/constants.html#None" target="_blank"><em>None</em></a><em>] or</em> <a href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" target="_blank"><em>Tensor</em></a><em>, optional</em>) &#x2013; &#x96C5;&#x514B;&#x6BD4;&#x5411;&#x91CF;&#x79EF;&#x4E2D;&#x4F7F;&#x7528;&#xFF0C;&#x8BE6;&#x7EC6;&#x4F5C;&#x7528;&#x8BF7;&#x770B;&#x4EE3;&#x7801;&#x6F14;&#x793A;&#x3002;</li>
+<li><strong>retain_graph</strong> (<a href="https://docs.python.org/3/library/functions.html#bool" target="_blank"><em>bool</em></a><em>, optional</em>) &#x2013; &#x662F;&#x5426;&#x9700;&#x8981;&#x4FDD;&#x7559;&#x8BA1;&#x7B97;&#x56FE;&#x3002;pytorch&#x7684;&#x673A;&#x5236;&#x662F;&#x5728;&#x65B9;&#x5411;&#x4F20;&#x64AD;&#x7ED3;&#x675F;&#x65F6;&#xFF0C;&#x8BA1;&#x7B97;&#x56FE;&#x91CA;&#x653E;&#x4EE5;&#x8282;&#x7701;&#x5185;&#x5B58;&#x3002;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x5C1D;&#x8BD5;&#x8FDE;&#x7EED;&#x4F7F;&#x7528;loss.backward()&#xFF0C;&#x5C31;&#x4F1A;&#x62A5;&#x9519;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x591A;&#x6B21;&#x6C42;&#x5BFC;&#xFF0C;&#x5219;&#x5728;&#x6267;&#x884C;backward()&#x65F6;&#xFF0C;retain_graph=True&#x3002;</li>
+<li><strong>create_graph</strong> (<a href="https://docs.python.org/3/library/functions.html#bool" target="_blank"><em>bool</em></a><em>, optional</em>) &#x2013; &#x662F;&#x5426;&#x521B;&#x5EFA;&#x8BA1;&#x7B97;&#x56FE;&#xFF0C;&#x7528;&#x4E8E;&#x9AD8;&#x9636;&#x6C42;&#x5BFC;&#x3002;</li>
+<li><strong>inputs</strong> (<em>Sequence[</em><a href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" target="_blank"><em>Tensor</em></a><em>] or</em> <a href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" target="_blank"><em>Tensor</em></a><em>, optional</em>) &#x2013; Inputs w.r.t. which the gradient be will accumulated into .grad. All other Tensors will be ignored. If not provided, the gradient is accumulated into all the leaf Tensors that were used to compute the attr::tensors.</li>
+</ul>
+<p><strong>&#x8865;&#x5145;&#x8BF4;&#x660E;</strong>&#xFF1A;&#x6211;&#x4EEC;&#x5230;&#x4F7F;&#x7528;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x662F;&#x5728;&#x5F20;&#x91CF;&#x4E0A;&#x76F4;&#x63A5;&#x8C03;&#x7528;.backward()&#x51FD;&#x6570;&#xFF0C;&#x4F46;&#x8FD9;&#x91CC;&#x5374;&#x662F;torch.autograd.backward&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x4E00;&#x6837;&#x5462;&#xFF1F; &#x5176;&#x5B9E;Tensor.backward()&#x63A5;&#x53E3;&#x5185;&#x90E8;&#x8C03;&#x7528;&#x4E86;autograd.backward&#x3002;</p>
+<p><strong>&#x8BF7;&#x770B;&#x4F7F;&#x7528;&#x793A;&#x4F8B;</strong></p>
+<p><strong>retain_grad&#x53C2;&#x6570;&#x4F7F;&#x7528;</strong></p>
+<p>&#x5BF9;&#x6BD4;&#x4E24;&#x4E2A;&#x4EE3;&#x7801;&#x6BB5;&#xFF0C;&#x4ED4;&#x7EC6;&#x9605;&#x8BFB;pytorch&#x62A5;&#x9519;&#x4FE1;&#x606F;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-comment">#####  retain_graph=True</span>
+<span class="hljs-keyword">import</span> torch
+w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+
+a = torch.add(w, x)
+b = torch.add(w, <span class="hljs-number">1</span>)
+y = torch.mul(a, b)  
+
+y.backward(retain_graph=<span class="hljs-keyword">True</span>)
+print(w.grad)
+y.backward()
+print(w.grad)
+</code></pre>
+<pre><code>tensor([5.])
+tensor([10.])
+</code></pre><p>&#x8FD0;&#x884C;&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x6BB5;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x662F;&#x6B63;&#x5E38;&#x7684;&#xFF0C;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4EE3;&#x7801;&#x6BB5;&#x5C31;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x62A5;&#x9519;&#x4FE1;&#x606F;&#x63D0;&#x793A;&#x975E;&#x5E38;&#x660E;&#x786E;&#xFF1A;<strong>Trying to backward through the graph a second time</strong>&#x3002;&#x5E76;&#x4E14;&#x8FD8;&#x7ED9;&#x51FA;&#x4E86;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF1A; Specify <strong>retain_graph=True</strong> if you need to backward through the graph a second time &#x3002;<br>&#x8FD9;&#x4E5F;&#x662F;pytorch&#x4EE3;&#x7801;&#x5199;&#x5F97;&#x597D;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x51FA;&#x73B0;&#x9519;&#x8BEF;&#x4E0D;&#x8981;&#x614C;&#xFF0C;<strong>&#x4ED4;&#x7EC6;&#x770B;&#x770B;&#x62A5;&#x9519;&#x4FE1;&#x606F;</strong>&#xFF0C;&#x91CC;&#x8FB9;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-comment">#####  retain_graph=False</span>
+<span class="hljs-keyword">import</span> torch
+w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+
+a = torch.add(w, x)
+b = torch.add(w, <span class="hljs-number">1</span>)
+y = torch.mul(a, b)
+
+y.backward()
+print(w.grad)
+y.backward()
+print(w.grad)
+</code></pre>
+<pre><code>tensor([5.])
+
+---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+&lt;ipython-input-9-64bccc64184d&gt; in &lt;module&gt;
+     10 y.backward()
+     11 print(w.grad)
+---&gt; 12 y.backward()
+     13 print(w.grad)
+
+
+D:\Anaconda_data\envs\pytorch_1.10_gpu\lib\site-packages\torch\_tensor.py in backward(self, gradient, retain_graph, create_graph, inputs)
+    305                 create_graph=create_graph,
+    306                 inputs=inputs)
+--&gt; 307         torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+    308 
+    309     def register_hook(self, hook):
+
+
+D:\Anaconda_data\envs\pytorch_1.10_gpu\lib\site-packages\torch\autograd\__init__.py in backward(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)
+    154     Variable._execution_engine.run_backward(
+    155         tensors, grad_tensors_, retain_graph, create_graph, inputs,
+--&gt; 156         allow_unreachable=True, accumulate_grad=True)  # allow_unreachable flag
+    157 
+    158 
+
+
+RuntimeError: Trying to backward through the graph a second time (or directly access saved tensors after they have already been freed). Saved intermediate values of the graph are freed when you call .backward() or autograd.grad(). Specify retain_graph=True if you need to backward through the graph a second time or if you need to access saved tensors after calling backward.
+</code></pre><p><strong>grad_tensors&#x4F7F;&#x7528;</strong></p>
+<pre><code class="lang-python">w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+
+a = torch.add(w, x)     
+b = torch.add(w, <span class="hljs-number">1</span>)
+
+y0 = torch.mul(a, b)    <span class="hljs-comment"># y0 = (x+w) * (w+1)    dy0/dw = 2w + x + 1</span>
+y1 = torch.add(a, b)    <span class="hljs-comment"># y1 = (x+w) + (w+1)    dy1/dw = 2</span>
+
+loss = torch.cat([y0, y1], dim=<span class="hljs-number">0</span>)       <span class="hljs-comment"># [y0, y1]</span>
+
+grad_tensors = torch.tensor([<span class="hljs-number">1.</span>, <span class="hljs-number">2.</span>])
+
+loss.backward(gradient=grad_tensors)    <span class="hljs-comment"># Tensor.backward&#x4E2D;&#x7684; gradient &#x4F20;&#x5165; torch.autograd.backward()&#x4E2D;&#x7684;grad_tensors</span>
+
+<span class="hljs-comment"># w =  1* (dy0/dw)  +   2*(dy1/dw)</span>
+<span class="hljs-comment"># w =  1* (2w + x + 1)  +   2*(w)</span>
+<span class="hljs-comment"># w =  1* (5)  +   2*(2)</span>
+<span class="hljs-comment"># w =  9</span>
+
+print(w.grad)
+</code></pre>
+<pre><code>tensor([9.])
+</code></pre><h3 id="torchautogradgrad">torch.autograd.grad</h3>
+<p><strong>orch.autograd.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False)</strong></p>
+<p><strong>&#x529F;&#x80FD;&#xFF1A;&#x8BA1;&#x7B97;outputs&#x5BF9;inputs&#x7684;&#x5BFC;&#x6570;</strong></p>
+<p><strong>&#x4E3B;&#x8981;&#x53C2;&#x6570;&#xFF1A;</strong></p>
+<ul>
+<li><strong>outputs</strong> (<em>sequence of Tensor</em>) &#x2013; &#x7528;&#x4E8E;&#x6C42;&#x5BFC;&#x7684;&#x5F20;&#x91CF;&#xFF0C;&#x5982;loss</li>
+<li><strong>inputs</strong> (<em>sequence of Tensor</em>) &#x2013; &#x6240;&#x8981;&#x8BA1;&#x7B97;&#x5BFC;&#x6570;&#x7684;&#x5F20;&#x91CF;</li>
+<li><strong>grad_outputs</strong> (<em>sequence of Tensor</em>) &#x2013;  &#x96C5;&#x514B;&#x6BD4;&#x5411;&#x91CF;&#x79EF;&#x4E2D;&#x4F7F;&#x7528;&#x3002;</li>
+<li><p><strong>retain_graph</strong> (<a href="https://docs.python.org/3/library/functions.html#bool" target="_blank"><em>bool</em></a><em>, optional</em>) &#x2013; &#x662F;&#x5426;&#x9700;&#x8981;&#x4FDD;&#x7559;&#x8BA1;&#x7B97;&#x56FE;&#x3002;pytorch&#x7684;&#x673A;&#x5236;&#x662F;&#x5728;&#x65B9;&#x5411;&#x4F20;&#x64AD;&#x7ED3;&#x675F;&#x65F6;&#xFF0C;&#x8BA1;&#x7B97;&#x56FE;&#x91CA;&#x653E;&#x4EE5;&#x8282;&#x7701;&#x5185;&#x5B58;&#x3002;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x5C1D;&#x8BD5;&#x8FDE;&#x7EED;&#x4F7F;&#x7528;loss.backward()&#xFF0C;&#x5C31;&#x4F1A;&#x62A5;&#x9519;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x591A;&#x6B21;&#x6C42;&#x5BFC;&#xFF0C;&#x5219;&#x5728;&#x6267;&#x884C;backward()&#x65F6;&#xFF0C;retain_graph=True&#x3002;</p>
+</li>
+<li><p><strong>create_graph</strong> (<a href="https://docs.python.org/3/library/functions.html#bool" target="_blank"><em>bool</em></a><em>, optional</em>) &#x2013; &#x662F;&#x5426;&#x521B;&#x5EFA;&#x8BA1;&#x7B97;&#x56FE;&#xFF0C;&#x7528;&#x4E8E;&#x9AD8;&#x9636;&#x6C42;&#x5BFC;&#x3002;</p>
+</li>
+<li><p><strong>allow_unused</strong> (<a href="https://docs.python.org/3/library/functions.html#bool" target="_blank"><em>bool</em></a><em>, optional</em>) &#x2013; &#x662F;&#x5426;&#x9700;&#x8981;&#x6307;&#x793A;&#xFF0C;&#x8BA1;&#x7B97;&#x68AF;&#x5EA6;&#x65F6;&#x672A;&#x4F7F;&#x7528;&#x7684;&#x5F20;&#x91CF;&#x662F;&#x9519;&#x8BEF;&#x7684;&#x3002;</p>
+</li>
+</ul>
+<p>&#x6B64;&#x51FD;&#x6570;&#x4F7F;&#x7528;&#x4E0A;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#xFF0C;&#x8BF7;&#x770B;&#x6848;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> torch
+x = torch.tensor([<span class="hljs-number">3.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+y = torch.pow(x, <span class="hljs-number">2</span>)     <span class="hljs-comment"># y = x**2</span>
+
+<span class="hljs-comment"># &#x4E00;&#x9636;&#x5BFC;&#x6570;</span>
+grad_1 = torch.autograd.grad(y, x, create_graph=<span class="hljs-keyword">True</span>)   <span class="hljs-comment"># grad_1 = dy/dx = 2x = 2 * 3 = 6</span>
+print(grad_1)
+
+<span class="hljs-comment"># &#x4E8C;&#x9636;&#x5BFC;&#x6570;</span>
+grad_2 = torch.autograd.grad(grad_1[<span class="hljs-number">0</span>], x)              <span class="hljs-comment"># grad_2 = d(dy/dx)/dx = d(2x)/dx = 2</span>
+print(grad_2)
+</code></pre>
+<pre><code>(tensor([6.], grad_fn=&lt;MulBackward0&gt;),)
+(tensor([2.]),)
+</code></pre><h3 id="torchautogradfunction"><font color="red">torch.autograd.Function</font></h3>
+<p>&#x6709;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x60F3;&#x8981;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#xFF08;op&#xFF09;&#xFF0C;&#x5982;&#x7279;&#x6B8A;&#x7684;&#x6570;&#x5B66;&#x51FD;&#x6570;&#x3001;pytorch&#x7684;module&#x4E2D;&#x6CA1;&#x6709;&#x7684;&#x7F51;&#x7EDC;&#x5C42;&#xFF0C;&#x90A3;&#x5C31;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5199;&#x4E00;&#x4E2A;Function&#xFF0C;&#x5728;Function&#x4E2D;&#x5B9A;&#x4E49;&#x597D;forward&#x7684;&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#x3001;backward&#x7684;&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8FD9;&#x4E9B;op&#x7EC4;&#x5408;&#x5230;&#x6A21;&#x578B;&#x4E2D;&#xFF0C;&#x6A21;&#x578B;&#x5C31;&#x53EF;&#x4EE5;&#x7528;autograd&#x5B8C;&#x6210;&#x68AF;&#x5EA6;&#x6C42;&#x53D6;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x6982;&#x5FF5;&#x8FD8;&#x662F;&#x5F88;&#x62BD;&#x8C61;&#xFF0C;&#x5E73;&#x65F6;&#x7528;&#x5F97;&#x4E0D;&#x591A;&#xFF0C;&#x4F46;&#x662F;&#x81EA;&#x5DF1;&#x60F3;&#x8981;&#x9B54;&#x6539;&#x7F51;&#x7EDC;&#x65F6;&#xFF0C;&#x5E38;&#x5E38;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5199;op&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x5C31;&#x5F88;&#x597D;&#x7528;&#x4E86;&#xFF0C;&#x4E3A;&#x4E86;&#x8BA9;&#x5927;&#x5BB6;&#x638C;&#x63E1;&#x81EA;&#x5B9A;&#x4E49;op&#x2014;&#x2014;Function&#x7684;&#x5199;&#x6CD5;&#xFF0C;&#x7279;&#x5730;&#x4ECE;&#x591A;&#x5904;&#x6536;&#x96C6;&#x4E86;&#x56DB;&#x4E2A;&#x6848;&#x4F8B;&#xFF0C;&#x5927;&#x5BB6;&#x591A;&#x8FD0;&#x884C;&#x4EE3;&#x7801;&#x4F53;&#x4F1A;Function&#x5982;&#x4F55;&#x5199;&#x3002;</p>
+<h4 id="&#x6848;&#x4F8B;1&#xFF1A;-exp">&#x6848;&#x4F8B;1&#xFF1A; exp</h4>
+<p>&#x6848;&#x4F8B;1&#xFF1A;&#x6765;&#x81EA; <a href="https://pytorch.org/docs/stable/autograd.html#function" target="_blank">https://pytorch.org/docs/stable/autograd.html#function</a><br>
+&#x5047;&#x8BBE;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x8BA1;&#x7B97;&#x6307;&#x6570;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5E76;&#x4E14;&#x80FD;&#x7EC4;&#x5408;&#x5230;&#x6A21;&#x578B;&#x4E2D;&#xFF0C;&#x5B9E;&#x73B0;autograd&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x5B9E;&#x73B0;  </p>
+<p>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x7EE7;&#x627F;Function<br>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x5B9E;&#x73B0;forward<br>&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x5B9E;&#x73B0;backward  </p>
+<p>&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#xFF1A;</p>
+<ol>
+<li><p>forward&#x548C;backward&#x51FD;&#x6570;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;<strong>ctx</strong>&#xFF0C;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x7C7B;&#x4F3C;&#x4E8E;&#x7C7B;&#x51FD;&#x6570;&#x7684;self&#x4E00;&#x6837;&#xFF0C;&#x66F4;&#x8BE6;&#x7EC6;&#x89E3;&#x91CA;&#x53EF;&#x53C2;&#x8003;&#x5982;&#x4E0B;&#xFF1A;
+In the forward pass we receive a Tensor containing the input and return a Tensor containing the output. ctx is a context object that can be used to stash information for backward computation. You can cache arbitrary objects for use in the backward pass using the ctx.save_for_backward method.  </p>
+</li>
+<li><p>backward&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;&#x53C2;&#x6570;&#x4E2A;&#x6570;&#x4E0E;forward&#x7684;&#x8F93;&#x5165;&#x53C2;&#x6570;&#x4E2A;&#x6570;&#x76F8;&#x540C;, &#x5373;&#xFF0C;&#x4F20;&#x5165;&#x8BE5;op&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x7ED9;&#x5B83;&#x4EEC;&#x8BA1;&#x7B97;&#x5BF9;&#x5E94;&#x7684;&#x68AF;&#x5EA6;&#x3002;</p>
+</li>
+</ol>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">from</span> torch.autograd.function <span class="hljs-keyword">import</span> Function
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Exp</span><span class="hljs-params">(Function)</span>:</span>
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(ctx, i)</span>:</span>
+
+        <span class="hljs-comment"># ============== step1: &#x51FD;&#x6570;&#x529F;&#x80FD;&#x5B9E;&#x73B0; ==============</span>
+        result = i.exp()
+        <span class="hljs-comment"># ============== step1: &#x51FD;&#x6570;&#x529F;&#x80FD;&#x5B9E;&#x73B0; ==============</span>
+
+        <span class="hljs-comment"># ============== step2: &#x7ED3;&#x679C;&#x4FDD;&#x5B58;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x5411;&#x4F20;&#x64AD; ==============</span>
+        ctx.save_for_backward(result)
+        <span class="hljs-comment"># ============== step2: &#x7ED3;&#x679C;&#x4FDD;&#x5B58;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x5411;&#x4F20;&#x64AD; ==============</span>
+
+        <span class="hljs-keyword">return</span> result
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backward</span><span class="hljs-params">(ctx, grad_output)</span>:</span>
+
+        <span class="hljs-comment"># ============== step1: &#x53D6;&#x51FA;&#x7ED3;&#x679C;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x5411;&#x4F20;&#x64AD; ==============</span>
+        result, = ctx.saved_tensors
+        <span class="hljs-comment"># ============== step1: &#x53D6;&#x51FA;&#x7ED3;&#x679C;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x5411;&#x4F20;&#x64AD; ==============</span>
+
+
+        <span class="hljs-comment"># ============== step2: &#x53CD;&#x5411;&#x4F20;&#x64AD;&#x516C;&#x5F0F;&#x5B9E;&#x73B0; ==============</span>
+        grad_results = grad_output * result
+        <span class="hljs-comment"># ============== step2: &#x53CD;&#x5411;&#x4F20;&#x64AD;&#x516C;&#x5F0F;&#x5B9E;&#x73B0; ==============</span>
+
+
+        <span class="hljs-keyword">return</span> grad_results
+
+x = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-keyword">True</span>)  
+y = Exp.apply(x)                          <span class="hljs-comment"># &#x9700;&#x8981;&#x4F7F;&#x7528;apply&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x81EA;&#x5B9A;&#x4E49;autograd function</span>
+print(y)                                  <span class="hljs-comment">#  y = e^x = e^1 = 2.7183</span>
+y.backward()                            
+print(x.grad)                           <span class="hljs-comment"># &#x53CD;&#x4F20;&#x68AF;&#x5EA6;,  x.grad = dy/dx = e^x = e^1  = 2.7183</span>
+
+<span class="hljs-comment"># &#x5173;&#x4E8E;&#x672C;&#x4F8B;&#x5B50;&#x66F4;&#x8BE6;&#x7EC6;&#x89E3;&#x91CA;&#xFF0C;&#x63A8;&#x8350;&#x9605;&#x8BFB; https://zhuanlan.zhihu.com/p/321449610</span>
+</code></pre>
+<pre><code>tensor([2.7183], grad_fn=&lt;ExpBackward&gt;)
+tensor([2.7183])
+</code></pre><p>&#x4ECE;&#x4EE3;&#x7801;&#x91CC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;y&#x8FD9;&#x4E2A;&#x5F20;&#x91CF;&#x7684; <strong>grad_fn</strong> &#x662F; <strong>ExpBackward</strong>&#xFF0C;&#x6B63;&#x662F;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x8868;&#x660E;&#x5F53;y&#x6C42;&#x68AF;&#x5EA6;&#x65F6;&#xFF0C;&#x4F1A;&#x8C03;&#x7528;<strong>ExpBackward</strong>&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;<br>&#x8FD9;&#x4E5F;&#x662F;&#x5F20;&#x91CF;&#x7684;grad_fn&#x7684;&#x4F5C;&#x7528;&#x6240;&#x5728;</p>
+<h4 id="&#x6848;&#x4F8B;2&#xFF1A;&#x4E3A;&#x68AF;&#x5EA6;&#x4E58;&#x4EE5;&#x4E00;&#x5B9A;&#x7CFB;&#x6570;-gradcoeff">&#x6848;&#x4F8B;2&#xFF1A;&#x4E3A;&#x68AF;&#x5EA6;&#x4E58;&#x4EE5;&#x4E00;&#x5B9A;&#x7CFB;&#x6570; Gradcoeff</h4>
+<p>&#x6848;&#x4F8B;2&#x6765;&#x81EA;&#xFF1A; <a href="https://zhuanlan.zhihu.com/p/321449610" target="_blank">https://zhuanlan.zhihu.com/p/321449610</a></p>
+<p>&#x529F;&#x80FD;&#x662F;&#x53CD;&#x5411;&#x4F20;&#x68AF;&#x5EA6;&#x65F6;&#x4E58;&#x4EE5;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7CFB;&#x6570;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GradCoeff</span><span class="hljs-params">(Function)</span>:</span>       
+
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(ctx, x, coeff)</span>:</span>                 
+
+        <span class="hljs-comment"># ============== step1: &#x51FD;&#x6570;&#x529F;&#x80FD;&#x5B9E;&#x73B0; ==============</span>
+        ctx.coeff = coeff   <span class="hljs-comment"># &#x5C06;coeff&#x5B58;&#x4E3A;ctx&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;</span>
+        x.view_as(x)
+        <span class="hljs-comment"># ============== step1: &#x51FD;&#x6570;&#x529F;&#x80FD;&#x5B9E;&#x73B0; ==============</span>
+        <span class="hljs-keyword">return</span> x
+
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backward</span><span class="hljs-params">(ctx, grad_output)</span>:</span>            
+        <span class="hljs-keyword">return</span> ctx.coeff * grad_output, <span class="hljs-keyword">None</span>    <span class="hljs-comment"># backward&#x7684;&#x8F93;&#x51FA;&#x4E2A;&#x6570;&#xFF0C;&#x5E94;&#x4E0E;forward&#x7684;&#x8F93;&#x5165;&#x4E2A;&#x6570;&#x76F8;&#x540C;&#xFF0C;&#x6B64;&#x5904;coeff&#x4E0D;&#x9700;&#x8981;&#x68AF;&#x5EA6;&#xFF0C;&#x56E0;&#x6B64;&#x8FD4;&#x56DE;None</span>
+
+<span class="hljs-comment"># &#x5C1D;&#x8BD5;&#x4F7F;&#x7528;</span>
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+ret = GradCoeff.apply(x, <span class="hljs-number">-0.1</span>)                  <span class="hljs-comment"># &#x524D;&#x5411;&#x9700;&#x8981;&#x540C;&#x65F6;&#x63D0;&#x4F9B;x&#x53CA;coeff&#xFF0C;&#x8BBE;&#x7F6E;coeff&#x4E3A;-0.1</span>
+ret = ret ** <span class="hljs-number">2</span>                          
+print(ret)                                      <span class="hljs-comment"># &#x6CE8;&#x610F;&#x770B;&#xFF1A; ret.grad_fn </span>
+ret.backward()  
+print(x.grad)
+</code></pre>
+<pre><code>tensor([4.], grad_fn=&lt;PowBackward0&gt;)
+tensor([-0.4000])
+</code></pre><p>&#x5728;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F; backward&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;&#x53C2;&#x6570;&#x4E2A;&#x6570;&#x4E0E;forward&#x7684;&#x8F93;&#x5165;&#x53C2;&#x6570;&#x4E2A;&#x6570;&#x76F8;&#x540C;<br>&#x5373;&#xFF0C;<strong>&#x4F20;&#x5165;&#x8BE5;op&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x7ED9;&#x5B83;&#x4EEC;&#x8BA1;&#x7B97;&#x5BF9;&#x5E94;&#x7684;&#x68AF;&#x5EA6;</strong>&#x3002;</p>
+<h4 id="&#x6848;&#x4F8B;3&#xFF1A;&#x52D2;&#x8BA9;&#x5FB7;&#x591A;&#x9879;&#x5F0F;">&#x6848;&#x4F8B;3&#xFF1A;&#x52D2;&#x8BA9;&#x5FB7;&#x591A;&#x9879;&#x5F0F;</h4>
+<p>&#x6848;&#x4F8B;&#x6765;&#x81EA;&#xFF1A;<a href="https://github.com/excelkks/blog" target="_blank">https://github.com/excelkks/blog</a><br>&#x5047;&#x8BBE;&#x591A;&#x9879;&#x5F0F;&#x4E3A;&#xFF1A;$y = a+bx+cx^2+dx^3$&#x65F6;&#xFF0C;&#x7528;&#x4E24;&#x6B65;&#x66FF;&#x4EE3;&#x8BE5;&#x8FC7;&#x7A0B; $y= a+b\times P_3(c+dx), P_3(x) = \frac{1}{2}(5x^3-3x)$</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> math
+<span class="hljs-keyword">from</span> torch.autograd.function <span class="hljs-keyword">import</span> Function
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LegendrePolynomial3</span><span class="hljs-params">(Function)</span>:</span>
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(ctx, x)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        In the forward pass we receive a Tensor containing the input and return
+        a Tensor containing the output. ctx is a context object that can be used
+        to stash information for backward computation. You can cache arbitrary
+        objects for use in the backward pass using the ctx.save_for_backward method.
+        &quot;&quot;&quot;</span>
+        y = <span class="hljs-number">0.5</span> * (<span class="hljs-number">5</span> * x ** <span class="hljs-number">3</span> - <span class="hljs-number">3</span> * x)
+        ctx.save_for_backward(x)
+        <span class="hljs-keyword">return</span> y
+
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backward</span><span class="hljs-params">(ctx, grad_output)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        In the backward pass we receive a Tensor containing the gradient of the loss
+        with respect to the output, and we need to compute the gradient of the loss
+        with respect to the input.
+        &quot;&quot;&quot;</span>
+        ret, = ctx.saved_tensors
+        <span class="hljs-keyword">return</span> grad_output * <span class="hljs-number">1.5</span> * (<span class="hljs-number">5</span> * ret ** <span class="hljs-number">2</span> - <span class="hljs-number">1</span>)
+
+a, b, c, d = <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> 
+x = <span class="hljs-number">1</span>
+P3 = LegendrePolynomial3.apply
+y_pred = a + b * P3(c + d * x)
+print(y_pred)
+</code></pre>
+<pre><code>127.0
+</code></pre><h4 id="&#x6848;&#x4F8B;4&#xFF1A;&#x624B;&#x52A8;&#x5B9E;&#x73B0;2d&#x5377;&#x79EF;">&#x6848;&#x4F8B;4&#xFF1A;&#x624B;&#x52A8;&#x5B9E;&#x73B0;2D&#x5377;&#x79EF;</h4>
+<p>&#x6848;&#x4F8B;&#x6765;&#x81EA;&#xFF1A;<a href="https://pytorch.org/tutorials/intermediate/custom_function_conv_bn_tutorial.html" target="_blank">https://pytorch.org/tutorials/intermediate/custom_function_conv_bn_tutorial.html</a><br>&#x6848;&#x4F8B;&#x672C;&#x662F;&#x5377;&#x79EF;&#x4E0E;BN&#x7684;&#x878D;&#x5408;&#x5B9E;&#x73B0;&#xFF0C;&#x6B64;&#x5904;&#x4EC5;&#x89C2;&#x5BDF;Function&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x66F4;&#x8BE6;&#x7EC6;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x5341;&#x5206;&#x63A8;&#x8350;&#x9605;&#x8BFB;&#x539F;&#x6587;&#x7AE0;<br>&#x4E0B;&#x9762;&#x770B;&#x5982;&#x4F55;&#x5B9E;&#x73B0;conv_2d&#x7684;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">from</span> torch.autograd.function <span class="hljs-keyword">import</span> once_differentiable
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">convolution_backward</span><span class="hljs-params">(grad_out, X, weight)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    &#x5C06;&#x53CD;&#x5411;&#x4F20;&#x64AD;&#x529F;&#x80FD;&#x7528;&#x51FD;&#x6570;&#x5305;&#x88C5;&#x8D77;&#x6765;&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x53C2;&#x6570;&#x4E2A;&#x6570;&#x4E0E;forward&#x63A5;&#x6536;&#x7684;&#x53C2;&#x6570;&#x4E2A;&#x6570;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#xFF0C;&#x4E3A;2&#x4E2A;
+    &quot;&quot;&quot;</span>
+    grad_input = F.conv2d(X.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), grad_out.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)).transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+    grad_X = F.conv_transpose2d(grad_out, weight)
+    <span class="hljs-keyword">return</span> grad_X, grad_input
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyConv2D</span><span class="hljs-params">(torch.autograd.Function)</span>:</span>
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(ctx, X, weight)</span>:</span>
+        ctx.save_for_backward(X, weight)
+
+        <span class="hljs-comment"># ============== step1: &#x51FD;&#x6570;&#x529F;&#x80FD;&#x5B9E;&#x73B0; ==============</span>
+        ret = F.conv2d(X, weight) 
+        <span class="hljs-comment"># ============== step1: &#x51FD;&#x6570;&#x529F;&#x80FD;&#x5B9E;&#x73B0; ==============</span>
+        <span class="hljs-keyword">return</span> ret
+
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backward</span><span class="hljs-params">(ctx, grad_out)</span>:</span>
+        X, weight = ctx.saved_tensors
+        <span class="hljs-keyword">return</span> convolution_backward(grad_out, X, weight)
+</code></pre>
+<pre><code class="lang-python">weight = torch.rand(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, requires_grad=<span class="hljs-keyword">True</span>, dtype=torch.double)
+X = torch.rand(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>, requires_grad=<span class="hljs-keyword">True</span>, dtype=torch.double)
+torch.autograd.gradcheck(Conv2D.apply, (X, weight))  <span class="hljs-comment"># gradcheck &#x529F;&#x80FD;&#x8BF7;&#x81EA;&#x884C;&#x4E86;&#x89E3;&#xFF0C;&#x901A;&#x5E38;&#x5199;&#x5B8C;Function&#x4F1A;&#x7528;&#x5B83;&#x68C0;&#x67E5;&#x4E00;&#x4E0B;</span>
+y = Conv2D.apply(X, weight)
+label = torch.randn_like(y)
+loss = F.mse_loss(y, label)
+
+print(weight.grad)
+loss.backward()
+print(weight.grad)
+</code></pre>
+<pre><code>None
+tensor([[[[1.4503, 1.3995, 1.4427],
+          [1.4725, 1.4247, 1.4995],
+          [1.4584, 1.4395, 1.5462]],
+......
+         [[1.4645, 1.4461, 1.3604],
+          [1.4523, 1.4556, 1.3755],
+          [1.4204, 1.4346, 1.4323]]]], dtype=torch.float64)
+</code></pre><p>&#x200B;    </p>
+<h2 id="autograd&#x76F8;&#x5173;&#x7684;&#x77E5;&#x8BC6;&#x70B9;">autograd&#x76F8;&#x5173;&#x7684;&#x77E5;&#x8BC6;&#x70B9;</h2>
+<p>autograd&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x4E2D;&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x505A;&#x4E2A;&#x5C0F;&#x6C47;&#x603B;&#x3002;</p>
+<ul>
+<li>&#x77E5;&#x8BC6;&#x70B9;&#x4E00;&#xFF1A;&#x68AF;&#x5EA6;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x6E05;&#x96F6;  </li>
+<li>&#x77E5;&#x8BC6;&#x70B9;&#x4E8C;&#xFF1A; &#x4F9D;&#x8D56;&#x4E8E;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x7ED3;&#x70B9;&#xFF0C;requires_grad&#x9ED8;&#x8BA4;&#x4E3A;True  </li>
+<li>&#x77E5;&#x8BC6;&#x70B9;&#x4E09;&#xFF1A; &#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x4E0D;&#x53EF;&#x6267;&#x884C;in-place </li>
+<li>&#x77E5;&#x8BC6;&#x70B9;&#x56DB;&#xFF1A; detach &#x7684;&#x4F5C;&#x7528;</li>
+<li>&#x77E5;&#x8BC6;&#x70B9;&#x4E94;&#xFF1A; with torch.no_grad()&#x7684;&#x4F5C;&#x7528;</li>
+</ul>
+<h4 id="&#x77E5;&#x8BC6;&#x70B9;&#x4E00;&#xFF1A;&#x68AF;&#x5EA6;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x6E05;&#x96F6;">&#x77E5;&#x8BC6;&#x70B9;&#x4E00;&#xFF1A;&#x68AF;&#x5EA6;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x6E05;&#x96F6;</h4>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> torch
+w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>):
+    a = torch.add(w, x)
+    b = torch.add(w, <span class="hljs-number">1</span>)
+    y = torch.mul(a, b)
+
+    y.backward()   
+    print(w.grad)  <span class="hljs-comment"># &#x68AF;&#x5EA6;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x6E05;&#x96F6;&#xFF0C;&#x6570;&#x636E;&#x4F1A;&#x7D2F;&#x52A0;&#xFF0C; &#x901A;&#x5E38;&#x9700;&#x8981;&#x91C7;&#x7528; optimizer.zero_grad() &#x5B8C;&#x6210;&#x5BF9;&#x53C2;&#x6570;&#x7684;&#x68AF;&#x5EA6;&#x6E05;&#x96F6;</span>
+
+<span class="hljs-comment">#     w.grad.zero_()</span>
+</code></pre>
+<pre><code>tensor([5.])
+tensor([5.])
+tensor([5.])
+tensor([5.])
+</code></pre><h4 id="&#x77E5;&#x8BC6;&#x70B9;&#x4E8C;&#xFF1A;&#x4F9D;&#x8D56;&#x4E8E;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x7ED3;&#x70B9;&#xFF0C;requiresgrad&#x9ED8;&#x8BA4;&#x4E3A;true">&#x77E5;&#x8BC6;&#x70B9;&#x4E8C;&#xFF1A;&#x4F9D;&#x8D56;&#x4E8E;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x7ED3;&#x70B9;&#xFF0C;requires_grad&#x9ED8;&#x8BA4;&#x4E3A;True</h4>
+<p>&#x7ED3;&#x70B9;&#x7684;&#x8FD0;&#x7B97;&#x4F9D;&#x8D56;&#x4E8E;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x8BDD;&#xFF0C;&#x5B83;&#x4E00;&#x5B9A;&#x662F;&#x8981;&#x8BA1;&#x7B97;&#x68AF;&#x5EA6;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x68AF;&#x5EA6;&#x7684;&#x8BA1;&#x7B97;&#x662F;&#x4ECE;&#x540E;&#x5411;&#x524D;&#x4F20;&#x64AD;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x4E0E;&#x5176;&#x76F8;&#x5173;&#x7684;&#x7ED3;&#x70B9;&#x5747;&#x9700;&#x8981;&#x8BA1;&#x7B97;&#x68AF;&#x5EA6;&#xFF0C;&#x8FD9;&#x70B9;&#x8FD8;&#x662F;&#x5F88;&#x597D;&#x7406;&#x89E3;&#x7684;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> torch
+w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-keyword">True</span>)  <span class="hljs-comment"># </span>
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+
+a = torch.add(w, x)
+b = torch.add(w, <span class="hljs-number">1</span>)
+y = torch.mul(a, b)
+
+print(a.requires_grad, b.requires_grad, y.requires_grad)
+print(a.is_leaf, b.is_leaf, y.is_leaf)
+</code></pre>
+<pre><code>True True True
+False False False
+</code></pre><h4 id="&#x77E5;&#x8BC6;&#x70B9;&#x4E09;&#xFF1A;&#x53F6;&#x5B50;&#x5F20;&#x91CF;&#x4E0D;&#x53EF;&#x4EE5;&#x6267;&#x884C;in-place&#x64CD;&#x4F5C;">&#x77E5;&#x8BC6;&#x70B9;&#x4E09;&#xFF1A;&#x53F6;&#x5B50;&#x5F20;&#x91CF;&#x4E0D;&#x53EF;&#x4EE5;&#x6267;&#x884C;in-place&#x64CD;&#x4F5C;</h4>
+<p>&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x4E0D;&#x53EF;&#x6267;&#x884C;in-place&#xFF0C;&#x56E0;&#x4E3A;&#x8BA1;&#x7B97;&#x56FE;&#x7684;backward&#x8FC7;&#x7A0B;&#x90FD;&#x4F9D;&#x8D56;&#x4E8E;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x53EF;&#x4EE5;&#x56DE;&#x987E;&#x8BA1;&#x7B97;&#x56FE;&#x5F53;&#x4E2D;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x504F;&#x5FAE;&#x5206;&#x8BA1;&#x7B97;&#x6240;&#x9700;&#x8981;&#x7528;&#x5230;&#x7684;&#x6570;&#x636E;&#x90FD;&#x662F;&#x57FA;&#x4E8E;w&#x548C;x&#xFF08;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF09;&#xFF0C;&#x56E0;&#x6B64;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x4E0D;&#x5141;&#x8BB8;in-place&#x64CD;&#x4F5C;&#x3002;</p>
+<pre><code class="lang-python">a = torch.ones((<span class="hljs-number">1</span>, ))
+print(id(a), a)
+
+a = a + torch.ones((<span class="hljs-number">1</span>, ))
+print(id(a), a)
+
+a += torch.ones((<span class="hljs-number">1</span>, ))
+print(id(a), a)
+</code></pre>
+<pre><code>2361561191752 tensor([1.])
+2362180999432 tensor([2.])
+2362180999432 tensor([3.])
+</code></pre><pre><code class="lang-python">w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+
+a = torch.add(w, x)
+b = torch.add(w, <span class="hljs-number">1</span>)
+y = torch.mul(a, b)
+
+w.add_(<span class="hljs-number">1</span>)
+
+y.backward()
+</code></pre>
+<pre><code>---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+&lt;ipython-input-41-7e2ec3c17fc3&gt; in &lt;module&gt;
+      6 y = torch.mul(a, b)
+      7 
+----&gt; 8 w.add_(1)
+      9 
+     10 y.backward()
+
+
+RuntimeError: a leaf Variable that requires grad is being used in an in-place operation.
+</code></pre><h4 id="&#x77E5;&#x8BC6;&#x70B9;&#x56DB;&#xFF1A;detach-&#x7684;&#x4F5C;&#x7528;">&#x77E5;&#x8BC6;&#x70B9;&#x56DB;&#xFF1A;detach &#x7684;&#x4F5C;&#x7528;</h4>
+<p>&#x901A;&#x8FC7;&#x4EE5;&#x4E0A;&#x77E5;&#x8BC6;&#xFF0C;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x8BA1;&#x7B97;&#x56FE;&#x4E2D;&#x7684;&#x5F20;&#x91CF;&#x662F;&#x4E0D;&#x80FD;&#x968F;&#x4FBF;&#x4FEE;&#x6539;&#x7684;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x9020;&#x6210;&#x8BA1;&#x7B97;&#x56FE;&#x7684;backward&#x8BA1;&#x7B97;&#x9519;&#x8BEF;&#xFF0C;&#x90A3;&#x6709;&#x6CA1;&#x6709;&#x5176;&#x4ED6;&#x65B9;&#x6CD5;&#x80FD;&#x4FEE;&#x6539;&#x5462;&#xFF1F;&#x5F53;&#x7136;&#x6709;&#xFF0C;&#x90A3;&#x5C31;&#x662F;detach()  </p>
+<p>detach&#x7684;&#x4F5C;&#x7528;&#x662F;&#xFF1A;&#x4ECE;&#x8BA1;&#x7B97;&#x56FE;&#x4E2D;&#x5265;&#x79BB;&#x51FA;&#x201C;&#x6570;&#x636E;&#x201D;&#xFF0C;&#x5E76;&#x4EE5;&#x4E00;&#x4E2A;&#x65B0;&#x5F20;&#x91CF;&#x7684;&#x5F62;&#x5F0F;&#x8FD4;&#x56DE;&#xFF0C;<strong>&#x5E76;&#x4E14;</strong>&#x65B0;&#x5F20;&#x91CF;&#x4E0E;&#x65E7;&#x5F20;&#x91CF;&#x5171;&#x4EAB;&#x6570;&#x636E;&#xFF0C;&#x7B80;&#x5355;&#x7684;&#x53EF;&#x7406;&#x89E3;&#x4E3A;&#x505A;&#x4E86;&#x4E00;&#x4E2A;&#x522B;&#x540D;&#x3002;
+&#x8BF7;&#x770B;&#x4E0B;&#x4F8B;&#x7684;w&#xFF0C;detach&#x540E;&#x5BF9;w_detach&#x4FEE;&#x6539;&#x6570;&#x636E;&#xFF0C;w&#x540C;&#x6B65;&#x5730;&#x88AB;&#x6539;&#x4E3A;&#x4E86;999</p>
+<pre><code class="lang-python">w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-keyword">True</span>)
+
+a = torch.add(w, x)
+b = torch.add(w, <span class="hljs-number">1</span>)
+y = torch.mul(a, b)
+
+y.backward()
+
+w_detach = w.detach()
+w_detach.data[<span class="hljs-number">0</span>] = <span class="hljs-number">999</span>
+print(w)
+</code></pre>
+<pre><code>tensor([999.], requires_grad=True)
+</code></pre><h4 id="&#x77E5;&#x8BC6;&#x70B9;&#x4E94;&#xFF1A;with-torchnograd&#x7684;&#x4F5C;&#x7528;">&#x77E5;&#x8BC6;&#x70B9;&#x4E94;&#xFF1A;with torch.no_grad()&#x7684;&#x4F5C;&#x7528;</h4>
+<p>autograd&#x81EA;&#x52A8;&#x6784;&#x5EFA;&#x8BA1;&#x7B97;&#x56FE;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F1A;&#x4FDD;&#x5B58;&#x4E00;&#x7CFB;&#x5217;&#x4E2D;&#x95F4;&#x53D8;&#x91CF;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;backward&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x8FD9;&#x5C31;&#x5FC5;&#x7136;&#x9700;&#x8981;&#x82B1;&#x8D39;&#x989D;&#x5916;&#x7684;&#x5185;&#x5B58;&#x548C;&#x65F6;&#x95F4;&#x3002;<br>&#x800C;&#x5E76;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x60C5;&#x51B5;&#x4E0B;&#x90FD;&#x9700;&#x8981;backward&#xFF0C;&#x4F8B;&#x5982;&#x63A8;&#x7406;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x91C7;&#x7528;&#x4E0A;&#x4E0B;&#x6587;&#x7BA1;&#x7406;&#x5668;&#x2014;&#x2014;torch.no_grad()&#x6765;&#x7BA1;&#x7406;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x8BA9;pytorch&#x4E0D;&#x8BB0;&#x5F55;&#x76F8;&#x5E94;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x4EE5;&#x52A0;&#x5FEB;&#x901F;&#x5EA6;&#x548C;&#x8282;&#x7701;&#x7A7A;&#x95F4;&#x3002;<br>&#x8BE6;&#x89C1;&#xFF1A;<a href="https://pytorch.org/docs/stable/generated/torch.no_grad.html?highlight=no_grad#torch.no_grad" target="_blank">https://pytorch.org/docs/stable/generated/torch.no_grad.html?highlight=no_grad#torch.no_grad</a></p>
+<h2 id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</h2>
+<p>&#x672C;&#x7AE0;&#x7EC8;&#x4E8E;&#x7ED3;&#x675F;&#xFF0C;&#x672C;&#x7AE0;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x5927;&#x5BB6;&#x4ECB;&#x7ECD;pytorch&#x7684;&#x6838;&#x5FC3;&#x6A21;&#x5757;&#xFF0C;&#x5305;&#x62EC;pytorch&#x4EE3;&#x7801;&#x5E93;&#x7ED3;&#x6784;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x4ECA;&#x540E;&#x9605;&#x8BFB;&#x6E90;&#x7801;&#xFF0C;&#x77E5;&#x9053;&#x4ECE;&#x54EA;&#x91CC;&#x627E;&#x4EE3;&#x7801;&#xFF1B;&#x5305;&#x62EC;&#x7B2C;&#x4E00;&#x4E2A;&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#xFF0C;&#x4FBF;&#x4E8E;&#x5927;&#x5BB6;&#x7406;&#x89E3;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#xFF1B;&#x5305;&#x62EC;&#x6838;&#x5FC3;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x2014;&#x2014;&#x5F20;&#x91CF;&#xFF0C;&#x4FBF;&#x4E8E;&#x7406;&#x89E3;&#x6574;&#x4E2A;pytorch&#x7684;&#x6570;&#x636E;&#xFF1B;&#x5305;&#x62EC;&#x8BA1;&#x7B97;&#x56FE;&#x4E0E;autograd&#xFF0C;&#x4FBF;&#x4E8E;&#x5927;&#x5BB6;&#x719F;&#x6089;&#x81EA;&#x52A8;&#x5FAE;&#x5206;&#x7684;&#x8FC7;&#x7A0B;&#x53CA;&#x81EA;&#x5B9A;&#x4E49;op&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x4E0B;&#x4E00;&#x7AE0;&#x5C06;&#x901A;&#x8FC7;&#x501F;&#x52A9;covid-19&#x4EFB;&#x52A1;&#xFF0C;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;pytorch&#x7684;&#x6570;&#x636E;&#x8BFB;&#x53D6;&#x673A;&#x5236;&#xFF0C;&#x4EE5;&#x53CA;&#x5404;&#x79CD;&#x6570;&#x636E;&#x5F62;&#x5F0F;&#x7684;&#x8BFB;&#x53D6;&#xFF0C;&#x5305;&#x62EC;csv&#x5F62;&#x5F0F;&#x3001;txt&#x5F62;&#x5F0F;&#x3001;&#x6742;&#x4E71;&#x6587;&#x4EF6;&#x5939;&#x5F62;&#x5F0F;&#x7B49;&#x4E00;&#x5207;&#x5173;&#x4E8E;&#x6570;&#x636E;&#x8BFB;&#x53D6;&#x3001;&#x52A0;&#x8F7D;&#x3001;&#x64CD;&#x4F5C;&#x7684;&#x6A21;&#x5757;&#x90FD;&#x5C06;&#x6D89;&#x53CA;&#x3002;</p>
+<font color="gray">&#x5C0F;&#x8BB0;&#xFF1A;&#x52A8;&#x7B14;&#x4E00;&#x4E2A;&#x591A;&#x6708;&#xFF0C;&#x624D;&#x5199;&#x4E86;&#x4E24;&#x7AE0;&#xFF0C;&#x5C24;&#x5176;autograd&#x548C;tensor&#x5199;&#x4E86;&#x5927;&#x534A;&#x4E2A;&#x6708;&#xFF0C;&#x5E0C;&#x671B;&#x540E;&#x9762;&#x80FD;&#x6709;&#x66F4;&#x591A;&#x65F6;&#x95F4;&#x7CBE;&#x529B;&#x65E9;&#x65E5;&#x5B8C;&#x6210;&#xFF0C;&#x52A0;&#x6CB9;&#xFF01;2022&#x5E74;1&#x6708;18&#x65E5;</font>
+
+
+
+
+<p>&#x200B;    </p>
+<p>&#x200B;    </p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; TingsongYu 2021 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2022&#x5E74;01&#x6708;18&#x65E5;21:48:10
+</span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2.5-computational-graphs.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 2.5 自动求导核心——计算图">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"2.6 Autograd——自动微分","level":"2.2.6","depth":2,"previous":{"title":"2.5 自动求导核心——计算图","level":"2.2.5","depth":2,"path":"chapter-2/2.5-computational-graphs.md","ref":"chapter-2/2.5-computational-graphs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年01月18日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"喂！三点几，饮茶先啦","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-2/2.6-autograd.md","mtime":"2022-01-18T08:34:57.099Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-01-18T09:31:30.095Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/gumshoe.polyfills.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-3-ba/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

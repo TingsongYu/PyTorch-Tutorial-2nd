@@ -9,5 +9,6 @@
   * [2.2 新冠肺炎分类](2.2-covid-19-cls.md)
   * [2.3 核心数据结构——Tensor](2.3-datastruct-tensor.md)
   * [2.4 张量的相关函数](2.4-method-tensor.md)
-  * 
+  * [2.5 自动求导核心——计算图](2.5-computational-graphs.md)
+  * [2.6 Autograd——自动微分](2.6-autograd.md)
 
