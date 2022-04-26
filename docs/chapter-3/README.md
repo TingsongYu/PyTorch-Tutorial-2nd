@@ -6,6 +6,8 @@
   
   * [3.2 DataLoader](3.2-dataloader.md)
   
+  * [3.3 Dataset-useful-api](3.3-dataset-useful-api.md)
+  
     
 
 ## 第三章简介
