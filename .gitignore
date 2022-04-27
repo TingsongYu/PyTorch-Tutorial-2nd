@@ -8,3 +8,4 @@
 /data/
 .ipynb_checkpoints
 /code/
+*.md
