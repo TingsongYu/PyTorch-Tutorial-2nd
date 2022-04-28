@@ -8,6 +8,10 @@
   
   * [3.3 Dataset-useful-api](3.3-dataset-useful-api.md)
   
+  * [3.4 transforms](3.4-transforms.md)
+  
+  * [3.5 torchvision 经典dataset学习](3.5-torchvision-dataset.md)
+  
     
 
 ## 第三章简介
