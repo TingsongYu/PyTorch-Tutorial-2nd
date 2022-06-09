@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>1.5 环境配置之PyTorch系列包 · PyTorch实用教程（第二版）</title>
+        <title>第六章 PyTorch 可视化模块 · PyTorch实用教程（第二版）</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -102,10 +102,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="1.6-JupyterNotebook-install.html" />
+    <link rel="next" href="6.1-tensorboard.html" />
     
     
-    <link rel="prev" href="1.4-CUDA&cuDNN.html" />
+    <link rel="prev" href="../chapter-5/5.3-lr-scheduler.html" />
     
 
     <style>
@@ -178,9 +178,9 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="./">
+        <li class="chapter " data-level="2.1" data-path="../chapter-1/">
             
-                <a href="./">
+                <a href="../chapter-1/">
             
                     
                     第一章 PyTorch 简介与安装
@@ -192,9 +192,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="1.1-PyTorch-Introduction.html">
+        <li class="chapter " data-level="2.1.1" data-path="../chapter-1/1.1-PyTorch-Introduction.html">
             
-                <a href="1.1-PyTorch-Introduction.html">
+                <a href="../chapter-1/1.1-PyTorch-Introduction.html">
             
                     
                     1.1 PyTorch 初认识
@@ -205,9 +205,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="1.2-Anaconda.html">
+        <li class="chapter " data-level="2.1.2" data-path="../chapter-1/1.2-Anaconda.html">
             
-                <a href="1.2-Anaconda.html">
+                <a href="../chapter-1/1.2-Anaconda.html">
             
                     
                     1.2 环境配置之Anaconda
@@ -218,9 +218,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="1.3-Pycharm.html">
+        <li class="chapter " data-level="2.1.3" data-path="../chapter-1/1.3-Pycharm.html">
             
-                <a href="1.3-Pycharm.html">
+                <a href="../chapter-1/1.3-Pycharm.html">
             
                     
                     1.3 环境配置之Pycharm
@@ -231,9 +231,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.4" data-path="1.4-CUDA&cuDNN.html">
+        <li class="chapter " data-level="2.1.4" data-path="../chapter-1/1.4-CUDA&cuDNN.html">
             
-                <a href="1.4-CUDA&cuDNN.html">
+                <a href="../chapter-1/1.4-CUDA&cuDNN.html">
             
                     
                     1.4 环境配置之CUDA&cuDNN
@@ -244,9 +244,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.1.5" data-path="1.5-PyTorch-install.html">
+        <li class="chapter " data-level="2.1.5" data-path="../chapter-1/1.5-PyTorch-install.html">
             
-                <a href="1.5-PyTorch-install.html">
+                <a href="../chapter-1/1.5-PyTorch-install.html">
             
                     
                     1.5 环境配置之PyTorch系列包
@@ -257,9 +257,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.6" data-path="1.6-JupyterNotebook-install.html">
+        <li class="chapter " data-level="2.1.6" data-path="../chapter-1/1.6-JupyterNotebook-install.html">
             
-                <a href="1.6-JupyterNotebook-install.html">
+                <a href="../chapter-1/1.6-JupyterNotebook-install.html">
             
                     
                     1.6 环境配置之Jupyter Notebook
@@ -624,9 +624,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="../chapter-6/">
+        <li class="chapter active" data-level="2.6" data-path="./">
             
-                <a href="../chapter-6/">
+                <a href="./">
             
                     
                     第六章 PyTorch 可视化模块
@@ -638,9 +638,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.6.1" data-path="../chapter-6/6.1-tensorboard.html">
+        <li class="chapter " data-level="2.6.1" data-path="6.1-tensorboard.html">
             
-                <a href="../chapter-6/6.1-tensorboard.html">
+                <a href="6.1-tensorboard.html">
             
                     
                     6.1 TensorBoard安装与使用
@@ -700,7 +700,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >1.5 环境配置之PyTorch系列包</a>
+        <a href=".." >第六章 PyTorch 可视化模块</a>
     </h1>
 </div>
 
@@ -715,28 +715,20 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="15-&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x4E4B;pytorch&#x7CFB;&#x5217;&#x5305;">1.5 &#x73AF;&#x5883;&#x914D;&#x7F6E;&#x4E4B;PyTorch&#x7CFB;&#x5217;&#x5305;</h1>
-<p>&#x865A;&#x62DF;&#x73AF;&#x5883;&#xFF0C;Pycharm&#xFF0C;CUDA&#xFF0C;cuDNN&#x5747;&#x5DF2;&#x51C6;&#x5907;&#x597D;&#xFF0C;&#x73B0;&#x5728;&#x7EC8;&#x4E8E;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;PyTorch&#x4E86;&#xFF0C;&#x52A0;&#x6CB9;&#xFF0C;&#x5C31;&#x5FEB;&#x6210;&#x529F;&#x5566;&#x3002;</p>
-<p>&#x73B0;&#x5728;&#xFF0C;&#x901A;&#x8FC7;&#x547D;&#x4EE4;&#x7A97;&#x53E3;&#xFF0C;&#x8FDB;&#x5165;&#xFF08;&#x6FC0;&#x6D3B;&#xFF09;&#x865A;&#x62DF;&#x73AF;&#x5883;</p>
-<pre><code>E:\pytorch-tutorial-2nd&gt;conda activate pytorch_1.10_gpu
-
-(pytorch_1.10_gpu) E:\pytorch-tutorial-2nd&gt;
-</code></pre><p>&#x53EF;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5B89;&#x88C5;</p>
-<pre><code>pip3 install torch==1.10.1+cu102 torchvision==0.11.2+cu102 torchaudio===0.10.1+cu102 -f https://download.pytorch.org/whl/cu102/torch_stable.html
-</code></pre><p><img src="imgs/pip download.png" alt="1"></p>
-<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x901A;&#x8FC7;pip&#x5B89;&#x88C5;&#xFF0C;&#x4E5F;&#x662F;&#x4E0B;&#x8F7D;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x7684;&#x795E;&#x5947;&#x7F51;&#x7AD9;&#x91CC;&#x7684;whl&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x65F6;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x7F51;&#x901F;&#x51B3;&#x5B9A;&#x662F;&#x91C7;&#x7528;pip&#x8FD8;&#x662F;&#x81EA;&#x884C;&#x4E0B;&#x8F7D;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x7F51;&#x901F;&#x4E0D;&#x597D;&#x7684;&#x8BDD;&#xFF0C;&#x63A8;&#x8350;&#x901A;&#x8FC7;&#x795E;&#x5947;&#x7684;&#x7F51;&#x7AD9;&#x2014;&#x2014;<a href="https://download.pytorch.org/whl/torch" target="_blank">https://download.pytorch.org/whl/torch</a> &#x641C;&#x7D22;&#x5BF9;&#x5E94;&#x7684;whl&#x8FDB;&#x884C;&#x4E0B;&#x8F7D;&#x3002;&#x7136;&#x540E;pip install <em>*</em>.whl&#x5C31;&#x884C;&#x3002;</p>
-<p>&#x5BF9;&#x4E8E;pip&#xFF0C;&#x5EFA;&#x8BAE;&#x5927;&#x5BB6;<strong>&#x6DFB;&#x52A0;&#x955C;&#x50CF;&#x6E90;</strong>&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x6E05;&#x534E;&#x955C;&#x50CF;&#x6E90;&#x6216;&#x8005;&#x4E2D;&#x79D1;&#x5927;&#x955C;&#x50CF;&#x6E90;&#xFF0C;&#x8FD9;&#x6837;&#x5B89;&#x88C5;python&#x5DE5;&#x5177;&#x5305;&#x7684;&#x4E0B;&#x8F7D;&#x901F;&#x5EA6;&#x4F1A;&#x5FEB;&#x5F88;&#x591A;&#xFF0C;&#x8BF7;&#x81EA;&#x884C;&#x767E;&#x5EA6;&#x5982;&#x4F55;&#x6DFB;&#x52A0;&#x6E05;&#x534E;&#x955C;&#x50CF;&#x6E90;&#x3002;</p>
-<p>&#x5B89;&#x88C5;&#x5B8C;&#x6BD5;&#xFF0C;&#x518D;&#x56DE;&#x5230;pycharm&#xFF0C;&#x8FD0;&#x884C; pytorch-tutorial-2nd\code\chapter-1\01-hello-pytorch.py&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;</p>
-<pre><code>D:\Anaconda_data\envs\pytorch_1.10_gpu\python.exe E:/pytorch-tutorial-2nd/code/chapter-1/01-hello-pytorch.py
-Hello World, Hello PyTorch 1.10.1+cu102
-
-CUDA is available:True, version is 10.2
-
-device_name: NVIDIA GeForce GTX 1660 Ti with Max-Q Design
-
-Process finished with exit code 0
-</code></pre><p>&#x8868;&#x793A;pytorch&#x73AF;&#x5883;&#x5B89;&#x88C5;&#x5B8C;&#x6BD5;&#xFF0C;&#x6B64;&#x65F6;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x518D;&#x6B21;&#x6253;&#x5F00;pycharm&#x7684;&#x89E3;&#x91CA;&#x5668;&#x914D;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5F53;&#x524D;&#x7684;&#x89E3;&#x91CA;&#x5668;&#xFF08;&#x865A;&#x62DF;&#x73AF;&#x5883;&#xFF09;&#x4E0B;&#xFF0C;&#x62E5;&#x6709;&#x7684;&#x76F8;&#x5173;&#x5DE5;&#x5177;&#x5305;&#xFF0C;&#x8FD9;&#x4E2A;&#x754C;&#x9762;&#x4E5F;&#x662F;&#x540E;&#x7EED;&#x5927;&#x5BB6;&#x68C0;&#x67E5;&#x5F53;&#x524D;&#x73AF;&#x5883;&#x5DE5;&#x5177;&#x5305;&#x7248;&#x672C;&#x5E38;&#x7528;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x8BF7;&#x6536;&#x85CF;&#x3002;</p>
+                                <h1 id="&#x7B2C;&#x516D;&#x7AE0;-pytorch-&#x53EF;&#x89C6;&#x5316;&#x6A21;&#x5757;">&#x7B2C;&#x516D;&#x7AE0; PyTorch &#x53EF;&#x89C6;&#x5316;&#x6A21;&#x5757;</h1>
+<ul>
+<li><p><a href="./">&#x7B2C;&#x516D;&#x7AE0; PyTorch &#x53EF;&#x89C6;&#x5316;&#x6A21;&#x5757;</a></p>
+<ul>
+<li><a href="6.1-tensorboard.html">6.1 TensorBoard&#x5B89;&#x88C5;&#x4E0E;&#x4F7F;&#x7528;</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="&#x7B2C;&#x516D;&#x7AE0;&#x7B80;&#x4ECB;">&#x7B2C;&#x516D;&#x7AE0;&#x7B80;&#x4ECB;</h2>
+<p>&#x672C;&#x7AE0;&#x4ECB;&#x7ECD;&#x53EF;&#x89C6;&#x5316;&#x5DE5;&#x5177;&#xFF0C;&#x5305;&#x62EC;TensorBoard&#x53EF;&#x89C6;&#x5316;&#x5DE5;&#x5177;&#xFF0C;&#x6DF7;&#x6DC6;&#x77E9;&#x9635;&#xFF0C;CNN&#x5377;&#x79EF;&#x6838;&#x4E0E;&#x7279;&#x5F81;&#x56FE;&#x53EF;&#x89C6;&#x5316;&#xFF0C;&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x6CE8;&#x610F;&#x529B;&#x7B97;&#x6CD5;&#x2014;&#x2014;Grad CAM&#xFF0C;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x91CF;&#x53EF;&#x89C6;&#x5316;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x5BF9;&#x5F3A;&#x5927;&#x7684;&#x53EF;&#x89C6;&#x5316;&#x5DE5;&#x5177;TensorBoard&#x8FDB;&#x884C;&#x8BB2;&#x89E3;&#xFF0C;&#x4ECB;&#x7ECD;&#x5176;&#x63D0;&#x4F9B;&#x7684;&#x5341;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x53EF;&#x89C6;&#x5316;API&#x3002;</p>
+<p>&#x7136;&#x540E;&#x501F;&#x52A9;Tensorboard&#x7684;&#x7ED8;&#x56FE;&#x529F;&#x80FD;&#xFF0C;&#x89C2;&#x5BDF;CNN&#x5377;&#x79EF;&#x6838;&#x4E0E;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x53D8;&#x5316;&#x8FC7;&#x7A0B;&#xFF0C;&#x540C;&#x65F6;&#x5BF9;&#x5206;&#x7C7B;&#x6DF7;&#x6DC6;&#x77E9;&#x9635;&#x8FDB;&#x884C;&#x5206;&#x6790;&#x3002;</p>
+<p>&#x63A5;&#x7740;&#x4ECB;&#x7ECD;&#x4E00;&#x4E2A;&#x5B9E;&#x7528;&#x7684;&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&#x53EF;&#x89C6;&#x5316;&#x7B97;&#x6CD5;&#x2014;&#x2014;Grad CAM&#x3002;</p>
+<p>&#x6700;&#x540E;&#x4ECB;&#x7ECD;&#x4E00;&#x7CFB;&#x5217;&#x5BF9;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x91CF;&#x5206;&#x6790;&#x7684;&#x5DE5;&#x5177;&#x3002;</p>
 <footer class="page-footer"><span class="copyright">Copyright &#xA9; TingsongYu 2021 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
 2022&#x5E74;06&#x6708;01&#x65E5;21:48:10
 </span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
@@ -767,12 +759,12 @@ Process finished with exit code 0
 
             
                 
-                <a href="1.4-CUDA&cuDNN.html" class="navigation navigation-prev " aria-label="Previous page: 1.4 环境配置之CUDA&cuDNN">
+                <a href="../chapter-5/5.3-lr-scheduler.html" class="navigation navigation-prev " aria-label="Previous page: 5.3 十四个学习率调整器">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="1.6-JupyterNotebook-install.html" class="navigation navigation-next " aria-label="Next page: 1.6 环境配置之Jupyter Notebook">
+                <a href="6.1-tensorboard.html" class="navigation navigation-next " aria-label="Next page: 6.1 TensorBoard安装与使用">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -783,7 +775,7 @@ Process finished with exit code 0
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1.5 环境配置之PyTorch系列包","level":"2.1.5","depth":2,"next":{"title":"1.6 环境配置之Jupyter Notebook","level":"2.1.6","depth":2,"path":"chapter-1/1.6-JupyterNotebook-install.md","ref":"chapter-1/1.6-JupyterNotebook-install.md","articles":[]},"previous":{"title":"1.4 环境配置之CUDA&cuDNN","level":"2.1.4","depth":2,"path":"chapter-1/1.4-CUDA&cuDNN.md","ref":"chapter-1/1.4-CUDA&cuDNN.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年06月01日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-1/1.5-PyTorch-install.md","mtime":"2021-12-21T14:40:20.228Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-09T03:45:02.701Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第六章 PyTorch 可视化模块","level":"2.6","depth":1,"next":{"title":"6.1 TensorBoard安装与使用","level":"2.6.1","depth":2,"path":"chapter-6/6.1-tensorboard.md","ref":"chapter-6/6.1-tensorboard.md","articles":[]},"previous":{"title":"5.3 十四个学习率调整器","level":"2.5.3","depth":2,"path":"chapter-5/5.3-lr-scheduler.md","ref":"chapter-5/5.3-lr-scheduler.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年06月01日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-6/README.md","mtime":"2022-06-09T03:41:21.316Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-09T03:45:02.701Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
