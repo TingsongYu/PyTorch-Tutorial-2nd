@@ -1,0 +1,1039 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>6.4 CAM可视化与hook函数使用 · PyTorch实用教程（第二版）</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="余霆嵩">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-intopic-toc/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="6.3-conf_matrix.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">上篇：PyTorch基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    第一章 PyTorch 简介与安装
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                <a href="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                    
+                    1.1 PyTorch 初认识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../chapter-1/1.2-Anaconda.html">
+            
+                <a href="../chapter-1/1.2-Anaconda.html">
+            
+                    
+                    1.2 环境配置之Anaconda
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../chapter-1/1.3-Pycharm.html">
+            
+                <a href="../chapter-1/1.3-Pycharm.html">
+            
+                    
+                    1.3 环境配置之Pycharm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                <a href="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                    
+                    1.4 环境配置之CUDA&cuDNN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../chapter-1/1.5-PyTorch-install.html">
+            
+                <a href="../chapter-1/1.5-PyTorch-install.html">
+            
+                    
+                    1.5 环境配置之PyTorch系列包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                <a href="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                    
+                    1.6 环境配置之Jupyter Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../chapter-2/">
+            
+                <a href="../chapter-2/">
+            
+                    
+                    第二章 PyTorch 核心模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../chapter-2/2.1-module-tree.html">
+            
+                <a href="../chapter-2/2.1-module-tree.html">
+            
+                    
+                    2.1 PyTorch 模块结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="../chapter-2/2.2-covid-19-cls.html">
+            
+                <a href="../chapter-2/2.2-covid-19-cls.html">
+            
+                    
+                    2.2 新冠肺炎分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="../chapter-2/2.3-datastruct-tensor.html">
+            
+                <a href="../chapter-2/2.3-datastruct-tensor.html">
+            
+                    
+                    2.3 核心数据结构——Tensor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="../chapter-2/2.4-method-tensor.html">
+            
+                <a href="../chapter-2/2.4-method-tensor.html">
+            
+                    
+                    2.4 张量的相关函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="../chapter-2/2.5-computational-graphs.html">
+            
+                <a href="../chapter-2/2.5-computational-graphs.html">
+            
+                    
+                    2.5 自动求导核心——计算图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.6" data-path="../chapter-2/2.6-autograd.html">
+            
+                <a href="../chapter-2/2.6-autograd.html">
+            
+                    
+                    2.6 Autograd——自动微分
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../chapter-3/">
+            
+                <a href="../chapter-3/">
+            
+                    
+                    第三章 PyTorch 数据模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="../chapter-3/3.1-dataset.html">
+            
+                <a href="../chapter-3/3.1-dataset.html">
+            
+                    
+                    3.1 Dataset
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="../chapter-3/3.2-dataloader.html">
+            
+                <a href="../chapter-3/3.2-dataloader.html">
+            
+                    
+                    3.2 DataLoader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="../chapter-3/3.3-dataset-useful-api.html">
+            
+                <a href="../chapter-3/3.3-dataset-useful-api.html">
+            
+                    
+                    3.3 Dataset-useful-api
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="../chapter-3/3.4-transforms.html">
+            
+                <a href="../chapter-3/3.4-transforms.html">
+            
+                    
+                    3.4 transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="../chapter-3/3.5-torchvision-dataset.html">
+            
+                <a href="../chapter-3/3.5-torchvision-dataset.html">
+            
+                    
+                    3.5 torchvision 经典dataset学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../chapter-4/">
+            
+                <a href="../chapter-4/">
+            
+                    
+                    第四章 PyTorch 模型模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="../chapter-4/4.1-module&Parameter.html">
+            
+                <a href="../chapter-4/4.1-module&Parameter.html">
+            
+                    
+                    4.1 Module&Parameter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" data-path="../chapter-4/4.2-containers.html">
+            
+                <a href="../chapter-4/4.2-containers.html">
+            
+                    
+                    4.2 Module的容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.3" data-path="../chapter-4/4.3-common-module.html">
+            
+                <a href="../chapter-4/4.3-common-module.html">
+            
+                    
+                    4.3 常用网络层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.4" data-path="../chapter-4/4.4-module-api.html">
+            
+                <a href="../chapter-4/4.4-module-api.html">
+            
+                    
+                    4.4 Module常用API函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.5" data-path="../chapter-4/4.5-hook-func.html">
+            
+                <a href="../chapter-4/4.5-hook-func.html">
+            
+                    
+                    4.5 Hook函数及Grad-CAM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.6" data-path="../chapter-4/4.6-classic-model.html">
+            
+                <a href="../chapter-4/4.6-classic-model.html">
+            
+                    
+                    4.6 经典模型代码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.7" data-path="../chapter-4/4.7-weight-init.html">
+            
+                <a href="../chapter-4/4.7-weight-init.html">
+            
+                    
+                    4.7 权重初始化方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../chapter-5/">
+            
+                <a href="../chapter-5/">
+            
+                    
+                    第五章 PyTorch 优化模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="../chapter-5/5.1-loss-function.html">
+            
+                <a href="../chapter-5/5.1-loss-function.html">
+            
+                    
+                    5.1 二十一个损失函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.2" data-path="../chapter-5/5.2-Optimizer.html">
+            
+                <a href="../chapter-5/5.2-Optimizer.html">
+            
+                    
+                    5.2 十三个优化器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.3" data-path="../chapter-5/5.3-lr-scheduler.html">
+            
+                <a href="../chapter-5/5.3-lr-scheduler.html">
+            
+                    
+                    5.3 十四个学习率调整器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第六章 PyTorch 可视化模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1" data-path="6.1-tensorboard.html">
+            
+                <a href="6.1-tensorboard.html">
+            
+                    
+                    6.1 TensorBoard安装与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.2" data-path="6.2-cnn-visualization.html">
+            
+                <a href="6.2-cnn-visualization.html">
+            
+                    
+                    6.2 CNN卷积核与特征图可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.3" data-path="6.3-conf_matrix.html">
+            
+                <a href="6.3-conf_matrix.html">
+            
+                    
+                    6.3 混淆矩阵与训练曲线可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.6.4" data-path="6.4-cam-vis.html">
+            
+                <a href="6.4-cam-vis.html">
+            
+                    
+                    6.4 CAM可视化与hook函数使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">中篇：PyTorch 案例应用</li>
+        
+        
+    
+
+    
+        
+        <li class="header">下篇：PyTorch 模型部署</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >6.4 CAM可视化与hook函数使用</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="64-cam&#x53EF;&#x89C6;&#x5316;&#x4E0E;hook&#x51FD;&#x6570;&#x4F7F;&#x7528;">6.4 CAM&#x53EF;&#x89C6;&#x5316;&#x4E0E;hook&#x51FD;&#x6570;&#x4F7F;&#x7528;</h1>
+<p>&#x524D;&#x6587;&#x8BF4;&#x5230;&#xFF0C;&#x5728;&#x672C;&#x7AE0;&#x7B2C;&#x4E8C;&#x8282;&#x4ECB;&#x7ECD;CNN&#x7684;&#x53EF;&#x89C6;&#x5316;&#x65F6;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#xFF0C;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x6A21;&#x578B;&#x4ECD;&#x662F;&#x4E00;&#x4E2A;&#x9ED1;&#x7BB1;&#xFF0C;&#x5927;&#x5BB6;&#x60F3;&#x5C3D;&#x529E;&#x6CD5;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x53EF;&#x89C6;&#x5316;&#xFF0C;&#x672C;&#x8282;&#x5C31;&#x4ECB;&#x7ECD;&#x4E00;&#x4E2A;&#x5B9E;&#x7528;&#x7684;&#x5206;&#x6790;&#x65B9;&#x6CD5;<strong>CAM(Class activation mapping&#xFF0C;&#x7C7B;&#x6FC0;&#x6D3B;&#x56FE;)</strong>&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="imgs/resnet50-grad-cam.png" style="zoom: 33%;"></p>
+<p>&#x4EE5;&#x4E0A;&#x56FE;&#x4E3A;&#x4F8B;&#xFF0C;CAM&#x65B9;&#x6CD5;&#x662F;&#x63A2;&#x7A76;&#x6A21;&#x578B;&#x5C06;&#x56FE;&#x7247;&#x5206;&#x4E3A;&#x201C;Dog&#x201D;&#x7684;&#x4F9D;&#x636E;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x5373;&#x56FE;&#x7247;&#x4E2D;&#x54EA;&#x4E9B;&#x533A;&#x57DF;&#x652F;&#x6491;&#x4E86;&#x6A21;&#x578B;&#x5C06;&#x56FE;&#x7247;&#x5224;&#x522B;&#x4E3A;&quot;Dog&quot;&#x3002;</p>
+<p>&#x5176;&#x80CC;&#x540E;&#x7684;&#x539F;&#x7406;&#x662F;&#x5C06;&#x7F51;&#x7EDC;&#x4E2D;&#x95F4;&#x7684;&#x7279;&#x5F81;&#x56FE;&#x8FDB;&#x884C;&#x52A0;&#x6743;&#x5E76;&#x53EF;&#x89C6;&#x5316;&#xFF0C;&#x800C;&#x6743;&#x91CD;&#x7684;&#x5F97;&#x6765;&#x5C31;&#x6709;&#x591A;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x6709;&#x4E86;&#x4E0D;&#x540C;&#x7684;CAM&#x7B97;&#x6CD5;&#xFF0C;&#x5982;CAM&#x3001;Grad CAM&#x548C;Grad CAM++&#x3002;</p>
+<p>CAM&#xFF1A;&#x300A;2016-CAM-Learning Deep Features for Discriminative Localization&#x300B;</p>
+<p>Grad-CAM&#xFF1A;&#x300A;2017-Grad-CAM Visual Explanations from Deep Networks via Gradient-based Localization&#x300B;</p>
+<p>Grad-CAM++&#xFF1A;&#x300A;2018-Grad-CAM++  Generalized Gradient-based Visual Explanations for Deep Convolutional Networks&#x300B;</p>
+<p>&#x672C;&#x6587;&#x5C06;&#x4ECB;&#x7ECD;&#x5176;&#x6F14;&#x53D8;&#x8FC7;&#x7A0B;&#xFF0C;&#x5E76;&#x7528;&#x624B;&#x5199;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;Grad CAM&#xFF0C;&#x540C;&#x65F6;&#x501F;&#x52A9;&#x5F3A;&#x5927;&#x7684;<strong>github&#x4ED3;&#x5E93;</strong>&#xFF0C;&#x5B9E;&#x73B0;&#x591A;&#x79CD;&#x70ED;&#x529B;&#x56FE;&#x5BF9;&#x6BD4;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="imgs/cam-series.png" style="zoom:50%;"></p>
+<h2 id="cam">CAM</h2>
+<p>&#x8BBA;&#x6587;&#x540D;&#x79F0;&#xFF1A;&#x300A;Learning Deep Features for Discriminative Localization&#x300B;</p>
+<p>&#x539F;&#x7406;&#x89E3;&#x91CA;&#xFF1A;CAM&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x5C06;CNN&#x6A21;&#x578B;&#x4FEE;&#x6539;&#x540E;&#x91CD;&#x65B0;&#x8BAD;&#x7EC3;&#xFF0C;&#x4FEE;&#x6539;&#x7684;&#x76EE;&#x7684;&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x83B7;&#x5F97;&#x52A0;&#x6743;&#x6743;&#x91CD;&#xFF0C;&#x5177;&#x4F53;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="imgs/cam-dag.png" style="zoom:50%;"></p>
+<p>&#x5C06;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x7279;&#x5F81;&#x56FE;&#x4E4B;&#x540E;&#x7684;&#x5C42;&#x79FB;&#x9664;&#xFF0C;&#x5E76;&#x63A5;&#x5165;&#x4E00;&#x4E2A;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#x7528;&#x4E8E;&#x5206;&#x7C7B;&#xFF0C;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#x7684;&#x8F93;&#x5165;&#x662F;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x5168;&#x5C40;&#x6C60;&#x5316;&#x540E;&#x7684;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x3002;</p>
+<p>&#x6700;&#x7EC8;&#x70ED;&#x529B;&#x56FE;&#x901A;&#x8FC7;&#x5206;&#x7C7B;&#x7C7B;&#x522B;&#x795E;&#x7ECF;&#x5143;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x6743;&#x91CD;w&#xFF0C;&#x4E58;&#x4EE5;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x7279;&#x5F81;&#x56FE;&#xFF0C;&#x518D;&#x6C42;&#x548C;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x80CC;&#x540E;&#x903B;&#x8F91;&#x6709;&#x4E24;&#x4E2A;&#xFF1A;</p>
+<p>1&#x3001;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x7279;&#x5F81;&#x56FE;&#x662F;&#x539F;&#x56FE;&#x7ECF;&#x8FC7;&#x4E00;&#x7CFB;&#x5217;&#x5377;&#x79EF;&#x540E;&#x4FDD;&#x7559;&#x4E0B;&#x6765;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x5176;&#x4E0E;&#x539F;&#x56FE;&#x7684;&#x7A7A;&#x95F4;&#x5173;&#x7CFB;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;&#xFF0C;&#x7A7A;&#x95F4;&#x5173;&#x7CFB;&#x6307;&#x5DE6;&#x4E0A;&#x89D2;&#x5BF9;&#x5E94;&#x5DE6;&#x4E0A;&#x89D2;&#xFF0C;&#x53F3;&#x4E0B;&#x89D2;&#x5BF9;&#x5E94;&#x539F;&#x56FE;&#x53F3;&#x4E0B;&#x89D2;&#xFF0C;&#x7B49;&#x7B49;&#x3002;</p>
+<p>2&#x3001;&#x7279;&#x5F81;&#x56FE;&#x5BF9;&#x4E8E;&#x5206;&#x7C7B;&#x7C7B;&#x522B;&#xFF08;&#x5982;&#x4E0A;&#x56FE;&#x7684;AustralianTerrier&#xFF09;&#x7684;&#x8D21;&#x732E;&#x7A0B;&#x5EA6;&#x4E0E;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#x6743;&#x91CD;&#x5BC6;&#x5207;&#x76F8;&#x5173;</p>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5229;&#x7528;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#x7684;&#x6743;&#x91CD;&#x4E58;&#x4EE5;&#x5BF9;&#x5E94;&#x901A;&#x9053;&#xFF0C;&#x5373;&#x53EF;&#x5F97;&#x5230;&#x70ED;&#x529B;&#x56FE;&#x3002;</p>
+<h2 id="grad-cam">Grad CAM</h2>
+<p>&#x8BBA;&#x6587;&#x540D;&#x79F0;&#xFF1A;&#x300A;Grad-CAM Visual Explanations from Deep Networks via Gradient-based Localization&#x300B;</p>
+<p>CAM&#x7684;&#x601D;&#x8DEF;&#x975E;&#x5E38;&#x5DE7;&#x5999;&#xFF0C;&#x4F46;&#x7F3A;&#x70B9;&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x5B83;&#x9700;&#x8981;&#x5BF9;&#x6A21;&#x578B;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x5E76;&#x4E14;&#x91CD;&#x65B0;&#x8BAD;&#x7EC3;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x5927;&#x591A;&#x6570;&#x573A;&#x666F;&#x3002;</p>
+<p>&#x4E3A;&#x6B64;&#xFF0C;&#x7814;&#x7A76;&#x8005;&#x63D0;&#x51FA;&#x989D;Grad CAM&#xFF0C;&#x53EF;&#x4EE5;&#x5BF9;&#x6A21;&#x578B;&#x76F4;&#x63A5;&#x8FDB;&#x884C;&#x89C2;&#x5BDF;&#xFF0C;&#x65E0;&#x9700;&#x6539;&#x52A8;&#x6A21;&#x578B;&#x3002;</p>
+<p>Grad CAM&#x7684;&#x601D;&#x8DEF;&#x4E5F;&#x975E;&#x5E38;&#x5DE7;&#x5999;&#xFF0C;&#x5728;CAM&#x601D;&#x8DEF;&#x4E2D;&#x6709;&#x4E24;&#x4E2A;&#x8981;&#x7D20;&#xFF1A;</p>
+<p>1&#x3001;&#x7279;&#x5F81;&#x56FE;</p>
+<p>2&#x3001;&#x7279;&#x5F81;&#x56FE;&#x5BF9;&#x5E94;&#x6307;&#x5B9A;&#x7C7B;&#x522B;&#x7684;<strong>&#x6743;&#x91CD;</strong></p>
+<p>&#x7279;&#x5F81;&#x56FE;&#x5F88;&#x5BB9;&#x6613;&#x83B7;&#x5F97;&#xFF0C;&#x4F46;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x91CD;&#x8981;&#x6027;&#xFF08;&#x52A0;&#x6743;&#x6743;&#x91CD;&#xFF09;&#x5E94;&#x8BE5;&#x5982;&#x4F55;&#x5BFB;&#x627E;&#xFF1F;</p>
+<p>Grad CAM&#x7ED9;&#x51FA;&#x4E86;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x7B54;&#x6848;&#xFF0C;Grad CAM&#x5229;&#x7528;&#x68AF;&#x5EA6;&#x6C42;&#x5BFC;&#x83B7;&#x5F97;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x91CD;&#x8981;&#x6027;&#x6743;&#x91CD;&#x3002;</p>
+<p>&#x539F;&#x7406;&#x5206;&#x6790;&#xFF1A;</p>
+<p>&#x5047;&#x8BBE;&#x6700;&#x540E;&#x4E00;&#x5C42;feature maps&#x6709;10&#x4E2A;&#xFF0C;&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x5BFB;&#x627E;10&#x4E2A;&#x6743;&#x503C;&#x7528;&#x6765;&#x6307;&#x793A;&#x8FD9;&#x4E9B;feature maps&#x5BF9;&#x67D0;&#x4E00;&#x7C7B;&#x522B;&#x7684;&#x91CD;&#x8981;&#x6027;&#x5462;&#xFF1F; </p>
+<p>CAM&#x662F;&#x901A;&#x8FC7;&#x5BF9;feature maps&#x8FDB;&#x884C;GAP&#xFF0C;&#x7136;&#x540E;&#x91C7;&#x7528;&#x8BE5;&#x7C7B;&#x522B;&#x4E0E;&#x8FD9;&#x4E2A;10&#x4E2A;GAP&#x540E;&#x7684;&#x795E;&#x7ECF;&#x5143;&#x7684;&#x8FDE;&#x63A5;&#x6743;&#x503C;&#x4F5C;&#x4E3A;&#x6743;&#x503C;&#xFF1B;</p>
+<p>&#x800C;Grad-CAM&#x91C7;&#x7528;&#x7684;&#x5219;&#x662F;&#x68AF;&#x5EA6;&#xFF0C;&#x662F;&#x8BE5;&#x7C7B;&#x522B;&#x5BF9;&#x4E8E;&#x8FD9;10&#x4E2A;feature maps&#x7684;&#x6C42;&#x53D6;&#x68AF;&#x5EA6;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x6700;&#x7EC8;&#x6C42;&#x53D6;&#x7684;&#x68AF;&#x5EA6;&#x662F;&#x4E00;&#x4E2A;1<em>10&#x7684;&#x5411;&#x91CF;&#xFF0C;&#x5373;&#x6BCF;&#x4E2A;feature map&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x6807;&#x91CF;&#xFF0C;&#x800C;&#x5BF9;feature maps&#x6C42;&#x53D6;&#x68AF;&#x5EA6;&#x662F;&#x4E00;&#x4E2A;&#x77E9;&#x9635;&#xFF0C;&#x4F5C;&#x8005;&#x662F;&#x901A;&#x8FC7;&#x5BF9;<em>*&#x77E9;&#x9635;&#x6C42;&#x5747;&#x503C;</em></em>&#x5F97;&#x5230;&#x7684;&#x6807;&#x91CF;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x7C7B;&#x522B;c&#xFF0C;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x6743;&#x503C; a_k^c &#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#x5982;&#x4E0B;:</p>
+<p><img src="imgs/grad-cam-formual.png" style="zoom:50%;"></p>
+<p>c&#x8868;&#x793A;&#x7B2C;c&#x7C7B;&#xFF0C;k&#x8868;&#x793A;&#x7B2C;k&#x4E2A;&#x7279;&#x5F81;&#x56FE;&#xFF0C;Z&#x8868;&#x793A;&#x7279;&#x5F81;&#x56FE;&#x50CF;&#x7D20;&#x70B9;&#x603B;&#x6570;&#xFF0C;i&#x8868;&#x793A;&#x884C;&#xFF0C;j&#x8868;&#x793A;&#x5217;&#xFF0C;A&#x8868;&#x793A;&#x7279;&#x5F81;&#x56FE;&#x3002;</p>
+<p>&#x516C;&#x5F0F;&#x53EF;&#x4EE5;&#x5206;&#x4E24;&#x90E8;&#x5206;&#x770B;&#xFF0C;&#x6700;&#x53F3;&#x8FB9; gradients via backprop&#xFF0C;&#x5373;&#x5BF9;&#x7C7B;&#x522B;c&#x6C42;&#x5F97;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x68AF;&#x5EA6;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x7EF4;&#x7684;&#x77E9;&#x9635;&#xFF1B;</p>
+<p>&#x518D;&#x901A;&#x8FC7;&#x5DE6;&#x8FB9;&#x7684;global average pooling&#xFF0C;&#x5BF9;&#x4E8C;&#x7EF4;&#x7684;&#x68AF;&#x5EA6;&#x77E9;&#x9635;&#x6C42;&#x5E73;&#x5747;&#x503C;&#xFF0C;&#x5F97;&#x5230;&#x7B2C;k&#x4E2A;&#x7279;&#x5F81;&#x56FE;&#x5BF9;&#x4E8E;&#x7B2C;c&#x7C7B;&#x7684;&#x6743;&#x503C;&#x3002;</p>
+<p>&#x793A;&#x610F;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="imgs/grad-cam-dag.png" style="zoom:50%;"></p>
+<p>&#x6700;&#x7EC8;&#x7684;&#x70ED;&#x529B;&#x56FE;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x516C;&#x5F0F;&#x8FDB;&#x884C;&#x6C42;&#x53D6;&#xFF1A;</p>
+<p>&#x4E0E;CAM&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;Grad-CAM&#x5728;&#x52A0;&#x6743;&#x6C42;&#x548C;&#x540E;&#x8FD8;&#x52A0;&#x4E0A;&#x4E86;ReLU&#x51FD;&#x6570;&#xFF0C;&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="imgs/grad-cam-formual-2.png" style="zoom:50%;"></p>
+<p>&#x4E4B;&#x6240;&#x4EE5;&#x52A0;&#x4E0A;ReLU&#xFF0C;&#x662F;&#x56E0;&#x4E3A;&#x5728;&#x8FD9;&#x91CC;&#x53EA;&#x5173;&#x6CE8;&#x6B63;&#x7684;&#x68AF;&#x5EA6;&#x503C;&#xFF0C;&#x800C;&#x4E0D;&#x5173;&#x6CE8;&#x8D1F;&#x7684;&#x3002;</p>
+<p>&#x6700;&#x540E;&#x5C06;<strong>Discriminative Localization Map</strong>&#x76F4;&#x63A5;resize&#x81F3;&#x539F;&#x56FE;&#x5927;&#x5C0F;&#x5373;&#x53EF;&#xFF0C;&#x5982;&#x6700;&#x540E;&#x4E00;&#x5C42;feature maps&#x662F;14*14&#x7684;&#xFF0C;&#x539F;&#x56FE;&#x662F;224*224&#xFF0C;&#x5219;&#x5C06;14*14&#x7684;&#x56FE;&#x7F29;&#x653E;&#x5230;224*224&#x5373;&#x53EF;&#x3002;</p>
+<h2 id="grad-cam">Grad-CAM++</h2>
+<p>&#x8BBA;&#x6587;&#x540D;&#x79F0;&#xFF1A;&#x300A;Grad-CAM++  Generalized Gradient-based Visual Explanations for Deep Convolutional Networks&#x300B;</p>
+<p>&#x4E8B;&#x7269;&#x603B;&#x662F;&#x5728;&#x4E0D;&#x65AD;&#x7684;&#x53D1;&#x5C55;&#xFF0C;Grad CAM&#x8FD8;&#x5B58;&#x5728;&#x4EE5;&#x4E0B;&#x7F3A;&#x70B9;&#xFF1A;</p>
+<ol>
+<li><p>&#x5F53;&#x56FE;&#x7247;&#x51FA;&#x73B0;&#x591A;&#x4E2A;&#x540C;&#x7C7B;&#x7269;&#x4F53;&#x65F6;&#xFF0C;&#x65E0;&#x6CD5;&#x5B9A;&#x4F4D;&#xFF1B;&#xFF08;1-3&#x5217;&#xFF09;</p>
+</li>
+<li><p>&#x5355;&#x7269;&#x4F53;&#x56FE;&#x7247;&#x4E2D;&#xFF0C;&#x5B9A;&#x4F4D;&#x9519;&#x8BEF;&#x3002;&#xFF08;4-6&#x5217;&#xFF09;</p>
+</li>
+<li><img src="imgs/grad-cam-pp-demo.png" style="zoom:50%;"></li>
+</ol>
+<p>&#x5E76;&#x4E14;&#xFF0C; Grad-CAM&#x4E2D;&#x4E00;&#x4E2A;&#x7279;&#x5F81;&#x56FE;&#x5BF9;&#x5E94;&#x7684;&#x6743;&#x91CD;&#x662F;&#x5BF9;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x68AF;&#x5EA6;&#x6C42;&#x5E73;&#x5747;&#xFF0C;&#x5373;&#x8BA4;&#x4E3A;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x68AF;&#x5EA6;&#xFF08;2&#x7EF4;&#x6570;&#x636E;&#xFF09;&#x4E0A;&#x7684;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x540C;&#x7B49;&#x91CD;&#x8981;&#x3002;</p>
+<p>&#x800C;Grad-CAM++&#x5219;&#x8BA4;&#x4E3A;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x68AF;&#x5EA6;&#x4E0A;&#x7684;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x91CD;&#x8981;&#x7A0B;&#x5EA6;&#x5E94;&#x5F53;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x56E0;&#x6B64;&#x5BF9;Grad CAM&#x8FDB;&#x884C;&#x4E86;&#x6539;&#x8FDB;&#x3002;</p>
+<p>Grad-CAM++ &#x70ED;&#x529B;&#x56FE;&#x7684;&#x6743;&#x91CD;&#x8BA1;&#x7B97;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x516C;&#x5F0F;&#xFF1A;</p>
+<p><img src="imgs/grad-cam-pp-formula.png" style="zoom:50%;"></p>
+<h2 id="cam&#x7CFB;&#x5217;&#x5BF9;&#x6BD4;">CAM&#x7CFB;&#x5217;&#x5BF9;&#x6BD4;</h2>
+<p>CAM&#x3001;Grad-CAM&#x548C;Grad-CAM++&#x7684;&#x533A;&#x522B;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="imgs/cam-series-all.png" style="zoom:66%;"></p>
+<p>&#x5173;&#x4E8E;CAM&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x8FED;&#x4EE3;&#x6539;&#x8FDB;&#xFF0C;&#x53EF;&#x53C2;&#x8003;&#x8FD9;&#x4E2A;<a href="https://github.com/jacobgil/pytorch-grad-cam" target="_blank">repo</a></p>
+<p>repo&#x4E2D;&#x5BF9;&#x6570;&#x5341;&#x4E2A;CAM&#x8FDB;&#x884C;&#x4E86;&#x5B9E;&#x73B0;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x672C;&#x8282;&#x5C06;&#x7528;&#x4EE3;&#x7801;&#x624B;&#x52A8;&#x7684;&#x5B9E;&#x73B0;Grad CAM&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x7B97;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#x6765;&#x5B66;&#x4E60;nn.module&#x4E2D;&#x7684;hook&#x51FD;&#x6570;&#x4F7F;&#x7528;&#x3002;</p>
+<h2 id="nnmodule&#x4E2D;&#x7684;hook&#x51FD;&#x6570;">nn.module&#x4E2D;&#x7684;hook&#x51FD;&#x6570;</h2>
+<p>&#x5728;CAM&#x7CFB;&#x5217;&#x7B97;&#x6CD5;&#x4E2D;&#x77E5;&#x9053;&#xFF0C;&#x9700;&#x8981;&#x5229;&#x7528;&#x4E2D;&#x95F4;&#x5C42;&#x7684;&#x7279;&#x5F81;&#x56FE;&#xFF0C;&#x53EF;nn.module&#x5E76;&#x4E0D;&#x4F1A;&#x8FD4;&#x56DE;&#x3001;&#x4FDD;&#x7559;&#x4E2D;&#x95F4;&#x5C42;&#x7684;&#x7279;&#x5F81;&#x56FE;&#x3002;&#x8FD9;&#x65F6;&#xFF0C;&#x5C31;&#x8981;&#x7528;&#x5230;nn.module&#x4E2D;&#x7684;hook&#x51FD;&#x6570;&#xFF0C;&#x628A;&#x4E2D;&#x95F4;&#x5C42;&#x7279;&#x5F81;&#x56FE;&#x7ED9;&#x62FF;&#x51FA;&#x6765;&#x3002;</p>
+<p><strong>&#x4EC0;&#x4E48;&#x662F;hook&#x51FD;&#x6570;?</strong></p>
+<p>pytorch&#x4E2D;&#x7684;hook&#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x6709;&#x610F;&#x601D;&#x7684;&#x6982;&#x5FF5;&#xFF0C;hook&#x610F;&#x4E3A;&#x94A9;&#x3001;&#x6302;&#x94A9;&#x3001;&#x9C7C;&#x94A9;&#x3002; &#x5F15;&#x7528;&#x77E5;&#x4E4E;&#x7528;&#x6237;&#x201C;&#x9A6C;&#x7D22;&#x840C;&#x201D;&#x5BF9;hook&#x7684;&#x89E3;&#x91CA;&#xFF1A;&#x201C;(hook)&#x76F8;&#x5F53;&#x4E8E;&#x63D2;&#x4EF6;&#x3002;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x4E00;&#x4E9B;&#x989D;&#x5916;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x800C;&#x53C8;&#x4E0D;&#x7528;&#x4FEE;&#x6539;&#x4E3B;&#x4F53;&#x4EE3;&#x7801;&#x3002;&#x628A;&#x8FD9;&#x4E9B;&#x989D;&#x5916;&#x529F;&#x80FD;&#x5B9E;&#x73B0;&#x4E86;&#x6302;&#x5728;&#x4E3B;&#x4EE3;&#x7801;&#x4E0A;&#xFF0C;&#x6240;&#x4EE5;&#x53EB;&#x94A9;&#x5B50;&#xFF0C;&#x5F88;&#x5F62;&#x8C61;&#x3002;&#x201D; &#x7B80;&#x5355;&#x8BB2;&#xFF0C;&#x5C31;&#x662F;&#x4E0D;&#x4FEE;&#x6539;&#x4E3B;&#x4F53;&#xFF0C;&#x800C;&#x5B9E;&#x73B0;&#x989D;&#x5916;&#x529F;&#x80FD;&#x3002;&#x5BF9;&#x5E94;&#x5230;&#x5728;pytorch&#x4E2D;&#xFF0C;&#x4E3B;&#x4F53;&#x5C31;&#x662F;forward&#x548C;backward&#xFF0C;&#x800C;&#x989D;&#x5916;&#x7684;&#x529F;&#x80FD;&#x5C31;&#x662F;&#x5BF9;&#x6A21;&#x578B;&#x7684;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;</p>
+<p><strong>pytorch&#x63D0;&#x4F9B;&#x7684;hook</strong> </p>
+<p><strong>1. torch.Tensor.register_hook</strong></p>
+<p>&#x529F;&#x80FD;&#xFF1A;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x53CD;&#x5411;&#x4F20;&#x64AD;hook&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x662F;Tensor&#x7C7B;&#x91CC;&#x7684;&#xFF0C;&#x5F53;&#x8BA1;&#x7B97;tensor&#x7684;&#x68AF;&#x5EA6;&#x65F6;&#x81EA;&#x52A8;&#x6267;&#x884C;&#x3002; </p>
+<p>&#x5F62;&#x5F0F;&#xFF1A; hook(grad) -&gt; Tensor or None &#xFF0C;&#x5176;&#x4E2D;grad&#x5C31;&#x662F;&#x8FD9;&#x4E2A;tensor&#x7684;&#x68AF;&#x5EA6;&#x3002;</p>
+<p>&#x8FD4;&#x56DE;&#x503C;&#xFF1A;a handle that can be used to remove the added hook by calling handle.remove()</p>
+<p>&#x6848;&#x4F8B;&#x8BF7;&#x770B;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-6/04_hook_func.ipynb" target="_blank">&#x914D;&#x5957;&#x4EE3;&#x7801;</a></p>
+<p><strong>2. torch.nn.Module.register_forward_hook</strong></p>
+<p>&#x529F;&#x80FD;&#xFF1A;Module&#x524D;&#x5411;&#x4F20;&#x64AD;&#x4E2D;&#x7684;hook,module&#x5728;&#x524D;&#x5411;&#x4F20;&#x64AD;&#x540E;&#xFF0C;&#x81EA;&#x52A8;&#x8C03;&#x7528;hook&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x5F62;&#x5F0F;&#xFF1A;hook(module, input, output) -&gt; None&#x3002;&#x6CE8;&#x610F;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;input&#x548C;output &#x8FD4;&#x56DE;&#x503C;</p>
+<p>&#x5176;&#x4E2D;&#xFF0C;module&#x662F;&#x5F53;&#x524D;&#x7F51;&#x7EDC;&#x5C42;&#xFF0C;input&#x662F;&#x7F51;&#x7EDC;&#x5C42;&#x7684;&#x8F93;&#x5165;&#x6570;&#x636E;, output&#x662F;&#x7F51;&#x7EDC;&#x5C42;&#x7684;&#x8F93;&#x51FA;&#x6570;&#x636E;</p>
+<p>&#x5E94;&#x7528;&#x573A;&#x666F;&#xFF1A;&#x5982;&#x7528;&#x4E8E;&#x63D0;&#x53D6;&#x7279;&#x5F81;&#x56FE; </p>
+<p>&#x6848;&#x4F8B;&#x8BF7;&#x770B;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-6/04_hook_func.ipynb" target="_blank">&#x914D;&#x5957;&#x4EE3;&#x7801;</a></p>
+<p><strong>3. torch.nn.Module.register_forward_pre_hook</strong></p>
+<p>&#x529F;&#x80FD;&#xFF1A;&#x6267;&#x884C;forward()&#x4E4B;&#x524D;&#x8C03;&#x7528;hook&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x5F62;&#x5F0F;&#xFF1A;hook(module, input) -&gt; None or modified input</p>
+<p>&#x5E94;&#x7528;&#x573A;&#x666F;&#x4E3E;&#x4F8B;&#xFF1A;&#x6682;&#x65F6;&#x6CA1;&#x78B0;&#x5230;&#x8FC7;&#xFF0C;&#x5E0C;&#x671B;&#x8BFB;&#x8005;&#x670B;&#x53CB;&#x8865;&#x5145;register_forward_pre_hook&#x76F8;&#x5173;&#x5E94;&#x7528;&#x573A;&#x666F;&#x3002;</p>
+<p>register<em>forward<em>pre<em>hook&#x4E0E;forward<em>hook&#x4E00;&#x6837;&#xFF0C;&#x662F;&#x5728;module.__call</em></em>&#x4E2D;&#x6CE8;&#x518C;&#x7684;&#xFF0C;&#x4E0E;forward_hook&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;&#x5176;&#x5728;module&#x6267;&#x884C;forward&#x4E4B;&#x524D;&#x5C31;&#x8FD0;&#x884C;&#x4E86;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x770B;module.__call</em></em>&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x7B2C;&#x4E00;&#x884C;&#x5C31;&#x662F;&#x6267;&#x884C;forward_pre_hook&#x7684;&#x76F8;&#x5173;&#x64CD;&#x4F5C;&#x3002;</p>
+<p><strong>4. torch.nn.Module.register_full_backward_hook</strong></p>
+<p>&#x529F;&#x80FD;&#xFF1A;Module&#x53CD;&#x5411;&#x4F20;&#x64AD;&#x4E2D;&#x7684;hook,&#x6BCF;&#x6B21;&#x8BA1;&#x7B97;module&#x7684;&#x68AF;&#x5EA6;&#x540E;&#xFF0C;&#x81EA;&#x52A8;&#x8C03;&#x7528;hook&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x5F62;&#x5F0F;&#xFF1A;hook(module, grad_input, grad_output) -&gt; tuple(Tensor) or None</p>
+<p>&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#xFF1A;&#x5F53;module&#x6709;&#x591A;&#x4E2A;&#x8F93;&#x5165;&#x6216;&#x8F93;&#x51FA;&#x65F6;&#xFF0C;grad_input&#x548C;grad_output&#x662F;&#x4E00;&#x4E2A;tuple&#x3002;</p>
+<p>&#x8FD4;&#x56DE;&#x503C;&#xFF1A;a handle that can be used to remove the added hook by calling handle.remove()</p>
+<p>&#x5E94;&#x7528;&#x573A;&#x666F;&#x4E3E;&#x4F8B;&#xFF1A;&#x4F8B;&#x5982;&#x63D0;&#x53D6;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x68AF;&#x5EA6;</p>
+<h2 id="grad-cam--&#x624B;&#x52A8;&#x5B9E;&#x73B0;">Grad CAM  &#x624B;&#x52A8;&#x5B9E;&#x73B0;</h2>
+<p>&#x4E0B;&#x9762;&#x5C31;&#x5229;&#x7528; register_forward_hook &#x548C; register_full_backward_hook &#x6765;&#x5B9E;&#x73B0;Grad CAM</p>
+<p>&#x8BE6;&#x60C5;&#x8BF7;&#x770B;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-6/04_grad_cam.py" target="_blank">&#x914D;&#x5957;&#x4EE3;&#x7801;</a></p>
+<p>&#x6574;&#x4F53;&#x601D;&#x8DEF;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li>&#x5BF9;&#x6A21;&#x578B;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5377;&#x79EF;&#x5C42;&#x8FDB;&#x884C;hook&#x51FD;&#x6570;&#x6CE8;&#x518C;&#xFF0C;&#x4E24;&#x4E2A;hook&#x5206;&#x522B;&#x8BB0;&#x5F55;&#x7279;&#x5F81;&#x56FE;&#x4E8E;&#x68AF;&#x5EA6;</li>
+</ol>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backward_hook</span><span class="hljs-params">(module, grad_in, grad_out)</span>:</span>
+    grad_block.append(grad_out[<span class="hljs-number">0</span>].detach())
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">farward_hook</span><span class="hljs-params">(module, input, output)</span>:</span>
+    fmap_block.append(output)
+------------------------------------------------------------
+<span class="hljs-comment"># &#x6CE8;&#x518C;hook</span>
+resnet_50.layer4[<span class="hljs-number">-1</span>].register_forward_hook(farward_hook)
+resnet_50.layer4[<span class="hljs-number">-1</span>].register_full_backward_hook(backward_hook)
+</code></pre>
+<ol>
+<li>&#x83B7;&#x53D6;&#x7C7B;&#x522B;loss&#xFF0C;&#x7C7B;&#x522B;loss&#x4E3A;&#x5206;&#x7C7B;&#x7C7B;&#x522B;&#x6700;&#x5927;&#x7684;&#x90A3;&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x7684;&#x503C;&#xFF0C;&#x5177;&#x4F53;&#x7531;comp_class_vec&#x51FD;&#x6570;&#x5B9E;&#x73B0;</li>
+</ol>
+<pre><code class="lang-python"><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> index:
+    index = np.argmax(ouput_vec.cpu().data.numpy())
+<span class="hljs-keyword">else</span>:
+    index = np.array(index)
+index = index[np.newaxis, np.newaxis]
+index = torch.from_numpy(index)
+one_hot = torch.zeros(<span class="hljs-number">1</span>, <span class="hljs-number">1000</span>).scatter_(<span class="hljs-number">1</span>, index, <span class="hljs-number">1</span>)
+one_hot.requires_grad = <span class="hljs-keyword">True</span>
+class_vec = torch.sum(one_hot * ouput_vec)  <span class="hljs-comment"># one_hot = 11.8605</span>
+</code></pre>
+<ol>
+<li><p>&#x6267;&#x884C;backward&#xFF0C;&#x5F97;&#x5230;&#x68AF;&#x5EA6;</p>
+</li>
+<li><p>&#x901A;&#x8FC7;gen_cam()&#x51FD;&#x6570;&#x5F97;&#x5230;CAM&#x56FE;</p>
+</li>
+<li><p>&#x5C06;CAM&#x4E0E;&#x539F;&#x56FE;&#x8FDB;&#x884C;&#x878D;&#x5408;&#x53EF;&#x89C6;&#x5316;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;</p>
+</li>
+</ol>
+<p><img src="imgs/resnet50-grad-cam.png" style="zoom: 33%;"></p>
+<p>CAM &#x7CFB;&#x5217;&#x7B97;&#x6CD5;&#x7EDF;&#x4E00;&#x5B9E;&#x73B0;</p>
+<p>CAM&#x81EA;2016&#x5E74;&#x63D0;&#x51FA;&#x4EE5;&#x6765;&#xFF0C;&#x5DF2;&#x7ECF;&#x6709;&#x591A;&#x79CD;&#x6539;&#x8FDB;&#xFF0C;&#x5E76;&#x53EF;&#x8FD0;&#x7528;&#x4E8E;&#x56FE;&#x50CF;&#x5206;&#x5272;&#x548C;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#xFF0C;&#x8BE6;&#x7EC6;&#x7684;CAM&#x7B97;&#x6CD5;&#x53C2;&#x89C1;<a href="https://github.com/jacobgil/pytorch-grad-cam" target="_blank">&#x4ED3;&#x5E93;</a>&#x3002;</p>
+<p>pytorch-grad-cam&#x63D0;&#x4F9B;&#x4E86;&#x4E30;&#x5BCC;&#x7684;&#x7B97;&#x6CD5;&#x53CA;&#x7B80;&#x5355;&#x7684;&#x63A5;&#x53E3;&#x5E94;&#x7528;&#xFF0C;&#x4E0B;&#x9762;&#x5C31;&#x4EE5;resnet50&#x4E3A;&#x4F8B;&#xFF0C;&#x7ED8;&#x5236;6&#x79CD;CAM&#x7B97;&#x6CD5;&#x7684;&#x70ED;&#x529B;&#x56FE;&#xFF0C;&#x6548;&#x679C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;</p>
+<p>&#x4EE3;&#x7801;&#x5C31;&#x4E0D;&#x5256;&#x6790;&#x4E86;&#xFF0C;grad-cam&#x7684;&#x63A5;&#x53E3;&#x5DF2;&#x7ECF;&#x975E;&#x5E38;&#x6E05;&#x6670;&#x3002;&#x8BF7;&#x8FD0;&#x884C;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-6/04_cam_series_demo.py" target="_blank">&#x4EE3;&#x7801;</a>&#xFF0C;&#x67E5;&#x770B;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="imgs/cam-series.png" style="zoom:50%;"></p>
+<h1 id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</h1>
+<p>CAM&#x7CFB;&#x5217;&#x7B97;&#x6CD5;&#x5BF9;&#x7406;&#x89E3;&#x6DF1;&#x5EA6;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x975E;&#x5E38;&#x6709;&#x5E2E;&#x52A9;&#xFF0C;&#x5EFA;&#x8BAE;&#x4ED4;&#x7EC6;&#x5B66;&#x4E60;&#x672C;&#x8282;&#x5185;&#x5BB9;&#x5E76;&#x8FDB;&#x884C;&#x62D3;&#x5C55;&#x3002;</p>
+<p>&#x901A;&#x8FC7;CAM&#x5206;&#x6790;&#xFF1A;</p>
+<ol>
+<li><p>&#x53EF;&#x8BCA;&#x65AD;&#x6A21;&#x578B;&#x662F;&#x5426;&#x5B66;&#x5230;&#x771F;&#x6B63;&#x7279;&#x5F81;</p>
+</li>
+<li><p>&#x53EF;&#x901A;&#x8FC7;&#x70ED;&#x529B;&#x56FE;&#x4FE1;&#x606F;&#x505A;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;&#x589E;&#x5F3A;&#xFF08;&#x5982;&#x5BF9;&#x975E;&#x6FC0;&#x6D3B;&#x533A;&#x57DF;&#x8FDB;&#x884C;<strong>&#x968F;&#x673A;&#x64E6;&#x9664;&#x548C;Cutout&#x5904;&#x7406;</strong>&#xFF09;&#xFF0C;&#x7C7B;&#x4F3C;YOLOv4&#x4E2D;&#x7684;CutMix&#x6570;&#x636E;&#x589E;&#x5F3A;&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+<li>&#x8FD8;&#x53EF;&#x4EE5;&#x5C06;&#x70ED;&#x529B;&#x56FE;&#x4F5C;&#x4E3A;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x7684;&#x5F31;&#x76D1;&#x7763;&#x6807;&#x7B7E;&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#x5206;&#x5272;&#x6A21;&#x578B;&#xFF0C;&#x53EF;&#x53C2;&#x8003;&#x300A;Tell Me Where to Look: Guided Attention Inference Network&#x300B; </li>
+</ol>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; TingsongYu 2021 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2022&#x5E74;06&#x6708;01&#x65E5;21:48:10
+</span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="6.3-conf_matrix.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 6.3 混淆矩阵与训练曲线可视化">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"6.4 CAM可视化与hook函数使用","level":"2.6.4","depth":2,"previous":{"title":"6.3 混淆矩阵与训练曲线可视化","level":"2.6.3","depth":2,"path":"chapter-6/6.3-conf_matrix.md","ref":"chapter-6/6.3-conf_matrix.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年06月01日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-6/6.4-cam-vis.md","mtime":"2022-06-16T03:42:37.477Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-16T03:42:45.929Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/gumshoe.polyfills.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-3-ba/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
