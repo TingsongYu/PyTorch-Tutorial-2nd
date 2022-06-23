@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>第六章 PyTorch 可视化模块 · PyTorch实用教程（第二版）</title>
+        <title>第七章 PyTorch 小技巧汇总 · PyTorch实用教程（第二版）</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -102,10 +102,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="6.1-tensorboard.html" />
+    <link rel="next" href="7.1-serialization.html" />
     
     
-    <link rel="prev" href="../chapter-5/5.3-lr-scheduler.html" />
+    <link rel="prev" href="../chapter-6/6.5-model-print.html" />
     
 
     <style>
@@ -624,9 +624,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.6" data-path="./">
+        <li class="chapter " data-level="2.6" data-path="../chapter-6/">
             
-                <a href="./">
+                <a href="../chapter-6/">
             
                     
                     第六章 PyTorch 可视化模块
@@ -638,9 +638,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.6.1" data-path="6.1-tensorboard.html">
+        <li class="chapter " data-level="2.6.1" data-path="../chapter-6/6.1-tensorboard.html">
             
-                <a href="6.1-tensorboard.html">
+                <a href="../chapter-6/6.1-tensorboard.html">
             
                     
                     6.1 TensorBoard安装与使用
@@ -651,9 +651,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6.2" data-path="6.2-cnn-visualization.html">
+        <li class="chapter " data-level="2.6.2" data-path="../chapter-6/6.2-cnn-visualization.html">
             
-                <a href="6.2-cnn-visualization.html">
+                <a href="../chapter-6/6.2-cnn-visualization.html">
             
                     
                     6.2 CNN卷积核与特征图可视化
@@ -664,9 +664,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6.3" data-path="6.3-conf_matrix.html">
+        <li class="chapter " data-level="2.6.3" data-path="../chapter-6/6.3-conf_matrix.html">
             
-                <a href="6.3-conf_matrix.html">
+                <a href="../chapter-6/6.3-conf_matrix.html">
             
                     
                     6.3 混淆矩阵与训练曲线可视化
@@ -677,9 +677,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6.4" data-path="6.4-cam-vis.html">
+        <li class="chapter " data-level="2.6.4" data-path="../chapter-6/6.4-cam-vis.html">
             
-                <a href="6.4-cam-vis.html">
+                <a href="../chapter-6/6.4-cam-vis.html">
             
                     
                     6.4 CAM可视化与hook函数使用
@@ -690,9 +690,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6.5" data-path="6.5-model-print.html">
+        <li class="chapter " data-level="2.6.5" data-path="../chapter-6/6.5-model-print.html">
             
-                <a href="6.5-model-print.html">
+                <a href="../chapter-6/6.5-model-print.html">
             
                     
                     6.5 模型参数打印
@@ -708,9 +708,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../chapter-7/">
+        <li class="chapter active" data-level="2.7" data-path="./">
             
-                <a href="../chapter-7/">
+                <a href="./">
             
                     
                     第七章 PyTorch 小技巧汇总
@@ -722,9 +722,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.7.1" data-path="../chapter-7/7.1-serialization.html">
+        <li class="chapter " data-level="2.7.1" data-path="7.1-serialization.html">
             
-                <a href="../chapter-7/7.1-serialization.html">
+                <a href="7.1-serialization.html">
             
                     
                     7.1 模型保存与加载
@@ -784,7 +784,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >第六章 PyTorch 可视化模块</a>
+        <a href=".." >第七章 PyTorch 小技巧汇总</a>
     </h1>
 </div>
 
@@ -799,29 +799,16 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x7B2C;&#x516D;&#x7AE0;-pytorch-&#x53EF;&#x89C6;&#x5316;&#x6A21;&#x5757;">&#x7B2C;&#x516D;&#x7AE0; PyTorch &#x53EF;&#x89C6;&#x5316;&#x6A21;&#x5757;</h1>
+                                <h1 id="&#x7B2C;&#x4E03;&#x7AE0;-pytorch-&#x5C0F;&#x6280;&#x5DE7;&#x6C47;&#x603B;">&#x7B2C;&#x4E03;&#x7AE0; PyTorch &#x5C0F;&#x6280;&#x5DE7;&#x6C47;&#x603B;</h1>
 <ul>
-<li><p><a href="./">&#x7B2C;&#x516D;&#x7AE0; PyTorch &#x53EF;&#x89C6;&#x5316;&#x6A21;&#x5757;</a></p>
-<ul>
-<li><p><a href="6.1-tensorboard.html">6.1 TensorBoard&#x5B89;&#x88C5;&#x4E0E;&#x4F7F;&#x7528;</a></p>
-</li>
-<li><p><a href="6.2-cnn-visualization.html">6.2 CNN&#x5377;&#x79EF;&#x6838;&#x4E0E;&#x7279;&#x5F81;&#x56FE;&#x53EF;&#x89C6;&#x5316;</a></p>
-</li>
-<li><p><a href="6.3-conf_matrix.html">6.3 &#x6DF7;&#x6DC6;&#x77E9;&#x9635;&#x4E0E;&#x8BAD;&#x7EC3;&#x66F2;&#x7EBF;&#x53EF;&#x89C6;&#x5316;</a></p>
-</li>
-<li><p><a href="6.4-cam-vis.html">6.4 CAM&#x53EF;&#x89C6;&#x5316;&#x4E0E;hook&#x51FD;&#x6570;&#x4F7F;&#x7528;</a></p>
-</li>
-<li><p><a href="6.5-model-print.html">6.5 &#x6A21;&#x578B;&#x53C2;&#x6570;&#x6253;&#x5370;</a></p>
-</li>
+<li><a href="./">&#x7B2C;&#x4E03;&#x7AE0; PyTorch &#x5C0F;&#x6280;&#x5DE7;&#x6C47;&#x603B;</a><ul>
+<li><a href="7.1-serialization.html">7.1 &#x6A21;&#x578B;&#x4FDD;&#x5B58;&#x4E0E;&#x52A0;&#x8F7D;</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="&#x7B2C;&#x516D;&#x7AE0;&#x7B80;&#x4ECB;">&#x7B2C;&#x516D;&#x7AE0;&#x7B80;&#x4ECB;</h2>
-<p>&#x672C;&#x7AE0;&#x4ECB;&#x7ECD;&#x53EF;&#x89C6;&#x5316;&#x5DE5;&#x5177;&#xFF0C;&#x5305;&#x62EC;TensorBoard&#x53EF;&#x89C6;&#x5316;&#x5DE5;&#x5177;&#xFF0C;&#x6DF7;&#x6DC6;&#x77E9;&#x9635;&#xFF0C;CNN&#x5377;&#x79EF;&#x6838;&#x4E0E;&#x7279;&#x5F81;&#x56FE;&#x53EF;&#x89C6;&#x5316;&#xFF0C;&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x6CE8;&#x610F;&#x529B;&#x7B97;&#x6CD5;&#x2014;&#x2014;Grad CAM&#xFF0C;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x91CF;&#x53EF;&#x89C6;&#x5316;&#x3002;</p>
-<p>&#x9996;&#x5148;&#x5BF9;&#x5F3A;&#x5927;&#x7684;&#x53EF;&#x89C6;&#x5316;&#x5DE5;&#x5177;TensorBoard&#x8FDB;&#x884C;&#x8BB2;&#x89E3;&#xFF0C;&#x4ECB;&#x7ECD;&#x5176;&#x63D0;&#x4F9B;&#x7684;&#x5341;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x53EF;&#x89C6;&#x5316;API&#x3002;</p>
-<p>&#x7136;&#x540E;&#x501F;&#x52A9;Tensorboard&#x7684;&#x7ED8;&#x56FE;&#x529F;&#x80FD;&#xFF0C;&#x89C2;&#x5BDF;CNN&#x5377;&#x79EF;&#x6838;&#x4E0E;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x53D8;&#x5316;&#x8FC7;&#x7A0B;&#xFF0C;&#x540C;&#x65F6;&#x5BF9;&#x5206;&#x7C7B;&#x6DF7;&#x6DC6;&#x77E9;&#x9635;&#x8FDB;&#x884C;&#x5206;&#x6790;&#x3002;</p>
-<p>&#x63A5;&#x7740;&#x4ECB;&#x7ECD;&#x4E00;&#x4E2A;&#x5B9E;&#x7528;&#x7684;&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&#x53EF;&#x89C6;&#x5316;&#x7B97;&#x6CD5;&#x2014;&#x2014;Grad CAM&#x3002;</p>
-<p>&#x6700;&#x540E;&#x4ECB;&#x7ECD;&#x4E00;&#x7CFB;&#x5217;&#x5BF9;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x91CF;&#x5206;&#x6790;&#x7684;&#x5DE5;&#x5177;&#x3002;</p>
+<h2 id="&#x7B2C;&#x4E03;&#x7AE0;&#x7B80;&#x4ECB;">&#x7B2C;&#x4E03;&#x7AE0;&#x7B80;&#x4ECB;</h2>
+<p>&#x672C;&#x7AE0;&#x4ECB;&#x7ECD;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#x5E38;&#x7528;&#x7684;&#x4EE3;&#x7801;&#x6BB5;&#x3001;&#x5DE5;&#x5177;&#x6A21;&#x5757;&#x548C;&#x6280;&#x5DE7;&#x7B49;&#xFF0C;&#x521D;&#x6B65;&#x8BBE;&#x8BA1;&#x6709;&#x6A21;&#x578B;&#x4FDD;&#x5B58;&#x4E0E;&#x52A0;&#x8F7D;&#x3001;&#x6A21;&#x578B;Finetune&#x6280;&#x5DE7;&#x3001;GPU&#x4F7F;&#x7528;&#x6280;&#x5DE7;&#x3001;&#x8BAD;&#x7EC3;&#x4EE3;&#x7801;&#x6846;&#x67B6;&#x7B49;&#x3002;</p>
+<p>&#x672C;&#x7AE0;&#x5C0F;&#x7ED3;&#x4F1A;&#x7EED;&#x66F4;&#x65B0;&#xFF0C;&#x5C06;&#x5DE5;&#x4F5C;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x5C0F;&#x6280;&#x5DE7;&#x5206;&#x4EAB;&#x51FA;&#x6765;&#x3002; </p>
 <footer class="page-footer"><span class="copyright">Copyright &#xA9; TingsongYu 2021 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
 2022&#x5E74;06&#x6708;01&#x65E5;21:48:10
 </span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
@@ -852,12 +839,12 @@
 
             
                 
-                <a href="../chapter-5/5.3-lr-scheduler.html" class="navigation navigation-prev " aria-label="Previous page: 5.3 十四个学习率调整器">
+                <a href="../chapter-6/6.5-model-print.html" class="navigation navigation-prev " aria-label="Previous page: 6.5 模型参数打印">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="6.1-tensorboard.html" class="navigation navigation-next " aria-label="Next page: 6.1 TensorBoard安装与使用">
+                <a href="7.1-serialization.html" class="navigation navigation-next " aria-label="Next page: 7.1 模型保存与加载">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -868,7 +855,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第六章 PyTorch 可视化模块","level":"2.6","depth":1,"next":{"title":"6.1 TensorBoard安装与使用","level":"2.6.1","depth":2,"path":"chapter-6/6.1-tensorboard.md","ref":"chapter-6/6.1-tensorboard.md","articles":[]},"previous":{"title":"5.3 十四个学习率调整器","level":"2.5.3","depth":2,"path":"chapter-5/5.3-lr-scheduler.md","ref":"chapter-5/5.3-lr-scheduler.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年06月01日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-6/README.md","mtime":"2022-06-21T07:40:23.771Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-23T09:50:47.848Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第七章 PyTorch 小技巧汇总","level":"2.7","depth":1,"next":{"title":"7.1 模型保存与加载","level":"2.7.1","depth":2,"path":"chapter-7/7.1-serialization.md","ref":"chapter-7/7.1-serialization.md","articles":[]},"previous":{"title":"6.5 模型参数打印","level":"2.6.5","depth":2,"path":"chapter-6/6.5-model-print.md","ref":"chapter-6/6.5-model-print.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年06月01日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-7/README.md","mtime":"2022-06-23T09:49:16.897Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-23T09:50:47.848Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
