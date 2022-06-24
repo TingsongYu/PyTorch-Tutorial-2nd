@@ -90,7 +90,8 @@ for epoch in range(max_epoch):
     acc_avg = 0
     path_error = []
     label_list = []
-
+    
+    model.train()
     for i, data in enumerate(train_loader):
         # if i == 30 : break
         # 获取图片和标签
