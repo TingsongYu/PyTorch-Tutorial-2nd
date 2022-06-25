@@ -1,0 +1,1258 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.3 GPU使用 · PyTorch实用教程（第二版）</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="余霆嵩">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-intopic-toc/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="7.2-finetune.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">上篇：PyTorch基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    第一章 PyTorch 简介与安装
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                <a href="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                    
+                    1.1 PyTorch 初认识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../chapter-1/1.2-Anaconda.html">
+            
+                <a href="../chapter-1/1.2-Anaconda.html">
+            
+                    
+                    1.2 环境配置之Anaconda
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../chapter-1/1.3-Pycharm.html">
+            
+                <a href="../chapter-1/1.3-Pycharm.html">
+            
+                    
+                    1.3 环境配置之Pycharm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                <a href="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                    
+                    1.4 环境配置之CUDA&cuDNN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../chapter-1/1.5-PyTorch-install.html">
+            
+                <a href="../chapter-1/1.5-PyTorch-install.html">
+            
+                    
+                    1.5 环境配置之PyTorch系列包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                <a href="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                    
+                    1.6 环境配置之Jupyter Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../chapter-2/">
+            
+                <a href="../chapter-2/">
+            
+                    
+                    第二章 PyTorch 核心模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../chapter-2/2.1-module-tree.html">
+            
+                <a href="../chapter-2/2.1-module-tree.html">
+            
+                    
+                    2.1 PyTorch 模块结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="../chapter-2/2.2-covid-19-cls.html">
+            
+                <a href="../chapter-2/2.2-covid-19-cls.html">
+            
+                    
+                    2.2 新冠肺炎分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="../chapter-2/2.3-datastruct-tensor.html">
+            
+                <a href="../chapter-2/2.3-datastruct-tensor.html">
+            
+                    
+                    2.3 核心数据结构——Tensor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="../chapter-2/2.4-method-tensor.html">
+            
+                <a href="../chapter-2/2.4-method-tensor.html">
+            
+                    
+                    2.4 张量的相关函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="../chapter-2/2.5-computational-graphs.html">
+            
+                <a href="../chapter-2/2.5-computational-graphs.html">
+            
+                    
+                    2.5 自动求导核心——计算图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.6" data-path="../chapter-2/2.6-autograd.html">
+            
+                <a href="../chapter-2/2.6-autograd.html">
+            
+                    
+                    2.6 Autograd——自动微分
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../chapter-3/">
+            
+                <a href="../chapter-3/">
+            
+                    
+                    第三章 PyTorch 数据模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="../chapter-3/3.1-dataset.html">
+            
+                <a href="../chapter-3/3.1-dataset.html">
+            
+                    
+                    3.1 Dataset
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="../chapter-3/3.2-dataloader.html">
+            
+                <a href="../chapter-3/3.2-dataloader.html">
+            
+                    
+                    3.2 DataLoader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="../chapter-3/3.3-dataset-useful-api.html">
+            
+                <a href="../chapter-3/3.3-dataset-useful-api.html">
+            
+                    
+                    3.3 Dataset-useful-api
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="../chapter-3/3.4-transforms.html">
+            
+                <a href="../chapter-3/3.4-transforms.html">
+            
+                    
+                    3.4 transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="../chapter-3/3.5-torchvision-dataset.html">
+            
+                <a href="../chapter-3/3.5-torchvision-dataset.html">
+            
+                    
+                    3.5 torchvision 经典dataset学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../chapter-4/">
+            
+                <a href="../chapter-4/">
+            
+                    
+                    第四章 PyTorch 模型模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="../chapter-4/4.1-module&Parameter.html">
+            
+                <a href="../chapter-4/4.1-module&Parameter.html">
+            
+                    
+                    4.1 Module&Parameter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" data-path="../chapter-4/4.2-containers.html">
+            
+                <a href="../chapter-4/4.2-containers.html">
+            
+                    
+                    4.2 Module的容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.3" data-path="../chapter-4/4.3-common-module.html">
+            
+                <a href="../chapter-4/4.3-common-module.html">
+            
+                    
+                    4.3 常用网络层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.4" data-path="../chapter-4/4.4-module-api.html">
+            
+                <a href="../chapter-4/4.4-module-api.html">
+            
+                    
+                    4.4 Module常用API函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.5" data-path="../chapter-4/4.5-hook-func.html">
+            
+                <a href="../chapter-4/4.5-hook-func.html">
+            
+                    
+                    4.5 Hook函数及Grad-CAM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.6" data-path="../chapter-4/4.6-classic-model.html">
+            
+                <a href="../chapter-4/4.6-classic-model.html">
+            
+                    
+                    4.6 经典模型代码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.7" data-path="../chapter-4/4.7-weight-init.html">
+            
+                <a href="../chapter-4/4.7-weight-init.html">
+            
+                    
+                    4.7 权重初始化方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../chapter-5/">
+            
+                <a href="../chapter-5/">
+            
+                    
+                    第五章 PyTorch 优化模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="../chapter-5/5.1-loss-function.html">
+            
+                <a href="../chapter-5/5.1-loss-function.html">
+            
+                    
+                    5.1 二十一个损失函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.2" data-path="../chapter-5/5.2-Optimizer.html">
+            
+                <a href="../chapter-5/5.2-Optimizer.html">
+            
+                    
+                    5.2 十三个优化器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.3" data-path="../chapter-5/5.3-lr-scheduler.html">
+            
+                <a href="../chapter-5/5.3-lr-scheduler.html">
+            
+                    
+                    5.3 十四个学习率调整器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../chapter-6/">
+            
+                <a href="../chapter-6/">
+            
+                    
+                    第六章 PyTorch 可视化模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1" data-path="../chapter-6/6.1-tensorboard.html">
+            
+                <a href="../chapter-6/6.1-tensorboard.html">
+            
+                    
+                    6.1 TensorBoard安装与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.2" data-path="../chapter-6/6.2-cnn-visualization.html">
+            
+                <a href="../chapter-6/6.2-cnn-visualization.html">
+            
+                    
+                    6.2 CNN卷积核与特征图可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.3" data-path="../chapter-6/6.3-conf_matrix.html">
+            
+                <a href="../chapter-6/6.3-conf_matrix.html">
+            
+                    
+                    6.3 混淆矩阵与训练曲线可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.4" data-path="../chapter-6/6.4-cam-vis.html">
+            
+                <a href="../chapter-6/6.4-cam-vis.html">
+            
+                    
+                    6.4 CAM可视化与hook函数使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.5" data-path="../chapter-6/6.5-model-print.html">
+            
+                <a href="../chapter-6/6.5-model-print.html">
+            
+                    
+                    6.5 模型参数打印
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第七章 PyTorch 小技巧汇总
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.1" data-path="7.1-serialization.html">
+            
+                <a href="7.1-serialization.html">
+            
+                    
+                    7.1 模型保存与加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.2" data-path="7.2-finetune.html">
+            
+                <a href="7.2-finetune.html">
+            
+                    
+                    7.2 Finetune 模型微调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.7.3" data-path="7.3-gpu.html">
+            
+                <a href="7.3-gpu.html">
+            
+                    
+                    7.3 GPU使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">中篇：PyTorch 案例应用</li>
+        
+        
+    
+
+    
+        
+        <li class="header">下篇：PyTorch 模型部署</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >7.3 GPU使用</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="73-gpu&#x4F7F;&#x7528;">7.3 GPU&#x4F7F;&#x7528;</h1>
+<p>&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x4E4B;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x53D1;&#x5C55;&#x8FC5;&#x731B;&#xFF0C;&#x5F97;&#x76CA;&#x4E8E;&#x5F3A;&#x5927;&#x7684;&#x8BA1;&#x7B97;&#x529B;&#x3002;&#x5728;PyTorch&#x4E2D;&#xFF0C;&#x81EA;&#x7136;&#x52A0;&#x6301;GPU&#x52A0;&#x901F;&#x8FD0;&#x7B97;&#xFF0C;&#x672C;&#x8282;&#x5C06;&#x4ECB;&#x7ECD;PyTorch&#x4E2D;GPU&#x7684;&#x4F7F;&#x7528;&#x539F;&#x7406;&#x4E0E;&#x591A;GPU&#x4F7F;&#x7528;&#x7684;DataParallel&#x539F;&#x7406;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x9488;&#x5BF9;GPU&#x7684;&#x5B9E;&#x7528;&#x4EE3;&#x7801;&#x6BB5;&#x3002;</p>
+<h2 id="gpu&#x4E0E;cpu">gpu&#x4E0E;cpu</h2>
+<p>&#x5728;&#x5904;&#x7406;&#x5668;&#x5BB6;&#x65CF;&#x4E2D;&#xFF0C;&#x6709;&#x4E24;&#x5927;&#x9635;&#x8425;&#xFF0C;&#x5206;&#x522B;&#x662F;CPU&#x548C;GPU&#xFF0C;&#x5B83;&#x4EEC;&#x5206;&#x5DE5;&#x534F;&#x4F5C;&#xFF0C;&#x5171;&#x540C;&#x5B8C;&#x6210;&#x8BA1;&#x7B97;&#x673A;&#x590D;&#x6742;&#x529F;&#x80FD;&#x3002;</p>
+<p>&#x4F46;&#x5B83;&#x4EEC;&#x4E24;&#x8005;&#x4E3B;&#x8981;&#x5DEE;&#x522B;&#x5728;&#x54EA;&#x91CC;&#xFF1F;&#x4E0B;&#x9762;&#x4E00;&#x63A2;&#x7A76;&#x7ADF;&#x3002;</p>
+<p>CPU(central processing unit, &#x4E2D;&#x592E;&#x5904;&#x7406;&#x5668;)cpu&#x4E3B;&#x8981;&#x5305;&#x62EC;&#x4E24;&#x4E2A;&#x90E8;&#x5206;&#xFF0C;&#x5373;&#x63A7;&#x5236;&#x5668;&#x3001;&#x8FD0;&#x7B97;&#x5668;&#xFF0C;&#x9664;&#x6B64;&#x4E4B;&#x5916;&#x8FD8;&#x5305;&#x62EC;&#x9AD8;&#x901F;&#x7F13;&#x5B58;&#x7B49;</p>
+<p>GPU(Graphics Processing Unit, &#x56FE;&#x5F62;&#x5904;&#x7406;&#x5668;)&#x662F;&#x4E3A;&#x5904;&#x7406;&#x7C7B;&#x578B;&#x7EDF;&#x4E00;&#x5E76;&#x4E14;&#x76F8;&#x4E92;&#x65E0;&#x4F9D;&#x8D56;&#x7684;&#x5927;&#x89C4;&#x6A21;&#x6570;&#x636E;&#x8FD0;&#x7B97;&#xFF0C;&#x4EE5;&#x53CA;&#x4E0D;&#x9700;&#x8981;&#x88AB;&#x6253;&#x65AD;&#x7684;&#x7EAF;&#x51C0;&#x7684;&#x8BA1;&#x7B97;&#x73AF;&#x5883;&#x4E3A;&#x8BBE;&#x8BA1;&#x7684;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x56E0;&#x65E9;&#x671F;&#x4EC5;&#x6709;&#x56FE;&#x5F62;&#x56FE;&#x50CF;&#x4EFB;&#x52A1;&#x4E2D;&#x8BBE;&#x8BA1;&#x5927;&#x89C4;&#x6A21;&#x7EDF;&#x4E00;&#x65E0;&#x4F9D;&#x8D56;&#x7684;&#x8FD0;&#x7B97;&#xFF0C;&#x56E0;&#x6B64;&#x8BE5;&#x5904;&#x7406;&#x5668;&#x79F0;&#x4E3A;&#x56FE;&#x50CF;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x4FD7;&#x79F0;&#x663E;&#x5361;&#x3002;</p>
+<p>&#x90A3;&#x4E48;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x4E3B;&#x8981;&#x533A;&#x522B;&#x5728;&#x54EA;&#x91CC;&#x5462;&#xFF0C;&#x6765;&#x770B;&#x4E00;&#x5F20;&#x793A;&#x610F;&#x56FE;</p>
+<p><img src="imgs/cpu-gpu.png" alt=""></p>
+<p>&#x7EFF;&#x8272;&#x7684;&#x662F;&#x8BA1;&#x7B97;&#x5355;&#x5143;&#xFF0C;&#x6A59;&#x7EA2;&#x8272;&#x7684;&#x662F;&#x5B58;&#x50A8;&#x5355;&#x5143;&#xFF0C;&#x6A59;&#x9EC4;&#x8272;&#x7684;&#x662F;&#x63A7;&#x5236;&#x5355;&#x5143;&#xFF0C;&#x4ECE;&#x793A;&#x610F;&#x56FE;&#x4E2D;&#x770B;&#x51FA;&#xFF0C;gpu&#x7684;&#x91CD;&#x70B9;&#x5728;&#x8BA1;&#x7B97;&#xFF0C;cpu&#x7684;&#x91CD;&#x70B9;&#x5728;&#x63A7;&#x5236;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x4E24;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x4E3B;&#x8981;&#x5DEE;&#x5F02;&#x3002;</p>
+<p>&#x5728;pytorch&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x4EE5;&#x53CA;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x8FC1;&#x79FB;&#x5230;gpu&#x4E0A;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x52A0;&#x901F;&#x6A21;&#x578B;&#x7684;&#x8FD0;&#x7B97;</p>
+<p>&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x9700;&#x8981;&#x4E86;&#x89E3;&#x7684;&#x662F;&#xFF0C;&#x5728;pytorch&#x4E2D;&#xFF0C;&#x4E24;&#x4E2A;&#x6570;&#x636E;&#x8FD0;&#x7B97;&#x5FC5;&#x987B;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x8BBE;&#x5907;&#x4E0A;&#x3002;</p>
+<h2 id="pytorch&#x7684;&#x8BBE;&#x5907;&#x2014;&#x2014;torchdevice">PyTorch&#x7684;&#x8BBE;&#x5907;&#x2014;&#x2014;torch.device</h2>
+<p>&#x524D;&#x9762;&#x63D0;&#x5230;&#xFF0C;PyTorch&#x7684;&#x8FD0;&#x7B97;&#x9700;&#x8981;&#x5C06;&#x8FD0;&#x7B97;&#x6570;&#x636E;&#x653E;&#x5230;&#x540C;&#x4E00;&#x4E2A;&#x8BBE;&#x5907;&#x4E0A;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x9700;&#x8981;&#x4E86;&#x89E3;PyTorch&#x4E2D;&#x8BBE;&#x5907;&#x6709;&#x54EA;&#x4E9B;&#xFF1F;</p>
+<p>&#x76EE;&#x524D;&#xFF0C;PyTorch&#x652F;&#x6301;&#x4E24;&#x79CD;&#x8BBE;&#x5907;&#xFF0C;cpu&#x4E0E;cuda&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;cuda&#x800C;&#x4E0D;&#x662F;gpu&#xFF1F;&#x56E0;&#x4E3A;&#x65E9;&#x671F;&#xFF0C;&#x53EA;&#x6709;Nvidia&#x7684;GPU&#x80FD;&#x7528;&#x4E8E;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x52A0;&#x901F;&#xFF0C;&#x56E0;&#x6B64;&#x79F0;&#x4E4B;&#x4E3A;cuda&#x3002;</p>
+<p>&#x5373;&#x4F7F;&#x73B0;&#x5728;&#x652F;&#x6301;&#x4E86;AMD&#x663E;&#x5361;&#x8FDB;&#x884C;&#x52A0;&#x901F;&#xFF0C;&#x4ECD;&#x65E7;&#x4F7F;&#x7528;cuda&#x6765;&#x4EE3;&#x66FF;gpu&#x3002;</p>
+<p>PyTorch&#x4E2D;&#x8868;&#x793A;&#x8BBE;&#x5907;&#x901A;&#x5E38;&#x7528;<a href="[https:/pytorch.org/docs/stable/tensor_attributes.html#torch.torch.device](https://pytorch.org/docs/stable/tensor_attributes.html?highlight=torch%20device#torch.torch.device">torch.device</a>)&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#xFF0C;&#x4F8B;&#x5982;:</p>
+<pre><code class="lang-python"><span class="hljs-meta">&gt;&gt;&gt; </span>torch.device(<span class="hljs-string">&apos;cuda:0&apos;</span>)
+device(type=<span class="hljs-string">&apos;cuda&apos;</span>, index=<span class="hljs-number">0</span>)
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>torch.device(<span class="hljs-string">&apos;cpu&apos;</span>)
+device(type=<span class="hljs-string">&apos;cpu&apos;</span>)
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>torch.device(<span class="hljs-string">&apos;cuda&apos;</span>)  <span class="hljs-comment"># current cuda device</span>
+device(type=<span class="hljs-string">&apos;cuda&apos;</span>)
+</code></pre>
+<p>&#x8865;&#x5145;&#x8D44;&#x6599;&#xFF1A;</p>
+<ol>
+<li><p><a href="https://blog.csdn.net/chongbin007/article/details/124043701" target="_blank">ROCm&#x5E73;&#x53F0;&#x53CA;HIP&#x4ECB;&#x7ECD;</a></p>
+</li>
+<li><p><a href="https://pytorch.org/docs/stable/notes/hip.html" target="_blank">https://pytorch.org/docs/stable/notes/hip.html</a></p>
+</li>
+</ol>
+<h2 id="&#x628A;&#x6570;&#x636E;&#x653E;&#x5230;gpu&#x2014;&#x2014;to&#x51FD;&#x6570;">&#x628A;&#x6570;&#x636E;&#x653E;&#x5230;GPU&#x2014;&#x2014;to&#x51FD;&#x6570;</h2>
+<p>&#x5728;pytorch&#x4E2D;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5C06;&#x8981;&#x8FDB;&#x884C;&#x8FD0;&#x7B97;&#x7684;&#x6570;&#x636E;&#x653E;&#x5230;gpu&#x4E0A;&#xFF0C;&#x5373;&#x53EF;&#x4F7F;&#x7528;gpu&#x52A0;&#x901F;&#x8FD0;&#x7B97;</p>
+<p>&#x5728;&#x6A21;&#x578B;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x653E;&#x5230;GPU&#x7684;&#x4E3B;&#x8981;&#x662F;&#x4E24;&#x4E2A;&#xFF1A;</p>
+<ol>
+<li><p>&#x8F93;&#x5165;&#x6570;&#x636E;&#x2014;&#x2014;&#x5F62;&#x5F0F;&#x4E3A;tensor</p>
+</li>
+<li><p>&#x7F51;&#x7EDC;&#x6A21;&#x578B;&#x2014;&#x2014;&#x5F62;&#x5F0F;&#x4E3A;module</p>
+</li>
+</ol>
+<p>pytorch&#x4E2D;&#x9488;&#x5BF9;&#x8FD9;&#x4E24;&#x79CD;&#x6570;&#x636E;&#x90FD;&#x6709;&#x76F8;&#x5E94;&#x7684;&#x51FD;&#x6570;&#x628A;&#x5B83;&#x4EEC;&#x653E;&#x5230;gpu&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x8BA4;&#x8BC6;&#x4E00;&#x4E0B;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x5C31;&#x662F;to&#x51FD;&#x6570;</p>
+<p><strong>tensor&#x7684;to&#x51FD;&#x6570;: to(*args, \</strong>kwargs) &#x2192; Tensor**</p>
+<p>&#x529F;&#x80FD;&#xFF1A;&#x8F6C;&#x6362;&#x5F20;&#x91CF;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x6216;&#x8005;&#x8BBE;&#x5907;</p>
+<p>&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#xFF1A;to&#x51FD;&#x6570;&#x4E0D;&#x662F;inplace&#x64CD;&#x4F5C;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x8D4B;&#x503C;&#xFF0C;&#x8FD9;&#x4E0E;module&#x7684;to&#x51FD;&#x6570;&#x4E0D;&#x540C;</p>
+<p>&#x4F7F;&#x7528;&#xFF1A;</p>
+<ol>
+<li>&#x8F6C;&#x6362;&#x6570;&#x636E;&#x7C7B;&#x578B;</li>
+</ol>
+<p>x = torch.ones((3, 3))</p>
+<p>x = x.to(torch.float64)</p>
+<ol>
+<li>&#x8F6C;&#x6362;&#x8BBE;&#x5907;</li>
+</ol>
+<p>x = torch.ones((3, 3))</p>
+<p>x = x.to(&quot;cuda&quot;)</p>
+<p><strong>module&#x7684;to&#x51FD;&#x6570;&#xFF1A;to(*args, \</strong>kwargs)**</p>
+<p>&#x529F;&#x80FD;&#xFF1A;move and/or cast the parameters and buffers&#xFF0C;&#x8F6C;&#x6362;&#x6A21;&#x578B;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x548C;&#x7F13;&#x5B58;</p>
+<p>&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#xFF1A;&#x5B9E;&#x884C;&#x7684;&#x662F;inplace&#x64CD;&#x4F5C;</p>
+<p>&#x4F7F;&#x7528;&#xFF1A;</p>
+<ol>
+<li>&#x8F6C;&#x6362;&#x6570;&#x636E;&#x7C7B;&#x578B;</li>
+</ol>
+<p>linear = nn.Linear(2, 2)</p>
+<p>print(linear.weight)</p>
+<p>linear.to(torch.double)</p>
+<p>print(linear.weight)</p>
+<ol>
+<li>&#x8FC1;&#x79FB;&#x81F3;gpu</li>
+</ol>
+<p>gpu1 = torch.device(&quot;cuda:1&quot;)</p>
+<p>linear.to(gpu1)</p>
+<p>print(linear.weight)</p>
+<p>&#x5C06;torch.device &#x4E0E; to&#x51FD;&#x6570;&#x8054;&#x5408;&#x4F7F;&#x7528;&#xFF0C;&#x5C31;&#x662F;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-6/03_confusion_matrix.py" target="_blank">&#x7B2C;&#x516D;&#x7AE0;&#x6DF7;&#x6DC6;&#x77E9;&#x9635;&#x4EE3;&#x7801;</a>&#x4E2D;&#x4F7F;&#x7528;&#x8FC7;&#x7684;&#x65B9;&#x5F0F;</p>
+<pre><code class="lang-python">device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)
+model.to(device)
+inputs, labels = inputs.to(device), labels.to(device)
+</code></pre>
+<p>&#x901A;&#x5E38;&#xFF0C;&#x4F1A;&#x91C7;&#x7528;torch.cuda.is_available()&#x51FD;&#x6570;&#x6765;&#x81EA;&#x9002;&#x5E94;&#x5F53;&#x524D;&#x8BBE;&#x5907;&#xFF0C;&#x82E5;&#x6CA1;&#x6709;gpu&#x53EF;&#x7528;&#xFF0C;&#x81EA;&#x52A8;&#x8BBE;&#x7F6E;device&#x4E3A;cpu&#xFF0C;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x4EE3;&#x7801;&#x7684;&#x8FD0;&#x884C;&#x3002;</p>
+<p>&#x9664;&#x4E86;torch.cuda.is_available()&#xFF0C;torch&#x5E93;&#x4E2D;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x5173;&#x4E8E;cuda&#x7684;&#x5B9E;&#x7528;&#x51FD;&#x6570;&#xFF0C;&#x4E0B;&#x9762;&#x4E00;&#x8D77;&#x770B;&#x770B;&#x3002;</p>
+<p><strong>torch.cuda</strong></p>
+<p>&#x5728;torch.cuda&#x4E2D;&#x6709;&#x51E0;&#x5341;&#x4E2A;&#x5173;&#x4E8E;guda&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x8BE6;&#x7EC6;&#x8BF7;&#x67E5;&#x9605;<a href="[https:/pytorch.org/docs/stable/cuda.html#module-torch.cuda](https://pytorch.org/docs/stable/cuda.html?highlight=torch%20cuda#module-torch.cuda">&#x5B98;&#x65B9;&#x6587;&#x6863;</a>)</p>
+<p>&#x4E0B;&#x9762;&#x4ECB;&#x7ECD;&#x51E0;&#x4E2A;&#x5E38;&#x7528;&#x7684;&#x51FD;&#x6570;&#x3002;</p>
+<ol>
+<li><p>torch.cuda.device_count()&#xFF1A; &#x67E5;&#x770B;&#x53EF;&#x7528;GPU&#x6570;&#x91CF;</p>
+</li>
+<li><p>torch.cuda.current_device()&#xFF1A;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x8BBE;&#x5907;&#x7684;&#x5E8F;&#x53F7;</p>
+</li>
+<li><p>torch.cuda.get_device_name()&#xFF1A;&#x83B7;&#x53D6;&#x8BBE;&#x5907;&#x7684;&#x540D;&#x79F0;</p>
+</li>
+<li><p>torch.cuda.get_device_capability(device=None)&#xFF1A;&#x67E5;&#x770B;&#x8BBE;&#x5907;&#x7684;&#x8BA1;&#x7B97;&#x529B;</p>
+</li>
+<li><p>torch.cuda.is_available()&#xFF1A;&#x67E5;&#x770B;cuda&#x662F;&#x5426;&#x53EF;&#x7528;</p>
+</li>
+<li><p>torch.cuda.get_device_properties()&#xFF1A;&#x67E5;&#x770B;GPU&#x5C5E;&#x6027;</p>
+</li>
+<li><p>torch.cuda.set_device(device)&#xFF1A;&#x8BBE;&#x7F6E;&#x53EF;&#x7528;&#x8BBE;&#x5907;&#xFF0C;&#x5DF2;&#x4E0D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#xFF0C;&#x5EFA;&#x8BAE;&#x901A;&#x8FC7;CUDA_VISIBLE_DEVICES&#x6765;&#x8BBE;&#x7F6E;&#xFF0C;&#x4E0B;&#x6587;&#x4F1A;&#x8BB2;&#x89E3;CUDA_VISIBLE_DEVICES&#x7684;&#x4F7F;&#x7528;&#x3002;</p>
+</li>
+<li><p>torch.cuda.mem_get_info(device=None)&#xFF1A;&#x67E5;&#x8BE2;gpu&#x7A7A;&#x4F59;&#x663E;&#x5B58;&#x4EE5;&#x53CA;&#x603B;&#x663E;&#x5B58;&#x3002;</p>
+</li>
+<li><p>torch.cuda.memory_summary(device=None, abbreviated=False)&#xFF1A;&#x7C7B;&#x4F3C;&#x6A21;&#x578B;&#x7684;summary&#xFF0C;&#x5B83;&#x5C06;GPU&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x8FDB;&#x884C;&#x8F93;&#x51FA;&#x3002;</p>
+</li>
+<li><p>torch.cuda.empty_cache()&#xFF1A;&#x6E05;&#x7A7A;&#x7F13;&#x5B58;&#xFF0C;&#x91CA;&#x653E;&#x663E;&#x5B58;&#x788E;&#x7247;&#x3002;</p>
+</li>
+<li>torch.backends.cudnn.benchmark = True : &#x63D0;&#x5347;&#x8FD0;&#x884C;&#x6548;&#x7387;&#xFF0C;&#x4EC5;&#x9002;&#x7528;&#x4E8E;&#x8F93;&#x5165;&#x6570;&#x636E;&#x8F83;&#x56FA;&#x5B9A;&#x7684;&#xFF0C;&#x5982;&#x5377;&#x79EF;</li>
+</ol>
+<p>&#x4F1A;&#x8BA9;&#x7A0B;&#x5E8F;&#x5728;&#x5F00;&#x59CB;&#x65F6;&#x82B1;&#x8D39;&#x4E00;&#x70B9;&#x989D;&#x5916;&#x65F6;&#x95F4;&#xFF0C;&#x4E3A;&#x6574;&#x4E2A;&#x7F51;&#x7EDC;&#x7684;&#x6BCF;&#x4E2A;&#x5377;&#x79EF;&#x5C42;&#x641C;&#x7D22;&#x6700;&#x9002;&#x5408;&#x5B83;&#x7684;&#x5377;&#x79EF;&#x5B9E;&#x73B0;&#x7B97;&#x6CD5;&#xFF0C;&#x8FDB;&#x800C;&#x5B9E;&#x73B0;&#x7F51;&#x7EDC;&#x7684;&#x52A0;&#x901F;&#x8BA9;&#x5185;&#x7F6E;&#x7684; cuDNN &#x7684; auto-tuner &#x81EA;&#x52A8;&#x5BFB;&#x627E;&#x6700;&#x9002;&#x5408;&#x5F53;&#x524D;&#x914D;&#x7F6E;&#x7684;&#x9AD8;&#x6548;&#x7B97;&#x6CD5;&#xFF0C;&#x6765;&#x8FBE;&#x5230;&#x4F18;&#x5316;&#x8FD0;&#x884C;&#x6548;&#x7387;&#x7684;&#x95EE;&#x9898;</p>
+<ol>
+<li>torch.backends.cudnn.deterministic: &#x7528;&#x4EE5;&#x4FDD;&#x8BC1;&#x5B9E;&#x9A8C;&#x7684;&#x53EF;&#x91CD;&#x590D;&#x6027;.</li>
+</ol>
+<p>&#x7531;&#x4E8E;cnDNN &#x6BCF;&#x6B21;&#x90FD;&#x4F1A;&#x53BB;&#x5BFB;&#x627E;&#x4E00;&#x904D;&#x6700;&#x4F18;&#x914D;&#x7F6E;&#xFF0C;&#x4F1A;&#x4EA7;&#x751F;&#x968F;&#x673A;&#x6027;&#xFF0C;&#x4E3A;&#x4E86;&#x6A21;&#x578B;&#x53EF;&#x590D;&#x73B0;&#xFF0C;&#x53EF;&#x8BBE;&#x7F6E;torch.backends.cudnn.deterministic = True</p>
+<p><strong><a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-7/03_torch_device.py" target="_blank">&#x8FD0;&#x884C;&#x4EE3;&#x7801;</a>&#xFF0C;&#x53EF;&#x770B;&#x5230;&#x5982;&#x4E0B;&#x4FE1;&#x606F;&#xFF1A;</strong></p>
+<pre><code class="lang-python">
+device_count: <span class="hljs-number">1</span>
+current_device:  <span class="hljs-number">0</span>
+(<span class="hljs-number">8</span>, <span class="hljs-number">6</span>)
+NVIDIA GeForce RTX <span class="hljs-number">3060</span> Laptop GPU
+<span class="hljs-keyword">True</span>
+[<span class="hljs-string">&apos;sm_37&apos;</span>, <span class="hljs-string">&apos;sm_50&apos;</span>, <span class="hljs-string">&apos;sm_60&apos;</span>, <span class="hljs-string">&apos;sm_61&apos;</span>, <span class="hljs-string">&apos;sm_70&apos;</span>, <span class="hljs-string">&apos;sm_75&apos;</span>, <span class="hljs-string">&apos;sm_80&apos;</span>, <span class="hljs-string">&apos;sm_86&apos;</span>, <span class="hljs-string">&apos;compute_37&apos;</span>]
+_CudaDeviceProperties(name=<span class="hljs-string">&apos;NVIDIA GeForce RTX 3060 Laptop GPU&apos;</span>, major=<span class="hljs-number">8</span>, minor=<span class="hljs-number">6</span>, total_memory=<span class="hljs-number">6144</span>MB, multi_processor_count=<span class="hljs-number">30</span>)
+(<span class="hljs-number">5407899648</span>, <span class="hljs-number">6442450944</span>)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID <span class="hljs-number">0</span>                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: <span class="hljs-number">0</span>            |        cudaMalloc retries: <span class="hljs-number">0</span>         |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|       <span class="hljs-keyword">from</span> large pool |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|       <span class="hljs-keyword">from</span> small pool |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|---------------------------------------------------------------------------|
+| Active memory         |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|       <span class="hljs-keyword">from</span> large pool |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|       <span class="hljs-keyword">from</span> small pool |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|       <span class="hljs-keyword">from</span> large pool |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|       <span class="hljs-keyword">from</span> small pool |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|       <span class="hljs-keyword">from</span> large pool |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|       <span class="hljs-keyword">from</span> small pool |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |       <span class="hljs-number">0</span> B  |
+|---------------------------------------------------------------------------|
+| Allocations           |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|       <span class="hljs-keyword">from</span> large pool |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|       <span class="hljs-keyword">from</span> small pool |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|---------------------------------------------------------------------------|
+| Active allocs         |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|       <span class="hljs-keyword">from</span> large pool |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|       <span class="hljs-keyword">from</span> small pool |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|       <span class="hljs-keyword">from</span> large pool |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|       <span class="hljs-keyword">from</span> small pool |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|       <span class="hljs-keyword">from</span> large pool |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|       <span class="hljs-keyword">from</span> small pool |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|---------------------------------------------------------------------------|
+| Oversize allocations  |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|---------------------------------------------------------------------------|
+| Oversize GPU segments |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |       <span class="hljs-number">0</span>    |
+|===========================================================================|
+
+<span class="hljs-keyword">None</span>
+</code></pre>
+<h2 id="&#x591A;gpu&#x8BAD;&#x7EC3;&#x2014;&#x2014;nndataparallel">&#x591A;gpu&#x8BAD;&#x7EC3;&#x2014;&#x2014;nn.DataParallel</h2>
+<p>&#x4EBA;&#x591A;&#x529B;&#x91CF;&#x5927;&#x7684;&#x9053;&#x7406;&#x5728;PyTorch&#x7684;&#x8BAD;&#x7EC3;&#x4E2D;&#x4E5F;&#x662F;&#x9002;&#x7528;&#x7684;&#xFF0C;PyTorch&#x652F;&#x6301;&#x591A;&#x4E2A;GPU&#x5171;&#x540C;&#x8BAD;&#x7EC3;&#xFF0C;&#x52A0;&#x5FEB;&#x8BAD;&#x7EC3;&#x901F;&#x5EA6;&#x3002;</p>
+<p>&#x591A;GPU&#x53EF;&#x5206;&#x4E3A;&#x5355;&#x673A;&#x591A;&#x5361;&#x548C;&#x591A;&#x673A;&#x591A;&#x5361;&#xFF0C;&#x8FD9;&#x91CC;&#x4EC5;&#x4ECB;&#x7ECD;&#x5355;&#x673A;&#x591A;&#x5361;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x5355;&#x673A;&#x591A;&#x5361;&#x7684;&#x5B9E;&#x73B0;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x589E;&#x52A0;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#xFF1A;</p>
+<p>net = nn.DataParallel(net)</p>
+<p>&#x4EE3;&#x7801;&#x7684;&#x610F;&#x601D;&#x662F;&#x5C06;&#x4E00;&#x4E2A;nn.Module&#x53D8;&#x4E3A;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;nn.Module&#xFF0C;&#x8FD9;&#x4E2A;Module&#x7684;forward&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x591A;GPU&#x8C03;&#x7528;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5BF9;nn.Module&#x7684;&#x6982;&#x5FF5;&#x4EE5;&#x53CA;forward&#x51FD;&#x6570;&#x4E0D;&#x7406;&#x89E3;&#x7684;&#x8BDD;&#xFF0C;&#x8BF7;&#x56DE;&#x5230;<a href="https://tingsongyu.github.io/PyTorch-Tutorial-2nd/chapter-4/" target="_blank">&#x7B2C;&#x56DB;&#x7AE0;</a>&#x8FDB;&#x884C;&#x5B66;&#x4E60;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x770B;&#x4E00;&#x5E45;&#x793A;&#x610F;&#x56FE;&#xFF0C;&#x7406;&#x89E3;&#x591A;GPU&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;</p>
+<p><img src="imgs/multi-gpu.png" alt=""></p>
+<p>&#x6574;&#x4F53;&#x6709;&#x56DB;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ol>
+<li><strong>&#x6570;&#x636E;&#x5E73;&#x5747;&#x5212;&#x4E3A;N&#x4EFD;</strong></li>
+<li><strong>&#x6A21;&#x578B;&#x53C2;&#x6570;&#x590D;&#x5236;N&#x4EFD;</strong></li>
+<li><strong>&#x5728;N&#x4E2A;GPU&#x4E0A;&#x540C;&#x65F6;&#x8FD0;&#x7B97;</strong></li>
+<li><strong>&#x56DE;&#x6536;N&#x4E2A;GPU&#x4E0A;&#x7684;&#x8FD0;&#x7B97;&#x7ED3;&#x679C;</strong></li>
+</ol>
+<p>&#x4E86;&#x89E3;&#x4E86;&#x591A;gpu&#x8FD0;&#x884C;&#x673A;&#x5236;&#xFF0C;&#x4E0B;&#x9762;&#x770B;&#x770B;DataParallel&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
+<p><strong>torch.nn.DataParallel(module, device_ids=None, output_device=None, dim=0)</strong></p>
+<p><strong>&#x529F;&#x80FD;&#xFF1A;</strong>&#x5B9E;&#x73B0;&#x6A21;&#x578B;&#x7684;&#x6570;&#x636E;&#x5E76;&#x884C;&#x8FD0;&#x7B97;</p>
+<p><strong>&#x4E3B;&#x8981;&#x53C2;&#x6570;&#xFF1A;</strong></p>
+<p>module - &#x9700;&#x8981;&#x5E76;&#x884C;&#x7684;module</p>
+<p>device_ids:  (list of python:int or torch.device) &#x2013; CUDA devices (default: all devices), eg: [2, 3]</p>
+<p>&#x9ED8;&#x8BA4;&#x91C7;&#x7528;&#x6240;&#x6709;&#x53EF;&#x89C1;gpu&#xFF0C;&#x8FD9;&#x91CC;&#x5F3A;&#x8C03;&#x4E86;&#x53EF;&#x89C1;gpu&#xFF0C;&#x5C31;&#x662F;&#x8BF4;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x90E8;&#x5206;gpu&#x5BF9;&#x5F53;&#x524D;python&#x811A;&#x672C;&#x4E0D;&#x53EF;&#x89C1;&#xFF0C;&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x8BBE;&#x7F6E;</p>
+<p>output_device: int or torch.device , &#x8BBE;&#x7F6E;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x6240;&#x5728;&#x8BBE;&#x5907;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; device_ids[0]&#xFF0C;&#x901A;&#x5E38;&#x4EE5;&#x7B2C;1&#x4E2A;&#x903B;&#x8F91;gpu&#x4E3A;&#x4E3B;gpu</p>
+<p><strong>&#x6E90;&#x4EE3;&#x7801;&#x5206;&#x6790;&#xFF1A;</strong></p>
+<p>DataParallel&#x4ECD;&#x65E7;&#x662F;&#x4E00;&#x4E2A;nn.Module&#x7C7B;&#xFF0C;&#x6240;&#x4EE5;&#x9996;&#x8981;&#x5173;&#x6CE8;&#x5B83;&#x7684;forward&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x6765;&#x5230;/torch/nn/parallel/data_parallel.py&#x7684;147&#x884C;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, *inputs, **kwargs)</span>:</span>
+    <span class="hljs-keyword">with</span> torch.autograd.profiler.record_function(<span class="hljs-string">&quot;DataParallel.forward&quot;</span>):
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.device_ids:
+            <span class="hljs-keyword">return</span> self.module(*inputs, **kwargs)
+
+        <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> chain(self.module.parameters(), self.module.buffers()):
+            <span class="hljs-keyword">if</span> t.device != self.src_device_obj:
+                <span class="hljs-keyword">raise</span> RuntimeError(<span class="hljs-string">&quot;module must have its parameters and buffers &quot;</span>
+                                   <span class="hljs-string">&quot;on device {} (device_ids[0]) but found one of &quot;</span>
+                                   <span class="hljs-string">&quot;them on device: {}&quot;</span>.format(self.src_device_obj, t.device))
+
+        inputs, kwargs = self.scatter(inputs, kwargs, self.device_ids)
+        <span class="hljs-comment"># for forward function without any inputs, empty list and dict will be created</span>
+        <span class="hljs-comment"># so the module can be executed on one device which is the first one in device_ids</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> inputs <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> kwargs:
+            inputs = ((),)
+            kwargs = ({},)
+
+        <span class="hljs-keyword">if</span> len(self.device_ids) == <span class="hljs-number">1</span>:
+            <span class="hljs-keyword">return</span> self.module(*inputs[<span class="hljs-number">0</span>], **kwargs[<span class="hljs-number">0</span>])
+        replicas = self.replicate(self.module, self.device_ids[:len(inputs)])
+        outputs = self.parallel_apply(replicas, inputs, kwargs)
+        <span class="hljs-keyword">return</span> self.gather(outputs, self.output_device)
+</code></pre>
+<p>&#x6838;&#x5FC3;&#x70B9;&#x6709;4&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x5206;&#x522B;&#x662F;&#xFF1A;</p>
+<pre><code class="lang-python">inputs, kwargs = self.scatter(inputs, kwargs, self.device_ids)
+replicas = self.replicate(self.module, self.device_ids[:len(inputs)])
+outputs = self.parallel_apply(replicas, inputs, kwargs)
+<span class="hljs-keyword">return</span> self.gather(outputs, self.output_device)
+</code></pre>
+<p><strong>&#x4E00;&#x3001;&#x6570;&#x636E;&#x5207;&#x5206;</strong></p>
+<p>inputs, kwargs = self.scatter(inputs, kwargs, self.device_ids)&#xFF1A;&#x5229;&#x7528;scatter&#x51FD;&#x6570;&#xFF0C;&#x5C06;&#x6570;&#x636E;&#x5207;&#x5206;&#x4E3A;&#x591A;&#x5757;&#xFF0C;&#x4E3A;&#x5404;GPU&#x9700;&#x8981;&#x7684;&#x6570;&#x636E;&#x505A;&#x51C6;&#x5907;&#x3002;</p>
+<p>scatter&#x51FD;&#x6570;&#x5728;torch\nn\parallel\scatter_gather.py&#x7B2C;11&#x884C;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">scatter</span><span class="hljs-params">(inputs, target_gpus, dim=<span class="hljs-number">0</span>)</span>:</span>
+    <span class="hljs-string">r&quot;&quot;&quot;
+    Slices tensors into approximately equal chunks and
+    distributes them across given GPUs. Duplicates
+    references to objects that are not tensors.
+    &quot;&quot;&quot;</span>
+</code></pre>
+<p><strong>&#x4E8C;&#x3001;&#x6A21;&#x578B;&#x5206;&#x53D1;&#x81F3;GPU</strong></p>
+<p>replicas = self.replicate(self.module, self.device_ids[:len(inputs)])&#xFF1A;&#x5229;&#x7528;replicate&#x51FD;&#x6570;&#x5C06;&#x6A21;&#x578B;&#x590D;&#x5236;N&#x4EFD;&#xFF0C;&#x7528;&#x4E8E;&#x591A;GPU&#x4E0A;&#x3002;</p>
+<p>replicate&#x51FD;&#x6570;&#x5728; torch\nn\parallel\replicate.py&#x7B2C;78&#x884C;&#x3002;</p>
+<p><strong>&#x4E09;&#x3001;&#x6267;&#x884C;&#x5E76;&#x884C;&#x63A8;&#x7406;</strong></p>
+<p>outputs = self.parallel_apply(replicas, inputs, kwargs)&#xFF1A;&#x591A;GPU&#x540C;&#x65F6;&#x8FDB;&#x884C;&#x8FD0;&#x7B97;&#x3002;</p>
+<p><strong>&#x56DB;&#x3001;&#x7ED3;&#x679C;&#x56DE;&#x6536;</strong></p>
+<p>return self.gather(outputs, self.output_device)</p>
+<p>&#x4E3A;&#x4E86;&#x7406;&#x89E3;&#x5206;&#x53D1;&#x8FC7;&#x7A0B;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x5177;&#x5907;&#x591A;GPU&#x7684;&#x73AF;&#x5883;&#xFF0C;&#x8FD0;&#x884C;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-7/03_multi_gpu.py" target="_blank">&#x914D;&#x5957;&#x4EE3;&#x7801;</a>&#xFF0C;&#x53EF;&#x770B;&#x5230;&#x5982;&#x4E0B;&#x4FE1;&#x606F;&#xFF1A;</p>
+<p>batch size in forward: 4</p>
+<p>batch size in forward: 4</p>
+<p>batch size in forward: 4</p>
+<p>batch size in forward: 4</p>
+<p>model outputs.size: torch.Size([16, 3])</p>
+<p>CUDA_VISIBLE_DEVICES :0,1,3,2</p>
+<p>device_count :4</p>
+<p>batchsize&#x8BBE;&#x7F6E;&#x4E3A;16&#xFF0C;&#x5C06;16&#x4E2A;&#x6837;&#x672C;&#x5E73;&#x5747;&#x5206;&#x53D1;&#x7ED9;4&#x4E2A;GPU&#xFF0C;&#x56E0;&#x6B64;&#x5728;forward&#x51FD;&#x6570;&#x5F53;&#x4E2D;&#xFF0C;&#x770B;&#x5230;&#x7684;&#x6570;&#x636E;&#x662F;4&#x4E2A;&#x6837;&#x672C;&#x3002;</p>
+<h2 id="&#x591A;gpu&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#x7684;&#x4FDD;&#x5B58;&#x4E0E;&#x52A0;&#x8F7D;">&#x591A;GPU&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#x7684;&#x4FDD;&#x5B58;&#x4E0E;&#x52A0;&#x8F7D;</h2>
+<p>&#x5F53;&#x6A21;&#x578B;&#x53D8;&#x4E3A;&#x4E86;Dataparallel&#x65F6;&#xFF0C;&#x5176;&#x53C2;&#x6570;&#x540D;&#x79F0;&#x4F1A;&#x591A;&#x4E00;&#x4E2A;module.&#x5B57;&#x6BB5;&#xFF0C;&#x8FD9;&#x5BFC;&#x81F4;&#x5728;&#x4FDD;&#x5B58;&#x7684;&#x65F6;&#x5019;state_dict&#x4E5F;&#x4F1A;&#x591A;&#x4E86;module.&#x5B57;&#x6BB5;&#x3002;</p>
+<p>&#x4ECE;&#x800C;&#xFF0C;&#x5728;&#x52A0;&#x8F7D;&#x7684;&#x65F6;&#x5019;&#x7ECF;&#x5E38;&#x51FA;&#x73B0;&#x4EE5;&#x4E0B;&#x62A5;&#x9519;&#x3002;</p>
+<p>RuntimeError: Error(s) in loading state_dict for FooNet:</p>
+<p>&#x200B;    Missing key(s) in state_dict: &quot;linears.0.weight&quot;, &quot;linears.1.weight&quot;, &quot;linears.2.weight&quot;. </p>
+<p>&#x200B;    Unexpected key(s) in state_dict: &quot;module.linears.0.weight&quot;, &quot;module.linears.1.weight&quot;, &quot;module.linears.2.weight&quot;. </p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x662F;&#xFF0C;&#x79FB;&#x9664;key&#x4E2D;&#x7684;module.&#xFF1A;</p>
+<pre><code class="lang-python">    <span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
+    new_state_dict = OrderedDict()
+    <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> state_dict_load.items():
+        namekey = k[<span class="hljs-number">7</span>:] <span class="hljs-keyword">if</span> k.startswith(<span class="hljs-string">&apos;module.&apos;</span>) <span class="hljs-keyword">else</span> k
+        new_state_dict[namekey] = v
+</code></pre>
+<p>&#x8BF7;&#x7ED3;&#x5408;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-7/03_model_load_in_gpu.py" target="_blank">&#x4EE3;&#x7801;</a>&#x8FD0;&#x884C;&#xFF0C;&#x89C2;&#x5BDF;&#x5176;&#x4F7F;&#x7528;&#xFF0C;&#x5E76;&#x770B;&#x5230;&#x5982;&#x4E0B;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code class="lang-python">state_dict_load:
+OrderedDict([(<span class="hljs-string">&apos;module.linears.0.weight&apos;</span>, tensor([[ <span class="hljs-number">0.3337</span>,  <span class="hljs-number">0.0317</span>, <span class="hljs-number">-0.1331</span>],
+        [ <span class="hljs-number">0.0431</span>,  <span class="hljs-number">0.0454</span>,  <span class="hljs-number">0.1235</span>],
+        [ <span class="hljs-number">0.0575</span>, <span class="hljs-number">-0.2903</span>, <span class="hljs-number">-0.2634</span>]])), (<span class="hljs-string">&apos;module.linears.1.weight&apos;</span>, tensor([[ <span class="hljs-number">0.1235</span>,  <span class="hljs-number">0.1520</span>, <span class="hljs-number">-0.1611</span>],
+        [ <span class="hljs-number">0.4511</span>, <span class="hljs-number">-0.1460</span>, <span class="hljs-number">-0.1098</span>],
+        [ <span class="hljs-number">0.0653</span>, <span class="hljs-number">-0.5025</span>, <span class="hljs-number">-0.1693</span>]])), (<span class="hljs-string">&apos;module.linears.2.weight&apos;</span>, tensor([[ <span class="hljs-number">0.3657</span>, <span class="hljs-number">-0.1107</span>, <span class="hljs-number">-0.2341</span>],
+        [ <span class="hljs-number">0.0657</span>, <span class="hljs-number">-0.0194</span>, <span class="hljs-number">-0.3119</span>],
+        [<span class="hljs-number">-0.0477</span>, <span class="hljs-number">-0.1008</span>,  <span class="hljs-number">0.2462</span>]]))])
+new_state_dict:
+OrderedDict([(<span class="hljs-string">&apos;linears.0.weight&apos;</span>, tensor([[ <span class="hljs-number">0.3337</span>,  <span class="hljs-number">0.0317</span>, <span class="hljs-number">-0.1331</span>],
+        [ <span class="hljs-number">0.0431</span>,  <span class="hljs-number">0.0454</span>,  <span class="hljs-number">0.1235</span>],
+        [ <span class="hljs-number">0.0575</span>, <span class="hljs-number">-0.2903</span>, <span class="hljs-number">-0.2634</span>]])), (<span class="hljs-string">&apos;linears.1.weight&apos;</span>, tensor([[ <span class="hljs-number">0.1235</span>,  <span class="hljs-number">0.1520</span>, <span class="hljs-number">-0.1611</span>],
+        [ <span class="hljs-number">0.4511</span>, <span class="hljs-number">-0.1460</span>, <span class="hljs-number">-0.1098</span>],
+        [ <span class="hljs-number">0.0653</span>, <span class="hljs-number">-0.5025</span>, <span class="hljs-number">-0.1693</span>]])), (<span class="hljs-string">&apos;linears.2.weight&apos;</span>, tensor([[ <span class="hljs-number">0.3657</span>, <span class="hljs-number">-0.1107</span>, <span class="hljs-number">-0.2341</span>],
+        [ <span class="hljs-number">0.0657</span>, <span class="hljs-number">-0.0194</span>, <span class="hljs-number">-0.3119</span>],
+        [<span class="hljs-number">-0.0477</span>, <span class="hljs-number">-0.1008</span>,  <span class="hljs-number">0.2462</span>]]))])
+
+Process finished <span class="hljs-keyword">with</span> exit code <span class="hljs-number">0</span>
+</code></pre>
+<h2 id="&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x7F16;&#x53F7;&#x7684;gpu">&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x7F16;&#x53F7;&#x7684;gpu</h2>
+<p>&#x901A;&#x5E38;&#xFF0C;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x6709;&#x591A;&#x4E2A;&#x7528;&#x6237;&#xFF0C;&#x6216;&#x8005;&#x662F;&#x4F1A;&#x8FDB;&#x884C;&#x591A;&#x4E2A;&#x4EFB;&#x52A1;&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;&#x5BF9;gpu&#x5408;&#x7406;&#x7684;&#x5B89;&#x6392;&#x4F7F;&#x7528;&#x5C31;&#x5C24;&#x4E3A;&#x91CD;&#x8981;</p>
+<p>&#x5728;&#x5B9E;&#x8DF5;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x4F1A;&#x8BBE;&#x7F6E;&#x5F53;&#x524D;python&#x811A;&#x672C;&#x53EF;&#x89C1;&#x7684;gpu&#xFF0C;&#x7136;&#x540E;&#x76F4;&#x63A5;&#x4F7F;&#x7528;nn.dataparallel&#x4F7F;&#x7528;&#x6240;&#x6709;gpu&#x5373;&#x53EF;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x624B;&#x52A8;&#x53BB;&#x8BBE;&#x7F6E;&#x4F7F;&#x7528;&#x54EA;&#x4E9B;gpu</p>
+<p>&#x8BBE;&#x7F6E;python&#x811A;&#x672C;&#x53EF;&#x89C1;gpu&#x7684;&#x65B9;&#x6CD5;&#x4E3A;&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x4E2D;&#x7684;CUDA_VISIBLE_DEVICES</p>
+<p>&#x8BBE;&#x7F6E;&#x65B9;&#x6CD5;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-python">os.environ.setdefault(<span class="hljs-string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>, <span class="hljs-string">&quot;2, 3&quot;</span>)
+</code></pre>
+<p>&#x5F53;&#x65F6;&#x4E4B;&#x540E;&#xFF0C;&#x5373;&#x7269;&#x7406;&#x8BBE;&#x5907;&#x7684;2,3&#x53F7;GPU&#xFF0C;&#x5728;&#x7A0B;&#x5E8F;&#x4E2D;&#x5206;&#x522B;&#x662F;0&#x53F7;&#x3001;1&#x53F7;GPU&#xFF0C;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x7406;&#x89E3;&#x903B;&#x8F91;&#x7F16;&#x53F7;&#x4E0E;&#x7269;&#x7406;&#x7F16;&#x53F7;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#x3002;</p>
+<p><strong>&#x6CE8;&#x610F;&#x4E8B;&#x9879;</strong>&#xFF1A; CUDA_VISIBLE_DEVICES&#x7684;&#x8BBE;&#x7F6E;&#x4E00;&#x5B9A;&#x8981;&#x5728; device = torch.device(&quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot;) &#x4E4B;&#x524D;&#xFF01;</p>
+<p>&#x5426;&#x5219;&#x5DF2;&#x7ECF;&#x8C03;&#x7528;cuda&#xFF0C;python&#x811A;&#x672C;&#x5DF2;&#x7ECF;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x53EF;&#x89C1;gpu&#x4E86;&#xFF0C;&#x518D;&#x8BBE;&#x7F6E;&#x5C31;&#x65E0;&#x6548;&#x4E86; </p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; TingsongYu 2021 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2022&#x5E74;06&#x6708;25&#x65E5;21:48:10
+</span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="7.2-finetune.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 7.2 Finetune 模型微调">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.3 GPU使用","level":"2.7.3","depth":2,"previous":{"title":"7.2 Finetune 模型微调","level":"2.7.2","depth":2,"path":"chapter-7/7.2-finetune.md","ref":"chapter-7/7.2-finetune.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年06月25日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-7/7.3-gpu.md","mtime":"2022-06-25T03:33:17.494Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-25T03:36:04.913Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/gumshoe.polyfills.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-3-ba/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
