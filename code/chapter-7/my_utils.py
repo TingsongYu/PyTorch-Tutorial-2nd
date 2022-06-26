@@ -8,6 +8,7 @@
 import random
 import numpy as np
 import os
+import time
 from matplotlib import pyplot as plt
 import torch
 import torch.nn as nn
@@ -179,13 +180,18 @@ class ModelTrainer(object):
     @staticmethod
     def train_one_epoch(data_loader, model, loss_f, optimizer, scheduler, epoch_idx, device, args, logger, classes):
         model.train()
+        end = time.time()
 
         class_num = len(classes)
         conf_mat = np.zeros((class_num, class_num))
-        loss_sigma = []
-        loss_mean = 0
-        acc_avg = 0
-        for i, data in enumerate(data_loader):
+
+        loss_m = AverageMeter()
+        top1_m = AverageMeter()
+        top5_m = AverageMeter()
+        batch_time_m = AverageMeter()
+
+        last_idx = len(data_loader) - 1
+        for batch_idx, data in enumerate(data_loader):
 
             inputs, labels = data
             inputs, labels = inputs.to(device), labels.to(device)
@@ -197,24 +203,33 @@ class ModelTrainer(object):
             loss.backward()
             optimizer.step()
 
-            # 统计loss
-            loss_sigma.append(loss.item())
-            loss_mean = np.mean(loss_sigma)
+            # 计算accuracy
+            acc1, acc5 = accuracy(outputs, labels, topk=(1, 5))
 
-            # todo: 采用metrics库进行指标统计
             _, predicted = torch.max(outputs.data, 1)
             for j in range(len(labels)):
                 cate_i = labels[j].cpu().numpy()
                 pre_i = predicted[j].cpu().numpy()
                 conf_mat[cate_i, pre_i] += 1.
 
-            acc_avg = conf_mat.trace() / conf_mat.sum()
+            # 记录指标
+            loss_m.update(loss.item(), inputs.size(0))  # 因update里： self.sum += val * n， 因此需要传入batch数量
+            top1_m.update(acc1.item(), outputs.size(0))
+            top5_m.update(acc5.item(), outputs.size(0))
 
-            # 每10个iteration 打印一次训练信息
-            if i % args.print_freq == args.print_freq - 1:
-                logger.info("Training: Epoch[{:0>3}/{:0>3}] Iteration[{:0>3}/{:0>3}] Loss: {:.4f} Acc:{:.2%}".
-                            format(epoch_idx + 1, args.epochs, i + 1, len(data_loader), loss_mean, acc_avg))
-        return loss_mean, acc_avg, conf_mat
+            # 打印训练信息
+            batch_time_m.update(time.time() - end)
+            end = time.time()
+            if batch_idx % args.print_freq == args.print_freq - 1:
+                logger.info(
+                    '{0}: [{1:>4d}/{2}]  '
+                    'Time: {batch_time.val:.3f} ({batch_time.avg:.3f})  '
+                    'Loss: {loss.val:>7.4f} ({loss.avg:>6.4f})  '
+                    'Acc@1: {top1.val:>7.4f} ({top1.avg:>7.4f})  '
+                    'Acc@5: {top5.val:>7.4f} ({top5.avg:>7.4f})'.format(
+                        "train", batch_idx, last_idx, batch_time=batch_time_m,
+                        loss=loss_m, top1=top1_m, top5=top5_m))  # val是当次传进去的值，avg是整体平均值。
+        return loss_m, top1_m, conf_mat
 
     @staticmethod
     def evaluate(data_loader, model, loss_f, device, classes):
@@ -222,7 +237,10 @@ class ModelTrainer(object):
 
         class_num = len(classes)
         conf_mat = np.zeros((class_num, class_num))
-        loss_sigma = []
+
+        loss_m = AverageMeter()
+        top1_m = AverageMeter()
+        top5_m = AverageMeter()
 
         for i, data in enumerate(data_loader):
             inputs, labels = data
@@ -230,19 +248,21 @@ class ModelTrainer(object):
             outputs = model(inputs)
             loss = loss_f(outputs.cpu(), labels.cpu())
 
-            # 统计混淆矩阵
+            # 计算accuracy
+            acc1, acc5 = accuracy(outputs, labels, topk=(1, 5))
+
             _, predicted = torch.max(outputs.data, 1)
             for j in range(len(labels)):
                 cate_i = labels[j].cpu().numpy()
                 pre_i = predicted[j].cpu().numpy()
                 conf_mat[cate_i, pre_i] += 1.
 
-            # 统计loss
-            loss_sigma.append(loss.item())
+            # 记录指标
+            loss_m.update(loss.item(), inputs.size(0))  # 因update里： self.sum += val * n， 因此需要传入batch数量
+            top1_m.update(acc1.item(), outputs.size(0))
+            top5_m.update(acc5.item(), outputs.size(0))
 
-        acc_avg = conf_mat.trace() / conf_mat.sum()
-
-        return np.mean(loss_sigma), acc_avg, conf_mat
+        return loss_m, top1_m, conf_mat
 
 
 class Logger(object):
@@ -284,7 +304,7 @@ def make_logger(out_dir):
     :return:
     """
     now_time = datetime.now()
-    time_str = datetime.strftime(now_time, '%m-%d_%H-%M-%S')
+    time_str = datetime.strftime(now_time, '%Y-%m-%d_%H-%M-%S')
     log_dir = os.path.join(out_dir, time_str)  # 根据config中的创建时间作为文件夹名
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
@@ -303,3 +323,34 @@ def setup_seed(seed=42):
         torch.cuda.manual_seed_all(seed)
         torch.backends.cudnn.deterministic = True
         torch.backends.cudnn.benchmark = True       # 训练集变化不大时使训练加速，是固定cudnn最优配置，如卷积算法
+
+
+class AverageMeter:
+    """Computes and stores the average and current value
+    Hacked from https://github.com/rwightman/pytorch-image-models/blob/master/timm/utils/metrics.py
+    """
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        self.val = 0
+        self.avg = 0
+        self.sum = 0
+        self.count = 0
+
+    def update(self, val, n=1):
+        self.val = val
+        self.sum += val * n
+        self.count += n
+        self.avg = self.sum / self.count
+
+
+def accuracy(output, target, topk=(1,)):
+    """Computes the accuracy over the k top predictions for the specified values of k
+    Hacked from https://github.com/rwightman/pytorch-image-models/blob/master/timm/utils/metrics.py"""
+    maxk = min(max(topk), output.size()[1])
+    batch_size = target.size(0)
+    _, pred = output.topk(maxk, 1, True, True)
+    pred = pred.t()
+    correct = pred.eq(target.reshape(1, -1).expand_as(pred))
+    return [correct[:min(k, maxk)].reshape(-1).float().sum(0) * 100. / batch_size for k in topk]
