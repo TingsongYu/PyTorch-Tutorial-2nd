@@ -48,7 +48,7 @@ def get_args_parser(add_help=True):
     )
     parser.add_argument("--lr-step-size", default=80, type=int, help="decrease lr every step-size epochs")
     parser.add_argument("--lr-gamma", default=0.1, type=float, help="decrease lr by a factor of lr-gamma")
-    parser.add_argument("--print-freq", default=100, type=int, help="print frequency")
+    parser.add_argument("--print-freq", default=80, type=int, help="print frequency")
     parser.add_argument("--output-dir", default="./Result", type=str, help="path to save outputs")
     parser.add_argument("--resume", default="", type=str, help="path of checkpoint")
     parser.add_argument("--start-epoch", default=0, type=int, metavar="N", help="start epoch")
@@ -101,28 +101,41 @@ def main(args):
     # ------------------------------------ step4: iteration ------------------------------------
     best_acc, best_epoch = 0, 0
     logger.info(args)
+    logger.info(train_loader, valid_loader)
     logger.info("Start training")
     start_time = time.time()
+    epoch_time_m = utils.AverageMeter()
+    end = time.time()
     for epoch in range(args.start_epoch, args.epochs):
         # 训练
-        loss_train, acc_train, mat_train = \
+        loss_m_train, acc_m_train, mat_train = \
             utils.ModelTrainer.train_one_epoch(train_loader, model, criterion, optimizer, scheduler,
                                                epoch, device, args, logger, classes)
         # 验证
-        loss_valid, acc_valid, mat_valid = \
+        loss_m_valid, acc_m_valid, mat_valid = \
             utils.ModelTrainer.evaluate(valid_loader, model, criterion, device, classes)
 
-        logger.info("Epoch[{:0>3}/{:0>3}] Train Acc: {:.2%} Valid Acc:{:.2%} Train loss:{:.4f} Valid loss:{:.4f} LR:{}". \
-                    format(epoch + 1, args.epochs, acc_train, acc_valid, loss_train, loss_valid,
-                           optimizer.param_groups[0]["lr"]))
+        epoch_time_m.update(time.time() - end)
+        end = time.time()
+
+        logger.info(
+            'Epoch: [{:0>3}/{:0>3}]  '
+            'Time: {epoch_time.val:.3f} ({epoch_time.avg:.3f})  '
+            'Train Loss avg: {loss_train.avg:>6.4f}  '
+            'Valid Loss avg: {loss_valid.avg:>6.4f}  '
+            'Train Acc@1 avg:  {top1_train.avg:>7.4f}   '
+            'Valid Acc@1 avg: {top1_valid.avg:>7.4f}    '
+            'LR: {lr}'.format(
+                epoch, args.epochs, epoch_time=epoch_time_m, loss_train=loss_m_train, loss_valid=loss_m_valid,
+                top1_train=acc_m_train, top1_valid=acc_m_valid, lr=scheduler.get_last_lr()[0]))
 
         # 学习率更新
         scheduler.step()
         # 记录
-        writer.add_scalars('Loss_group', {'train_loss': loss_train,
-                                          'valid_loss': loss_valid}, epoch)
-        writer.add_scalars('Accuracy_group', {'train_acc': acc_train,
-                                              'valid_acc': acc_valid}, epoch)
+        writer.add_scalars('Loss_group', {'train_loss': loss_m_train.avg,
+                                          'valid_loss': loss_m_valid.avg}, epoch)
+        writer.add_scalars('Accuracy_group', {'train_acc': acc_m_train.avg,
+                                              'valid_acc': acc_m_valid.avg}, epoch)
         conf_mat_figure_train = utils.show_conf_mat(mat_train, classes, "train", log_dir, epoch=epoch,
                                         verbose=epoch == args.epochs - 1, save=False)
         conf_mat_figure_valid = utils.show_conf_mat(mat_valid, classes, "valid", log_dir, epoch=epoch,
@@ -132,9 +145,9 @@ def main(args):
         writer.add_scalar('learning rate', scheduler.get_last_lr()[0], epoch)
 
         # ------------------------------------ 模型保存 ------------------------------------
-        if best_acc < acc_valid or epoch == args.epochs - 1:
-            best_epoch = epoch if best_acc < acc_valid else best_epoch
-            best_acc = acc_valid if best_acc < acc_valid else best_acc
+        if best_acc < acc_m_valid.avg or epoch == args.epochs - 1:
+            best_epoch = epoch if best_acc < acc_m_valid.avg else best_epoch
+            best_acc = acc_m_valid.avg if best_acc < acc_m_valid.avg else best_acc
             checkpoint = {
                 "model_state_dict": model.state_dict(),
                 "optimizer_state_dict": optimizer.state_dict(),
