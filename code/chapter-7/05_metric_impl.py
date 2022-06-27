@@ -40,7 +40,7 @@ if __name__ == "__main__":
     for i in range(n_batches):
         preds = torch.randn(10, 5).softmax(dim=-1)
         target = torch.randint(5, (10,))
-        acc = metric(preds, target)  # 单次计算，并记录本次信息。通过维护tp, tn, fp, fn来记录所有数据
+        acc = metric(preds, target)  # 单次计算，会调用.compute()
         print(f"Accuracy on batch {i}: {acc}")
 
     acc_avg = metric.compute()
