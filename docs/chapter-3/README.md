@@ -6,7 +6,7 @@
   
   * [3.2 DataLoader](3.2-dataloader.md)
   
-  * [3.3 Dataset-useful-api](3.3-dataset-useful-api.md)
+  * [3.3 Dataset及常用API](3.3-dataset-useful-api.md)
   
   * [3.4 transforms](3.4-transforms.md)
   

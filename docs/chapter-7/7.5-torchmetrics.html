@@ -102,6 +102,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="7.6-albumentations.html" />
+    
     
     <link rel="prev" href="7.4-training-script.html" />
     
@@ -415,7 +417,7 @@
                 <a href="../chapter-3/3.3-dataset-useful-api.html">
             
                     
-                    3.3 Dataset-useful-api
+                    3.3 Dataset及常用API
             
                 </a>
             
@@ -785,6 +787,19 @@
             
         </li>
     
+        <li class="chapter " data-level="2.7.6" data-path="7.6-albumentations.html">
+            
+                <a href="7.6-albumentations.html">
+            
+                    
+                    7.6 Albumentations 数据增强库
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -918,10 +933,14 @@ tensor(<span class="hljs-number">6</span>) tensor(<span class="hljs-number">96</
 <p>&#x5173;&#x4E8E;&#x591A;&#x7C7B;&#x522B;&#x7684;tp, tn, fp, fn&#xFF0C;&#x53EF;&#x53C2;&#x8003;<a href="https://stackoverflow.com/questions/31324218/scikit-learn-how-to-obtain-true-positive-true-negative-false-positive-and-fal" target="_blank">stackoverflow</a></p>
 <p><img src="imgs/conf-mat.png" style="zoom:50%;"></p>
 <p>&#x8FD8;&#x6709;&#x4E2A;&#x597D;&#x4F8B;&#x5B50;&#xFF0C;&#x8BF7;&#x770B;&#x6DF7;&#x6DC6;&#x77E9;&#x9635;&#xFF1A;</p>
-<p>&#x771F;&#x5B9E;\&#x9884;&#x6D4B;      0      1      2</p>
-<p>0                   2      0      0</p>
-<p>1                   1      0      1</p>
-<p>2                   0      2      0</p>
+<pre><code class="lang-python">&#x771F;&#x5B9E;\&#x9884;&#x6D4B;            <span class="hljs-number">0</span>      <span class="hljs-number">1</span>      <span class="hljs-number">2</span>
+
+<span class="hljs-number">0</span>                   <span class="hljs-number">2</span>      <span class="hljs-number">0</span>      <span class="hljs-number">0</span>
+
+<span class="hljs-number">1</span>                   <span class="hljs-number">1</span>      <span class="hljs-number">0</span>      <span class="hljs-number">1</span>
+
+<span class="hljs-number">2</span>                   <span class="hljs-number">0</span>      <span class="hljs-number">2</span>      <span class="hljs-number">0</span>
+</code></pre>
 <p>&#x5BF9;&#x4E8E;&#x7C7B;&#x522B;0&#x7684; FP=1 TP=2 FN=0 TN=3</p>
 <p>&#x5BF9;&#x4E8E;&#x7C7B;&#x522B;1&#x7684; FP=2 TP=0 FN=2 TN=2</p>
 <p>&#x5BF9;&#x4E8E;&#x7C7B;&#x522B;2&#x7684; FP=1 TP=0 FN=2 TN=3</p>
@@ -1102,10 +1121,14 @@ tensor(<span class="hljs-number">6</span>) tensor(<span class="hljs-number">96</
 
             
                 
-                <a href="7.4-training-script.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 7.4 模型训练代码模板">
+                <a href="7.4-training-script.html" class="navigation navigation-prev " aria-label="Previous page: 7.4 模型训练代码模板">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="7.6-albumentations.html" class="navigation navigation-next " aria-label="Next page: 7.6 Albumentations 数据增强库">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -1114,7 +1137,7 @@ tensor(<span class="hljs-number">6</span>) tensor(<span class="hljs-number">96</
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"7.5 TorchMetrics 模型评估指标库","level":"2.7.5","depth":2,"previous":{"title":"7.4 模型训练代码模板","level":"2.7.4","depth":2,"path":"chapter-7/7.4-training-script.md","ref":"chapter-7/7.4-training-script.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年06月25日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-7/7.5-torchmetrics.md","mtime":"2022-06-26T08:16:29.559Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-26T08:16:45.653Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"7.5 TorchMetrics 模型评估指标库","level":"2.7.5","depth":2,"next":{"title":"7.6 Albumentations 数据增强库","level":"2.7.6","depth":2,"path":"chapter-7/7.6-albumentations.md","ref":"chapter-7/7.6-albumentations.md","articles":[]},"previous":{"title":"7.4 模型训练代码模板","level":"2.7.4","depth":2,"path":"chapter-7/7.4-training-script.md","ref":"chapter-7/7.4-training-script.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年06月25日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-7/7.5-torchmetrics.md","mtime":"2022-06-26T08:52:28.877Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-29T03:11:20.579Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -1,0 +1,1390 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.6 Albumentations 数据增强库 · PyTorch实用教程（第二版）</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="余霆嵩">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-intopic-toc/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="7.5-torchmetrics.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">上篇：PyTorch基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    第一章 PyTorch 简介与安装
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                <a href="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                    
+                    1.1 PyTorch 初认识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../chapter-1/1.2-Anaconda.html">
+            
+                <a href="../chapter-1/1.2-Anaconda.html">
+            
+                    
+                    1.2 环境配置之Anaconda
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../chapter-1/1.3-Pycharm.html">
+            
+                <a href="../chapter-1/1.3-Pycharm.html">
+            
+                    
+                    1.3 环境配置之Pycharm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                <a href="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                    
+                    1.4 环境配置之CUDA&cuDNN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../chapter-1/1.5-PyTorch-install.html">
+            
+                <a href="../chapter-1/1.5-PyTorch-install.html">
+            
+                    
+                    1.5 环境配置之PyTorch系列包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                <a href="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                    
+                    1.6 环境配置之Jupyter Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../chapter-2/">
+            
+                <a href="../chapter-2/">
+            
+                    
+                    第二章 PyTorch 核心模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../chapter-2/2.1-module-tree.html">
+            
+                <a href="../chapter-2/2.1-module-tree.html">
+            
+                    
+                    2.1 PyTorch 模块结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="../chapter-2/2.2-covid-19-cls.html">
+            
+                <a href="../chapter-2/2.2-covid-19-cls.html">
+            
+                    
+                    2.2 新冠肺炎分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="../chapter-2/2.3-datastruct-tensor.html">
+            
+                <a href="../chapter-2/2.3-datastruct-tensor.html">
+            
+                    
+                    2.3 核心数据结构——Tensor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="../chapter-2/2.4-method-tensor.html">
+            
+                <a href="../chapter-2/2.4-method-tensor.html">
+            
+                    
+                    2.4 张量的相关函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="../chapter-2/2.5-computational-graphs.html">
+            
+                <a href="../chapter-2/2.5-computational-graphs.html">
+            
+                    
+                    2.5 自动求导核心——计算图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.6" data-path="../chapter-2/2.6-autograd.html">
+            
+                <a href="../chapter-2/2.6-autograd.html">
+            
+                    
+                    2.6 Autograd——自动微分
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../chapter-3/">
+            
+                <a href="../chapter-3/">
+            
+                    
+                    第三章 PyTorch 数据模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="../chapter-3/3.1-dataset.html">
+            
+                <a href="../chapter-3/3.1-dataset.html">
+            
+                    
+                    3.1 Dataset
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="../chapter-3/3.2-dataloader.html">
+            
+                <a href="../chapter-3/3.2-dataloader.html">
+            
+                    
+                    3.2 DataLoader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="../chapter-3/3.3-dataset-useful-api.html">
+            
+                <a href="../chapter-3/3.3-dataset-useful-api.html">
+            
+                    
+                    3.3 Dataset及常用API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="../chapter-3/3.4-transforms.html">
+            
+                <a href="../chapter-3/3.4-transforms.html">
+            
+                    
+                    3.4 transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="../chapter-3/3.5-torchvision-dataset.html">
+            
+                <a href="../chapter-3/3.5-torchvision-dataset.html">
+            
+                    
+                    3.5 torchvision 经典dataset学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../chapter-4/">
+            
+                <a href="../chapter-4/">
+            
+                    
+                    第四章 PyTorch 模型模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="../chapter-4/4.1-module&Parameter.html">
+            
+                <a href="../chapter-4/4.1-module&Parameter.html">
+            
+                    
+                    4.1 Module&Parameter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" data-path="../chapter-4/4.2-containers.html">
+            
+                <a href="../chapter-4/4.2-containers.html">
+            
+                    
+                    4.2 Module的容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.3" data-path="../chapter-4/4.3-common-module.html">
+            
+                <a href="../chapter-4/4.3-common-module.html">
+            
+                    
+                    4.3 常用网络层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.4" data-path="../chapter-4/4.4-module-api.html">
+            
+                <a href="../chapter-4/4.4-module-api.html">
+            
+                    
+                    4.4 Module常用API函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.5" data-path="../chapter-4/4.5-hook-func.html">
+            
+                <a href="../chapter-4/4.5-hook-func.html">
+            
+                    
+                    4.5 Hook函数及Grad-CAM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.6" data-path="../chapter-4/4.6-classic-model.html">
+            
+                <a href="../chapter-4/4.6-classic-model.html">
+            
+                    
+                    4.6 经典模型代码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.7" data-path="../chapter-4/4.7-weight-init.html">
+            
+                <a href="../chapter-4/4.7-weight-init.html">
+            
+                    
+                    4.7 权重初始化方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../chapter-5/">
+            
+                <a href="../chapter-5/">
+            
+                    
+                    第五章 PyTorch 优化模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="../chapter-5/5.1-loss-function.html">
+            
+                <a href="../chapter-5/5.1-loss-function.html">
+            
+                    
+                    5.1 二十一个损失函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.2" data-path="../chapter-5/5.2-Optimizer.html">
+            
+                <a href="../chapter-5/5.2-Optimizer.html">
+            
+                    
+                    5.2 十三个优化器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.3" data-path="../chapter-5/5.3-lr-scheduler.html">
+            
+                <a href="../chapter-5/5.3-lr-scheduler.html">
+            
+                    
+                    5.3 十四个学习率调整器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../chapter-6/">
+            
+                <a href="../chapter-6/">
+            
+                    
+                    第六章 PyTorch 可视化模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1" data-path="../chapter-6/6.1-tensorboard.html">
+            
+                <a href="../chapter-6/6.1-tensorboard.html">
+            
+                    
+                    6.1 TensorBoard安装与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.2" data-path="../chapter-6/6.2-cnn-visualization.html">
+            
+                <a href="../chapter-6/6.2-cnn-visualization.html">
+            
+                    
+                    6.2 CNN卷积核与特征图可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.3" data-path="../chapter-6/6.3-conf_matrix.html">
+            
+                <a href="../chapter-6/6.3-conf_matrix.html">
+            
+                    
+                    6.3 混淆矩阵与训练曲线可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.4" data-path="../chapter-6/6.4-cam-vis.html">
+            
+                <a href="../chapter-6/6.4-cam-vis.html">
+            
+                    
+                    6.4 CAM可视化与hook函数使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.5" data-path="../chapter-6/6.5-model-print.html">
+            
+                <a href="../chapter-6/6.5-model-print.html">
+            
+                    
+                    6.5 模型参数打印
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第七章 PyTorch 小技巧汇总
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.1" data-path="7.1-serialization.html">
+            
+                <a href="7.1-serialization.html">
+            
+                    
+                    7.1 模型保存与加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.2" data-path="7.2-finetune.html">
+            
+                <a href="7.2-finetune.html">
+            
+                    
+                    7.2 Finetune 模型微调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.3" data-path="7.3-gpu.html">
+            
+                <a href="7.3-gpu.html">
+            
+                    
+                    7.3 GPU使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.4" data-path="7.4-training-script.html">
+            
+                <a href="7.4-training-script.html">
+            
+                    
+                    7.4 模型训练代码模板
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.5" data-path="7.5-torchmetrics.html">
+            
+                <a href="7.5-torchmetrics.html">
+            
+                    
+                    7.5 TorchMetrics 模型评估指标库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.7.6" data-path="7.6-albumentations.html">
+            
+                <a href="7.6-albumentations.html">
+            
+                    
+                    7.6 Albumentations 数据增强库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">中篇：PyTorch 案例应用</li>
+        
+        
+    
+
+    
+        
+        <li class="header">下篇：PyTorch 模型部署</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >7.6 Albumentations 数据增强库</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="76-albumentations-&#x6570;&#x636E;&#x589E;&#x5F3A;&#x5E93;">7.6 albumentations &#x6570;&#x636E;&#x589E;&#x5F3A;&#x5E93;</h1>
+<p><img src="imgs/aug_demo-68.png" style="zoom:150%;"></p>
+<p>&#x672C;&#x8282;&#x4ECB;&#x7ECD;albumentations&#x5E93;&#xFF0C;albumentations&#x662F;&#x5F3A;&#x5927;&#x7684;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x5E93;&#xFF0C;&#x539F;&#x8BA1;&#x5212;&#x5728;&#x7B2C;&#x4E09;&#x7AE0;&#x4E2D;&#x8FDB;&#x884C;&#x4ECB;&#x7ECD;&#xFF0C;&#x540E;&#x56E0;&#x7BC7;&#x5E45;&#x8FC7;&#x5927;&#xFF0C;&#x653E;&#x5230;&#x4E86;&#x672C;&#x7AE0;&#x4F5C;&#x4E3A;&#x8FDB;&#x9636;&#x6280;&#x5DE7;&#x3002;</p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;albumentations&#xFF1F; pytorch&#x7684;transforms&#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x8DB3;&#x4E48;&#xFF1F; &#x5F53;&#x7136;&#x6709;&#x4E0D;&#x8DB3;&#x4E86;&#xFF0C; pytorch&#x7684;transforms&#x5728;&#x5904;&#x7406;&#x56FE;&#x50CF;&#x5206;&#x5272;&#x4E0E;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x8FD9;&#x4E00;&#x7C7B;&#x9700;&#x8981;&#x56FE;&#x50CF;&#x4E0E;&#x6807;&#x7B7E;&#x540C;&#x65F6;&#x53D8;&#x6362;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x65B9;&#x4FBF;&#xFF0C;&#x800C;albumentations&#x63D0;&#x4F9B;&#x4E86;&#x56FE;&#x50CF;&#x5206;&#x5272;&#x3001;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x7B49;&#x590D;&#x6742;&#x4EFB;&#x52A1;&#x7684;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x65B9;&#x6CD5;&#x3002;</p>
+<h2 id="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;albumentations&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;albumentations&#xFF1F;</h2>
+<p>&#x4ECE;github&#x4E2D;&#x8BD1;&#x8FC7;&#x6765;&#xFF1A;</p>
+<ul>
+<li>&#x652F;&#x6301;&#x591A;&#x79CD;&#x4EFB;&#x52A1;&#xFF1A;&#x652F;&#x6301;&#x5206;&#x7C7B;&#x3001;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x3001;&#x5B9E;&#x4F8B;&#x5206;&#x5272;&#x3001;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x548C;&#x59FF;&#x6001;&#x4F30;&#x8BA1;&#x7B49;&#xFF1B;</li>
+<li>&#x63D0;&#x4F9B;&#x7B80;&#x6D01;&#x7684;API&#xFF1A;&#x9488;&#x5BF9;&#x5206;&#x5272;&#x3001;&#x8FB9;&#x754C;&#x6846;&#x56DE;&#x5F52;&#x3001;&#x5173;&#x952E;&#x70B9;&#x4EFB;&#x52A1;&#x53CA;&#x591A;&#x79CD;&#x6570;&#x636E;&#x5F62;&#x6001;&#xFF08;RBG-images, grayscale images, multispectral images&#xFF09;&#x5747;&#x53EF;&#x91C7;&#x7528;&#x7EDF;&#x4E00;&#x7684;&#x51FD;&#x6570;&#x5B8C;&#x6210;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x3002;</li>
+<li>&#x6570;&#x636E;&#x589E;&#x5F3A;&#x65B9;&#x6CD5;&#x591A;&#xFF1A;&#x63D0;&#x4F9B;&#x8D85;70&#x79CD;&#x53D8;&#x6362;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>&#x901F;&#x5EA6;&#x5FEB;&#x6548;&#x7387;&#x9AD8;&#xFF1A;&#x76F8;&#x6BD4;&#x5176;&#x5B83;&#x5E38;&#x89C1;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x5E93;&#xFF0C;&#x591A;&#x6570;&#x65B9;&#x6CD5;&#x901F;&#x5EA6;&#x90FD;&#x4E3A;&#x6700;&#x4F18;</li>
+<li>&#x652F;&#x6301;&#x4E3B;&#x6D41;&#x6846;&#x67B6;&#xFF1A;albumentations&#x5DF2;&#x662F;pytorch&#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x7684;&#x4E00;&#x5458;&#xFF0C;&#x53EF;&#x5F88;&#x597D;&#x9002;&#x914D;pytorch&#xFF0C;&#x540C;&#x65F6;&#x652F;&#x6301;TensorFlow&#x4E2D;&#x4F7F;&#x7528;&#x3002;</li>
+<li>&#x4E13;&#x5BB6;&#x80CC;&#x4E66;&#xFF1A;albumentations&#x7684;&#x4F5C;&#x8005;&#x5927;&#x591A;&#x6570;&#x6765;&#x81EA;&#x5DE5;&#x4E1A;&#x754C;&#x5927;&#x725B;</li>
+<li>&#x5E02;&#x573A;&#x9A8C;&#x8BC1;&#xFF1A;albumentations&#x5DF2;&#x7ECF;&#x88AB;&#x5E7F;&#x6CDB;&#x5E94;&#x7528;&#x4E8E;&#x5DE5;&#x4E1A;&#x754C;&#x548C;&#x5B66;&#x672F;&#x754C;&#xFF0C;&#x4EE5;&#x53CA;&#x5404;&#x79CD;&#x7ADE;&#x8D5B;&#xFF0C;&#x5E76;&#x4E14;&#x83B7;&#x5F97;&#x4E86;&#x4F18;&#x5F02;&#x6210;&#x7EE9;&#x3002;</li>
+</ul>
+<p>albumentations&#x6709;&#x90A3;&#x4E48;&#x591A;&#x4F18;&#x70B9;&#xFF0C;&#x8FD8;&#x4E0D;&#x8D76;&#x5FEB;&#x6765;&#x5B66;&#x4E60;&#x5B83;&#x3002;</p>
+<h2 id="&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</h2>
+<pre><code class="lang-python">pip install -U albumentations
+</code></pre>
+<h2 id="&#x4E0A;&#x624B;demo">&#x4E0A;&#x624B;demo</h2>
+<p>demo&#x4EE3;&#x7801;&#x8BF7;&#x67E5;&#x770B;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-7/06_albumentations-demo.ipynb" target="_blank">&#x914D;&#x5957;&#x4EE3;&#x7801;</a>&#xFF0C;&#x901A;&#x8FC7;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-7/06_albumentations-demo.ipynb" target="_blank">&#x4EE3;&#x7801;</a>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x4F7F;&#x7528;&#x6B65;&#x9AA4;&#x6709;&#xFF1A;</p>
+<ol>
+<li><p>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;Compose&#xFF0C;&#x5185;&#x90E8;&#x5305;&#x62EC;&#x591A;&#x4E2A;&#x53D8;&#x6362;&#x65B9;&#x6CD5;&#xFF08;&#x540C;transforms&#x4E00;&#x6837;&#xFF09;</p>
+</li>
+<li><p>&#x5C06;compose&#x653E;&#x5230;dataset&#x4E2D;&#xFF0C;&#x5728;getitem&#x51FD;&#x6570;&#x4E2D;&#x5B9E;&#x73B0;&#x8C03;&#x7528;</p>
+</li>
+<li><p>getitem&#x4E2D;&#x6CE8;&#x610F;&#x5404;&#x53D8;&#x6362;&#x65B9;&#x6CD5;&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x7531;&#x4E8E;albumentations&#x652F;&#x6301;&#x591A;&#x79CD;&#x6570;&#x636E;&#x540C;&#x65F6;&#x5904;&#x7406;&#xFF0C;&#x56E0;&#x6B64;&#x8F93;&#x5165;&#x65F6;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x53D8;&#x91CF;&#x3002;&#x5982;image&#x3001;mask&#x3001;bboxes&#x548C;keypoints&#x4E4B;&#x7C7B;&#x3002;</p>
+</li>
+<li><p>&#x7ECF;&#x8FC7;Compose&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x5F62;&#x5F0F;&#xFF0C;&#x9700;&#x8981;&#x6839;&#x636E;key&#x83B7;&#x53D6;&#x5BF9;&#x5E94;&#x4FE1;&#x606F;&#xFF0C;&#x5982;image&#x3001;mask&#x3001;bboxes&#x548C;keypoints&#x3002;</p>
+</li>
+</ol>
+<p>&#x53EF;&#x4EE5;&#x4EFB;&#x610F;&#x8C03;&#x6574;&#x4EE5;&#x4E0B;&#x53D8;&#x6362;&#x65B9;&#x6CD5;&#xFF0C;&#x4EE5;&#x53CA;&#x53C2;&#x6570;&#x8BBE;&#x7F6E;&#xFF0C;&#x89C2;&#x5BDF;&#x56FE;&#x50CF;&#x53D8;&#x5316;&#x3002;</p>
+<pre><code class="lang-python">train_transform = A.Compose(
+    [
+        A.Resize(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>),
+        A.ShiftScaleRotate(shift_limit=<span class="hljs-number">0.05</span>, scale_limit=<span class="hljs-number">0.05</span>, rotate_limit=<span class="hljs-number">55</span>, p=<span class="hljs-number">0.5</span>),
+    ]
+)
+</code></pre>
+<h2 id="&#x56FE;&#x50CF;-&#x6807;&#x7B7E;&#x5BF9;&#x7684;&#x6570;&#x636E;&#x589E;&#x5F3A;">&#x56FE;&#x50CF;-&#x6807;&#x7B7E;&#x5BF9;&#x7684;&#x6570;&#x636E;&#x589E;&#x5F3A;</h2>
+<p>&#x56FE;&#x50CF;&#x5206;&#x5272;&#x3001;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x548C;&#x5173;&#x952E;&#x70B9;&#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x589E;&#x5F3A;&#xFF0C;&#x9700;&#x8981;&#x540C;&#x65F6;&#x5BF9;&#x56FE;&#x50CF;&#x548C;&#x6807;&#x7B7E;&#x4E00;&#x8D77;&#x53D8;&#x6362;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;albumentations&#x4E0E;pytorch&#x7684;transforms&#x6700;&#x5927;&#x7684;&#x533A;&#x522B;&#x3002;</p>
+<p>&#x8BF7;&#x8FD0;&#x884C;&#x4EE3;&#x7801;&#x89C2;&#x5BDF;&#x7ED3;&#x679C;&#xFF0C;&#x8FD9;&#x91CC;&#x4ECB;&#x7ECD;&#x4F7F;&#x7528;&#x6B65;&#x9AA4;</p>
+<ol>
+<li>dataset&#x7684;getitem&#x4E2D;&#x5C06;image&#x4E0E;mask&#x540C;&#x65F6;&#x4F20;&#x5165;self.transfoms()&#x4E2D;&#xFF1B;</li>
+<li>&#x5728;DataLoader&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x4E2D;&#xFF0C;&#x91C7;&#x7528;key-value&#x7684;&#x5F62;&#x5F0F;&#x83B7;&#x53D6;image&#x4E0E;mask/bboes/keypoints&#xFF1B;</li>
+</ol>
+<pre><code class="lang-python">data_augmented = data_transform(image=image_rgb, mask=mask)
+</code></pre>
+<h2 id="albumentations-&#x4EE3;&#x7801;&#x7ED3;&#x6784;">albumentations &#x4EE3;&#x7801;&#x7ED3;&#x6784;</h2>
+<p>albumentations&#x91C7;&#x7528;<strong>BasicTransform&#x4F5C;&#x4E3A;&#x57FA;&#x7C7B;</strong>&#xFF0C;&#x518D;&#x6839;&#x636E;&#x662F;&#x5426;&#x9700;&#x8981;&#x5BF9;&#x6807;&#x7B7E;&#x8FDB;&#x884C;&#x53D8;&#x6362;&#xFF0C;&#x5212;&#x5206;&#x4E3A;nlyTransform &#x548C; DualTransform</p>
+<p>&#x987E;&#x540D;&#x601D;&#x4E49;&#xFF0C;ImageOnlyTransform&#x5C31;&#x662F;&#x4EC5;&#x9488;&#x5BF9;&#x539F;&#x56FE;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#xFF0C;DualTransform&#x5C31;&#x662F;&#x540C;&#x65F6;&#x5BF9;&#x539F;&#x56FE;&#x548C;&#x6807;&#x7B7E;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x4E24;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#x53D8;&#x6362;&#x5E38;&#x89C1;&#x7684;&#x65B9;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li><strong>ImageOnlyTransform</strong>&#xFF1A; Blur&#xFF0C;RGBShift&#xFF0C;RandomBrightnessContrast&#x7B49;</li>
+<li><strong>DualTransform</strong>&#xFF1A; Resize, Flip&#xFF0C; Crop&#xFF0C; Rotate&#xFF0C;ElasticTransform&#x7B49;</li>
+</ul>
+<p>&#x4E3A;&#x4E86;&#x5206;&#x6790;albumentations&#x4EE3;&#x7801;&#x7ED3;&#x6784;&#xFF0C;&#x7279;&#x5730;&#x7ED8;&#x5236;&#x4E86;&#x4E00;&#x526F;&#x7B80;&#x7565;&#x7248;&#x7684;UML&#x7C7B;&#x56FE;&#xFF0C;&#x518D;&#x7ED3;&#x5408;Resize&#x4E0E;Blur&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5206;&#x6790;albumentations&#x4EE3;&#x7801;&#x8FD0;&#x884C;&#x7ED3;&#x6784;&#x3002;</p>
+<p>&#x5728;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-7/06_albumentations-demo.py" target="_blank">&#x4EE3;&#x7801;&#x4E2D;</a>&#x901A;&#x8FC7;Resize&#x7C7B;&#x7684;&#x8C03;&#x8BD5;&#xFF0C;&#x53EF;&#x770B;&#x5230;&#x5B9E;&#x73B0;&#x56FE;&#x50CF;&#x6A21;&#x7CCA;&#x7684;&#x529F;&#x80FD;&#x5728;apply()&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x9700;&#x8981;&#x7406;&#x6E05;&#x4EE3;&#x7801;&#x7ED3;&#x6784;&#xFF0C;&#x5BFB;&#x627E;BasicTransform&#x662F;&#x5982;&#x4F55;&#x8C03;&#x7528;apply()&#x7684;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x4EE3;&#x7801;&#x5355;&#x6B65;&#x8C03;&#x8BD5;&#xFF0C;&#x53D1;&#x73B0;&#x4F9D;&#x6B21;&#x8FDB;&#x884C;&#x4EE5;&#x4E0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ol>
+<li>BasicTransform&#x7684;__call__()&#xFF1A;&#x5728;89&#x884C;&#xFF0C;return&#x65F6;&#x8C03;&#x7528;self.apply_with_params(params, **kwargs)</li>
+<li>BasicTransform&#x7684;self.apply_with_params()&#xFF1A;&#x5728;100&#x884C;&#xFF0C;&#x901A;&#x8FC7;target_function = self._get_target_function(key)&#x83B7;&#x5F97;&#x5177;&#x4F53;&#x9700;&#x8981;&#x53D8;&#x6362;&#x7684;&#x51FD;&#x6570;</li>
+<li>BasicTransform&#x7684;self._get_target_function()&#xFF1A;&#x5728;123&#x884C;&#xFF0C;&#x901A;&#x8FC7;self.targets.get()&#x83B7;&#x5F97;&#x5177;&#x4F53;&#x7684;target_function</li>
+<li>DualTransform&#x7684;targets&#xFF1A;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#xFF0C;&#x5176;&#x4E2D;&#x5B9A;&#x4E49;&#x4E86;key&#x4E0E;&#x5177;&#x4F53;&#x53D8;&#x6362;&#x51FD;&#x6570;&#x7684;&#x6620;&#x5C04;&#xFF0C;&#x5176;&#x4E2D;self.apply&#x5373;&#x4E0A;&#x6587;&#x63D0;&#x5230;&#x7684;Resize&#x7C7B;&#x4E0B;&#x7684;self.apply&#x3002;</li>
+</ol>
+<p>&#x5230;&#x8FD9;&#x91CC;&#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;&#x53D8;&#x6362;&#x5B9E;&#x73B0;&#x8FC7;&#x7A0B;&#x624D;&#x7B97;&#x8D70;&#x5B8C;&#xFF0C;&#x5176;&#x4E2D;BasicTransform&#x5B9A;&#x4E49;&#x4E86;&#x57FA;&#x7840;&#x903B;&#x8F91;&#xFF0C;&#x4F8B;&#x5982;&#x6982;&#x7387;&#x9009;&#x62E9;&#x3001;&#x53C2;&#x6570;&#x83B7;&#x53D6;&#x7B49;&#xFF0C;DualTransform&#x5219;&#x662F;&#x5B9A;&#x4E49;mask,masks&#xFF0C;bboxes&#xFF0C;keypoints&#x7684;&#x53D8;&#x6362;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF0C;&#x6700;&#x7EC8;&#x7684;&#x5B9E;&#x73B0;&#x7531;Resize&#x7C7B;&#x6765;&#x5B8C;&#x6210;&#x3002;&#x540C;&#x7406;&#xFF0C;ImageOnlyTransform &#x4E00;&#x6837;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-meta">@property</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">targets</span><span class="hljs-params">(self)</span>:</span>
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-string">&quot;image&quot;</span>: self.apply,
+        <span class="hljs-string">&quot;mask&quot;</span>: self.apply_to_mask,
+        <span class="hljs-string">&quot;masks&quot;</span>: self.apply_to_masks,
+        <span class="hljs-string">&quot;bboxes&quot;</span>: self.apply_to_bboxes,
+        <span class="hljs-string">&quot;keypoints&quot;</span>: self.apply_to_keypoints,
+    }
+</code></pre>
+<p><img src="imgs/albumentations-struct.png" alt=""></p>
+<h2 id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</h2>
+<p>&#x672C;&#x8282;&#x4ECB;&#x7ECD;&#x4E86;albumentations&#x7684;&#x4F18;&#x70B9;&#xFF0C;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x4EE5;&#x53CA;&#x4EE3;&#x7801;&#x7ED3;&#x6784;&#xFF0C;&#x5173;&#x4E8E;albumentations&#x7684;70&#x591A;&#x79CD;&#x65B9;&#x6CD5;&#x8BF7;&#x67E5;&#x770B;&#x9644;&#x5F55;&#xFF0C;&#x6216;&#x8005;&#x9605;&#x8BFB;&#x6587;&#x6863;&#x67E5;&#x770B;API&#xFF0C;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x4E5F;&#x53EF;&#x5230;&#x4EE3;&#x7801;&#x4E2D;&#x67E5;&#x770B;&#x7F16;&#x5199;&#x7684;&#x6279;&#x91CF;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x4EE3;&#x7801;&#x6BB5;&#xFF0C;&#x5B9E;&#x73B0;&#x4E86;68&#x4E2A;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x53EF;&#x89C6;&#x5316;</p>
+<p><img src="imgs/aug_demo-68.png" alt=""></p>
+<h2 id="&#x9644;&#x5F55;">&#x9644;&#x5F55;</h2>
+<p>albumentations&#x63D0;&#x4F9B;70&#x591A;&#x79CD;API&#xFF0C;&#x8FD9;&#x91CC;&#x5C06;&#x4E0D;&#x518D;&#x4E00;&#x4E00;&#x4ECB;&#x7ECD;&#x5404;API&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x8BF7;&#x67E5;&#x770B;&#x6587;&#x6863;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x6574;&#x4F53;&#x5206;&#x4E3A;&#x4E24;&#x79CD;&#xFF0C;Pixel-Level&#x548C;Spatial-Level&#xFF1A;</p>
+<ul>
+<li>AdvancedBlur</li>
+<li>Blur</li>
+<li>CLAHE</li>
+<li>ChannelDropout</li>
+<li>ChannelShuffle</li>
+<li>ColorJitter</li>
+<li>Downscale</li>
+<li>Emboss</li>
+<li>Equalize</li>
+<li>FDA</li>
+<li>FancyPCA</li>
+<li>FromFloat</li>
+<li>GaussNoise</li>
+<li>GaussianBlur</li>
+<li>GlassBlur</li>
+<li>HistogramMatching</li>
+<li>HueSaturationValue</li>
+<li>ISONoise</li>
+<li>ImageCompression</li>
+<li>InvertImg</li>
+<li>MedianBlur</li>
+<li>MotionBlur</li>
+<li>MultiplicativeNoise</li>
+<li>Normalize</li>
+<li>PixelDistributionAdaptation</li>
+<li>Posterize</li>
+<li>RGBShift</li>
+<li>RandomBrightnessContrast</li>
+<li>RandomFog</li>
+<li>RandomGamma</li>
+<li>RandomRain</li>
+<li>RandomShadow</li>
+<li>RandomSnow</li>
+<li>RandomSunFlare</li>
+<li>RandomToneCurve</li>
+<li>RingingOvershoot</li>
+<li>Sharpen</li>
+<li>Solarize</li>
+<li>Superpixels</li>
+<li>TemplateTransform</li>
+<li>ToFloat</li>
+<li>ToGray</li>
+<li>ToSepia</li>
+<li>UnsharpMask</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Transform</th>
+<th>Image</th>
+<th>Masks</th>
+<th>BBoxes</th>
+<th>Keypoints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.transforms.Affine" target="_blank">Affine</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.crops.transforms.CenterCrop" target="_blank">CenterCrop</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.dropout.coarse_dropout.CoarseDropout" target="_blank">CoarseDropout</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td></td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.crops.transforms.Crop" target="_blank">Crop</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.crops.transforms.CropAndPad" target="_blank">CropAndPad</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.crops.transforms.CropNonEmptyMaskIfExists" target="_blank">CropNonEmptyMaskIfExists</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.transforms.ElasticTransform" target="_blank">ElasticTransform</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.transforms.Flip" target="_blank">Flip</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.transforms.GridDistortion" target="_blank">GridDistortion</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.dropout.grid_dropout.GridDropout" target="_blank">GridDropout</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.transforms.HorizontalFlip" target="_blank">HorizontalFlip</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.transforms.Lambda" target="_blank">Lambda</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.resize.LongestMaxSize" target="_blank">LongestMaxSize</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.dropout.mask_dropout.MaskDropout" target="_blank">MaskDropout</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.core.transforms_interface.NoOp" target="_blank">NoOp</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.transforms.OpticalDistortion" target="_blank">OpticalDistortion</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.transforms.PadIfNeeded" target="_blank">PadIfNeeded</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.transforms.Perspective" target="_blank">Perspective</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.transforms.PiecewiseAffine" target="_blank">PiecewiseAffine</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.transforms.PixelDropout" target="_blank">PixelDropout</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.crops.transforms.RandomCrop" target="_blank">RandomCrop</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.crops.transforms.RandomCropNearBBox" target="_blank">RandomCropNearBBox</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.transforms.RandomGridShuffle" target="_blank">RandomGridShuffle</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td></td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.crops.transforms.RandomResizedCrop" target="_blank">RandomResizedCrop</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.rotate.RandomRotate90" target="_blank">RandomRotate90</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.resize.RandomScale" target="_blank">RandomScale</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.crops.transforms.RandomSizedBBoxSafeCrop" target="_blank">RandomSizedBBoxSafeCrop</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.crops.transforms.RandomSizedCrop" target="_blank">RandomSizedCrop</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.resize.Resize" target="_blank">Resize</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.rotate.Rotate" target="_blank">Rotate</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.rotate.SafeRotate" target="_blank">SafeRotate</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.transforms.ShiftScaleRotate" target="_blank">ShiftScaleRotate</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.geometric.resize.SmallestMaxSize" target="_blank">SmallestMaxSize</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.transforms.Transpose" target="_blank">Transpose</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+<tr>
+<td><a href="https://albumentations.ai/docs/api_reference/full_reference/#albumentations.augmentations.transforms.VerticalFlip" target="_blank">VerticalFlip</a></td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+</tr>
+</tbody>
+</table>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; TingsongYu 2021 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2022&#x5E74;06&#x6708;25&#x65E5;21:48:10
+</span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="7.5-torchmetrics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 7.5 TorchMetrics 模型评估指标库">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.6 Albumentations 数据增强库","level":"2.7.6","depth":2,"previous":{"title":"7.5 TorchMetrics 模型评估指标库","level":"2.7.5","depth":2,"path":"chapter-7/7.5-torchmetrics.md","ref":"chapter-7/7.5-torchmetrics.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年06月25日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-7/7.6-albumentations.md","mtime":"2022-06-29T03:10:44.453Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-29T03:11:20.579Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/gumshoe.polyfills.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-3-ba/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
