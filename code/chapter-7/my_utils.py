@@ -9,6 +9,8 @@ import random
 import numpy as np
 import os
 import time
+
+import torchmetrics
 from matplotlib import pyplot as plt
 import torch
 import torch.nn as nn
@@ -16,6 +18,26 @@ import torch.nn.functional as F
 import torch.nn.init as init
 from datetime import datetime
 import logging
+
+
+class LeNet5(nn.Module):
+    def __init__(self):
+        super(LeNet5, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.fc1 = nn.Linear(400, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, 10)
+
+    def forward(self, x):
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        x = x.view(-1, 400)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
 
 
 def _weights_init(m):
@@ -66,6 +88,9 @@ class BasicBlock(nn.Module):
 
 
 class ResNet(nn.Module):
+    """
+    https://github.com/akamaster/pytorch_resnet_cifar10/blob/master/resnet.py
+    """
     def __init__(self, block, num_blocks, num_classes=10):
         super(ResNet, self).__init__()
         self.in_planes = 16
@@ -102,6 +127,11 @@ class ResNet(nn.Module):
 def resnet8(num_classes=10):
     return ResNet(BasicBlock, [1, 1, 1], num_classes)
 
+def resnet20():
+    """
+    https://github.com/akamaster/pytorch_resnet_cifar10/blob/master/resnet.py
+    """
+    return ResNet(BasicBlock, [3, 3, 3])
 
 def show_conf_mat(confusion_mat, classes, set_name, out_dir, epoch=999, verbose=False, perc=False, save=True):
     """
@@ -263,6 +293,49 @@ class ModelTrainer(object):
             top5_m.update(acc5.item(), outputs.size(0))
 
         return loss_m, top1_m, conf_mat
+
+
+class ModelTrainerEnsemble(ModelTrainer):
+    @staticmethod
+    def average(outputs):
+        """Compute the average over a list of tensors with the same size."""
+        return sum(outputs) / len(outputs)
+
+    @staticmethod
+    def evaluate(data_loader, models, loss_f, device, classes):
+
+        class_num = len(classes)
+        conf_mat = np.zeros((class_num, class_num))
+
+        loss_m = AverageMeter()
+        top1_m = torchmetrics.Accuracy().to(device)
+
+        # top1 acc group
+        top1_group = []
+        for model_idx in range(len(models)):
+            top1_group.append(torchmetrics.Accuracy().to(device))
+
+        for i, data in enumerate(data_loader):
+            inputs, labels = data
+            inputs, labels = inputs.to(device), labels.to(device)
+
+            outputs = []
+            for model_idx, model in enumerate(models):
+                output_single = F.softmax(model(inputs), dim=1)
+                outputs.append(output_single)
+                # 计算单个模型acc
+                top1_group[model_idx](output_single, labels)
+                # 计算单个模型loss
+
+            # 计算acc 组
+            output_avg = ModelTrainerEnsemble.average(outputs)
+            top1_m(output_avg, labels)
+
+            # loss 组
+            loss = loss_f(output_avg.cpu(), labels.cpu())
+            loss_m.update(loss.item(), inputs.size(0))
+
+        return loss_m, top1_m.compute(), top1_group, conf_mat
 
 
 class Logger(object):
