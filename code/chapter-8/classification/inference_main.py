@@ -8,13 +8,15 @@
 import time
 import torchvision
 import torchvision.transforms as transforms
-from PIL import Image
-
 import torch
 import torch.nn as nn
 import matplotlib
+import matplotlib.pyplot as plt
+from PIL import Image
+import platform
 
-matplotlib.use('Agg')
+if platform.system() == 'Linux':
+    matplotlib.use('Agg')
 
 
 def get_args_parser(add_help=True):
@@ -86,7 +88,7 @@ def main(args):
     # ------------------------------------ step3: inference ------------------------------------
     with torch.no_grad():
         ss = time.time()
-        for i in range(1000):
+        for i in range(20):
             s = time.time()
             img_tensor_batch = img_tensor.unsqueeze(dim=0)
             bs = 128
@@ -96,9 +98,16 @@ def main(args):
             _, predicted = torch.max(outputs_prob.data, 1)
             pred_idx = predicted.cpu().data.numpy()[0]
             time_c = time.time() - s
-            print('\r', 'model predict: {},  time consuming:{:.4f} Throughput:{:.2f}'.format(classes[pred_idx],
-                                                                                    time_c, 1*bs/time_c), end='')
+            print('\r', 'model predict: {},  speed: {:.4f} s/batch, Throughput: {:.0f} frame/s'.format(
+                classes[pred_idx], time_c, 1*bs/time_c), end='')
         print('\n', time.time()-ss)
+
+    # ------------------------------------ step4: visualization ------------------------------------
+    plt.imshow(img, cmap='Greys_r')
+    plt.title("predict:{}".format(classes[pred_idx]))
+    plt.text(50, 50, "predict: {}, probability: {:.1%}".format(
+        classes[pred_idx], outputs_prob.cpu().data.numpy()[0, pred_idx]), bbox=dict(fc='yellow'))
+    plt.show()
 
 
 classes = ["NORMAL", "PNEUMONIA"]
