@@ -22,7 +22,6 @@ matplotlib.use('Agg')
 
 import utils.my_utils as utils
 from datasets.pneumonia_dataset import PneumoniaDataset
-from models.vit_pytorch.vit import ViT
 
 
 def get_args_parser(add_help=True):
