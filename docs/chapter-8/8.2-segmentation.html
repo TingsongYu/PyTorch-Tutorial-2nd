@@ -1,0 +1,1375 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>8.2 图像分割——脑MRI胶质瘤分割 · PyTorch实用教程（第二版）</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="余霆嵩">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-intopic-toc/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="8.1-classification.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">上篇：PyTorch基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    第一章 PyTorch 简介与安装
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                <a href="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                    
+                    1.1 PyTorch 初认识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../chapter-1/1.2-Anaconda.html">
+            
+                <a href="../chapter-1/1.2-Anaconda.html">
+            
+                    
+                    1.2 环境配置之Anaconda
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../chapter-1/1.3-Pycharm.html">
+            
+                <a href="../chapter-1/1.3-Pycharm.html">
+            
+                    
+                    1.3 环境配置之Pycharm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                <a href="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                    
+                    1.4 环境配置之CUDA&cuDNN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../chapter-1/1.5-PyTorch-install.html">
+            
+                <a href="../chapter-1/1.5-PyTorch-install.html">
+            
+                    
+                    1.5 环境配置之PyTorch系列包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                <a href="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                    
+                    1.6 环境配置之Jupyter Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../chapter-2/">
+            
+                <a href="../chapter-2/">
+            
+                    
+                    第二章 PyTorch 核心模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../chapter-2/2.1-module-tree.html">
+            
+                <a href="../chapter-2/2.1-module-tree.html">
+            
+                    
+                    2.1 PyTorch 模块结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="../chapter-2/2.2-covid-19-cls.html">
+            
+                <a href="../chapter-2/2.2-covid-19-cls.html">
+            
+                    
+                    2.2 新冠肺炎分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="../chapter-2/2.3-datastruct-tensor.html">
+            
+                <a href="../chapter-2/2.3-datastruct-tensor.html">
+            
+                    
+                    2.3 核心数据结构——Tensor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="../chapter-2/2.4-method-tensor.html">
+            
+                <a href="../chapter-2/2.4-method-tensor.html">
+            
+                    
+                    2.4 张量的相关函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="../chapter-2/2.5-computational-graphs.html">
+            
+                <a href="../chapter-2/2.5-computational-graphs.html">
+            
+                    
+                    2.5 自动求导核心——计算图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.6" data-path="../chapter-2/2.6-autograd.html">
+            
+                <a href="../chapter-2/2.6-autograd.html">
+            
+                    
+                    2.6 Autograd——自动微分
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../chapter-3/">
+            
+                <a href="../chapter-3/">
+            
+                    
+                    第三章 PyTorch 数据模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="../chapter-3/3.1-dataset.html">
+            
+                <a href="../chapter-3/3.1-dataset.html">
+            
+                    
+                    3.1 Dataset
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="../chapter-3/3.2-dataloader.html">
+            
+                <a href="../chapter-3/3.2-dataloader.html">
+            
+                    
+                    3.2 DataLoader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="../chapter-3/3.3-dataset-useful-api.html">
+            
+                <a href="../chapter-3/3.3-dataset-useful-api.html">
+            
+                    
+                    3.3 Dataset及常用API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="../chapter-3/3.4-transforms.html">
+            
+                <a href="../chapter-3/3.4-transforms.html">
+            
+                    
+                    3.4 transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="../chapter-3/3.5-torchvision-dataset.html">
+            
+                <a href="../chapter-3/3.5-torchvision-dataset.html">
+            
+                    
+                    3.5 torchvision 经典dataset学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../chapter-4/">
+            
+                <a href="../chapter-4/">
+            
+                    
+                    第四章 PyTorch 模型模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="../chapter-4/4.1-module&Parameter.html">
+            
+                <a href="../chapter-4/4.1-module&Parameter.html">
+            
+                    
+                    4.1 Module&Parameter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" data-path="../chapter-4/4.2-containers.html">
+            
+                <a href="../chapter-4/4.2-containers.html">
+            
+                    
+                    4.2 Module的容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.3" data-path="../chapter-4/4.3-common-module.html">
+            
+                <a href="../chapter-4/4.3-common-module.html">
+            
+                    
+                    4.3 常用网络层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.4" data-path="../chapter-4/4.4-module-api.html">
+            
+                <a href="../chapter-4/4.4-module-api.html">
+            
+                    
+                    4.4 Module常用API函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.5" data-path="../chapter-4/4.5-hook-func.html">
+            
+                <a href="../chapter-4/4.5-hook-func.html">
+            
+                    
+                    4.5 Hook函数及Grad-CAM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.6" data-path="../chapter-4/4.6-classic-model.html">
+            
+                <a href="../chapter-4/4.6-classic-model.html">
+            
+                    
+                    4.6 经典模型代码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.7" data-path="../chapter-4/4.7-weight-init.html">
+            
+                <a href="../chapter-4/4.7-weight-init.html">
+            
+                    
+                    4.7 权重初始化方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../chapter-5/">
+            
+                <a href="../chapter-5/">
+            
+                    
+                    第五章 PyTorch 优化模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="../chapter-5/5.1-loss-function.html">
+            
+                <a href="../chapter-5/5.1-loss-function.html">
+            
+                    
+                    5.1 二十一个损失函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.2" data-path="../chapter-5/5.2-Optimizer.html">
+            
+                <a href="../chapter-5/5.2-Optimizer.html">
+            
+                    
+                    5.2 十三个优化器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.3" data-path="../chapter-5/5.3-lr-scheduler.html">
+            
+                <a href="../chapter-5/5.3-lr-scheduler.html">
+            
+                    
+                    5.3 十四个学习率调整器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../chapter-6/">
+            
+                <a href="../chapter-6/">
+            
+                    
+                    第六章 PyTorch 可视化模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1" data-path="../chapter-6/6.1-tensorboard.html">
+            
+                <a href="../chapter-6/6.1-tensorboard.html">
+            
+                    
+                    6.1 TensorBoard安装与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.2" data-path="../chapter-6/6.2-cnn-visualization.html">
+            
+                <a href="../chapter-6/6.2-cnn-visualization.html">
+            
+                    
+                    6.2 CNN卷积核与特征图可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.3" data-path="../chapter-6/6.3-conf_matrix.html">
+            
+                <a href="../chapter-6/6.3-conf_matrix.html">
+            
+                    
+                    6.3 混淆矩阵与训练曲线可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.4" data-path="../chapter-6/6.4-cam-vis.html">
+            
+                <a href="../chapter-6/6.4-cam-vis.html">
+            
+                    
+                    6.4 CAM可视化与hook函数使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.5" data-path="../chapter-6/6.5-model-print.html">
+            
+                <a href="../chapter-6/6.5-model-print.html">
+            
+                    
+                    6.5 模型参数打印
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../chapter-7/">
+            
+                <a href="../chapter-7/">
+            
+                    
+                    第七章 PyTorch 小技巧汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../chapter-7/7.1-serialization.html">
+            
+                <a href="../chapter-7/7.1-serialization.html">
+            
+                    
+                    7.1 模型保存与加载
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.8.1" data-path="../chapter-7/7.2-finetune.html">
+            
+                <a href="../chapter-7/7.2-finetune.html">
+            
+                    
+                    7.2 Finetune 模型微调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.2" data-path="../chapter-7/7.3-gpu.html">
+            
+                <a href="../chapter-7/7.3-gpu.html">
+            
+                    
+                    7.3 GPU使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3" data-path="../chapter-7/7.4-training-script.html">
+            
+                <a href="../chapter-7/7.4-training-script.html">
+            
+                    
+                    7.4 模型训练代码模板
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.4" data-path="../chapter-7/7.5-torchmetrics.html">
+            
+                <a href="../chapter-7/7.5-torchmetrics.html">
+            
+                    
+                    7.5 TorchMetrics 模型评估指标库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.5" data-path="../chapter-7/7.6-albumentations.html">
+            
+                <a href="../chapter-7/7.6-albumentations.html">
+            
+                    
+                    7.6 Albumentations 数据增强库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.6" data-path="../chapter-7/7.7-torchensemble.html">
+            
+                <a href="../chapter-7/7.7-torchensemble.html">
+            
+                    
+                    7.7 TorchEnsemble 模型集成库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">中篇：PyTorch 案例应用</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第八章 图像项目案例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="8.1-classification.html">
+            
+                <a href="8.1-classification.html">
+            
+                    
+                    8.1 图像分类——胸部X光肺炎分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.1.2" data-path="8.2-segmentation.html">
+            
+                <a href="8.2-segmentation.html">
+            
+                    
+                    8.2 图像分割——脑MRI胶质瘤分割
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">下篇：PyTorch 模型部署</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >8.2 图像分割——脑MRI胶质瘤分割</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="82-&#x56FE;&#x50CF;&#x5206;&#x5272;&#x6848;&#x4F8B;&#x2014;&#x2014;&#x8111;mri&#x80F6;&#x8D28;&#x7624;&#x5206;&#x5272;">8.2 &#x56FE;&#x50CF;&#x5206;&#x5272;&#x6848;&#x4F8B;&#x2014;&#x2014;&#x8111;MRI&#x80F6;&#x8D28;&#x7624;&#x5206;&#x5272;</h1>
+<p><img src="imgs/pred-gif.gif" alt=""></p>
+<h2 id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</h2>
+<p>&#x672C;&#x6848;&#x4F8B;&#x4EE5;&#x8111;&#x90E8;MRI&#x80BF;&#x7624;&#x6570;&#x636E;&#x4E3A;&#x4F8B;&#xFF0C;&#x4ECB;&#x7ECD;&#x56FE;&#x50CF;&#x5206;&#x5272;&#xFF08;&#x672C;&#x8282;&#x7279;&#x6307;&#x8BED;&#x4E49;&#x5206;&#x5272;&#xFF09;&#x7684;&#x8BAD;&#x7EC3;&#x3001;&#x63A8;&#x7406;&#x8FC7;&#x7A0B;&#x3002;&#x5176;&#x4E2D;&#xFF0C;&#x6D89;&#x53CA;&#x7684;&#x77E5;&#x8BC6;&#x70B9;&#x6709;&#xFF1A;</p>
+<ol>
+<li>&#x57FA;&#x4E8E;csv&#x7684;&#x6570;&#x636E;&#x96C6;&#x7EF4;&#x62A4;&#x7BA1;&#x7406;&#xFF0C;&#x53CA;&#x5176;dataset&#x7F16;&#x5199;&#xFF1B;</li>
+<li>smp&#x5E93;&#x7684;&#x4ECB;&#x7ECD;&#x4E0E;&#x4F7F;&#x7528;&#xFF1A;segmentation_models_pytorch&#x5E93;&#xFF0C;&#x662F;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x7684;&#x9AD8;&#x7EA7;API&#x5E93;&#xFF0C;&#x63D0;&#x4F9B;9&#x79CD;&#x5206;&#x5272;&#x67B6;&#x6784;&#x3001;&#x6570;&#x767E;&#x4E2A;encoder&#x7684;backbone&#x53CA;&#x9884;&#x8BAD;&#x7EC3;&#x6743;&#x91CD;&#xFF0C;&#x4EE5;&#x53CA;&#x5206;&#x5272;&#x7684;loss&#x548C;&#x8861;&#x91CF;&#x6307;&#x6807;&#x8BA1;&#x7B97;&#x51FD;&#x6570;&#xFF0C;&#x662F;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x7684;&#x597D;&#x5E2E;&#x624B;&#xFF0C;&#x4F7F;&#x7528;&#x5B83;&#x53EF;&#x4EE5;&#x5FEB;&#x901F;&#x5B9E;&#x73B0;&#x5404;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x529F;&#x80FD;&#xFF1B;</li>
+<li>&#x5BF9;smp&#x4E2D;9&#x4E2D;&#x7F51;&#x7EDC;&#x67B6;&#x6784;&#x5BF9;&#x6BD4;&#x5B9E;&#x9A8C;&#xFF0C;&#x7F51;&#x7EDC;&#x67B6;&#x6784;&#x5206;&#x522B;&#x662F;&#xFF1A;<strong>&apos;Unet&apos;, &apos;UnetPlusPlus&apos;, &apos;MAnet&apos;, &apos;Linknet&apos;, &apos;FPN&apos;, &apos;PSPNet&apos;, &apos;DeepLabV3&apos;, &apos;DeepLabV3Plus&apos;, &apos;PAN&apos;;</strong></li>
+<li>&#x8BED;&#x4E49;&#x5206;&#x5272;iou&#x8BA1;&#x7B97;&#x65F6;&#xFF0C;image-wise&#x4E0E;&#x6574;&#x4F53;&#x8BA1;&#x7B97;&#x7684;&#x5DEE;&#x5F02;&#xFF0C;&#x5F53;&#x7EAF;&#x9634;&#x6027;&#x7247;&#x65F6;&#xFF0C;iou&#x7EDF;&#x8BA1;&#x5E94;&#x5F53;&#x91C7;&#x7528;image-wise&#x66F4;&#x5408;&#x7406;&#x3002;</li>
+<li>&#x63A2;&#x7A76;&#x4E0D;&#x540C;backbone&#x5BF9;&#x4E8E;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x7684;&#x6548;&#x679C;&#x5DEE;&#x5F02;&#xFF1B;</li>
+<li>&#x63A2;&#x7A76;&#x4E0D;&#x540C;loss&#x5BF9;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x7684;&#x6548;&#x679C;&#x5DEE;&#x5F02;&#xFF1B;</li>
+<li>&#x63A2;&#x7A76;encoder&#x91C7;&#x7528;&#x8F83;&#x5C0F;&#x5B66;&#x4E60;&#x7387;&#x65F6;&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x7CBE;&#x5EA6;&#x53D8;&#x5316;&#x3002;</li>
+</ol>
+<p>&#x672C;&#x6848;&#x4F8B;&#x5C06;&#x4ECE;<strong>&#x6570;&#x636E;&#x4ECB;&#x7ECD;&#x3001;&#x8BAD;&#x7EC3;&#x4EE3;&#x7801;&#x3001;smp&#x5E93;&#x4F7F;&#x7528;&#x3001;&#x5BF9;&#x6BD4;&#x5B9E;&#x9A8C;&#x548C;&#x6A21;&#x578B;&#x63A8;&#x7406;</strong>&#xFF0C;&#x4E94;&#x4E2A;&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x8BB2;&#x89E3;&#x3002;</p>
+<h2 id="&#x6570;&#x636E;&#x6A21;&#x5757;"><strong>&#x6570;&#x636E;&#x6A21;&#x5757;</strong></h2>
+<p>&#x6570;&#x636E;&#x96C6;&#x6765;&#x81EA;<a href="https://www.kaggle.com/datasets/mateuszbuda/lgg-mri-segmentation" target="_blank">Kaggle</a>&#xFF0C;&#x5305;&#x542B;<strong>110&#x4F4D;&#x8111;&#x80F6;&#x8D28;&#x7624;&#x60A3;&#x8005;</strong>&#x7684;MRI&#x6570;&#x636E;&#xFF0C;&#x603B;&#x5171;<strong>3929&#x5F20;&#x56FE;&#x7247;</strong>&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x80BF;&#x7624;&#x533A;&#x57DF;&#x7684;&#x56FE;&#x7247;&#x4E3A;2556&#x5F20;&#xFF0C;&#x9634;&#x6027;&#x56FE;&#x7247;1373&#x5F20;&#x3002;</p>
+<p>&#x4E0B;&#x56FE;&#x4E3A;&#x6BCF;&#x4E2A;&#x60A3;&#x8005;&#x56FE;&#x7247;&#x6570;&#x91CF;&#xFF0C;&#x4EE5;&#x53CA;&#x9634;&#x3001;&#x9633;&#x56FE;&#x7247;&#x7684;&#x6BD4;&#x4F8B;&#x6C47;&#x603B;&#xFF0C;&#x4ECE;&#x56FE;&#x4E2D;&#x53EF;&#x77E5;&#xFF0C;&#x4E00;&#x4E2A;MRI&#x5E8F;&#x5217;&#x5305;&#x542B;20-40&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x5176;&#x4E2D;&#x51FA;&#x73B0;&#x80BF;&#x7624;&#x7684;&#x56FE;&#x7247;&#x6709;60%&#x5DE6;&#x53F3;&#x3002;&#xFF08;&#x4E0D;&#x8FC7;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x80BF;&#x7624;&#x533A;&#x57DF;&#x7684;&#x50CF;&#x7D20;&#x70B9;&#x8FD8;&#x8FD8;&#x662F;&#x8FDC;&#x5C0F;&#x4E8E;&#x9634;&#x6027;&#x50CF;&#x7D20;&#x70B9;&#x533A;&#x57DF;&#x7684;&#xFF09;</p>
+<p><img src="imgs/dist.jpg" alt=""></p>
+<p>&#x4E0B;&#x56FE;&#x4E3A;&#x6570;&#x636E;&#x96C6;&#x793A;&#x610F;&#xFF0C;&#x7B2C;&#x4E00;&#x884C;&#x4E3A;MRI&#x56FE;&#x50CF;&#xFF0C;&#x7B2C;&#x4E8C;&#x884C;&#x4E3A;&#x4EBA;&#x5DE5;&#x6807;&#x6CE8;&#x7684;&#x8111;&#x80F6;&#x8D28;&#x7624;mask&#x3002;</p>
+<p><img src="imgs/datashow.jpg" alt=""></p>
+<h3 id="&#x6570;&#x636E;&#x96C6;&#x5212;&#x5206;"><strong>&#x6570;&#x636E;&#x96C6;&#x5212;&#x5206;</strong></h3>
+<p>&#x9996;&#x5148;&#x4E0B;&#x8F7D;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x89E3;&#x538B;&#x5F97;&#x5230;kaggle_3m&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x7136;&#x540E;&#x8BBE;&#x7F6E;&#x6570;&#x636E;&#x6839;&#x76EE;&#x5F55;data_dir = args.data_path&#xFF0C;&#x8FD0;&#x884C;&#x4E0B;&#x9762;&#x4EE3;&#x7801;&#xFF0C;&#x5373;&#x53EF;&#x5F97;&#x5230;&#x5BF9;&#x5E94;csv</p>
+<pre><code>python 01_parse_data.py --data-path /mnt/chapter-8/data/kaggle_3m
+</code></pre><p>&#x6570;&#x636E;&#x96C6;&#x4E3A;110&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x5F62;&#x5F0F;&#xFF0C;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x96C6;&#x5212;&#x5206;&#xFF0C;&#x672C;&#x6848;&#x4F8B;&#x91C7;&#x7528;csv&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x7EF4;&#x62A4;&#xFF0C;&#x8FD9;&#x91CC;&#x5C06;&#x4F1A;&#x901A;&#x8FC7;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-8/segmentation/01_parse_data.py" target="_blank">01_parse_data.py</a>&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x89E3;&#x6790;&#xFF0C;&#x83B7;&#x5F97;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;csv</p>
+<ul>
+<li>data_info.csv&#xFF1A;&#x5305;&#x542B;&#x6587;&#x4EF6;&#x5939;id&#x3001;&#x56FE;&#x7247;&#x8DEF;&#x5F84;&#x3001;&#x6807;&#x7B7E;&#x8DEF;&#x5F84;&#xFF1B;</li>
+<li>data_train.csv&#xFF1A;&#x6839;&#x636E;&#x6587;&#x4EF6;&#x5939;id&#x5206;&#x7EC4;&#x5212;&#x5206;&#x7684;&#x8BAD;&#x7EC3;&#x96C6;&#xFF0C;&#x6BD4;&#x4F8B;&#x4E3A;80%&#xFF0C;&#x6709;88&#x4F4D;&#x60A3;&#x8005;&#x7684;3151&#x5F20;&#x56FE;&#x7247;&#xFF1B;</li>
+<li>data_val.csv&#xFF1A;&#x6839;&#x636E;&#x6587;&#x4EF6;&#x5939;id&#x5206;&#x7EC4;&#x5212;&#x5206;&#x7684;&#x9A8C;&#x8BC1;&#x96C6;&#xFF0C;&#x6BD4;&#x4F8B;&#x4E3A;20%&#xFF0C; &#x6709;22&#x4F4D;&#x60A3;&#x8005;&#x7684;778&#x5F20;&#x56FE;&#x7247;&#xFF1B;</li>
+</ul>
+<p><strong>&#x77E5;&#x8BC6;&#x70B9;</strong>&#xFF1A;&#x6570;&#x636E;&#x5212;&#x5206;&#x9700;&#x8981;&#x6309;&#x60A3;&#x8005;&#x7EF4;&#x5EA6;&#x5212;&#x5206;&#xFF0C;&#x4E0D;&#x80FD;&#x57FA;&#x4E8E;&#x56FE;&#x7247;&#x7EF4;&#x5EA6;&#x968F;&#x673A;&#x5212;&#x5206;&#xFF0C;&#x57FA;&#x4E8E;&#x56FE;&#x7247;&#x7EF4;&#x5EA6;&#x968F;&#x673A;&#x5212;&#x5206;&#x4F1A;&#x4F7F;&#x5F97;&#x6A21;&#x578B;&#x5B58;&#x5728;&#x4F5C;&#x5F0A;&#x884C;&#x4E3A;&#xFF0C;&#x5BFC;&#x81F4;&#x6A21;&#x578B;&#x5728;&#x771F;&#x5B9E;&#x5E94;&#x7528;&#x573A;&#x666F;&#x4E0B;&#x6548;&#x679C;&#x5F88;&#x5DEE;&#x3002;</p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x80FD;&#x57FA;&#x4E8E;&#x56FE;&#x7247;&#x7EF4;&#x5EA6;&#x5212;&#x5206;&#x6570;&#x636E;&#xFF1F;&#x56E0;&#x4E3A;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x8BDD;&#xFF0C;&#x4EE5;&#x4E3A;&#x60A3;&#x8005;&#x7684;40&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x6709;32&#x5F20;&#x7528;&#x4E8E;&#x8BAD;&#x7EC3;&#xFF0C;&#x53E6;&#x5916;8&#x5F20;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#xFF0C;&#x8FD9;8&#x5F20;&#x4E0E;&#x90A3;32&#x5F20;&#x662F;&#x975E;&#x5E38;&#x63A5;&#x8FD1;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x4EBA;&#x7684;&#x8FDE;&#x7EED;&#x5F71;&#x50CF;&#x3002;&#x8FD9;&#x6837;&#x5212;&#x5206;&#x7684;&#x6570;&#x636E;&#x96C6;&#x662F;&#x5E26;&#x6709;&#x504F;&#x5DEE;&#x7684;&#xFF0C;&#x7406;&#x6240;&#x5F53;&#x7136;&#x7684;&#x6548;&#x679C;&#x5F88;&#x597D;&#xFF0C;&#x6A21;&#x578B;&#x4E0D;&#x5BB9;&#x6613;&#x51FA;&#x73B0;&#x8FC7;&#x62DF;&#x5408;&#x3002;&#x540E;&#x7EED;&#x7684;&#x5B9E;&#x9A8C;&#x4E5F;&#x8BC1;&#x660E;&#x4E86;&#x8FD9;&#x4E00;&#x70B9;&#xFF0C;&#x57FA;&#x4E8E;&#x56FE;&#x7247;&#x7EF4;&#x5EA6;&#x5212;&#x5206;&#x7684;&#x7CBE;&#x5EA6;&#x8981;&#x9AD8;&#x51FA;10&#x4E2A;&#x767E;&#x5206;&#x70B9;&#x3002;</p>
+<h3 id="dataset&#x7F16;&#x5199;"><strong>Dataset&#x7F16;&#x5199;</strong></h3>
+<p>dataset&#x7F16;&#x5199;&#x5C31;&#x76F8;&#x5F53;&#x5BB9;&#x6613;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x6570;&#x636E;&#x7684;&#x8DEF;&#x5F84;&#x4FE1;&#x606F;&#x5DF2;&#x7ECF;&#x83B7;&#x5F97;&#xFF0C;&#x56E0;&#x6B64;&#x53EA;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x6570;&#x636E;&#x8BFB;&#x53D6;&#x8FDB;&#x6765;&#x4E4B;&#x540E;&#xFF0C;&#x5982;&#x4F55;&#x8F6C;&#x6362;&#x79F0;&#x4E3A;&#x6807;&#x7B7E;&#x7684;&#x683C;&#x5F0F;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x5BF9;&#x4E8E;&#x8BED;&#x4E49;&#x5206;&#x5272;&#xFF0C;&#x82E5;&#x91C7;&#x7528;&#x7684;&#x662F;&#x4EA4;&#x53C9;&#x71B5;&#x635F;&#x5931;&#x51FD;&#x6570;&#xFF0C;Dice&#x635F;&#x5931;&#x51FD;&#x6570;&#xFF0C;&#x5B83;&#x4EEC;&#x8981;&#x6C42;&#x6807;&#x7B7E;&#x662F;&#x4E00;&#x4E2A;long&#x7C7B;&#x578B;&#x6570;&#x636E;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x624B;&#x52A8;&#x8F6C;&#x4E3A;one-hot&#x5411;&#x91CF;&#xFF0C;&#x56E0;&#x6B64;&#x5BF9;&#x4E8E;&#x672C;&#x5B9E;&#x9A8C;&#xFF0C;mask&#x8981;&#x53D8;&#x6210;&#x4E00;&#x4E2A;[256,256]&#x7684;&#x77E9;&#x9635;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x662F;0&#x6216;&#x8005;1&#x3002;&#x5BF9;&#x5E94;&#x7684;&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-python">mask = cv_imread(self.df.iloc[idx, <span class="hljs-number">2</span>])
+mask[mask == <span class="hljs-number">255</span>] = <span class="hljs-number">1</span>  <span class="hljs-comment"># &#x8F6C;&#x6362;&#x4E3A;0, 1 &#x4E8C;&#x5206;&#x7C7B;&#x6807;&#x7B7E;</span>
+mask.long()
+</code></pre>
+<h2 id="&#x8BAD;&#x7EC3;&#x4EE3;&#x7801;"><strong>&#x8BAD;&#x7EC3;&#x4EE3;&#x7801;</strong></h2>
+<p>&#x8BAD;&#x7EC3;&#x4EE3;&#x7801;&#x6574;&#x4F53;&#x7ED3;&#x6784;&#x4ECD;&#x65E7;&#x6CBF;&#x7528;<a href="https://tingsongyu.github.io/PyTorch-Tutorial-2nd/chapter-7/7.4-training-script.html" target="_blank">&#x7B2C;&#x4E03;&#x7AE0;&#x7B2C;&#x56DB;&#x8282;</a>&#x4E2D;&#x7684;&#x8BAD;&#x7EC3;&#x811A;&#x672C;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x5728;&#x6B64;&#x5904;&#x9700;&#x8981;&#x505A;&#x7684;&#x4FEE;&#x6539;&#x4E3B;&#x8981;&#x662F;&#xFF0C;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x6A21;&#x578B;&#x7684;&#x521B;&#x5EFA;&#x3001;&#x5206;&#x5272;&#x6A21;&#x578B;&#x7684;Loss&#x521B;&#x5EFA;&#x3001;&#x5206;&#x5272;&#x6A21;&#x578B;&#x6307;&#x6807;&#x8BC4;&#x4EF7;&#xFF0C;&#x4EE5;&#x4E0B;&#x56DB;&#x884C;&#x4EE3;&#x7801;&#x5206;&#x522B;&#x662F;&#x5BF9;&#x5E94;&#x7684;&#x5B9E;&#x73B0;</p>
+<pre><code class="lang-python">model = smp.Unet(encoder_name=args.encoder,  encoder_weights=<span class="hljs-string">&quot;imagenet&quot;</span>,  in_channels=<span class="hljs-number">3</span>, classes=<span class="hljs-number">1</span>)
+criterion = smp.losses.DiceLoss(mode=<span class="hljs-string">&apos;binary&apos;</span>)
+tp, fp, fn, tn = smp.metrics.get_stats(outputs.long(), labels, mode=<span class="hljs-string">&quot;binary&quot;</span>)
+iou_score = smp.metrics.iou_score(tp, fp, fn, tn, reduction=<span class="hljs-string">&quot;macro&quot;</span>)
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#xFF0C;&#x8FD9;&#x91CC;&#x9762;&#x65E0;&#x4E00;&#x4F8B;&#x5916;&#x90FD;&#x7528;&#x5230;&#x4E86;smp&#x5E93;&#xFF0C;&#x4E0B;&#x9762;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;smp&#x5E93;&#x7684;&#x4F18;&#x70B9;&#xFF0C;&#x4EE5;&#x53CA;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x3002;</p>
+<h2 id="smp&#x5E93;&#x4ECB;&#x7ECD;"><strong>smp&#x5E93;&#x4ECB;&#x7ECD;</strong></h2>
+<p>segmentation-models-pytorch&#x662F;pytorch&#x7684;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x5DE5;&#x5177;&#x5E93;&#xFF0C;&#x63D0;&#x4F9B;9&#x4E2A;&#x5206;&#x5272;&#x6846;&#x67B6;&#xFF0C;&#x6570;&#x767E;&#x4E2A;encoder&#xFF0C;&#x5E38;&#x7528;&#x7684;loss&#xFF0C;&#x6307;&#x6807;&#x8BA1;&#x7B97;&#x51FD;&#x6570;&#xFF0C;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#x5F00;&#x53D1;&#x8005;&#x8FDB;&#x884C;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x5F00;&#x53D1;&#x3002;</p>
+<p>&#x8FD9;&#x662F;smp&#x5E93;&#x7684;github&#x94FE;&#x63A5;&#x4E0E;&#x5B98;&#x65B9;&#x6587;&#x6863;</p>
+<p>github: <a href="https://github.com/qubvel/segmentation_models.pytorch" target="_blank">https://github.com/qubvel/segmentation_models.pytorch</a></p>
+<p>docs:<a href="https://smp.readthedocs.io/en/latest/" target="_blank">https://smp.readthedocs.io/en/latest/</a></p>
+<p>&#x5B83;&#x5B89;&#x88C5;&#x5F88;&#x65B9;&#x4FBF;&#xFF0C;&#x53EA;&#x9700;&#x8981;pip&#x5373;&#x53EF;&#xFF0C; pip install segmentation-models-pytorch&#x3002;</p>
+<p>&#x638C;&#x63E1;pytorch&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#x7684;&#x8BDD;&#xFF0C;smp&#x5E93;&#x53EA;&#x9700;&#x8981;10&#x5206;&#x949F;&#x5373;&#x53EF;&#x638C;&#x63E1;&#x4E0A;&#x624B;&#xFF0C;&#x66F4;&#x7CFB;&#x7EDF;&#x5E94;&#x7528;&#x5EFA;&#x8BAE;&#x914D;&#x5408;smp&#x5E93;&#x7684;<a href="https://github.com/qubvel/segmentation_models.pytorch/tree/master/examples" target="_blank">&#x4E24;&#x4E2A;&#x6848;&#x4F8B;</a>&#x8FDB;&#x884C;&#x5B66;&#x4E60;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x5C06;&#x4ECE;<strong>&#x6A21;&#x578B;&#x521B;&#x5EFA;&#x3001;loss&#x521B;&#x5EFA;&#x3001;&#x6307;&#x6807;&#x8BA1;&#x7B97;</strong>&#x4E09;&#x4E2A;&#x90E8;&#x5206;&#x4ECB;&#x7ECD;smp&#x4F7F;&#x7528;&#x3002;</p>
+<h3 id="&#x6A21;&#x578B;&#x521B;&#x5EFA;"><strong>&#x6A21;&#x578B;&#x521B;&#x5EFA;</strong></h3>
+<p>&#x8BED;&#x4E49;&#x5206;&#x5272;&#x6A21;&#x578B;&#x53D1;&#x5C55;&#x81F3;&#x4ECA;&#xFF0C;&#x4E3B;&#x8981;&#x8FD8;&#x662F;&#x91C7;&#x7528;encoder-decoder&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x901A;&#x5E38;&#x4F1A;&#x91C7;&#x7528;&#x4E3B;&#x6D41;&#x7684;CNN&#x4F5C;&#x4E3A;encoder&#xFF0C;decoder&#x90E8;&#x5206;&#x5219;&#x8FDB;&#x884C;&#x968F;&#x673A;&#x521D;&#x59CB;&#x5316;&#x53BB;&#x8BAD;&#x7EC3;&#x3002;</p>
+<p>&#x800C;encoder&#x4E0E;decoder&#x4E4B;&#x95F4;&#x5982;&#x4F55;&#x4FE1;&#x606F;&#x4EA4;&#x4E92;&#x3001;&#x4EE5;&#x53CA;decoder&#x7531;&#x54EA;&#x4E9B;&#x7EC4;&#x4EF6;&#x6784;&#x6210;&#x7B49;&#x7B49;&#x4E00;&#x7CFB;&#x5217;&#x95EE;&#x9898;&#xFF0C;&#x5C31;&#x5F15;&#x51FA;&#x4E86;&#x4E0D;&#x540C;&#x7684;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x67B6;&#x6784;&#x3002;</p>
+<p>&#x5728;smp&#x4E2D;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;9&#x79CD;&#x5E38;&#x7528;&#x7684;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x6A21;&#x578B;&#x67B6;&#x6784;&#xFF0C;&#x5206;&#x522B;&#x662F;&apos;Unet&apos;, &apos;UnetPlusPlus&apos;, &apos;MAnet&apos;, &apos;Linknet&apos;, &apos;FPN&apos;, &apos;PSPNet&apos;, &apos;DeepLabV3&apos;, &apos;DeepLabV3Plus&apos;, &apos;PAN&apos;&#x3002;</p>
+<p>&#x5728;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E2D;&#xFF0C;&#x9664;&#x4E86;&#x67B6;&#x6784;&#x3001;encoder&#xFF0C;&#x8F93;&#x5165;&#x548C;&#x8F93;&#x51FA;&#x7684;&#x7EF4;&#x5EA6;&#x4E5F;&#x975E;&#x5E38;&#x91CD;&#x8981;&#xFF0C;&#x8FD9;&#x5173;&#x7CFB;&#x5230;&#x53EF;&#x63A5;&#x6536;&#x7684;&#x6570;&#x636E;&#x5F62;&#x5F0F;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x4EE5;&#x53CA;&#x53EF;&#x4EE5;&#x9884;&#x6D4B;&#x7684;&#x7C7B;&#x522B;&#x6709;&#x591A;&#x5C11;&#x4E2A;&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x4E00;&#x4E2A;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x6A21;&#x578B;&#x7684;&#x521B;&#x5EFA;&#xFF0C;&#x9700;&#x8981;&#x786E;&#x5B9A;<strong>&#x67B6;&#x6784;&#x3001;&#x9009;&#x62E9;encoder&#x3001;&#x518D;&#x786E;&#x5B9A;&#x8F93;&#x5165;&#x901A;&#x9053;&#x6570;&#x3001;&#x8F93;&#x51FA;&#x901A;&#x9053;&#x6570;</strong>&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x4ECB;&#x7ECD;unet&#x7684;&#x521B;&#x5EFA;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> segmentation_models_pytorch <span class="hljs-keyword">as</span> smp
+model = smp.Unet(
+    encoder_name=<span class="hljs-string">&quot;resnet34&quot;</span>,        <span class="hljs-comment"># choose encoder, e.g. mobilenet_v2 or efficientnet-b7</span>
+    encoder_weights=<span class="hljs-string">&quot;imagenet&quot;</span>,     <span class="hljs-comment"># use `imagenet` pre-trained weights for encoder initialization</span>
+    in_channels=<span class="hljs-number">1</span>,                  <span class="hljs-comment"># model input channels (1 for gray-scale images, 3 for RGB, etc.)</span>
+    classes=<span class="hljs-number">3</span>,                      <span class="hljs-comment"># model output channels (number of classes in your dataset)</span>
+)
+</code></pre>
+<p>&#x5BF9;&#x4E8E;&#x521D;&#x5B66;&#x8005;&#x6765;&#x8BF4;&#xFF0C;&#x90A3;&#x4E48;&#x591A;&#x6A21;&#x578B;&#x6216;&#x8BB8;&#x662F;&#x4E2A;&#x5934;&#x75DB;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x540E;&#x7EED;&#x4E5F;&#x8FDB;&#x884C;&#x4E86;&#x5BF9;&#x6BD4;&#x5B9E;&#x9A8C;&#xFF0C;&#x91C7;&#x7528;&#x76F8;&#x540C;&#x7684;encoder&#xFF08;resnet-18&#xFF09;&#xFF0C;&#x5206;&#x522B;&#x8BAD;&#x7EC3;9&#x4E2A;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x67B6;&#x6784;&#xFF0C;&#x89C2;&#x5BDF;&#x7CBE;&#x5EA6;&#x53D8;&#x5316;&#x3002;</p>
+<p>&#x4ECE;&#x7ECF;&#x9A8C;&#x6765;&#x8BF4;&#xFF0C;&#x51E1;&#x662F;&#x6709;&#x7CFB;&#x5217;&#x7684;&#x6A21;&#x578B;&#x90FD;&#x662F;&#x5E94;&#x7528;&#x5E7F;&#x6CDB;&#x3001;&#x76F8;&#x5BF9;&#x53EF;&#x9760;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x4F8B;&#x5982;net&#x7CFB;&#x5217;&#xFF0C;deeplab&#x7CFB;&#x5217;&#xFF0C;yolo&#x7CFB;&#x5217;&#x7B49;&#x7B49;&#x3002;</p>
+<p>&#x5982;&#x4F55;&#x7528;&#x4EE3;&#x7801;&#x6765;&#x5B9E;&#x73B0;&#x7C7B;&#x5C5E;&#x6027;&#x7684;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x91CC;&#x662F;&#x4E00;&#x4E2A;&#x503C;&#x5F97;&#x5B66;&#x4E60;&#x7684;&#x4EE3;&#x7801;&#x6BB5;&#xFF0C;&#x8FD9;&#x91CC;&#x4E3B;&#x8981;&#x901A;&#x8FC7;getattr()&#x65B9;&#x6CD5;&#x83B7;&#x53D6;module&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x5B9E;&#x4F8B;&#x5316;&#x5373;&#x53EF;&#x3002;</p>
+<pre><code class="lang-python">archs = [<span class="hljs-string">&apos;Unet&apos;</span>, <span class="hljs-string">&apos;UnetPlusPlus&apos;</span>, <span class="hljs-string">&apos;MAnet&apos;</span>, <span class="hljs-string">&apos;Linknet&apos;</span>, <span class="hljs-string">&apos;FPN&apos;</span>, <span class="hljs-string">&apos;PSPNet&apos;</span>, <span class="hljs-string">&apos;DeepLabV3&apos;</span>, <span class="hljs-string">&apos;DeepLabV3Plus&apos;</span>, <span class="hljs-string">&apos;PAN&apos;</span>]
+<span class="hljs-keyword">for</span> arch_str <span class="hljs-keyword">in</span> archs:
+    model_class = getattr(smp, arch_str)
+    model = model_class(encoder_name=args.encoder,  encoder_weights=<span class="hljs-string">&quot;imagenet&quot;</span>,  in_channels=<span class="hljs-number">3</span>, classes=<span class="hljs-number">1</span>)
+</code></pre>
+<p>&#x66F4;&#x591A;&#x5173;&#x4E8E;&#x5206;&#x5272;&#x6A21;&#x578B;&#x7684;&#x4ECB;&#x7ECD;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x89C1;&#xFF1A;<a href="https://smp.readthedocs.io/en/latest/" target="_blank">https://smp.readthedocs.io/en/latest/</a></p>
+<h3 id="&#x635F;&#x5931;&#x51FD;&#x6570;&#x521B;&#x5EFA;"><strong>&#x635F;&#x5931;&#x51FD;&#x6570;&#x521B;&#x5EFA;</strong></h3>
+<p>smp&#x63D0;&#x4F9B;&#x4E86;8&#x4E2A;&#x635F;&#x5931;&#x51FD;&#x6570;&#xFF0C;&#x5206;&#x522B;&#x662F;JaccardLoss&#x3001;DiceLoss&#x3001;TverskyLoss&#x3001;FocalLoss&#x3001;LovaszLoss&#x3001;SoftBCEWithLogitsLoss&#x3001;SoftCrossEntropyLoss&#x3001;MCCLoss&#x3002;&#x5177;&#x4F53;&#x5DEE;&#x5F02;&#x53C2;&#x89C1;&#x5B98;&#x65B9;&#x6587;&#x6863;&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x8BB2;&#x8BB2;&#x635F;&#x5931;&#x51FD;&#x6570;&#x521B;&#x5EFA;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x7684;&#x6A21;&#x5F0F;&#x3002;</p>
+<p>&#x635F;&#x5931;&#x51FD;&#x6570;&#x521B;&#x5EFA;&#x65F6;&#x9700;&#x8981;&#x8BBE;&#x7F6E;mode&#xFF0C;smp&#x5E93;&#x63D0;&#x4F9B;&#x4E86;3&#x79CD;mode&#xFF0C;&#x5206;&#x522B;&#x662F;&#x4E8C;&#x5206;&#x7C7B;&#x3001;&#x591A;&#x5206;&#x7C7B;&#x3001;&#x591A;&#x6807;&#x7B7E;&#x5206;&#x7C7B;&#x3002;</p>
+<p><strong>&#x4E8C;&#x5206;&#x7C7B;&#xFF1A;&apos;binary&apos;</strong>&#xFF0C; &#x7528;&#x4E8E;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x5206;&#x5272;&#xFF08;&#x9634;&#x6027;&#x4E0D;&#x7B97;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x4F8B;&#x5982;&#x672C;&#x6848;&#x4F8B;&#xFF09;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E8C;&#x5206;&#x7C7B;&#xFF0C;&#x6807;&#x7B7E;&#x9700;&#x8981;&#x662F;(N, H, W)&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x5143;&#x7D20;&#x4E3A;0&#x6216;1&#xFF0C;,&#x5B83;&#x4E0D;&#x9700;&#x8981;&#x901A;&#x9053;&#x7EF4;&#x5EA6;&#xFF0C;&#x800C;&#x6A21;&#x578B;&#x8F93;&#x51FA;&#x662F;&#x8DDF;&#x7740;pytorch&#x8D70;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x4ECD;&#x65E7;&#x662F;4D&#x5F20;&#x91CF;&#xFF0C;&#x5F62;&#x72B6;&#x662F;(N, 1, H, W).</p>
+<p><strong>&#x591A;&#x5206;&#x7C7B;&#xFF1A;&apos;multiclass&apos;</strong>&#xFF0C;&#x591A;&#x5206;&#x7C7B;&#x662F;&#x66F4;&#x4E3A;&#x5E38;&#x89C1;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x4F8B;&#x5982;VOC&#x3001;COCO&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x8FD9;&#x65F6;&#x6807;&#x7B7E;&#x5143;&#x7D20;&#x4E3A;0, 1, ..., C-1&#xFF0C;&#x7C7B;&#x4F3C;&#x4EA4;&#x53C9;&#x71B5;&#x635F;&#x5931;&#x51FD;&#x6570;&#xFF08;&#x53EF;&#x4EE5;&#x628A;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x770B;&#x6210;&#x662F;&#x9010;&#x50CF;&#x7D20;&#x5206;&#x5272;&#xFF09;&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#x81EA;&#x7136;&#x662F;(N, C, H, W)&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x70B9;&#xFF0C;&#x9700;&#x8981;&#x7528;C&#x7EF4;&#x7684;&#x5206;&#x7C7B;&#x6982;&#x7387;&#x5411;&#x91CF;&#x6765;&#x505A;&#x5206;&#x7C7B;&#x3002;</p>
+<p><strong>&#x591A;&#x6807;&#x7B7E;</strong>&#xFF1A;&apos;multilabel&apos;&#xFF0C;&#x591A;&#x6807;&#x7B7E;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x6307;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x5373;&#x662F;A&#x7C7B;&#x53C8;&#x662F;B&#x7C7B;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x7684;&#x6807;&#x7B7E;&#x9700;&#x8981;&#x501F;&#x52A9;C&#x4E2A;&#x901A;&#x9053;&#x6765;&#x6807;&#x6CE8;&#xFF0C;&#x5BF9;&#x5E94;&#x7C7B;&#x522B;&#x8BBE;&#x7F6E;&#x4E3A;1&#xFF0C;&#x5176;&#x5B83;&#x8BBE;&#x7F6E;&#x4E3A;0&#x3002;&#x6240;&#x4EE5;&#x6807;&#x7B7E;&#x5F62;&#x5F0F;&#x4E3A;(N, C, H, W)&#xFF0C;&#x6A21;&#x578B;&#x8F93;&#x51FA;&#x4ECD;&#x65E7;&#x662F;(N, C, H, W)&#xFF0C;&#x591A;&#x6807;&#x7B7E;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x6A21;&#x578B;&#x8F93;&#x51FA;&#x65F6;&#x5C31;&#x4E0D;&#x518D;&#x505A;softmax&#xFF0C;&#x800C;&#x662F;&#x5BF9;&#x6BCF;&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x505A;sigmoid&#xFF0C;&#x4EE5;&#x6B64;&#x5224;&#x65AD;&#x8BE5;&#x7C7B;&#x662F;&#x5426;&#x5B58;&#x5728;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;loss&#x7684;&#x9009;&#x62E9;&#xFF0C;&#x4E00;&#x822C;&#x662F;&#x4EA4;&#x53C9;&#x71B5;&#x635F;&#x5931;&#x51FD;&#x6570;&#x3001;Dice&#x8FD9;&#x4E24;&#x4E2A;&#x7CFB;&#x5217;&#xFF0C;&#x5176;&#x5B83;&#x7684;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x9009;&#x62E9;&#xFF0C;&#x5B83;&#x5C31;&#x50CF;&#x6A21;&#x578B;&#x67B6;&#x6784;&#x4E00;&#x6837;&#xFF0C;&#x5B66;&#x672F;&#x754C;&#x6709;&#x51E0;&#x5341;&#x4E0A;&#x767E;&#x4E2A;&#x9009;&#x62E9;&#xFF0C;&#x4F46;&#x5728;&#x5DE5;&#x7A0B;&#x9886;&#x57DF;&#xFF0C;&#x4EC1;&#x8005;&#x89C1;&#x4EC1;&#x667A;&#x8005;&#x89C1;&#x667A;&#xFF0C;&#x66F4;&#x591A;&#x7684;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x635F;&#x5931;&#x51FD;&#x6570;&#x53EF;&#x53C2;&#x8003;<a href="https://github.com/JunMa11/SegLoss" target="_blank">SegLoss</a></p>
+<p><img src="imgs/loss.jpg" style="zoom:50%;"></p>
+<h3 id="&#x6307;&#x6807;&#x8BA1;&#x7B97;"><strong>&#x6307;&#x6807;&#x8BA1;&#x7B97;</strong></h3>
+<p>&#x8BED;&#x4E49;&#x5206;&#x5272;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x9010;&#x50CF;&#x7D20;&#x7684;&#x56FE;&#x50CF;&#x5206;&#x7C7B;&#xFF0C;&#x56E0;&#x6B64;&#x56FE;&#x50CF;&#x5206;&#x7C7B;&#x7684;&#x5404;&#x6307;&#x6807;&#x4E5F;&#x53EF;&#x7528;&#x4E8E;&#x8861;&#x91CF;&#x5206;&#x5272;&#x6A21;&#x578B;&#xFF0C;&#x4F46;&#x5206;&#x5272;&#x4E0E;&#x5206;&#x7C7B;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;&#x5B83;&#x6CE8;&#x91CD;&#x7A7A;&#x95F4;&#x7ED3;&#x6784;&#x4FE1;&#x606F;&#xFF0C;&#x5173;&#x6CE8;&#x96C6;&#x5408;&#x4E0E;&#x96C6;&#x5408;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x56E0;&#x6B64;&#x66F4;&#x5E38;&#x7528;&#x7684;&#x662F;IoU&#x6216;Dice&#x7CFB;&#x6570;&#x6765;&#x8BC4;&#x4F30;&#x6A21;&#x578B;&#x3002;</p>
+<p>IoU&#xFF08;Intersection over Union&#xFF0C;&#x4EA4;&#x5E76;&#x6BD4;&#xFF09;&#x662F;&#x7528;&#x6765;&#x8861;&#x91CF;&#x4E24;&#x4E2A;&#x96C6;&#x5408;&#x91CD;&#x53E0;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x516C;&#x5F0F;&#x8BA1;&#x7B97;&#x4E3A;&#xFF1A;&#x4EA4;&#x96C6;/&#x5E76;&#x96C6;&#xFF0C;&#x800C;dice&#x7CFB;&#x6570;&#xFF08;Dice similarity coefficient&#xFF0C;&#x53C8;&#x540D;dsc&#xFF09;&#x4E5F;&#x7528;&#x4E8E;&#x8BC4;&#x4F30;&#x4E24;&#x4E2A;&#x96C6;&#x5408;&#x91CD;&#x53E0;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x662F;&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x800C;&#x4E14;&#x6839;&#x636E;<a href="https://tomkwok.com/posts/iou-vs-f1/" target="_blank">&#x6587;&#x7AE0;&#x9610;&#x8FF0;</a>, &quot;Dice&#x503E;&#x5411;&#x4E8E;&#x8861;&#x91CF;&#x5E73;&#x5747;&#x6027;&#x80FD;&#xFF0C;&#x800C; IoU &#x503E;&#x5411;&#x4E8E;&#x8861;&#x91CF;&#x6700;&#x574F;&#x7684;&#x8868;&#x73B0;&#x3002;&quot;</p>
+<p>&#x5177;&#x4F53;&#x8BA1;&#x7B97;&#x65F6;&#xFF0C;&#x901A;&#x5E38;&#x5148;&#x83B7;&#x5F97;tn, tp, fn, fp&#xFF0C;&#x7136;&#x540E;&#x8BA1;&#x7B97;&#x6307;&#x6807;&#x3002;&#x84DD;&#x8272;&#x90E8;&#x5206;&#x4E3A;TP(True Positives)&#xFF0C;&#x7EA2;&#x8272;&#x90E8;&#x5206;&#x4E3A;FN(False Negatives)&#xFF0C;&#x9EC4;&#x8272;&#x90E8;&#x5206;&#x4E3A;(False Positives)</p>
+<p><img src="imgs/iou-dice.jpg" style="zoom:50%;"></p>
+<p>smp&#x5DE5;&#x5177;&#x5E93;&#x4E2D;&#x4E5F;&#x662F;&#x8FD9;&#x4E48;&#x505A;&#x7684;&#xFF0C;&#x9996;&#x5148;&#x6839;&#x636E;smp.metrics.get_stats&#x51FD;&#x6570;&#xFF0C;&#x83B7;&#x5F97;tp, fp, fn, tn&#x3002;&#x968F;&#x540E;&#x901A;&#x8FC7;&#x5404;&#x6307;&#x6807;&#x8BA1;&#x7B97;&#x51FD;&#x6570;&#x83B7;&#x5F97;&#x76F8;&#x5E94;&#x6307;&#x6807;&#xFF0C;</p>
+<p>&#x53EF;&#x8BA1;&#x7B97;&#x7684;&#x6307;&#x6807;&#x6709;<strong>fbeta_score&#x3001;f1_score&#x3001;iou_score&#x3001;accuracy&#x3001;precision&#x3001;recal1&#x3001;sensitivity&#x3001;specificity&#x3001;balanced_accuracy&#x3001;positive_predictive_value&#x3001;negative_predictive_value&#x3001;false_negative_rate&#x3001;false_positive_rate&#x3001;false_discovery_rate&#x3001;false_omission_rate&#x3001;positive_likelihood_ratio&#x3001;negative_likelihood_ratio</strong>&#x3002;</p>
+<p>&#x6765;&#x770B;&#x4E00;&#x6BB5;&#x4F7F;&#x7528;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> segmentation_models_pytorch <span class="hljs-keyword">as</span> smp
+
+<span class="hljs-comment"># lets assume we have multilabel prediction for 3 classes</span>
+output = torch.rand([<span class="hljs-number">10</span>, <span class="hljs-number">3</span>, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>])
+target = torch.rand([<span class="hljs-number">10</span>, <span class="hljs-number">3</span>, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>]).round().long()
+
+<span class="hljs-comment"># first compute statistics for true positives, false positives, false negative and</span>
+<span class="hljs-comment"># true negative &quot;pixels&quot;</span>
+tp, fp, fn, tn = smp.metrics.get_stats(output, target, mode=<span class="hljs-string">&apos;multilabel&apos;</span>, threshold=<span class="hljs-number">0.5</span>)
+
+<span class="hljs-comment"># then compute metrics with required reduction (see metric docs)</span>
+iou_score = smp.metrics.iou_score(tp, fp, fn, tn, reduction=<span class="hljs-string">&quot;micro&quot;</span>)
+f1_score = smp.metrics.f1_score(tp, fp, fn, tn, reduction=<span class="hljs-string">&quot;micro&quot;</span>)
+f2_score = smp.metrics.fbeta_score(tp, fp, fn, tn, beta=<span class="hljs-number">2</span>, reduction=<span class="hljs-string">&quot;micro&quot;</span>)
+accuracy = smp.metrics.accuracy(tp, fp, fn, tn, reduction=<span class="hljs-string">&quot;macro&quot;</span>)
+recall = smp.metrics.recall(tp, fp, fn, tn, reduction=<span class="hljs-string">&quot;micro-imagewise&quot;</span>)
+</code></pre>
+<p>&#x5728;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x6709;2&#x4E2A;&#x5730;&#x65B9;&#xFF0C;</p>
+<ol>
+<li>&#x8BA1;&#x7B97;tp, fp, fn, tn&#x65F6;&#xFF0C;&#x6A21;&#x578B;&#x8F93;&#x51FA;&#x8981;&#x8F6C;&#x6362;&#x4E3A;&#x7C7B;&#x522B;&#x6807;&#x7B7E;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6982;&#x7387;&#x5411;&#x91CF;&#x3002;</li>
+<li>&#x5BF9;batch&#x6570;&#x636E;&#x7EDF;&#x8BA1;&#x65F6;&#xFF0C;&#x662F;&#x5426;&#x9700;&#x8981;&#x8003;&#x8651;&#x6837;&#x672C;&#x4E0D;&#x5E73;&#x8861;&#x95EE;&#x9898;&#xFF0C;&#x8FDB;&#x884C;&#x52A0;&#x6743;&#x5E73;&#x5747;&#xFF0C;&#x662F;&#x5426;&#x9700;&#x8981;&#x57FA;&#x4E8E;&#x56FE;&#x50CF;&#x7EF4;&#x5EA6;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#x540E;&#x518D;&#x5E73;&#x5747;&#x3002;</li>
+</ol>
+<p>&#x5BF9;&#x4E8E;&#x95EE;&#x9898;1&#xFF0C;get_stats&#x51FD;&#x6570;&#x63D0;&#x4F9B;&#x4E86;&#x4E8C;&#x5206;&#x7C7B;&#x3001;&#x591A;&#x6807;&#x7B7E;&#x65F6;&#x7684;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;model&#x4E0B;&#x8BBE;&#x7F6E;&apos;binary&apos; &#x6216; &apos;multiclass&apos;&#x4E4B;&#x540E;&#xFF0C;&#x8BBE;&#x7F6E;threshold&#x5373;&#x53EF;&#x3002;&#x4ECE;&#x6B64;&#x53EF;&#x770B;&#x51FA;&#x9700;&#x8981;&#x624B;&#x52A8;&#x8FDB;&#x884C;sigmoid()&#xFF1B;</p>
+<p>&#x5BF9;&#x4E8E;&#x95EE;&#x9898;2&#xFF0C;&#x8F83;&#x4E3A;&#x590D;&#x6742;&#x4E00;&#x4E9B;&#xFF0C;smp&#x63D0;&#x4F9B;&#x4E86;6&#x4E2A;&#x6A21;&#x5F0F;&#xFF0C;&#x8FD9;&#x4E9B;&#x5728;sklearn&#x4E2D;&#x6709;&#x7684;&#xFF0C;&#x5206;&#x522B;&#x662F;&#xFF0C;&apos;micro&apos; &#xFF0C; &apos;macro&apos; &#xFF0C; &apos;weighted&apos; &#xFF0C; &apos;micro-imagewise&apos; &#xFF0C; &apos;macro-imagewise&apos; &#xFF0C; &apos;weighted-imagewise&apos;&#x3002;</p>
+<p>&apos;micro&#x2019; &#x7528;&#x4E8E;&#x8BA1;&#x7B97;&#x603B;&#x4F53;&#x7684;&#x6307;&#x6807;&#xFF0C;&#x4E0D;&#x5BF9;&#x6BCF;&#x4E2A;&#x7C7B;&#x522B;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#xFF0C;</p>
+<p>&apos;macro&apos;&#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x7C7B;&#x522B;&#x7684;&#x6307;&#x6807;&#xFF0C;&#x7136;&#x540E;&#x6C42;&#x548C;&#x5E73;&#x5747;&#xFF0C;&#x4E0D;&#x52A0;&#x6743;&#x3002;</p>
+<p>&#x2019;weighted&#x2019; &#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x7C7B;&#x522B;&#x7684;&#x6307;&#x6807;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;&#x6BCF;&#x7C7B;&#x6837;&#x672C;&#x6570;&#xFF0C;&#x8FDB;&#x884C;&#x52A0;&#x6743;&#x6C42;&#x5E73;&#x5747;</p>
+<p>&#x53EF;&#x53C2;&#x8003;&#xFF08;<a href="https://blog.csdn.net/qq_27668313/article/details/125570210&#xFF09;" target="_blank">https://blog.csdn.net/qq_27668313/article/details/125570210&#xFF09;</a></p>
+<p>&#x5BF9;&#x4E8E;x-imagewise&#xFF0C;&#x8868;&#x793A;&#x6839;&#x636E;&#x56FE;&#x7247;&#x7EF4;&#x5EA6;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x6307;&#x6807;&#x6C42;&#x53D6;&#x5E73;&#x5747;&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x53EF;&#x77E5;&#x9053;&#xFF0C;&#x524D;&#x7F00;micro&#x3001;macro&#x3001;weighted&#x662F;&#x51B3;&#x5B9A;&#x5982;&#x4F55;&#x5BF9;&#x7C7B;&#x522B;&#x8FDB;&#x884C;&#x6C42;&#x53D6;&#x5E73;&#x5747;&#xFF0C;&#x540E;&#x7F00;-imagewise&#x8868;&#x793A;&#x5982;&#x4F55;&#x5BF9;&#x56FE;&#x7247;&#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x6C42;&#x5E73;&#x5747;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#xFF0C;&#x5BF9;&#x4E8E;binary&#x6765;&#x8BF4;&#xFF0C;&apos;micro&apos; = &apos;macro&apos; = &apos;weighted&apos; &#xFF0C;&#x5E76;&#x4E14; &apos;micro-imagewise&apos; = &apos;macro-imagewise&apos; = &apos;weighted-imagewise&apos;&#x3002;</p>
+<p>&#x5728;&#x8FD9;&#x91CC;&#x91CD;&#x70B9;&#x8BB2;&#x4E00;&#x4E0B;&#xFF0C;&#x672C;&#x6848;&#x4F8B;&#x91C7;&#x7528;&#x7684;&#x662F;macro&#x6765;&#x7EDF;&#x8BA1;&#xFF0C;&#x56E0;&#x6B64;iou&#x6BD4;&#x8F83;&#x4F4E;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x624B;&#x5199;iou&#x7EDF;&#x8BA1;&#xFF0C;&#x4E00;&#x822C;&#x4F1A;&#x57FA;&#x4E8E;&#x56FE;&#x7247;&#x7EF4;&#x5EA6;&#x8BA1;&#x7B97;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x5E73;&#x5747;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;macro-imagewise&#x3002;</p>
+<p>&#x672C;&#x6848;&#x4F8B;&#x4E2D;&#xFF0C;&#x7531;&#x4E8E;&#x5927;&#x91CF;&#x9634;&#x6027;&#x56FE;&#x7247;&#x7684;&#x5B58;&#x5728;&#xFF0C;&#x6240;&#x4EE5;&#x82E5;&#x4E0D;&#x91C7;&#x7528;-imagewise&#x7684;&#x8BDD;&#xFF0C;&#x9634;&#x6027;&#x7247;&#x867D;&#x7136;&#x9884;&#x6D4B;&#x6B63;&#x786E;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x4E0A;&#x662F;tn&#x5F88;&#x5927;&#xFF0C;&#x800C;tn&#x7F3A;&#x4E0D;&#x8BA1;&#x5165;iou&#x8BA1;&#x7B97;&#x4E2D;&#x3002;&#x82E5;&#x91C7;&#x7528;imagewise&#xFF0C;&#x9634;&#x6027;&#x9884;&#x6D4B;&#x6B63;&#x786E;&#x65F6;&#xFF0C;iou&#x4E3A;1&#xFF0C;&#x4ECE;&#x800C;&#x53EF;&#x4EE5;&#x5927;&#x5E45;&#x5EA6;&#x63D0;&#x9AD8;iou&#x503C;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4EE3;&#x7801;&#x89C2;&#x5BDF;&#xFF0C;&#x5BF9;&#x4E8E;&#x9634;&#x6027;&#x7247;&#xFF0C;&#x6A21;&#x578B;&#x9884;&#x6D4B;&#x5B8C;&#x5168;&#x6B63;&#x786E;&#xFF0C;tp, fp, fn&#x503C;&#x90FD;&#x662F;0&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;iou&#x4E5F;&#x662F;&#x4F1A;&#x88AB;&#x8BA1;&#x7B97;&#x4E3A;1&#x7684;&#x3002;</p>
+<pre><code class="lang-python">tp, fp, fn, tn = smp.metrics.get_stats(c, b, mode=<span class="hljs-string">&quot;binary&quot;</span>)
+tp
+Out[<span class="hljs-number">12</span>]: tensor([[<span class="hljs-number">0</span>]], device=<span class="hljs-string">&apos;cuda:0&apos;</span>)
+fp
+Out[<span class="hljs-number">13</span>]: tensor([[<span class="hljs-number">0</span>]], device=<span class="hljs-string">&apos;cuda:0&apos;</span>)
+fn
+Out[<span class="hljs-number">14</span>]: tensor([[<span class="hljs-number">0</span>]], device=<span class="hljs-string">&apos;cuda:0&apos;</span>)
+tn
+Out[<span class="hljs-number">15</span>]: tensor([[<span class="hljs-number">65536</span>]], device=<span class="hljs-string">&apos;cuda:0&apos;</span>)
+smp.metrics.iou_score(tp, fp, fn, tn, reduction=<span class="hljs-string">&quot;macro&quot;</span>)
+Out[<span class="hljs-number">16</span>]: tensor(<span class="hljs-number">1.</span>, device=<span class="hljs-string">&apos;cuda:0&apos;</span>)
+</code></pre>
+<h2 id="&#x5BF9;&#x6BD4;&#x5B9E;&#x9A8C;"><strong>&#x5BF9;&#x6BD4;&#x5B9E;&#x9A8C;</strong></h2>
+<p>&#x6B64;&#x90E8;&#x5206;&#x5B9E;&#x9A8C;&#x6CA1;&#x6709;&#x8FDB;&#x8FC7;&#x4E25;&#x683C;&#x5FAE;&#x8C03;&#xFF0C;&#x53EA;&#x7528;&#x4E8E;&#x6A2A;&#x5411;&#x6BD4;&#x5BF9;&#xFF0C;&#x4E3B;&#x8981;&#x89C2;&#x5BDF;&#x4E0D;&#x540C;&#x67B6;&#x6784;&#x3001;&#x4E0D;&#x540C;backbone&#x3001;&#x4E0D;&#x540C;&#x5B66;&#x4E60;&#x7387;&#x7B56;&#x7565;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#xFF0C;&#x53EF;&#x4EE5;&#x5927;&#x4F53;&#x4E0A;&#x89C2;&#x5BDF;&#x51FA;&#x4E00;&#x5B9A;&#x7684;&#x8D8B;&#x52BF;&#xFF0C;&#x4F9B;&#x5927;&#x5BB6;&#x53C2;&#x8003;&#xFF0C;&#x4EE5;&#x4FBF;&#x540E;&#x7EED;&#x9009;&#x62E9;&#x6A21;&#x578B;&#x3002;</p>
+<p>&#x5728;&#x8FD9;&#x91CC;&#x4E3B;&#x8981;&#x505A;&#x4E86;4&#x6B21;&#x5B9E;&#x9A8C;&#xFF0C;&#x5206;&#x522B;&#x662F;&#xFF1A;</p>
+<p><strong>&#x5B9E;&#x9A8C;&#x4E00;</strong>&#xFF1A;&#x4E0D;&#x540C;backbone&#x7684;&#x5B9E;&#x9A8C;&#xFF0C;&#x731C;&#x60F3;&#x4E3A;&#x8D8A;&#x590D;&#x6742;&#x7684;backbone&#xFF0C;&#x7CBE;&#x5EA6;&#x8D8A;&#x9AD8;&#xFF0C;&#x8FD9;&#x91CC;&#x91C7;&#x7528;uent-resnet18/34/50&#x6765;&#x89C2;&#x5BDF;&#x3002;</p>
+<p><strong>&#x5B9E;&#x9A8C;&#x4E8C;</strong>&#xFF1A;&#x4E0D;&#x540C;&#x7F51;&#x7EDC;&#x67B6;&#x6784;&#x4E4B;&#x95F4;&#x7684;&#x5B9E;&#x9A8C;&#xFF0C;&#x731C;&#x60F3;&#x662F;&#x6709;&#x7CFB;&#x5217;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x9C81;&#x68D2;&#x6027;&#x66F4;&#x9AD8;&#xFF0C;&#x9002;&#x7528;&#x6027;&#x66F4;&#x5E7F;&#xFF0C;&#x5982;unet&#x3001;deeplab&#x7CFB;&#x5217;&#x3002;&#x8FD9;&#x91CC;backbone&#x5747;&#x91C7;&#x7528;resnet-18&#xFF0C;&#x8BAD;&#x7EC3;&#x4E86;&#x4E5D;&#x4E2A;&#x6A21;&#x578B;&#x3002;</p>
+<p><strong>&#x5B9E;&#x9A8C;&#x4E09;</strong>&#xFF1A;encoder&#x91C7;&#x7528;&#x5C0F;10&#x500D;&#x5B66;&#x4E60;&#x7387;&#xFF0C;&#x8BA9;decoder&#x5B66;&#x4E60;&#x7387;&#x9AD8;&#x4E00;&#x4E9B;&#xFF0C;&#x731C;&#x60F3;&#x662F;&#x8981;&#x6BD4;&#x76F8;&#x540C;&#x5B66;&#x4E60;&#x7387;&#x7684;&#x6548;&#x679C;&#x66F4;&#x597D;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x9700;&#x8981;&#x4E0E;&#x5B9E;&#x9A8C;&#x4E8C;&#x4E2D;&#x7684;&#x4E5D;&#x4E2A;&#x6A21;&#x578B;&#x7CBE;&#x5EA6;&#x5BF9;&#x6BD4;&#x3002;</p>
+<p><strong>&#x5B9E;&#x9A8C;&#x56DB;</strong>&#xFF1A;&#x6839;&#x636E;&#x56FE;&#x7247;&#x968F;&#x673A;&#x5212;&#x5206;&#x4E0E;&#x75C5;&#x4EBA;&#x7EF4;&#x5EA6;&#x5212;&#x5206;&#x7684;&#x5DEE;&#x5F02;&#xFF0C;&#x731C;&#x60F3;&#x662F;&#x6839;&#x636E;&#x56FE;&#x7247;&#x968F;&#x673A;&#x5212;&#x5206;&#xFF0C;&#x7CBE;&#x5EA6;&#x8981;&#x6BD4;&#x75C5;&#x4EBA;&#x9AD8;&#x7684;&#xFF0C;&#x6BD5;&#x7ADF;&#x7528;&#x5230;&#x4E86;&#x6781;&#x5176;&#x7C7B;&#x4F3C;&#x7684;&#x56FE;&#x7247;&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#x3002;</p>
+<p>&#x5B9E;&#x9A8C;&#x5B8C;&#x6574;&#x4EE3;&#x7801;&#x5728;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/tree/main/code/chapter-8/segmentation" target="_blank">github</a></p>
+<h3 id="&#x5B9E;&#x9A8C;&#x4E00;&#xFF1A;&#x4E0D;&#x540C;backbone&#x7684;&#x5DEE;&#x5F02;"><strong>&#x5B9E;&#x9A8C;&#x4E00;&#xFF1A;&#x4E0D;&#x540C;backbone&#x7684;&#x5DEE;&#x5F02;</strong></h3>
+<pre><code class="lang-shell">python 02_train_seg.py --batch-size 16 --workers 8 --lr 0.01 --epochs 100 --useplateau --model unet --encoder resnet18
+python 02_train_seg.py --batch-size 16 --workers 8 --lr 0.01 --epochs 100 --useplateau --model unet --encoder resnet34
+python 02_train_seg.py --batch-size 16 --workers 8 --lr 0.01 --epochs 100 --useplateau --model unet --encoder resnet50
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>unet-resnet18</th>
+<th>unet-resnet34</th>
+<th>unet-resnet50</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>miou</td>
+<td>0.82</td>
+<td>0.79</td>
+<td>0.84</td>
+</tr>
+</tbody>
+</table>
+<p><img src="imgs/exp1.jpg" style="zoom:50%;"></p>
+<p>&#x7ED3;&#x8BBA;&#xFF1A;&#x53EF;&#x8BC1;&#x5B9E;&#x731C;&#x60F3;&#x57FA;&#x672C;&#x6B63;&#x786E;&#xFF0C;&#x8D8A;&#x590D;&#x6742;&#x7684;backbone&#xFF0C;&#x7CBE;&#x5EA6;&#x8D8A;&#x9AD8;&#x3002;&#x4F46;resnet34&#x7684;&#x7CBE;&#x5EA6;&#x53CD;&#x800C;&#x6BD4;resnet18&#x8981;&#x5DEE;&#xFF0C;&#x8FD9;&#x4E2A;&#x9700;&#x8981;&#x4ED4;&#x7EC6;&#x7814;&#x7A76;&#xFF0C;&#x5728;&#x6B64;&#x4E0D;&#x505A;&#x8BA8;&#x8BBA;&#x3002;</p>
+<h3 id="&#x5B9E;&#x9A8C;&#x4E8C;&#xFF1A;&#x5BF9;&#x6BD4;&#x4E0D;&#x540C;&#x6A21;&#x578B;&#x67B6;&#x6784;&#x5DEE;&#x5F02;"><strong>&#x5B9E;&#x9A8C;&#x4E8C;&#xFF1A;&#x5BF9;&#x6BD4;&#x4E0D;&#x540C;&#x6A21;&#x578B;&#x67B6;&#x6784;&#x5DEE;&#x5F02;</strong></h3>
+<pre><code class="lang-shell">python 03_train_architecture.py --batch-size 16 --workers 4 --lr 0.01 --epochs 100 --useplateau --encoder resnet18
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x770B;&#x5230;unet++&#x548C;deeplabv3+&#x7CBE;&#x5EA6;&#x8F83;&#x9AD8;&#xFF0C;&#x8FC7;&#x5B83;&#x4EEC;&#x7684;&#x8BAD;&#x7EC3;&#x901F;&#x5EA6;&#x4E5F;&#x662F;&#x6700;&#x6162;&#x7684;&#xFF0C;&#x4FA7;&#x9762;&#x53CD;&#x6620;&#x51FA;&#x5B83;&#x7684;&#x6A21;&#x578B;&#x590D;&#x6742;&#xFF0C;&#x7406;&#x6240;&#x5E94;&#x5F53;&#x83B7;&#x5F97;&#x6700;&#x9AD8;&#x7CBE;&#x5EA6;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>&apos;Unet&apos;</th>
+<th>&apos;UnetPlusPlus&apos;</th>
+<th>&apos;MAnet&apos;</th>
+<th>&apos;Linknet&apos;</th>
+<th>&apos;FPN&apos;</th>
+<th>&apos;PSPNet&apos;</th>
+<th>&apos;DeepLabV3&apos;</th>
+<th>&apos;DeepLabV3Plus&apos;</th>
+<th>PAN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>miou</td>
+<td>0.81</td>
+<td>0.85</td>
+<td>0.73</td>
+<td>0.83</td>
+<td>0.83</td>
+<td>0.78</td>
+<td>0.81</td>
+<td>0.84</td>
+<td>0.62</td>
+</tr>
+</tbody>
+</table>
+<p><img src="imgs/exp2.jpg" style="zoom:50%;"></p>
+<p><strong>&#x5B9E;&#x9A8C;&#x4E09;&#xFF1A;encoder&#x91C7;&#x7528;&#x66F4;&#x5C0F;&#x5B66;&#x4E60;&#x7387;&#x5DEE;&#x5F02;</strong></p>
+<p># encoder&#x91C7;&#x7528;&#x5C0F;10&#x500D;&#x5B66;&#x4E60;&#x7387; </p>
+<pre><code class="lang-shell">python 03_train_architecture.py --batch-size 16 --workers 4 --lr 0.01 --epochs 100 --useplateau --encoder resnet18 --lowlr
+</code></pre>
+<p>&#x8981;&#x60F3;&#x83B7;&#x5F97;&#x597D;&#x7684;&#x7CBE;&#x5EA6;&#xFF0C;&#x5F80;&#x5F80;&#x9700;&#x8981;&#x5404;&#x79CD;trick&#x6765;&#x5FAE;&#x8C03;&#xFF0C;&#x5BF9;&#x4E8E;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x6A21;&#x578B;&#x4E2D;encoder&#x90E8;&#x5206;&#xFF0C;&#x53EF;&#x4EE5;&#x91C7;&#x7528;&#x8F83;&#x5C0F;&#x5B66;&#x4E60;&#x7387;&#xFF0C;&#x56E0;&#x4E3A;encoder&#x63D0;&#x53D6;&#x7684;&#x662F;&#x5171;&#x6027;&#x7684;&#x8BED;&#x4E49;&#x7279;&#x5F81;&#xFF0C;&#x5BF9;&#x4E8E;decoder&#x624D;&#x9700;&#x8981;&#x7279;&#x6709;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x5BF9;&#x5B83;&#x4EEC;&#x4E24;&#x4E2A;&#x8FDB;&#x884C;&#x5DEE;&#x5F02;&#x5316;&#x8BBE;&#x7F6E;&#x5B66;&#x4E60;&#x7387;&#x3002;&#x4E3A;&#x6B64;&#xFF0C;&#x5BF9;encoder&#x5B66;&#x4E60;&#x7387;&#x4E58;&#x4EE5;0.1&#xFF0C;&#x89C2;&#x5BDF;&#x6A21;&#x578B;&#x7CBE;&#x5EA6;&#x53D8;&#x5316;&#x3002;</p>
+<p>&#x4ECE;&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#x6765;&#x770B;&#xFF0C;&#x7B80;&#x5355;&#x7C97;&#x66B4;&#x7684;&#x8C03;&#x6574;&#x5927;&#x90FD;&#x672A;&#x83B7;&#x5F97;&#x7CBE;&#x5EA6;&#x63D0;&#x5347;&#xFF0C;&#x53CD;&#x800C;&#x90FD;&#x5B58;&#x5728;3-4&#x4E2A;&#x70B9;&#x7684;&#x6389;&#x70B9;&#xFF0C;deeplabv3, MAnet&#xFF0C; PAN&#x7F3A;&#x6709;&#x63D0;&#x5347;&#xFF0C;&#x7531;&#x6B64;&#x53EF;&#x89C1;&#x8BAD;&#x7EC3;&#x7684;trick&#x8FD8;&#x662F;&#x96BE;&#x4EE5;&#x9002;&#x5E94;&#x5404;&#x4E2A;&#x573A;&#x666F;&#x7684;&#x3002;</p>
+<p>&#x7EFC;&#x5408;&#x5B9E;&#x9A8C;&#x4E8C;&#x3001;&#x5B9E;&#x9A8C;&#x4E09;&#xFF0C;&#x53EF;&#x4EE5;&#x89C2;&#x5BDF;&#x5230;unet&#x7CFB;&#x5217;&#x548C;deeplab&#x7CFB;&#x5217;&#x90FD;&#x662F;&#x6BD4;&#x8F83;&#x7A33;&#x5B9A;&#x7684;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x5B83;&#x4EEC;&#x4E00;&#x76F4;&#x88AB;&#x5DE5;&#x4E1A;&#x754C;&#x8BA4;&#x53EF;&#x3001;&#x4F7F;&#x7528;&#x81F3;&#x4ECA;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x56E0;&#x6B64;&#x63A8;&#x8350;&#x9996;&#x9009;Unet&#x7CFB;&#x5217;&#x6216;deepalabv3+&#x8FDB;&#x884C;&#x4EFB;&#x52A1;&#x7684;&#x521D;&#x6B65;&#x9A8C;&#x8BC1;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>&apos;Unet&apos;</th>
+<th>&apos;UnetPlusPlus&apos;</th>
+<th>&apos;MAnet&apos;</th>
+<th>&apos;Linknet&apos;</th>
+<th>&apos;FPN&apos;</th>
+<th>&apos;PSPNet&apos;</th>
+<th>&apos;DeepLabV3&apos;</th>
+<th>&apos;DeepLabV3Plus&apos;</th>
+<th>PAN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lowlr</td>
+<td>0.79</td>
+<td>0.81</td>
+<td>0.82</td>
+<td>0.81</td>
+<td>0.81</td>
+<td>0.76</td>
+<td>0.83</td>
+<td>0.80</td>
+<td>0.80</td>
+</tr>
+<tr>
+<td>base</td>
+<td>0.81</td>
+<td>0.85</td>
+<td>0.73</td>
+<td>0.83</td>
+<td>0.83</td>
+<td>0.78</td>
+<td>0.81</td>
+<td>0.84</td>
+<td>0.62</td>
+</tr>
+</tbody>
+</table>
+<p><img src="imgs/exp3.jpg" style="zoom:50%;"></p>
+<h3 id="&#x5B9E;&#x9A8C;&#x56DB;&#xFF1A;&#x6839;&#x636E;&#x56FE;&#x7247;&#x968F;&#x673A;&#x5212;&#x5206;&#x6570;&#x636E;&#x96C6;"><strong>&#x5B9E;&#x9A8C;&#x56DB;&#xFF1A;&#x6839;&#x636E;&#x56FE;&#x7247;&#x968F;&#x673A;&#x5212;&#x5206;&#x6570;&#x636E;&#x96C6;</strong></h3>
+<p>&#x6B64;&#x5B9E;&#x9A8C;&#x9700;&#x8981;&#x5728;01_parse_data.py &#x4EE3;&#x7801;&#x4E2D;&#x7684;data_split()&#x51FD;&#x6570;&#x4E0B;&#x4FEE;&#x6539;groupby&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x9700;&#x8981;&#x6539;&#x4E3A;</p>
+<pre><code class="lang-python">grouped = dff.groupby(<span class="hljs-string">&apos;image_path&apos;</span>)  <span class="hljs-comment"># bad method</span>
+</code></pre>
+<p>&#x5E76;&#x4E14;&#x5C06;csv&#x6587;&#x4EF6;&#x540D;&#x505A;&#x76F8;&#x5E94;&#x4FEE;&#x6539;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>miou</th>
+<th>&#x7EC6;&#x8282;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unet-resnet18</td>
+<td>0.82</td>
+<td>&#x57FA;&#x4E8E;patient&#x7EF4;&#x5EA6;&#x5212;&#x5206;</td>
+</tr>
+<tr>
+<td>unet-resent18</td>
+<td>0.88</td>
+<td>&#x57FA;&#x4E8E;imgs&#x7EF4;&#x5EA6;&#x5212;&#x5206;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x57FA;&#x4E8E;imgs&#x7EF4;&#x5EA6;&#x5212;&#x5206;&#x5B58;&#x5728;&#x5F88;&#x660E;&#x663E;&#x7684;&#x6027;&#x80FD;&#x63D0;&#x5347;&#xFF0C;&#x7EA6;6&#x4E2A;&#x70B9;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x63D0;&#x5347;&#x662F;&#x5047;&#x6027;&#x7684;&#xFF0C;&#x4F1A;&#x8FF7;&#x60D1;&#x5DE5;&#x7A0B;&#x5E08;&#xFF0C;&#x8BEF;&#x4EE5;&#x4E3A;&#x6A21;&#x578B;&#x5F88;&#x597D;&#x3002;</p>
+<p>&#x8FD9;&#x662F;&#x5B9E;&#x9645;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#x4E2D;&#x5E38;&#x78B0;&#x5230;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4E00;&#x5B9A;&#x8981;&#x6CE8;&#x610F;&#x4E1A;&#x52A1;&#x6570;&#x636E;&#x7684;&#x7EF4;&#x5EA6;&#x5212;&#x5206;&#x95EE;&#x9898;&#x3002;</p>
+<h2 id="&#x6A21;&#x578B;&#x63A8;&#x7406;"><strong>&#x6A21;&#x578B;&#x63A8;&#x7406;</strong></h2>
+<p>&#x6A21;&#x578B;&#x63A8;&#x7406;&#x4E0E;&#x56FE;&#x50CF;&#x5206;&#x7C7B;&#x7C7B;&#x4F3C;&#xFF0C;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x7279;&#x6B8A;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x60F3;&#x91CD;&#x70B9;&#x8BB2;&#x4E00;&#x4E0B;&#x6A21;&#x578B;&#x8F93;&#x51FA;&#x7684;&#x6570;&#x636E;&#x5982;&#x4F55;&#x8F6C;&#x6362;&#x4E3A;&#x8981;&#x7528;&#x7684;&#x7C7B;&#x522B;mask&#x3002;</p>
+<p>&#x7531;&#x4E8E;&#x662F;&#x4E8C;&#x5206;&#x7C7B;&#xFF0C;&#x5E76;&#x4E14;&#x8F93;&#x51FA;&#x662F;&#x4E00;&#x901A;&#x9053;&#x7684;&#x77E9;&#x9635;&#xFF0C;&#x56E0;&#x6B64;&#x4F1A;&#x91C7;&#x7528;sigmoid&#x5C06;&#x5B83;&#x53D8;&#x4E3A;&#x5206;&#x7C7B;&#x6982;&#x7387;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x901A;&#x8FC7;&#x9608;&#x503C;&#xFF08;&#x4E00;&#x822C;&#x8BBE;&#x4E3A;0.5&#xFF09;&#x8F6C;&#x6362;&#x4E3A;0/1&#x7684;mask&#x77E9;&#x9635;&#x3002;&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-python">outputs = model(img_tensor_batch)
+outputs_prob = (outputs.sigmoid() &gt; <span class="hljs-number">0.5</span>).float()
+outputs_prob = outputs_prob.squeeze().cpu().numpy().astype(<span class="hljs-string">&apos;uint8&apos;</span>)
+</code></pre>
+<p>&#x63A5;&#x7740;&#x901A;&#x8FC7;opencv&#x5BFB;&#x627E;&#x8F6E;&#x5ED3;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x8FB9;&#x754C;&#xFF0C;&#x6700;&#x540E;&#x8FDB;&#x884C;&#x53EF;&#x89C6;&#x5316;&#x3002;</p>
+<p>&#x6700;&#x540E;&#x901A;&#x8FC7;imageio&#x5B9E;&#x73B0;gif&#x56FE;&#x7684;&#x751F;&#x6210;&#xFF0C;&#x53EF;&#x53C2;&#x89C1;05-gen-gif.py&#x3002;</p>
+<p>&#x5373;&#x53EF;&#x5F97;&#x5230;&#x4E0B;&#x56FE;</p>
+<p><img src="imgs/pred-gif.gif" alt=""></p>
+<h2 id="&#x5C0F;&#x7ED3;"><strong>&#x5C0F;&#x7ED3;</strong></h2>
+<p>&#x901A;&#x8FC7;&#x672C;&#x6848;&#x4F8B;&#xFF0C;&#x53EF;&#x4EE5;&#x638C;&#x63E1;&#xFF1A;</p>
+<ol>
+<li>&#x8BED;&#x4E49;&#x5206;&#x5272;&#x6A21;&#x578B;&#x7684;&#x8BAD;&#x7EC3;&#x4E0E;&#x63A8;&#x7406;&#x6D41;&#x7A0B;</li>
+<li>smp&#x5DE5;&#x5177;&#x5E93;&#x4E2D;&#x7684;&#x6A21;&#x578B;&#x521B;&#x5EFA;&#x3001;&#x635F;&#x5931;&#x51FD;&#x6570;&#x521B;&#x5EFA;&#x3001;&#x8BC4;&#x4EF7;&#x6307;&#x6807;&#x8BA1;&#x7B97;&#x4F7F;&#x7528;</li>
+<li>&#x8BC4;&#x4EF7;&#x6307;&#x6807;&#x4E2D;&#xFF0C;micro&#x3001;macro&#x3001;weighted&#xFF0C; x-imagewise&#x7684;&#x5DEE;&#x522B;</li>
+<li>dice&#x4E0E;iou&#x8BC4;&#x4EF7;&#x6307;&#x6807;&#x7684;&#x5B9A;&#x4E49;&#x4E0E;&#x5DEE;&#x5F02;</li>
+<li>9&#x4E2A;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x67B6;&#x6784;&#x5B9E;&#x9A8C;&#x6BD4;&#x5BF9;&#xFF0C;&#x4E3A;&#x540E;&#x7EED;&#x9009;&#x62E9;&#x6A21;&#x578B;&#x63D0;&#x4F9B;&#x53C2;&#x8003;</li>
+<li>&#x533B;&#x5B66;&#x6570;&#x636E;&#x5904;&#x7406;&#x5212;&#x5206;&#x7EF4;&#x5EA6;&#xFF0C;&#x9700;&#x8981;&#x57FA;&#x4E8E;&#x60A3;&#x8005;&#x7EF4;&#x5EA6;&#xFF0C;&#x4E0D;&#x53EF;&#x57FA;&#x4E8E;&#x56FE;&#x7247;&#x7EF4;&#x5EA6;</li>
+</ol>
+<p>&#x57FA;&#x4E8E;&#x672C;&#x6848;&#x4F8B;&#x9700;&#x8981;&#x8FDB;&#x4E00;&#x6B65;&#x5B66;&#x4E60;&#x7684;&#x5185;&#x5BB9;&#xFF1A;</p>
+<ol>
+<li>&#x91C7;&#x7528;&#x591A;&#x7C7B;&#x5206;&#x5272;&#x4EFB;&#x52A1;&#x8FDB;&#x884C;&#x5B9E;&#x9A8C;&#xFF0C;&#x4E86;&#x89E3;softmax&#x4E0E;sigmoid&#x7684;&#x5904;&#x7406;&#x5DEE;&#x5F02;&#xFF1B;</li>
+<li>&#x8FDB;&#x4E00;&#x6B65;&#x4E86;&#x89E3;unet&#x7CFB;&#x5217;&#x3001;deeplab&#x7CFB;&#x5217;&#x9002;&#x5408;&#x7684;&#x573A;&#x666F;</li>
+<li>&#x8BED;&#x4E49;&#x5206;&#x5272;&#x540E;&#x5904;&#x7406;&#xFF1A;&#x56FE;&#x50CF;&#x5904;&#x7406;&#x7684;&#x5F62;&#x6001;&#x5B66;&#x64CD;&#x4F5C;</li>
+</ol>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; TingsongYu 2021 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2022&#x5E74;07&#x6708;23&#x65E5;21:48:10
+</span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="8.1-classification.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 8.1 图像分类——胸部X光肺炎分类">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"8.2 图像分割——脑MRI胶质瘤分割","level":"3.1.2","depth":2,"previous":{"title":"8.1 图像分类——胸部X光肺炎分类","level":"3.1.1","depth":2,"path":"chapter-8/8.1-classification.md","ref":"chapter-8/8.1-classification.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年07月23日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-8/8.2-segmentation.md","mtime":"2023-03-11T14:21:37.514Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-03-11T14:23:17.489Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/gumshoe.polyfills.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-3-ba/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -102,6 +102,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="8.2-segmentation.html" />
+    
     
     <link rel="prev" href="./" />
     
@@ -850,6 +852,19 @@
             
         </li>
     
+        <li class="chapter " data-level="3.1.2" data-path="8.2-segmentation.html">
+            
+                <a href="8.2-segmentation.html">
+            
+                    
+                    8.2 图像分割——脑MRI胶质瘤分割
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -908,6 +923,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="81-&#x56FE;&#x50CF;&#x5206;&#x7C7B;&#x6848;&#x4F8B;&#x2014;&#x2014;&#x80F8;&#x90E8;x&#x5149;&#x80BA;&#x708E;&#x5206;&#x7C7B;">8.1 &#x56FE;&#x50CF;&#x5206;&#x7C7B;&#x6848;&#x4F8B;&#x2014;&#x2014;&#x80F8;&#x90E8;X&#x5149;&#x80BA;&#x708E;&#x5206;&#x7C7B;</h1>
+<p><img src="imgs/pred-img.png" alt=""></p>
 <h2 id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</h2>
 <p>&#x524D;&#x8A00;&#xFF1A;&#x65F6;&#x9694;7&#x4E2A;&#x6708;&#xFF0C;&#x7EC8;&#x4E8E;&#x80FD;&#x6709;&#x65F6;&#x95F4;&#x7EE7;&#x7EED;&#x64B0;&#x5199;&#x672C;&#x4E66;&#xFF0C;&#x5728;&#x8FD9;&#x671F;&#x95F4;&#xFF0C;&#x751F;&#x6D3B;&#x53D1;&#x751F;&#x4E86;&#x91CD;&#x5927;&#x53D8;&#x5316;&#x3001;&#x5DE5;&#x4F5C;&#x5185;&#x5BB9;&#x4E0E;&#x5C97;&#x4F4D;&#x4E5F;&#x6709;&#x4E0D;&#x5C0F;&#x8C03;&#x6574;&#xFF0C;&#x6574;&#x7406;&#x800C;&#x8A00;&#x8FD8;&#x662F;&#x672A;&#x6765;&#x53EF;&#x671F;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x5C06;&#x5F00;&#x59CB;&#x64B0;&#x5199;&#x4E2D;&#x7BC7;&#xFF0C;&#x6848;&#x4F8B;&#x5E94;&#x7528;&#x3002;</p>
 <p>&#x672C;&#x6848;&#x4F8B;&#x4EE5;&#x80F8;&#x90E8;X&#x5149;&#x7247;&#x4E8C;&#x5206;&#x7C7B;&#x4EFB;&#x52A1;&#x4E3A;&#x6848;&#x4F8B;&#xFF0C;&#x5B8C;&#x6574;&#x7684;&#x4ECB;&#x7ECD;&#x56FE;&#x50CF;&#x5206;&#x7C7B;&#x4EFB;&#x52A1;&#x7684;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x3002;&#x5176;&#x4E2D;&#xFF0C;&#x6D89;&#x53CA;&#x7684;&#x77E5;&#x8BC6;&#x70B9;&#x6709;&#xFF1A;</p>
@@ -1081,10 +1097,14 @@ nohup python train_main.py --data-path ./data/chest_xray --batch-size 64 --worke
 
             
                 
-                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 第八章 图像项目案例">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 第八章 图像项目案例">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="8.2-segmentation.html" class="navigation navigation-next " aria-label="Next page: 8.2 图像分割——脑MRI胶质瘤分割">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -1093,7 +1113,7 @@ nohup python train_main.py --data-path ./data/chest_xray --batch-size 64 --worke
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8.1 图像分类——胸部X光肺炎分类","level":"3.1.1","depth":2,"previous":{"title":"第八章 图像项目案例","level":"3.1","depth":1,"path":"chapter-8/README.md","ref":"chapter-8/README.md","articles":[{"title":"8.1 图像分类——胸部X光肺炎分类","level":"3.1.1","depth":2,"path":"chapter-8/8.1-classification.md","ref":"chapter-8/8.1-classification.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年07月23日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-8/8.1-classification.md","mtime":"2023-03-02T07:39:59.850Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-03-02T07:44:31.225Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"8.1 图像分类——胸部X光肺炎分类","level":"3.1.1","depth":2,"next":{"title":"8.2 图像分割——脑MRI胶质瘤分割","level":"3.1.2","depth":2,"path":"chapter-8/8.2-segmentation.md","ref":"chapter-8/8.2-segmentation.md","articles":[]},"previous":{"title":"第八章 图像项目案例","level":"3.1","depth":1,"path":"chapter-8/README.md","ref":"chapter-8/README.md","articles":[{"title":"8.1 图像分类——胸部X光肺炎分类","level":"3.1.1","depth":2,"path":"chapter-8/8.1-classification.md","ref":"chapter-8/8.1-classification.md","articles":[]},{"title":"8.2 图像分割——脑MRI胶质瘤分割","level":"3.1.2","depth":2,"path":"chapter-8/8.2-segmentation.md","ref":"chapter-8/8.2-segmentation.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年07月23日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-8/8.1-classification.md","mtime":"2023-03-03T06:09:18.173Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-03-11T14:23:17.489Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
