@@ -102,6 +102,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="8.4-tracking-1.html" />
+    
     
     <link rel="prev" href="8.2-segmentation.html" />
     
@@ -876,6 +878,32 @@
             
         </li>
     
+        <li class="chapter " data-level="3.1.4" data-path="8.4-tracking-1.html">
+            
+                <a href="8.4-tracking-1.html">
+            
+                    
+                    8.4 目标跟踪（上）——DeepSORT原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="8.4-tracking-2.html">
+            
+                <a href="8.4-tracking-2.html">
+            
+                    
+                    8.4 目标跟踪（下）——虎门大桥车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1154,6 +1182,7 @@ names: [<span class="hljs-string">&apos;pedestrian&apos;</span>, <span class="hl
 <p>&#x5B9E;&#x9A8C;&#x4E00;&#xFF1A;visdrone&#x6570;&#x636E;&#x96C6;&#x7279;&#x70B9;&#x662F;&#x5206;&#x8FA8;&#x7387;&#x5927;&#xFF0C;&#x4E00;&#x822C;&#x7684;640,1000&#x7684;&#x5C3A;&#x5BF8;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;&#xFF0C;&#x4E3A;&#x6B64;&#xFF0C;&#x8FDB;&#x884C;&#x4E86;5&#x79CD;&#x5C3A;&#x5BF8;&#x7684;&#x8BAD;&#x7EC3;&#xFF0C;&#x7528;&#x4E8E;&#x89C2;&#x5BDF;&#x4E0D;&#x540C;&#x5206;&#x8FA8;&#x7387;&#x5BF9;&#x7CBE;&#x5EA6;&#x7684;&#x5F71;&#x54CD;</p>
 <p>&#x5B9E;&#x9A8C;&#x4E8C;&#xFF1A;yolov5&#x63D0;&#x4F9B;&#x591A;&#x79CD;&#x5C3A;&#x5BF8;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x8FD9;&#x91CC;&#x89C2;&#x5BDF;s/m/l&#x4E09;&#x79CD;&#x5C3A;&#x5BF8;&#x7684;&#x6A21;&#x578B;&#x5BF9;&#x7CBE;&#x5EA6;&#x7684;&#x5F71;&#x54CD;&#x3002;</p>
 <p>&#x5B9E;&#x9A8C;&#x4E09;&#xFF1A;&#x540C;&#x65F6;&#x89C2;&#x5BDF;yolov5&#x81EA;&#x5E26;&#x7684;&#x4E09;&#x79CD;&#x4E0D;&#x540C;&#x5F3A;&#x5EA6;&#x7684;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x5E26;&#x6765;&#x600E;&#x6837;&#x7684;&#x7CBE;&#x5EA6;&#x53D8;&#x5316;&#x3002;</p>
+<p>&#x66F4;&#x65B0;&#xFF1A;&#x6240;&#x6709;&#x5B9E;&#x9A8C;&#x6743;&#x91CD;&#x3001;&#x5B9E;&#x9A8C;&#x6587;&#x4EF6;&#x5DF2;&#x7ECF;&#x4E0A;&#x4F20;&#x4E91;&#x76D8;&#xFF1A;</p>
 <p><strong>&#x5B9E;&#x9A8C;&#x4E00;/&#x4E8C;&#xFF1A;&#x4E0D;&#x540C;&#x8F93;&#x5165;&#x5C3A;&#x5BF8;&#x5BF9;&#x6A21;&#x578B;&#x7CBE;&#x5EA6;&#x7684;&#x53D8;&#x5316;</strong></p>
 <pre><code class="lang-bash">python train.py --imgsz 640 --batch 24 --epochs 100 --data mydrone.yaml --weights yolov5s.pt --workers 8 --hyp data/hyps/hyp.scratch-low.yaml
 python train.py --imgsz 960 --batch 16 --epochs 100 --data mydrone.yaml --weights yolov5s.pt --workers 8 --hyp data/hyps/hyp.scratch-low.yaml
@@ -1330,10 +1359,14 @@ python detect.py --weights best.pt --source G:\DJI_0690.MP4 --data data/mydrone.
 
             
                 
-                <a href="8.2-segmentation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 8.2 图像分割——脑MRI胶质瘤分割">
+                <a href="8.2-segmentation.html" class="navigation navigation-prev " aria-label="Previous page: 8.2 图像分割——脑MRI胶质瘤分割">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="8.4-tracking-1.html" class="navigation navigation-next " aria-label="Next page: 8.4 目标跟踪（上）——DeepSORT原理">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -1342,7 +1375,7 @@ python detect.py --weights best.pt --source G:\DJI_0690.MP4 --data data/mydrone.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8.3 目标检测——无人机检测","level":"3.1.3","depth":2,"previous":{"title":"8.2 图像分割——脑MRI胶质瘤分割","level":"3.1.2","depth":2,"path":"chapter-8/8.2-segmentation.md","ref":"chapter-8/8.2-segmentation.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年07月23日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-8/8.3-detection.md","mtime":"2023-04-01T03:05:26.113Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-04-01T03:06:16.095Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"8.3 目标检测——无人机检测","level":"3.1.3","depth":2,"next":{"title":"8.4 目标跟踪（上）——DeepSORT原理","level":"3.1.4","depth":2,"path":"chapter-8/8.4-tracking-1.md","ref":"chapter-8/8.4-tracking-1.md","articles":[]},"previous":{"title":"8.2 图像分割——脑MRI胶质瘤分割","level":"3.1.2","depth":2,"path":"chapter-8/8.2-segmentation.md","ref":"chapter-8/8.2-segmentation.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年07月23日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-8/8.3-detection.md","mtime":"2023-04-08T09:26:28.136Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-04-08T09:31:28.268Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
