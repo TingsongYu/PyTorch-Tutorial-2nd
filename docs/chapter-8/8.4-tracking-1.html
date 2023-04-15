@@ -836,10 +836,9 @@
             
 
             
-            <ul class="articles">
-                
+        </li>
     
-        <li class="chapter " data-level="3.1.1" data-path="8.1-classification.html">
+        <li class="chapter " data-level="3.2" data-path="8.1-classification.html">
             
                 <a href="8.1-classification.html">
             
@@ -852,7 +851,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.1.2" data-path="8.2-segmentation.html">
+        <li class="chapter " data-level="3.3" data-path="8.2-segmentation.html">
             
                 <a href="8.2-segmentation.html">
             
@@ -865,7 +864,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.1.3" data-path="8.3-detection.html">
+        <li class="chapter " data-level="3.4" data-path="8.3-detection.html">
             
                 <a href="8.3-detection.html">
             
@@ -878,7 +877,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.1.4" data-path="8.4-tracking-1.html">
+        <li class="chapter active" data-level="3.5" data-path="8.4-tracking-1.html">
             
                 <a href="8.4-tracking-1.html">
             
@@ -891,7 +890,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.1.5" data-path="8.4-tracking-2.html">
+        <li class="chapter " data-level="3.6" data-path="8.4-tracking-2.html">
             
                 <a href="8.4-tracking-2.html">
             
@@ -904,8 +903,16 @@
             
         </li>
     
+        <li class="chapter " data-level="3.7" data-path="8.5-cycleGAN.html">
+            
+                <a href="8.5-cycleGAN.html">
+            
+                    
+                    8.5 生成对抗网络——CycleGAN
+            
+                </a>
+            
 
-            </ul>
             
         </li>
     
@@ -1126,7 +1133,7 @@ row_indices, col_indices = linear_assignment(cost_matrix)  <span class="hljs-com
 <p><a href="https://zhuanlan.zhihu.com/p/90835266" target="_blank">&#x76EE;&#x6807;&#x8DDF;&#x8E2A;&#x521D;&#x63A2;&#xFF08;DeepSORT&#xFF09;</a></p>
 <p>&#x4EE3;&#x7801;&#x7EC6;&#x8282;&#xFF1A;</p>
 <p>&#x5BF9;&#x4E8E;&#x4EE3;&#x4EF7;&#x77E9;&#x9635;&#xFF0C;&#x884C;&#x662F;tracks&#xFF0C; &#x5217;&#x662F;dets&#xFF0C;&#x5339;&#x914D;&#x4E0A;&#x7684;&#x6846;&#x624D;&#x4F1A;&#x6709;index&#x8FD4;&#x56DE;&#x3002;</p>
-<h2 id="deepsort&#x6838;&#x5FC3;&#x2014;&#x2014;&#x66F4;&#x65B0;&#x8F93;&#x51FA;&#x8FC7;&#x7A0B;"><strong>deepsort&#x6838;&#x5FC3;&#x2014;&#x2014;&#x66F4;&#x65B0;&#x8F93;&#x51FA;&#x8FC7;&#x7A0B;</strong></h2>
+<h2 id="deepsort&#x6838;&#x5FC3;&#x2014;&#x2014;&#x66F4;&#x65B0;&#x8F93;&#x51FA;&#x8FC7;&#x7A0B;"><strong>DeepSORT&#x6838;&#x5FC3;&#x2014;&#x2014;&#x66F4;&#x65B0;&#x8F93;&#x51FA;&#x8FC7;&#x7A0B;</strong></h2>
 <h3 id="&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;"><strong>&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;</strong></h3>
 <p>&#x7531;&#x4E8E;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x7B97;&#x6CD5;&#x7684;&#x4E0D;&#x7A33;&#x5B9A;&#xFF0C;&#x76F4;&#x63A5;&#x7528;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x8F93;&#x51FA;&#x7684;&#x68C0;&#x6D4B;&#x6846;&#x6765;&#x8868;&#x793A;&#x76EE;&#x6807;&#x4F4D;&#x7F6E;&#x7684;&#x7CBE;&#x5EA6;&#x4E0D;&#x4F73;&#xFF0C;&#x5E38;&#x5E38;&#x4F1A;&#x770B;&#x5230;&#x6846;&#x7684;&#x6296;&#x52A8;&#x3002;</p>
 <p>&#x4E3A;&#x4E86;&#x8BA9;&#x6846;&#x66F4;&#x7A33;&#x5B9A;&#x7684;&#x63CF;&#x8FF0;&#x7269;&#x4F53;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;deepsort&#x4E2D;&#x91C7;&#x7528;&#x4E86;&#x5361;&#x5C14;&#x66FC;&#x6EE4;&#x6CE2;&#x7B97;&#x6CD5;&#xFF08;Kalman filtering&#xFF09;&#x6765;&#x5BF9;&#x76EE;&#x6807;&#x4F4D;&#x7F6E;&#x8FDB;&#x884C;&#x8F93;&#x51FA;&#x3002;</p>
@@ -1226,7 +1233,7 @@ self.mean, self.covariance = kf.update(self.mean, self.covariance, detection.to_
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8.4 目标跟踪（上）——DeepSORT原理","level":"3.1.4","depth":2,"next":{"title":"8.4 目标跟踪（下）——虎门大桥车流量统计","level":"3.1.5","depth":2,"path":"chapter-8/8.4-tracking-2.md","ref":"chapter-8/8.4-tracking-2.md","articles":[]},"previous":{"title":"8.3 目标检测——无人机检测","level":"3.1.3","depth":2,"path":"chapter-8/8.3-detection.md","ref":"chapter-8/8.3-detection.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年07月23日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-8/8.4-tracking-1.md","mtime":"2023-04-08T08:58:39.580Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-04-08T09:31:28.268Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"8.4 目标跟踪（上）——DeepSORT原理","level":"3.5","depth":1,"next":{"title":"8.4 目标跟踪（下）——虎门大桥车流量统计","level":"3.6","depth":1,"path":"chapter-8/8.4-tracking-2.md","ref":"chapter-8/8.4-tracking-2.md","articles":[]},"previous":{"title":"8.3 目标检测——无人机检测","level":"3.4","depth":1,"path":"chapter-8/8.3-detection.md","ref":"chapter-8/8.3-detection.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年07月23日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-8/8.4-tracking-1.md","mtime":"2023-04-08T09:46:01.309Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-04-15T08:52:15.723Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

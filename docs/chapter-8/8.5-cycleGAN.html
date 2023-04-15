@@ -1,0 +1,1303 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>8.5 生成对抗网络——CycleGAN · PyTorch实用教程（第二版）</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="余霆嵩">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-intopic-toc/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="8.4-tracking-2.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">上篇：PyTorch基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../chapter-1/">
+            
+                <a href="../chapter-1/">
+            
+                    
+                    第一章 PyTorch 简介与安装
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                <a href="../chapter-1/1.1-PyTorch-Introduction.html">
+            
+                    
+                    1.1 PyTorch 初认识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../chapter-1/1.2-Anaconda.html">
+            
+                <a href="../chapter-1/1.2-Anaconda.html">
+            
+                    
+                    1.2 环境配置之Anaconda
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../chapter-1/1.3-Pycharm.html">
+            
+                <a href="../chapter-1/1.3-Pycharm.html">
+            
+                    
+                    1.3 环境配置之Pycharm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                <a href="../chapter-1/1.4-CUDA&cuDNN.html">
+            
+                    
+                    1.4 环境配置之CUDA&cuDNN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../chapter-1/1.5-PyTorch-install.html">
+            
+                <a href="../chapter-1/1.5-PyTorch-install.html">
+            
+                    
+                    1.5 环境配置之PyTorch系列包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                <a href="../chapter-1/1.6-JupyterNotebook-install.html">
+            
+                    
+                    1.6 环境配置之Jupyter Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../chapter-2/">
+            
+                <a href="../chapter-2/">
+            
+                    
+                    第二章 PyTorch 核心模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../chapter-2/2.1-module-tree.html">
+            
+                <a href="../chapter-2/2.1-module-tree.html">
+            
+                    
+                    2.1 PyTorch 模块结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="../chapter-2/2.2-covid-19-cls.html">
+            
+                <a href="../chapter-2/2.2-covid-19-cls.html">
+            
+                    
+                    2.2 新冠肺炎分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="../chapter-2/2.3-datastruct-tensor.html">
+            
+                <a href="../chapter-2/2.3-datastruct-tensor.html">
+            
+                    
+                    2.3 核心数据结构——Tensor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="../chapter-2/2.4-method-tensor.html">
+            
+                <a href="../chapter-2/2.4-method-tensor.html">
+            
+                    
+                    2.4 张量的相关函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="../chapter-2/2.5-computational-graphs.html">
+            
+                <a href="../chapter-2/2.5-computational-graphs.html">
+            
+                    
+                    2.5 自动求导核心——计算图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.6" data-path="../chapter-2/2.6-autograd.html">
+            
+                <a href="../chapter-2/2.6-autograd.html">
+            
+                    
+                    2.6 Autograd——自动微分
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../chapter-3/">
+            
+                <a href="../chapter-3/">
+            
+                    
+                    第三章 PyTorch 数据模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="../chapter-3/3.1-dataset.html">
+            
+                <a href="../chapter-3/3.1-dataset.html">
+            
+                    
+                    3.1 Dataset
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="../chapter-3/3.2-dataloader.html">
+            
+                <a href="../chapter-3/3.2-dataloader.html">
+            
+                    
+                    3.2 DataLoader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="../chapter-3/3.3-dataset-useful-api.html">
+            
+                <a href="../chapter-3/3.3-dataset-useful-api.html">
+            
+                    
+                    3.3 Dataset及常用API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="../chapter-3/3.4-transforms.html">
+            
+                <a href="../chapter-3/3.4-transforms.html">
+            
+                    
+                    3.4 transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="../chapter-3/3.5-torchvision-dataset.html">
+            
+                <a href="../chapter-3/3.5-torchvision-dataset.html">
+            
+                    
+                    3.5 torchvision 经典dataset学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../chapter-4/">
+            
+                <a href="../chapter-4/">
+            
+                    
+                    第四章 PyTorch 模型模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="../chapter-4/4.1-module&Parameter.html">
+            
+                <a href="../chapter-4/4.1-module&Parameter.html">
+            
+                    
+                    4.1 Module&Parameter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" data-path="../chapter-4/4.2-containers.html">
+            
+                <a href="../chapter-4/4.2-containers.html">
+            
+                    
+                    4.2 Module的容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.3" data-path="../chapter-4/4.3-common-module.html">
+            
+                <a href="../chapter-4/4.3-common-module.html">
+            
+                    
+                    4.3 常用网络层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.4" data-path="../chapter-4/4.4-module-api.html">
+            
+                <a href="../chapter-4/4.4-module-api.html">
+            
+                    
+                    4.4 Module常用API函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.5" data-path="../chapter-4/4.5-hook-func.html">
+            
+                <a href="../chapter-4/4.5-hook-func.html">
+            
+                    
+                    4.5 Hook函数及Grad-CAM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.6" data-path="../chapter-4/4.6-classic-model.html">
+            
+                <a href="../chapter-4/4.6-classic-model.html">
+            
+                    
+                    4.6 经典模型代码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.7" data-path="../chapter-4/4.7-weight-init.html">
+            
+                <a href="../chapter-4/4.7-weight-init.html">
+            
+                    
+                    4.7 权重初始化方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../chapter-5/">
+            
+                <a href="../chapter-5/">
+            
+                    
+                    第五章 PyTorch 优化模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="../chapter-5/5.1-loss-function.html">
+            
+                <a href="../chapter-5/5.1-loss-function.html">
+            
+                    
+                    5.1 二十一个损失函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.2" data-path="../chapter-5/5.2-Optimizer.html">
+            
+                <a href="../chapter-5/5.2-Optimizer.html">
+            
+                    
+                    5.2 十三个优化器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.3" data-path="../chapter-5/5.3-lr-scheduler.html">
+            
+                <a href="../chapter-5/5.3-lr-scheduler.html">
+            
+                    
+                    5.3 十四个学习率调整器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../chapter-6/">
+            
+                <a href="../chapter-6/">
+            
+                    
+                    第六章 PyTorch 可视化模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1" data-path="../chapter-6/6.1-tensorboard.html">
+            
+                <a href="../chapter-6/6.1-tensorboard.html">
+            
+                    
+                    6.1 TensorBoard安装与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.2" data-path="../chapter-6/6.2-cnn-visualization.html">
+            
+                <a href="../chapter-6/6.2-cnn-visualization.html">
+            
+                    
+                    6.2 CNN卷积核与特征图可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.3" data-path="../chapter-6/6.3-conf_matrix.html">
+            
+                <a href="../chapter-6/6.3-conf_matrix.html">
+            
+                    
+                    6.3 混淆矩阵与训练曲线可视化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.4" data-path="../chapter-6/6.4-cam-vis.html">
+            
+                <a href="../chapter-6/6.4-cam-vis.html">
+            
+                    
+                    6.4 CAM可视化与hook函数使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.5" data-path="../chapter-6/6.5-model-print.html">
+            
+                <a href="../chapter-6/6.5-model-print.html">
+            
+                    
+                    6.5 模型参数打印
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../chapter-7/">
+            
+                <a href="../chapter-7/">
+            
+                    
+                    第七章 PyTorch 小技巧汇总
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.1" data-path="../chapter-7/7.1-serialization.html">
+            
+                <a href="../chapter-7/7.1-serialization.html">
+            
+                    
+                    7.1 模型保存与加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.2" data-path="../chapter-7/7.2-finetune.html">
+            
+                <a href="../chapter-7/7.2-finetune.html">
+            
+                    
+                    7.2 Finetune 模型微调
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.3" data-path="../chapter-7/7.3-gpu.html">
+            
+                <a href="../chapter-7/7.3-gpu.html">
+            
+                    
+                    7.3 GPU使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.4" data-path="../chapter-7/7.4-training-script.html">
+            
+                <a href="../chapter-7/7.4-training-script.html">
+            
+                    
+                    7.4 模型训练代码模板
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.5" data-path="../chapter-7/7.5-torchmetrics.html">
+            
+                <a href="../chapter-7/7.5-torchmetrics.html">
+            
+                    
+                    7.5 TorchMetrics 模型评估指标库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.6" data-path="../chapter-7/7.6-albumentations.html">
+            
+                <a href="../chapter-7/7.6-albumentations.html">
+            
+                    
+                    7.6 Albumentations 数据增强库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.7" data-path="../chapter-7/7.7-torchensemble.html">
+            
+                <a href="../chapter-7/7.7-torchensemble.html">
+            
+                    
+                    7.7 TorchEnsemble 模型集成库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">中篇：PyTorch 案例应用</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第八章 图像项目案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="8.1-classification.html">
+            
+                <a href="8.1-classification.html">
+            
+                    
+                    8.1 图像分类——胸部X光肺炎分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="8.2-segmentation.html">
+            
+                <a href="8.2-segmentation.html">
+            
+                    
+                    8.2 图像分割——脑MRI胶质瘤分割
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="8.3-detection.html">
+            
+                <a href="8.3-detection.html">
+            
+                    
+                    8.3 目标检测——无人机检测
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="8.4-tracking-1.html">
+            
+                <a href="8.4-tracking-1.html">
+            
+                    
+                    8.4 目标跟踪（上）——DeepSORT原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="8.4-tracking-2.html">
+            
+                <a href="8.4-tracking-2.html">
+            
+                    
+                    8.4 目标跟踪（下）——虎门大桥车流量统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.7" data-path="8.5-cycleGAN.html">
+            
+                <a href="8.5-cycleGAN.html">
+            
+                    
+                    8.5 生成对抗网络——CycleGAN
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">下篇：PyTorch 模型部署</li>
+        
+        
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >8.5 生成对抗网络——CycleGAN</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="85-&#x751F;&#x6210;&#x5BF9;&#x6297;&#x7F51;&#x7EDC;&#x2014;&#x2014;cyclegan">8.5 &#x751F;&#x6210;&#x5BF9;&#x6297;&#x7F51;&#x7EDC;&#x2014;&#x2014;CycleGAN</h1>
+<h2 id="&#x7B80;&#x4ECB;"><strong>&#x7B80;&#x4ECB;</strong></h2>
+<p>&#x672C;&#x5C0F;&#x8282;&#x5C06;&#x4ECB;&#x7ECD;GAN&#x6A21;&#x578B;&#x4E2D;&#x6709;&#x8DA3;&#x7684;&#x6A21;&#x578B;CycleGAN&#x3002;</p>
+<p>CycleGAN&#x662F;&#x4E00;&#x79CD;&#x53CC;&#x5411;&#x5FAA;&#x73AF;&#x7684;GAN&#x6A21;&#x578B;&#xFF0C;&#x53EF;&#x5B9E;&#x73B0;X&#x57DF;&#x4E0E;Y&#x57DF;&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4E92;&#x8F6C;&#x6362;&#xFF0C;&#x5E76;&#x4E14;&#x662F;&#x57FA;&#x4E8E;unpaired data&#xFF08;&#x5373;&#x4E0D;&#x9700;&#x8981;&#x6807;&#x6CE8;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x6536;&#x96C6;&#x56FE;&#x7247;&#xFF09;&#x3002;&#x76F8;&#x8F83;&#x4E8E;&#x6B64;&#x524D;&#x7684;pix2pix&#xFF0C;cyclegan&#x9002;&#x7528;&#x6027;&#x66F4;&#x5E7F;&#xFF0C;&#x6BD5;&#x7ADF;unpaired data&#x6BD4;paired data&#x66F4;&#x5BB9;&#x6613;&#x83B7;&#x53D6;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#x8BBA;&#x6587;&#x4E2D;&#x5C55;&#x793A;&#x7684;&#xFF0C;&#x7167;&#x7247;&#x4E0E;&#x83AB;&#x5948;&#x98CE;&#x683C;&#x753B;&#x4E4B;&#x95F4;&#x7684;&#x4E92;&#x76F8;&#x8F6C;&#x6362;&#xFF0C;&#x6591;&#x9A6C;&#x4E0E;&#x9A6C;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;&#xFF0C;&#x590F;&#x5929;&#x4E0E;&#x51AC;&#x5929;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;&#x3002;</p>
+<p><img src="imgs/cyclegan.jpg" alt=""></p>
+<p>&#x672C;&#x8282;&#x5148;&#x4ECB;&#x7ECD;GAN&#x4E0E;CycleGAN&#x7684;&#x7ED3;&#x6784;&#xFF0C;&#x518D;&#x901A;&#x8FC7;&#x4EE3;&#x7801;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;CycleGAN&#x7684;&#x8BAD;&#x7EC3;&#x3001;&#x63A8;&#x7406;&#x3002;</p>
+<h2 id="gan&#x7B80;&#x4ECB;"><strong>GAN&#x7B80;&#x4ECB;</strong></h2>
+<p>GAN&#xFF08;Generative Adversarial Nets&#xFF0C;&#x751F;&#x6210;&#x5BF9;&#x6297;&#x7F51;&#x7EDC;&#xFF09;&#x7531; Ian J Goodfellow&#x5728;2014&#x53D1;&#x8868;&#x4E8E;&#x300A;Generative Adversarial Nets&#x300B;&#xFF0C;&#x53EF;&#x8C13;&#x662F;&#x63A8;&#x5F00;&#x4E86;&#x751F;&#x6210;&#x6A21;&#x578B;&#x7684;&#x4E00;&#x6247;&#x5927;&#x95E8;&#x3002;</p>
+<p>GAN&#x662F;&#x4E00;&#x79CD;&#x4ECE;&#x968F;&#x673A;&#x566A;&#x58F0;&#x751F;&#x6210;&#x7279;&#x5B9A;&#x5206;&#x5E03;&#x6570;&#x636E;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x4F8B;&#x5982;&#x751F;&#x6210;&#x4EBA;&#x8138;&#x6570;&#x636E;&#xFF0C;&#x624B;&#x5199;&#x4F53;&#x6570;&#x636E;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#x96C6;&#x7B49;&#x3002;</p>
+<p>GAN&#x5F53;&#x4E2D;&#x6709;Generator&#x4E0E;Discriminator&#x4E24;&#x4E2A;&#x6A21;&#x578B;&#xFF0C;G&#x8D1F;&#x8D23;&#x5B66;&#x4E60;&#x4ECE;&#x566A;&#x58F0;&#x5230;&#x6570;&#x636E;&#x7684;&#x6620;&#x5C04;&#xFF0C;D&#x8D1F;&#x8D23;&#x5145;&#x5F53;&#x635F;&#x5931;&#x51FD;&#x6570;&#xFF0C;&#x5224;&#x65AD;G&#x751F;&#x6210;&#x5F97;&#x662F;&#x5426;&#x8DB3;&#x591F;&#x597D;&#xFF0C;G&#x548C;D&#x4EA4;&#x66FF;&#x8BAD;&#x7EC3;&#xFF0C;&#x5F62;&#x6210;&#x5BF9;&#x6297;&#xFF0C;&#x540C;&#x6B65;&#x63D0;&#x5347;&#xFF0C;&#x6700;&#x7EC8;&#x4F7F;&#x5F97;G&#x751F;&#x6210;&#x7684;&#x6570;&#x636E;&#x8D8A;&#x6765;&#x8D8A;&#x50CF;&#x4EBA;&#x8138;&#x3002;</p>
+<p>&#x6839;&#x636E;&#x6A21;&#x578B;&#x7684;&#x7ED3;&#x6784;&#xFF0C;GAN&#x6A21;&#x578B;&#x5EF6;&#x4F38;&#x51FA;&#x4E00;&#x7CFB;&#x5217;&#x53D8;&#x4F53;&#xFF0C;&#x5982;&#x672C;&#x6587;&#x8981;&#x4ECB;&#x7ECD;&#x7684;CycleGAN&#xFF0C;&#x8FD8;&#x6709;DCGAN&#xFF0C;Conditional GANs&#xFF0C;Pix2Pix&#xFF0C;SRGAN&#x7B49;&#x3002;</p>
+<p>GAN&#x7684;&#x8BBE;&#x8BA1;&#x5341;&#x5206;&#x5DE7;&#x5999;&#xFF0C;&#x4ECE;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x8BAD;&#x7EC3;&#x7684;&#x89D2;&#x5EA6;&#x8003;&#x8651;&#xFF0C;GAN&#x662F;&#x5C06;&#x635F;&#x5931;&#x51FD;&#x6570;&#x66FF;&#x6362;&#x4E3A;&#xFF0C;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x8F93;&#x51FA;&#xFF0C;&#x5177;&#x4F53;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="imgs/gan-flow.jpg" style="zoom:50%;"></p>
+<p>&#x4F20;&#x7EDF;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#xFF0C;&#x9700;&#x8981;&#x7528;loss_fun(output, label)&#x5F97;&#x5230;loss&#x503C;&#xFF0C;&#x7136;&#x540E;&#x6C42;&#x68AF;&#x5EA6;&#x4F18;&#x5316;&#x3002;</p>
+<p>&#x5728;GAN&#x4E2D;&#xFF0C;&#x5DE7;&#x5999;&#x4E86;&#x5229;&#x7528;&#x4E00;&#x4E2A;&#x5224;&#x522B;&#x5668;&#x6A21;&#x578B;&#xFF0C;D_net&#xFF0C; D_net(output) &#x8D8B;&#x5411;0&#xFF0C; D_net(training_data)&#x8D8B;&#x5411;1&#xFF0C;&#x4F9D;&#x6B21;&#x83B7;&#x5F97;loss&#x503C;&#x3002;</p>
+<h2 id="cyclegan&#x7B80;&#x4ECB;">CycleGAN&#x7B80;&#x4ECB;</h2>
+<p>CycleGAN&#x662F;&#x4E00;&#x79CD;&#x65E0;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x65B9;&#x6CD5;&#xFF0C;&#x7531;Jun-Yan Zhu&#x7B49;&#x4EBA;&#x4E8E;2017&#x5E74;&#x63D0;&#x51FA;&#x3002;</p>
+<p>&#x5B83;&#x7684;&#x4E3B;&#x8981;&#x601D;&#x60F3;&#x662F;&#x901A;&#x8FC7;&#x4E24;&#x4E2A;&#x751F;&#x6210;&#x5668;&#x548C;&#x4E24;&#x4E2A;&#x5224;&#x522B;&#x5668;&#x6765;&#x5B9E;&#x73B0;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x57DF;&#x4E4B;&#x95F4;&#x7684;&#x56FE;&#x50CF;&#x8F6C;&#x6362;&#x3002;</p>
+<p>&#x4E0E;&#x5176;&#x4ED6;&#x7684;GAN&#x6A21;&#x578B;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;CycleGAN&#x4E0D;&#x9700;&#x8981;&#x6210;&#x5BF9;&#x7684;&#x56FE;&#x50CF;&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#xFF0C;&#x800C;&#x662F;&#x53EA;&#x9700;&#x8981;&#x4E24;&#x4E2A;&#x57DF;&#x4E2D;&#x7684;&#x4EFB;&#x610F;&#x6570;&#x91CF;&#x7684;&#x56FE;&#x50CF;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x4ECB;&#x7ECD;CycleGAN&#x7684;<strong>&#x6A21;&#x578B;&#x7ED3;&#x6784;</strong>&#x4E0E;<strong>&#x635F;&#x5931;&#x51FD;&#x6570;</strong>&#x3002;</p>
+<h3 id="cyclegan&#x6A21;&#x578B;&#x7ED3;&#x6784;"><strong>CycleGAN&#x6A21;&#x578B;&#x7ED3;&#x6784;</strong></h3>
+<p>CycleGAN&#x6A21;&#x578B;&#x7531;&#x4E24;&#x4E2A;&#x751F;&#x6210;&#x5668;&#xFF0C;&#x4E24;&#x4E2A;&#x5224;&#x522B;&#x5668;&#x6784;&#x6210;&#x3002;</p>
+<p>&#x751F;&#x6210;&#x5668;G&#xFF0C;&#x5C06;X&#x57DF;&#x56FE;&#x50CF;&#x53D8;&#x6362;&#x5230;Y&#x57DF;</p>
+<p>&#x751F;&#x6210;&#x5668;F&#xFF0C;&#x5C06;Y&#x57DF;&#x56FE;&#x50CF;&#x53D8;&#x6362;&#x5230;X&#x57DF;</p>
+<p>&#x5224;&#x522B;&#x5668;Dx&#xFF0C;&#x5224;&#x522B;&#x56FE;&#x50CF;&#x6765;&#x81EA;X&#x5219;&#x4E3A;1&#xFF0C; &#x56FE;&#x50CF;&#x6765;&#x81EA;Y&#x5219;&#x4E3A;0</p>
+<p>&#x5224;&#x522B;&#x5668;Dy&#xFF0C;&#x5224;&#x522B;&#x56FE;&#x50CF;&#x6765;&#x81EA;X&#x5219;&#x4E3A;0&#xFF0C; &#x56FE;&#x50CF;&#x6765;&#x81EA;Y&#x5219;&#x4E3A;1</p>
+<p><img src="imgs/cyclegan-arch.jpg" style="zoom:50%;"></p>
+<p><strong>&#x751F;&#x6210;&#x5668;</strong>&#x91C7;&#x7528;3&#x5C42;&#x5377;&#x79EF;+&#x4E00;&#x7CFB;&#x5217;&#x6B8B;&#x5DEE;&#x5757;&#x6784;&#x6210;&#xFF1B;</p>
+<p><strong>&#x5224;&#x522B;&#x5668;</strong>&#x91C7;&#x7528;PatchGANs&#xFF0C;&#x5176;&#x7279;&#x70B9;&#x5728;&#x4E8E;&#x5BF9;&#x4E00;&#x5F20;&#x56FE;&#x7247;&#x4E0D;&#x662F;&#x8F93;&#x51FA;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#xFF0C;&#x800C;&#x662F;&#x8F93;&#x51FA;NxNxC&#x7684;&#x5F20;&#x91CF;&#xFF0C;NxN&#x5206;&#x522B;&#x5BF9;&#x5E94;&#x539F;&#x56FE;&#x4E2D;&#x7684;70x70&#x533A;&#x57DF;&#xFF0C;&#x5373;&#x5BF9;&#x4E00;&#x5F20;&#x56FE;&#xFF0C;&#x5212;&#x5206;&#x591A;&#x4E2A;70x70&#x7684;patch&#xFF0C;&#x6BCF;&#x4E2A;patch&#x6765;&#x5224;&#x522B;&#x5B83;&#x662F;0&#x7C7B;&#xFF0C;&#x8FD8;&#x662F;1&#x7C7B;&#x3002;</p>
+<h3 id="cyclegan&#x635F;&#x5931;"><strong>CycleGAN</strong>&#x635F;&#x5931;</h3>
+<p>cyclegan&#x6700;&#x5927;&#x7684;&#x7279;&#x70B9;&#x5728;&#x4E8E;&#x635F;&#x5931;&#x51FD;&#x6570;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;&#x9664;&#x4E86;GAN&#x7684;&#x5E38;&#x89C4;&#x4E24;&#x4E2A;&#x635F;&#x5931;&#x51FD;&#x6570;&#x4E4B;&#x5916;&#xFF0C;&#x8BBA;&#x6587;&#x4E2D;&#x589E;&#x52A0;&#x4E86;<strong>cycle consistency loss&#xFF08;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x635F;&#x5931;&#xFF09;</strong>&#xFF0C;&#x7528;&#x6765;&#x907F;&#x514D;&#x6A21;&#x5F0F;&#x574D;&#x584C;&#xFF0C;&#x4EE5;&#x53CA;&#x66F4;&#x597D;&#x7684;&#x8BA9;GAN&#x6A21;&#x578B;&#x751F;&#x6210;&#x5408;&#x7406;&#x7684;&#x56FE;&#x50CF;&#xFF0C;&#x540C;&#x65F6;&#xFF0C;&#x5728;&#x5B98;&#x65B9;&#x4EE3;&#x7801;&#x4E2D;&#x8FD8;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x9879;<strong>identity loss</strong>&#xFF0C;&#x7528;&#x6765;&#x589E;&#x52A0;GAN&#x6A21;&#x578B;&#x5BF9;&#x4E8E;&#x672C;&#x57DF;&#x56FE;&#x50CF;&#x4FE1;&#x606F;&#x7684;&#x5B66;&#x4E60;&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x6574;&#x4F53;loss&#x6709;8&#x9879;&#xFF0C;&#x5206;&#x522B;&#x662F;&apos;D_A&apos;, &apos;G_A&apos;, &apos;cycle_A&apos;, &apos;idt_A&apos;, &apos;D_B&apos;, &apos;G_B&apos;, &apos;cycle_B&apos;, &apos;idt_B&apos;</p>
+<h4 id="&#x751F;&#x6210;&#x5668;&#x7684;&#x635F;&#x5931;"><strong>&#x751F;&#x6210;&#x5668;&#x7684;&#x635F;&#x5931;</strong></h4>
+<p><strong>loss1 &#xFF1A;&#x5224;&#x522B;&#x5668;&#x7684;&#x8F93;&#x51FA;&#x63A5;&#x8FD1;1</strong></p>
+<p>&#x5BF9;&#x4E8E;G&#xFF0C;&#x76EE;&#x6807;&#x662F;&#x8BA9;&#x5BF9;&#x5E94;&#x7684;&#x5224;&#x522B;&#x5668;D&#xFF0C;&#x8BA4;&#x4E3A;&#x5047;&#x56FE;&#x50CF;&#x662F;&#x771F;&#x56FE;&#x50CF;&#xFF0C;&#x5373;&#x8F93;&#x5165;&#x662F;&#x5047;&#x56FE;&#x50CF;&#xFF0C;&#x6807;&#x7B7E;&#x662F;1&#xFF0C;&#x76EE;&#x6807;&#x662F;&#x6B3A;&#x9A97;D&#xFF0C;G&#x5C31;&#x662F;&#x8BAD;&#x7EC3;&#x597D;&#x4E86;&#x3002;</p>
+<p><img src="imgs/cyclegan-object.jpg" alt=""></p>
+<pre><code class="lang-python">self.loss_G_A = self.criterionGAN(self.netD_A(self.fake_B), <span class="hljs-keyword">True</span>)
+
+target_tensor = self.get_target_tensor(prediction, target_is_real)   <span class="hljs-comment"># &#x6839;&#x636E;self.fake_B&#xFF0C;&#x751F;&#x6210;&#x5BF9;&#x5E94;&#x7684;&#x6807;&#x7B7E;&#xFF0C;&#x5373;N*N&#x7684;&#x6807;&#x7B7E;&#xFF0C;&#x4E3A;patchGAN&#x7684;&#x8F93;&#x51FA;&#x5339;&#x914D;</span>
+loss = self.loss(prediction, target_tensor)  <span class="hljs-comment"># MSELoss() &#x800C;&#x975E;BCE</span>
+</code></pre>
+<p><strong>loss2&#xFF1A;F(G(x)) &#x4E0E; x&#x4E00;&#x81F4;</strong></p>
+<p>&#x9664;&#x4E86;&#x5E38;&#x89C4;Loss&#xFF0C;&#x8FD8;&#x6709;<strong>cycle consistency loss&#xFF08;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x635F;&#x5931;&#xFF09;</strong>&#xFF0C;&#x76EE;&#x7684;&#x662F;&#x7ECF;&#x8FC7;G&#x5F97;&#x5230;&#x7684;&#x56FE;&#x7247;&#xFF0C;&#x8FD4;&#x56DE;&#x53BB;&#x518D;&#x7ECF;&#x8FC7;F&#xFF0C;&#x5E94;&#x5F53;&#x662F;&#x53EF;&#x4EE5;&#x6062;&#x590D;&#x5F97;&#x5230;X&#x57DF;&#x7684;&#x56FE;&#x50CF;x_hut&#xFF0C;&#x5E76;&#x4E14;x&#x4E0E;x_hat&#x5E94;&#x5F53;&#x662F;&#x9010;&#x50CF;&#x7D20;&#x4E00;&#x6A21;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
+<p>&#x8FD9;&#x6837;&#x7684;G&#x548C;F&#x624D;&#x662F;&#x5408;&#x7406;&#x7684;&#x3002;</p>
+<p><img src="imgs/cyclegan-cycle-consistency-loss.jpg" style="zoom:50%;"></p>
+<pre><code class="lang-python">self.criterionCycle = torch.nn.L1Loss()
+self.loss_cycle_A = self.criterionCycle(self.rec_A, self.real_A) * lambda_A   <span class="hljs-comment"># lambda&#x4E3A;&#x7F29;&#x653E;&#x7CFB;&#x6570;</span>
+</code></pre>
+<p><strong>loss3&#xFF1A;&#x6052;&#x7B49;&#x6620;&#x5C04;&#x635F;&#x5931;</strong></p>
+<p>&#x8BE5;&#x635F;&#x5931;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x624D;&#x51FA;&#x73B0;&#xFF0C;&#x8BBA;&#x6587;&#x4E2D;&#x5E76;&#x6CA1;&#x6709;&#x63D0;&#x5230;&#x3002;&#x6052;&#x7B49;&#x6620;&#x5C04;&#x635F;&#x5931;&#x7684;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x751F;&#x6210;&#x5668;G_A&#x63A5;&#x6536;A&#x57DF;&#x56FE;&#x50CF;&#xFF0C;&#x751F;&#x6210;B&#x57DF;&#x56FE;&#x50CF;&#xFF1B;&#x82E5;&#x63A5;&#x6536;B&#x57DF;&#x56FE;&#x50CF;&#xFF0C;&#x5E94;&#x8BE5;&#x751F;&#x6210;&#x6052;&#x7B49;&#x7684;B&#x57DF;&#x56FE;&#x50CF;&#xFF0C;&#x5373;B&#x57DF;&#x56FE;&#x50CF;&#x4E00;&#x6A21;&#x4E00;&#x6837;&#xFF0C;&#x4E0D;&#x80FD;&#x53D8;&#x3002;</p>
+<p><strong>G_A should be identity if real_B is fed: ||G_A(B) - B||</strong></p>
+<pre><code class="lang-python">self.idt_A = self.netG_A(self.real_B)
+self.loss_idt_A = self.criterionIdt(self.idt_A, self.real_B) * lambda_B * lambda_idt
+
+<span class="hljs-comment"># self.criterionIdt = torch.nn.L1Loss()</span>
+</code></pre>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x5BF9;&#x4E8E;&#x751F;&#x6210;&#x5668;G&#x800C;&#x8A00;&#xFF0C;&#x8981;&#x6C42;&#x5B83;&#xFF1A;</p>
+<ol>
+<li>&#x751F;&#x6210;&#x7684;&#x5047;&#x56FE;&#x50CF;&#xFF0C;&#x8981;&#x8BA9;&#x5224;&#x522B;&#x5668;&#x9884;&#x6D4B;&#x4E3A;1&#xFF0C;  D(G(x)) &#x903C;&#x8FD1;1&#xFF1B;</li>
+<li>G&#x751F;&#x6210;&#x7684;&#x56FE;&#x50CF;&#xFF0C;&#x518D;&#x7ECF;&#x8FC7;F&#x751F;&#x6210;&#x7684;&#x56FE;&#x50CF;&#xFF0C;&#x5E94;&#x5F53;&#x7B49;&#x4E8E;&#x539F;&#x56FE;&#xFF0C;&#x6B64;&#x4E3A;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x635F;&#x5931;</li>
+<li>&#x5DF2;&#x7ECF;&#x662F;B&#x57DF;&#x7684;&#x56FE;&#x50CF;&#xFF0C;&#x7ECF;&#x8FC7;G_A&#xFF0C;&#x5E94;&#x5F53;&#x5F97;&#x5230;B&#x57DF;&#x7684;&#x539F;&#x56FE;&#x3002;</li>
+</ol>
+<h4 id="&#x5224;&#x522B;&#x5668;&#x7684;loss"><strong>&#x5224;&#x522B;&#x5668;&#x7684;loss</strong></h4>
+<p>&#x5224;&#x522B;&#x5668;&#x635F;&#x5931;&#x8F83;&#x4E3A;&#x7B80;&#x5355;&#xFF0C;&#x5BF9;&#x4E8E;&#x771F;&#x56FE;&#x50CF;&#xFF0C;&#x9700;&#x8981;&#x9884;&#x6D4B;&#x4E3A;1&#xFF0C;&#x5BF9;&#x4E8E;&#x5047;&#x56FE;&#x50CF;&#xFF0C;&#x9700;&#x8981;&#x9884;&#x6D4B;&#x4E3A;0&#x3002;</p>
+<p>&#x5176;&#x4E2D;&#xFF0C;&#x5047;&#x56FE;&#x50CF;&#x4E0D;&#x662F;&#x57FA;&#x4E8E;&#x5F53;&#x524D;batch&#x7684;&#xFF0C;&#x800C;&#x662F;&#x8BB0;&#x5F55;&#x8FC7;&#x5F80;&#x7684;&#x4E00;&#x6279;&#x5047;&#x56FE;&#x50CF;&#xFF0C;&#x4ECE;&#x5047;&#x56FE;&#x50CF;&#x6C60;&#x4E2D;&#x62BD;&#x53D6;&#x3002;</p>
+<pre><code class="lang-python">fake_B = self.fake_B_pool.query(self.fake_B)
+self.loss_D_A = self.backward_D_basic(self.netD_A, self.real_B, fake_B)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backward_D_basic</span><span class="hljs-params">(self, netD, real, fake)</span>:</span>
+    <span class="hljs-comment"># Real</span>
+    pred_real = netD(real)
+    loss_D_real = self.criterionGAN(pred_real, <span class="hljs-keyword">True</span>)
+    <span class="hljs-comment"># Fake</span>
+    pred_fake = netD(fake.detach())
+    loss_D_fake = self.criterionGAN(pred_fake, <span class="hljs-keyword">False</span>)
+    <span class="hljs-comment"># Combined loss and calculate gradients</span>
+    loss_D = (loss_D_real + loss_D_fake) * <span class="hljs-number">0.5</span>
+    loss_D.backward()
+    <span class="hljs-keyword">return</span> loss_D
+</code></pre>
+<h3 id="&#x8BAD;&#x7EC3;&#x6CE8;&#x610F;&#x4E8B;&#x9879;"><strong>&#x8BAD;&#x7EC3;&#x6CE8;&#x610F;&#x4E8B;&#x9879;</strong></h3>
+<p><strong>&#x8BBA;&#x6587;&#x4E2D;&#x8D85;&#x53C2;&#x6570;&#xFF1A;</strong>batch size =1&#xFF1B;epoch =200&#xFF1B;lr&#xFF1A;<strong>&#x524D;100epoch&#xFF0C;&#x56FA;&#x5B9A;0.0002&#xFF0C;&#x540E;100epoch&#xFF0C;&#x7EBF;&#x6027;&#x4E0B;&#x964D;&#x81F3;0</strong></p>
+<p><strong>&#x5176;&#x5B83;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#xFF1A;</strong></p>
+<ul>
+<li>&#x4E24;&#x4E2A;&#x57DF;&#x56FE;&#x50CF;&#x662F;&#x5426;&#x6709;&#x4E00;&#x81F4;&#x6027;&#xFF1A; &#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;:</li>
+</ul>
+<pre><code>&#x82F9;&#x679C; &lt;=&gt; &#x6A58;&#x5B50;: &#x90FD;&#x662F;&#x7403;&#x5F62;, OK!
+
+&#x82F9;&#x679C; &lt;=&gt; &#x9999;&#x8549;: Mode Collapse!
+</code></pre><ul>
+<li>&#x8BAD;&#x7EC3;CycleGAN&#x8981;&#x6709;&#x8010;&#x5FC3;</li>
+<li>&#x5B66;&#x4E60;&#x7387;&#x522B;&#x592A;&#x9AD8;</li>
+<li>&#x5BF9;&#x6297;&#x635F;&#x5931;&#x6743;&#x91CD;&#x4E0D;&#x8981;&#x592A;&#x9AD8;&#xFF0C;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x635F;&#x5931;&#x6743;&#x91CD;&#x4E3A;1&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5BF9;&#x6297;&#x635F;&#x5931;&#x4E00;&#x822C;&#x8BBE;&#x7F6E;&#x4E3A;0.1</li>
+<li>&#x5224;&#x522B;&#x5668;&#x4F18;&#x5316;&#x9891;&#x7387;&#x9AD8;&#x4E8E;&#x751F;&#x6210;&#x5668;</li>
+<li>&#x4F7F;&#x7528;&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x635F;&#x5931;&#xFF08;MSE&#xFF09;</li>
+<li>cycleGAN&#x7684;loss&#x4E0D;&#x80FD;&#x51C6;&#x786E;&#x53CD;&#x5E94;&#x8BAD;&#x7EC3;&#x7684;&#x597D;&#x574F;&#xFF0C;&#x4E0D;&#x4EE3;&#x8868;&#x7740;&#x8BAD;&#x7EC3;&#x8FDB;&#x5EA6;&#xFF0C;&#x751A;&#x81F3;&#x4E0D;&#x80FD;&#x4EE3;&#x8868;&#x7ED3;&#x679C;&#x4F18;&#x52A3;&#x3002;&#x6240;&#x4EE5;&#x8FD8;&#x662F;&#x8981;&#x8F93;&#x51FA;&#x6837;&#x5F20;&#x770B;&#x6548;&#x679C;&#xFF0C;&#x6216;&#x8BB8;&#x53EF;&#x4EE5;&#x501F;&#x9274;WGAN&#x7684;&#x601D;&#x60F3;</li>
+<li>&#x7531;&#x4E8E; minimax &#x4F18;&#x5316;&#x7684;&#x6027;&#x8D28;&#xFF0C;&#x8BB8;&#x591A; GAN &#x635F;&#x5931;&#x4E0D;&#x4F1A;&#x6536;&#x655B;&#xFF08;&#x4F8B;&#x5916;&#xFF1A;WGAN&#x3001;WGAN-GP &#x7B49;&#xFF09;&#x3002;&#x5BF9;&#x4E8E; DCGAN &#x548C; LSGAN &#x76EE;&#x6807;&#xFF0C;G &#x548C; D &#x635F;&#x5931;&#x4E0A;&#x4E0B;&#x6CE2;&#x52A8;&#x662F;&#x5F88;&#x6B63;&#x5E38;&#x7684;&#x3002;&#x53EA;&#x8981;&#x4E0D;&#x7206;&#x70B8;&#x5E94;&#x8BE5;&#x6CA1;&#x95EE;&#x9898;&#x3002;</li>
+</ul>
+<h2 id="cyclegan&#x4EE3;&#x7801;&#x5B9E;&#x73B0;"><strong>CycleGAN&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</strong></h2>
+<p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x901A;&#x8FC7;pytorch&#x8BAD;&#x7EC3;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x5C06;&#x56FE;&#x7247;&#x8F6C;&#x6362;&#x4E3A;&#x83AB;&#x5948;&#x98CE;&#x683C;&#x56FE;&#x50CF;&#x7684;CycleGAN&#xFF0C;<a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix" target="_blank">github</a>&#x5DF2;&#x7ECF;19.5K star&#x4E86;&#xFF0C;&#x53EF;&#x89C1;&#x6DF1;&#x53D7;&#x5927;&#x5BB6;&#x559C;&#x7231;&#x3002;</p>
+<h3 id="&#x6570;&#x636E;&#x96C6;&#x51C6;&#x5907;"><strong>&#x6570;&#x636E;&#x96C6;&#x51C6;&#x5907;</strong></h3>
+<p>&#x7531;&#x4E8E;&#x4E0D;&#x9700;&#x8981;&#x6807;&#x7B7E;&#xFF0C;&#x4EC5;&#x9700;&#x8981;&#x51C6;&#x5907;&#x56FE;&#x50CF;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x5B58;&#x653E;<strong>trainA, trainB, testA, testB</strong>&#x5373;&#x53EF;&#xFF0C;&#x5206;&#x522B;&#x5B58;&#x653E;A&#x57DF;&#x7684;&#x56FE;&#x50CF;&#xFF0C;B&#x57DF;&#x7684;&#x56FE;&#x50CF;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x4E0B;&#x8F7D;&#x5B98;&#x65B9;&#x63D0;&#x4F9B;&#x7684;monet2photo&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;sh&#x811A;&#x672C;&#x4E0B;&#x8F7D;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x624B;&#x52A8;&#x4E0B;&#x8F7D;&#xFF08;&#x63A8;&#x8350;&#xFF09;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x65B9;&#x6CD5;&#x4E00;&#xFF1A;bash</span>
+bash ./datasets/download_cyclegan_dataset.sh monet2photo
+
+<span class="hljs-comment"># &#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;&#x624B;&#x52A8;&#x4E0B;&#x8F7D;</span>
+<span class="hljs-comment"># apple2orange, summer2winter_yosemite, horse2zebra, monet2photo, cezanne2photo, ukiyoe2photo, vangogh2photo</span>
+http://efrosgans.eecs.berkeley.edu/cyclegan/datasets/<span class="hljs-variable">$FILE</span>.zip
+<span class="hljs-comment"># &#x4F8B;&#x5982;&#x83AB;&#x5948;&#x6570;&#x636E;&#x4E0B;&#x8F7D;</span>
+http://efrosgans.eecs.berkeley.edu/cyclegan/datasets/monet2photo.zip
+</code></pre>
+<h3 id="&#x6570;&#x636E;&#x52A0;&#x8F7D;"><strong>&#x6570;&#x636E;&#x52A0;&#x8F7D;</strong></h3>
+<p>&#x6574;&#x4E2A;&#x6570;&#x636E;&#x6A21;&#x5757;&#x4EE3;&#x7801;&#x8BBE;&#x8BA1;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="imgs/cyclegan-dataset-uml.jpg" style="zoom: 67%;"></p>
+<p>&#x8BE5;&#x9879;&#x76EE;&#x9002;&#x914D;pix2pix&#xFF0C; cyclegan&#xFF0C;&#x56E0;&#x6B64;&#x63D0;&#x4F9B;&#x4E86;&#x591A;&#x79CD;dataset&#xFF0C;&#x6240;&#x6709;&#x7684;dataset&#x90FD;&#x7EE7;&#x627F;&#x4E8E;BaseDataset&#xFF0C;&#x9488;&#x5BF9;cyclegan&#x7684;&#x662F;unaligned_dataset.py&#x4E2D;&#x7684;<strong>UnalignedDataset</strong>&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;dataloader&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x7C7B; CustomDatasetDataLoader&#xFF0C;&#x5E76;&#x4E14;&#x5B9E;&#x73B0;&#x4E86;&#x8FED;&#x4EE3;&#x534F;&#x8BAE;<strong>iter</strong>&#xFF0C;&#x56E0;&#x6B64;&quot;<strong>dataloader</strong>&quot;&#x662F;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x4E00;&#x4E2A;&#x53EF;&#x8FED;&#x4EE3;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x5728;&#x4E3B;&#x4EE3;&#x7801;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-8/05_cyclegan/01_train.py" target="_blank">01_train.py</a>&#x4E2D;&#xFF0C;&#x901A;&#x8FC7;33&#x884C;&#x4EE3;&#x7801;&#xFF1A;dataloader = create_dataset(opt) &#xFF0C;&#x5B9E;&#x73B0;dataloader&#x7684;&#x521B;&#x5EFA;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#x5B58;&#x653E;&#x5728;opt&#x4E2D;&#x3002;</p>
+<hr>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x5173;&#x6CE8;<a href="https://github.com/TingsongYu/PyTorch-Tutorial-2nd/blob/main/code/chapter-8/05_cyclegan/data/unaligned_dataset.py" target="_blank">UnalignedDataset</a>&#xFF0C;&#x5B83;&#x5185;&#x90E8;&#x5B9E;&#x73B0;&#x4E86;transform&#xFF0C;transform&#x7531;opt&#x7684;&#x53C2;&#x6570;&#x51B3;&#x5B9A;</p>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x7F29;&#x653E;&#x53D8;&#x6362;&#xFF0C;&#x6709;resize&#xFF0C;&#x6216;&#x8005;&#x57FA;&#x4E8E;width&#x7F29;&#x653E;&#x7684;&#x65B9;&#x5F0F;&#xFF1B;&#x9ED8;&#x8BA4;&#x57FA;&#x4E8E;resize_and_crop&#x3002; resize&#x7684;&#x5C3A;&#x5BF8;&#x662F;opt.load_size</li>
+<li>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;crop&#x7684;&#x5C3A;&#x5BF8;&#x662F; opt.crop_size</li>
+<li>&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;Normalize </li>
+</ul>
+<p>&#x8FD9;&#x4EFD;&#x4EE3;&#x7801;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;<strong>&#x503C;&#x5F97;&#x501F;&#x9274;</strong>&#x7684;&#x662F;&#xFF0C;&#x901A;&#x8FC7;&#x53C2;&#x6570;&#x914D;&#x7F6E;&#xFF0C;&#x6765;&#x9009;&#x62E9;&#x8C03;&#x7528;&#x5177;&#x4F53;&#x7684;&#x7C7B;&#x3002;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x662F;&#x901A;&#x8FC7;&#xFF0C;importlib.import_module&#x5B9E;&#x73B0;&#x901A;&#x8FC7;&#x5B57;&#x7B26;&#x4E32;&#x5F62;&#x5F0F;import&#x5DE5;&#x5177;&#x5E93;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">find_dataset_using_name</span><span class="hljs-params">(dataset_name)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;Import the module &quot;data/[dataset_name]_dataset.py&quot;.
+
+    In the file, the class called DatasetNameDataset() will
+    be instantiated. It has to be a subclass of BaseDataset,
+    and it is case-insensitive.
+    &quot;&quot;&quot;</span>
+    dataset_filename = <span class="hljs-string">&quot;data.&quot;</span> + dataset_name + <span class="hljs-string">&quot;_dataset&quot;</span>
+    datasetlib = importlib.import_module(dataset_filename)  <span class="hljs-comment"># &#x8FD9;&#x91CC;&#x7684;dataetlib&#xFF0C;&#x7B49;&#x540C;&#x4E8E;&#x4E00;&#x4E2A;&#x5E93;&#xFF0C;&#x4F8B;&#x5982;&#x3002;import cv2&#x7684;cv2, import torch&#x7684;torch</span>
+
+    dataset = <span class="hljs-keyword">None</span>
+    target_dataset_name = dataset_name.replace(<span class="hljs-string">&apos;_&apos;</span>, <span class="hljs-string">&apos;&apos;</span>) + <span class="hljs-string">&apos;dataset&apos;</span>
+    <span class="hljs-keyword">for</span> name, cls <span class="hljs-keyword">in</span> datasetlib.__dict__.items():
+        <span class="hljs-keyword">if</span> name.lower() == target_dataset_name.lower() \
+           <span class="hljs-keyword">and</span> issubclass(cls, BaseDataset):
+            dataset = cls
+
+    <span class="hljs-keyword">if</span> dataset <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+        <span class="hljs-keyword">raise</span> NotImplementedError(<span class="hljs-string">&quot;In %s.py, there should be a subclass of BaseDataset with class name that matches %s in lowercase.&quot;</span> % (dataset_filename, target_dataset_name))
+
+    <span class="hljs-keyword">return</span> dataset
+</code></pre>
+<h3 id="&#x6A21;&#x578B;&#x6784;&#x5EFA;"><strong>&#x6A21;&#x578B;&#x6784;&#x5EFA;</strong></h3>
+<p>&#x6E90;&#x4EE3;&#x7801;&#x4E2D;&#x5C06;&#x6A21;&#x578B;&#xFF08;nn.Module&#xFF09;&#xFF0C; &#x635F;&#x5931;&#x51FD;&#x6570;&#xFF0C;&#x4F18;&#x5316;&#x5668;&#x4E00;&#x5E76;&#x653E;&#x5230;&#x4E86;CycleGANModel&#x7C7B;&#x5F53;&#x4E2D;&#xFF0C;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;set_input()&#x4E0E;optimize_parameters()&#xFF0C;&#x5B9E;&#x73B0;&#x524D;&#x5411;&#x4F20;&#x64AD;&#x3001;&#x635F;&#x5931;&#x8BA1;&#x7B97;&#x3001;&#x53CD;&#x5411;&#x4F20;&#x64AD;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x8BA9;&#x4E3B;&#x4EE3;&#x7801;&#x66F4;&#x7B80;&#x6D01;&#x3002;</p>
+<p>&#x6A21;&#x578B;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x8BBE;&#x8BA1;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;</p>
+<p><img src="imgs/cyclegan-model-uml.jpg" alt=""></p>
+<p>&#x5BF9;&#x4E8E; netG_A/B&#xFF0C;cyclegan&#x4E2D;&#x662F;resnetblock&#x6784;&#x6210;&#x7684;&#x751F;&#x6210;&#x5668;&#xFF0C;&#x8BE6;&#x7EC6;&#x53EF;&#x89C1;models/networks.py&#x7684;ResnetGenerator&#x7C7B;&#xFF0C; &#x4E3B;&#x8981;&#x7531;resnetblock&#x7684;&#x4E0B;&#x91C7;&#x6837;&#x548C;TransConv&#x7684;&#x4E0A;&#x91C7;&#x6837;&#x6784;&#x6210;&#xFF0C;&#x6700;&#x540E;&#x52A0;&#x5165;tanh()&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;netD_A/B&#xFF0C; &#x662F;&#x4E00;&#x4E2A;patchGAN&#xFF0C;&#x5168;&#x90E8;&#x7531;&#x5377;&#x79EF;&#x5C42;&#x6784;&#x6210;&#x7684;&#x5168;&#x5377;&#x79EF;&#x7F51;&#x7EDC;&#xFF0C;&#x8BE6;&#x89C1; models/networks.py&#x7684;NLayerDiscriminator&#x3002;</p>
+<p>&#x6574;&#x4E2A;&#x6A21;&#x578B;&#x6784;&#x5EFA;&#x4E0E;&#x4F18;&#x5316;&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-python">model = create_model(opt)      <span class="hljs-comment"># create a model given opt.model and other options</span>
+model.setup(opt)               <span class="hljs-comment"># regular setup: load and print networks; create schedulers</span>
+----------------------------------
+model.set_input(data)         <span class="hljs-comment"># unpack data from dataset and apply preprocessing</span>
+model.optimize_parameters()   <span class="hljs-comment"># calculate loss functions, get gradients, update network weights</span>
+</code></pre>
+<h3 id="&#x6A21;&#x578B;&#x8BAD;&#x7EC3;"><strong>&#x6A21;&#x578B;&#x8BAD;&#x7EC3;</strong></h3>
+<p>&#x6570;&#x636E;&#x3001;&#x6A21;&#x578B;&#x3001;&#x635F;&#x5931;&#x51FD;&#x6570;&#x4E0E;&#x4F18;&#x5316;&#x5668;&#x51C6;&#x5907;&#x5B8C;&#x6BD5;&#xFF0C;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x8FED;&#x4EE3;&#x8BAD;&#x7EC3;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5728;windows&#x4E0B;&#x8BAD;&#x7EC3;&#xFF0C;&#x9700;&#x8981;&#x5F00;&#x542F; visdom</p>
+<pre><code class="lang-python">python -m visdom.server
+</code></pre>
+<p>&#x7531;&#x4E8E;&#x6B64;&#x5904;&#x4F7F;&#x7528;&#x4E86;visdom&#x8FDB;&#x884C;&#x53EF;&#x89C6;&#x5316;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x884C;&#x5F00;&#x542F;visdom&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x62A5;&#x9519;&#xFF1A;</p>
+<pre><code class="lang-bash">requests.exceptions.ConnectionError: HTTPConnectionPool(host=<span class="hljs-string">&apos;localhost&apos;</span>, port=8097): Max retries exceeded with url: /env/main (Caused by NewConnectionError(<span class="hljs-string">&apos;&lt;urllib3.connection.HTTPConnection object at 0x000001D60D9110D0&gt;: Failed to establish a new connection: [WinError 10061] &#x7531;&#x4E8E;&#x76EE;&#x6807;&#x8BA1;&#x7B97;&#x673A;&#x79EF;&#x6781;&#x62D2;&#x7EDD;&#xFF0C;&#x65E0;&#x6CD5;&#x8FDE;&#x63A5;&#x3002;&apos;</span>))
+[W<span class="hljs-keyword">in</span>Error 10061] &#x7531;&#x4E8E;&#x76EE;&#x6807;&#x8BA1;&#x7B97;&#x673A;&#x79EF;&#x6781;&#x62D2;&#x7EDD;&#xFF0C;&#x65E0;&#x6CD5;&#x8FDE;&#x63A5;&#x3002;
+</code></pre>
+<p>&#x8BAD;&#x7EC3;&#x6307;&#x4EE4;&#xFF1A;</p>
+<pre><code class="lang-bash">python 01_train.py --n_epochs 200 --dataroot path/to/your/datasets/monet2photo --name monet2photo_cyclegan --model cycle_gan
+</code></pre>
+<p>&#x65E5;&#x5FD7;&#x4FE1;&#x606F;&#x3001;&#x6A21;&#x578B;&#x4FE1;&#x606F;&#x5C06;&#x5B58;&#x50A8;&#x4E8E;checkpoints\monet2photo_cyclegan&#x4E2D;</p>
+<h3 id="&#x8BAD;&#x7EC3;&#x7ED3;&#x679C;"><strong>&#x8BAD;&#x7EC3;&#x7ED3;&#x679C;</strong></h3>
+<p>cycleGAN&#x7684;loss&#x4E0D;&#x80FD;&#x51C6;&#x786E;&#x53CD;&#x5E94;&#x8BAD;&#x7EC3;&#x7684;&#x597D;&#x574F;&#xFF0C;&#x4E0D;&#x4EE3;&#x8868;&#x7740;&#x8BAD;&#x7EC3;&#x8FDB;&#x5EA6;&#xFF0C;&#x751A;&#x81F3;&#x4E0D;&#x80FD;&#x4EE3;&#x8868;&#x7ED3;&#x679C;&#x4F18;&#x52A3;&#xFF0C;&#x6574;&#x4F53;&#x8D8B;&#x52BF;&#x662F;&#xFF0C;cycle loss&#x9010;&#x6E10;&#x4E0B;&#x964D;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;</p>
+<p><img src="imgs/cyclegan-losslog.jpg" alt=""></p>
+<h3 id="&#x63A8;&#x7406;&#x6D4B;&#x8BD5;"><strong>&#x63A8;&#x7406;&#x6D4B;&#x8BD5;</strong></h3>
+<p>&#x9884;&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#x53EF;&#x4EE5;&#x4ECE;&#x8FD9;&#x91CC;&#x4E0B;&#x8F7D;&#xFF1A;&#x94FE;&#x63A5;&#xFF1A;<a href="https://pan.baidu.com/s/1bEPNBbAeqMumpM2pqKwb4w" target="_blank">https://pan.baidu.com/s/1bEPNBbAeqMumpM2pqKwb4w</a>  &#x63D0;&#x53D6;&#x7801;&#xFF1A;q159</p>
+<pre><code class="lang-bash">python 02_inference.py --dataroot G:\deep_learning_data\cyclegan\monet2photo\<span class="hljs-built_in">test</span>B --name monet2photo_cyclegan  --model <span class="hljs-built_in">test</span> --no_dropout --model_suffix _B180
+</code></pre>
+<p> model_suffix &#x683C;&#x5F0F;&#x8BF4;&#x660E;&#xFF1A;&#x6A21;&#x578B;&#x6A21;&#x578B;&#x6587;&#x4EF6;&#x540D;&#x4FDD;&#x5B58;&#x4E3A;latest_net_G_A.pth&#x3001;latest_net_G_B.pth&#x3002;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x4F1A;&#x81EA;&#x52A8;&#x62FC;&#x63A5;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-string">&quot;latest_net_G{}.pth&quot;</span>.format(model_suffix)
+</code></pre>
+<p>&#x6700;&#x540E;&#x5728;F:\pytorch-tutorial-2nd\code\chapter-8\cyclegan\results\monet2photo_cyclegan\test_latest&#x4E0B;&#x5C31;&#x6709;&#x5BF9;&#x5E94;&#x7684;&#x7ED3;&#x679C;&#x56FE;&#x7247;</p>
+<p>&#x8FD9;&#x91CC;&#x5C55;&#x793A;&#x4E86;120&#xFF0C; 180&#xFF0C; 200&#x4E2A;epoch&#x65F6;&#x7684;&#x5C55;&#x793A;&#x6548;&#x679C;&#xFF0C;&#x611F;&#x89C9;180&#x65F6;&#x7684;&#x6548;&#x679C;&#x6700;&#x597D;&#x3002;</p>
+<p><img src="imgs/cyclegan-inference-demo2.png" alt=""></p>
+<h2 id="&#x5C0F;&#x7ED3;"><strong>&#x5C0F;&#x7ED3;</strong></h2>
+<p>&#x672C;&#x5C0F;&#x7ED3;&#x5148;&#x4ECB;&#x7ECD;&#x4E86;GAN&#x4E0E;cycleGAN&#x7684;&#x6A21;&#x578B;&#x7ED3;&#x6784;&#xFF0C;GAN&#x662F;&#x4E00;&#x4E2A;&#x5DE7;&#x5999;&#x7684;&#x5229;&#x7528;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x8FDB;&#x884C;&#x635F;&#x5931;&#x8BA1;&#x7B97;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;CycleGAN&#x662F;&#x5DE7;&#x5999;&#x7684;&#x5229;&#x7528;&#x4E86;&#x4E24;&#x4E2A;GAN&#x76F8;&#x4E92;&#x8F6C;&#x6362;&#xFF0C;&#x5E76;&#x63D0;&#x51FA;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;loss&#xFF0C;&#x6700;&#x7EC8;CycleGAN&#x7684;&#x635F;&#x5931;&#x5171;8&#x4E2A;&#xFF0C;&#x5206;&#x522B;&#x662F;&apos;D_A&apos;, &apos;G_A&apos;, &apos;cycle_A&apos;, &apos;idt_A&apos;, &apos;D_B&apos;, &apos;G_B&apos;, &apos;cycle_B&apos;, &apos;idt_B&apos;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x4ECB;&#x7ECD;CycleGAN&#x6E90;&#x4EE3;&#x7801;&#x4F7F;&#x7528;&#x53CA;&#x8BBE;&#x8BA1;&#xFF0C;&#x5176;&#x5C06;Dataset, DataLoader, model, loss, optim&#x8FDB;&#x884C;&#x4E86;&#x9AD8;&#x5EA6;&#x5C01;&#x88C5;&#xFF0C;&#x4F7F;&#x4E3B;&#x4EE3;&#x7801;&#x5F88;&#x7B80;&#x6D01;&#x3002;</p>
+<p>&#x4ECE;&#x6B64;&#x53EF;&#x89C1;&#xFF0C;&#x65E0;&#x8BBA;&#x591A;&#x590D;&#x6742;&#x3001;&#x96BE;&#x7406;&#x89E3;&#x7684;pytorch&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x4EE3;&#x7801;&#xFF0C;&#x90FD;&#x79BB;&#x4E0D;&#x5F00;Dataset, DataLoader, nn.Module&#xFF0C;loss, optim&#xFF0C;&#x53EA;&#x8981;&#x4E86;&#x89E3;&#x8BAD;&#x7EC3;&#x7684;&#x6B65;&#x9AA4;&#xFF0C;&#x8FD9;&#x4E9B;&#x590D;&#x6742;&#x7684;&#x4EE3;&#x7801;&#x90FD;&#x53EF;&#x4EE5;&#x68B3;&#x7406;&#x51FA;&#x6765;&#x3002;</p>
+<p>&#x81EA;2014&#x5E74;GAN&#x63D0;&#x51FA;&#x4EE5;&#x6765;&#xFF0C;&#x5F80;&#x540E;&#x7684;5&#x5E74;&#x95F4;&#x63D0;&#x51FA;&#x4E86;&#x5404;&#x5F0F;&#x5404;&#x6837;&#x7684;GAN&#x53D8;&#x4F53;&#xFF0C;&#x4E5F;&#x6709;&#x4E86;&#x975E;&#x5E38;&#x591A;&#x6709;&#x8DA3;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x670B;&#x53CB;&#x53EF;&#x4EE5;&#x8FDB;&#x4E00;&#x6B65;&#x4E86;&#x89E3;&#x3002;</p>
+<p>2020&#x5E74;&#x4E4B;&#x524D;&#xFF0C;&#x5728;&#x56FE;&#x50CF;&#x751F;&#x6210;&#x9886;&#x57DF;&#xFF0C;GAN&#x662F;&#x5F53;&#x4E4B;&#x65E0;&#x6127;&#x7684;&#x4E3B;&#x6D41;&#xFF0C;&#x4F46;2020&#x5E74;&#x300A;Denoising Diffusion Probabilistic Models&#x300B;&#xFF08;Diffusion&#xFF09;&#x63D0;&#x51FA;&#x540E;&#xFF0C;&#x57FA;&#x4E8E;<strong>&#x6269;&#x6563;&#x6A21;&#x578B;&#xFF08;diffusion model&#xFF09;</strong>&#x7684;&#x56FE;&#x50CF;&#x751F;&#x6210;&#x79F0;&#x4E3A;&#x4E86;&#x5B66;&#x672F;&#x754C;&#x7684;&#x5BA0;&#x513F;&#xFF0C;&#x5305;&#x62EC;OpenAI&#x63D0;&#x51FA;&#x7684;DALL-E&#x7CFB;&#x5217;&#xFF0C;stability.ai&#x63D0;&#x51FA;&#x7684;Stable-Diffusion&#x3002;</p>
+<p>&#x4E0B;&#x4E00;&#x8282;&#x5C06;&#x4ECB;&#x7ECD;<strong>&#x6269;&#x6563;&#x6A21;&#x578B;&#xFF08;diffusion model&#xFF09;</strong>&#x53CA;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; TingsongYu 2021 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2022&#x5E74;07&#x6708;23&#x65E5;21:48:10
+</span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="8.4-tracking-2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 8.4 目标跟踪（下）——虎门大桥车流量统计">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"8.5 生成对抗网络——CycleGAN","level":"3.7","depth":1,"previous":{"title":"8.4 目标跟踪（下）——虎门大桥车流量统计","level":"3.6","depth":1,"path":"chapter-8/8.4-tracking-2.md","ref":"chapter-8/8.4-tracking-2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年07月23日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-8/8.5-cycleGAN.md","mtime":"2023-04-15T08:46:11.987Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-04-15T08:52:15.723Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/gumshoe.polyfills.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-3-ba/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
