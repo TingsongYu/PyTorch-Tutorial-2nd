@@ -102,6 +102,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="8.8-image-retrieval-1.html" />
+    
     
     <link rel="prev" href="8.6-diffusion-model.html" />
     
@@ -940,6 +942,32 @@
             
         </li>
     
+        <li class="chapter " data-level="3.10" data-path="8.8-image-retrieval-1.html">
+            
+                <a href="8.8-image-retrieval-1.html">
+            
+                    
+                    8.8 图像检索（上）——理论基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="8.8-image-retrieval-2.html">
+            
+                <a href="8.8-image-retrieval-2.html">
+            
+                    
+                    8.8 图像检索（下）——CLIP+Faiss+Flask的图像检索系统
+            
+                </a>
+            
+
+            
+        </li>
+    
 
     
         
@@ -1198,7 +1226,7 @@ loss = (loss_i + loss_t)/<span class="hljs-number">2</span>
 <p>&#x7B2C;&#x56DB;&#x6B65;&#xFF1A;&#x56FE;&#x50CF;&#x4E0E;&#x6587;&#x672C;&#x7279;&#x5F81;&#x62FC;&#x63A5;&#xFF0C;&#x8F93;&#x5165;&#x5230;gpt2&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#xFF0C;gpt2&#x8F93;&#x51FA;80&#x4E2A;50257&#x7EF4;&#x7684;&#x5206;&#x7C7B;&#x6982;&#x7387;&#x5411;&#x91CF;&#xFF0C;&#x5176;&#x4E2D;&#x53D6;&#x540E;40&#x4E2A;&#x5411;&#x91CF;&#x8FDB;&#x884C;&#x8F93;&#x51FA;&#x5206;&#x7C7B;&#x7684;&#x5355;&#x8BCD;&#xFF0C;&#x6700;&#x7EC8;&#x5F62;&#x6210;&#x53E5;&#x5B50;&#x3002;</p>
 <p>&#x4E0A;&#x8FF0;&#x4E3A;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#xFF0C;&#x5176;&#x4E2D;CLIP&#x548C;GPT2&#x662F;&#x53EF;&#x4EE5;&#x51BB;&#x7ED3;&#x7684;&#xFF0C;&#x8BE6;&#x60C5;&#x53EF;&#x770B;&#x4EE3;&#x7801;&#x3002;</p>
 <p>&#x5728;&#x63A8;&#x7406;&#x7684;&#x65F6;&#x5019;&#xFF0C;GPT2 word2emb&#x7684;&#x8FD9;&#x4E00;&#x5206;&#x652F;&#x662F;&#x6CA1;&#x6709;&#x7684;&#xFF0C;gpt2&#x4EC5;&#x62FF;&#x5230;&#x56FE;&#x50CF;&#x7684;40x768&#x5411;&#x91CF;&#x8FDB;&#x884C;&#x63A8;&#x7406;&#xFF0C;&#x9010;&#x6B65;&#x751F;&#x6210;&#x6BCF;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x6700;&#x7EC8;&#x5F62;&#x6210;&#x53E5;&#x5B50;&#x3002;</p>
-<h3 id="clip-captionning-&#x8BAD;&#x7EC3;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;"><strong>CLIP Captionning &#x8BAD;&#x7EC3;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</strong></h3>
+<h3 id="clip-captioning-&#x8BAD;&#x7EC3;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;"><strong>CLIP Captioning &#x8BAD;&#x7EC3;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</strong></h3>
 <p>&#x7B2C;&#x4E00;&#x6B65;&#xFF0C;&#x6570;&#x636E;&#x96C6;&#x4E0B;&#x8F7D;&#x53CA;&#x51C6;&#x5907;</p>
 <p>&#x9996;&#x5148;&#x51C6;&#x5907;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x8FD9;&#x91CC;&#x91C7;&#x7528;coco 2014&#xFF0C;&#x9700;&#x8981;&#x4E0B;&#x8F7D;&#x7684;&#x6587;&#x4EF6;&#x6709;</p>
 <ol>
@@ -1294,10 +1322,14 @@ out_dir = <span class="hljs-string">&apos;./inference_output&apos;</span>
 
             
                 
-                <a href="8.6-diffusion-model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 8.6 扩散模型——DDPM">
+                <a href="8.6-diffusion-model.html" class="navigation navigation-prev " aria-label="Previous page: 8.6 扩散模型——DDPM">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="8.8-image-retrieval-1.html" class="navigation navigation-next " aria-label="Next page: 8.8 图像检索（上）——理论基础">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -1306,7 +1338,7 @@ out_dir = <span class="hljs-string">&apos;./inference_output&apos;</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8.7 图像描述——Image Captioning","level":"3.9","depth":1,"previous":{"title":"8.6 扩散模型——DDPM","level":"3.8","depth":1,"path":"chapter-8/8.6-diffusion-model.md","ref":"chapter-8/8.6-diffusion-model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年07月23日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-8/8.7-image-captioning.md","mtime":"2023-05-21T13:04:20.311Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-05-21T13:04:45.085Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"8.7 图像描述——Image Captioning","level":"3.9","depth":1,"next":{"title":"8.8 图像检索（上）——理论基础","level":"3.10","depth":1,"path":"chapter-8/8.8-image-retrieval-1.md","ref":"chapter-8/8.8-image-retrieval-1.md","articles":[]},"previous":{"title":"8.6 扩散模型——DDPM","level":"3.8","depth":1,"path":"chapter-8/8.6-diffusion-model.md","ref":"chapter-8/8.6-diffusion-model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","back-to-top-button","expandable-chapters-small","chapter-fold","-lunr","-search","search-pro","github-buttons@2.1.0","github","splitter","sharing-plus","tbfed-pagefooter","intopic-toc","page-toc-button","klipse","pageview-count","donate","popup","3-ba","disqus","emphasize"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy TingsongYu 2021","modify_label":"文件修订时间：","modify_format":"2022年07月23日21:48:10"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"github":{"url":"https://github.com/TingsongYu/PyTorch-Tutorial-2nd"},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"donate":{"alipay":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/alipay.jpg?raw=true","alipayText":" 支付宝 ↑ ","button":"赏","title":"原创不易，赏！","wechat":"https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Data/wechat.jpg?raw=ture","wechatText":" 微信 ↑ "},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"github-buttons":{"repo":"TingsongYu/PyTorch-Tutorial-2nd","types":["star","watch","fork"],"size":"small"},"3-ba":{"configuration":"auto","token":"d00d5236ccf6a1cabd370aa6366ff513"},"expandable-chapters-small":{},"copy-code-button":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","messenger","qq","qzone","viber","vk","weibo","pocket","stumbleupon","whatsapp"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"余霆嵩","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PyTorch实用教程（第二版）","language":"zh-hans","output.name":"site","gitbook":"3.2.3","description":"PyTorch高质量学习资料"},"file":{"path":"chapter-8/8.7-image-captioning.md","mtime":"2023-05-21T13:10:53.939Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-05-25T15:11:48.730Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
