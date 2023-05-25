@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="余霆嵩, https://github.com/TingsongYu/PyTorch-Tutorial-2nd">
+	<title>图像检索系统</title>
+	<style type="text/css">
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+		}
+
+		h1 {
+			margin: 20px;
+			text-align: center;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin: 50px auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0px 0px 10px #aaa;
+			max-width: 800px;
+		}
+
+		label {
+			margin-bottom: 10px;
+		}
+
+		input[type="file"] {
+			margin-bottom: 20px;
+		}
+
+		button[type="submit"] {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			transition: background-color 0.3s ease;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+
+		.results {
+			display: flex;
+			flex-wrap: wrap;
+			margin: 50px auto;
+			max-width:80%;
+  			justify-content: center;
+			align-items: center;
+		}
+
+		.result {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin: 10px;
+			width: 15%;
+			background-color: #fff;
+			box-shadow: 0px 0px 10px #aaa;
+		}
+
+		.result img {
+			max-width: 100%;
+			height: auto;
+			margin-bottom: 10px;
+		}
+
+		.result p {
+			margin: 10px;
+			font-size: 14px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<h1>图像检索系统</h1>
+	<span style='font-weight: bold;display: block;text-align: center;'>作者：余霆嵩   创作时间：2023年5月</span>
+	<form action="/search" method="POST" enctype="multipart/form-data">
+		<label for="image">上传图片：</label>
+		<input type="file" name="image" id="image">
+		<label for="text">输入文本：</label>
+		<input type="text" name="text" id="text">
+		<button type="submit">搜索</button>
+	</form>
+	<div class="results"></div>
+	<script type="text/javascript">
+		const form = document.querySelector('form');
+		const results = document.querySelector('.results');
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+			const formData = new FormData(form);
+			const response = await fetch('/search', {
+				method: 'POST',
+				body: formData
+			});
+			const data = await response.json();
+			renderResults(data);
+		});
+
+		function renderResults(data) {
+			results.innerHTML = '';
+			data.forEach(result => {
+				const resultElement = document.createElement('div');
+				resultElement.classList.add('result');
+				const imageElement = document.createElement('img');
+				imageElement.src = result.path;
+				const textElement = document.createElement('p');
+				textElement.textContent = result.text;
+				resultElement.appendChild(imageElement);
+				resultElement.appendChild(textElement);
+				results.appendChild(resultElement);
+			});
+		}
+	</script>
+</body>
+</html>
