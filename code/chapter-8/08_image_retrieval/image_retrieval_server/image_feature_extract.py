@@ -14,7 +14,8 @@ from tqdm import tqdm
 
 from config.base_config import CFG
 from my_utils.utils import get_file_path
-device = torch.device('cuda:0')
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def main():

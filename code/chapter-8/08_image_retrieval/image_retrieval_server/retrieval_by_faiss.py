@@ -20,7 +20,8 @@ import numpy as np
 
 from config.base_config import CFG
 from my_utils.utils import cv_imread
-device = torch.device('cuda:0')
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 res = faiss.StandardGpuResources()  # 由于pq除了8bit之外，gpu不支持，因此用cpu进行实验
 gpu_id = 0

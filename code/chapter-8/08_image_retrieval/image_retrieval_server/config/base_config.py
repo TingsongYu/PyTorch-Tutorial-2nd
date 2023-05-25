@@ -16,7 +16,8 @@ CFG = EasyDict()
 #  choices=('RN50', 'RN101', 'RN50x4', 'ViT-B/16', 'ViT-B/32', 'ViT-L/14',  'ViT-L/14@336px')
 CFG.clip_backbone_type = 'ViT-B/32'
 
-CFG.device = "cuda" if torch.cuda.is_available() else "cpu"
+CFG.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
 # CFG.image_file_dir = r'G:\deep_learning_data\coco_2017\images\val2017'  # test
 CFG.image_file_dir = r'G:\deep_learning_data\coco_2017\images\train2017'
