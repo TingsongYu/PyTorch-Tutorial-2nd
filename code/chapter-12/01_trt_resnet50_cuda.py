@@ -127,7 +127,7 @@ if __name__ == '__main__':
     path_img = r'G:\deep_learning_data\coco128\images\train2017\000000000081.jpg'
     path_classnames = "../chapter-11/imagenet1000.json"
     path_classnames_cn = "../chapter-11/imagenet_classnames.txt"
-    # model_path = 'resnet50_bs_1.engine'
+    # model_path = 'resnet50_bs_1.engine'  # 推理速度是dynamic batch的一倍左右。
     model_path = 'resnet50_bs_dynamic_1-32-64.engine'
 
     # load class names
