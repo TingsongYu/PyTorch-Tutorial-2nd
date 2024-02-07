@@ -18,6 +18,8 @@ import torch.nn.functional as F
 import torch.nn.init as init
 from datetime import datetime
 import logging
+import matplotlib
+matplotlib.rcParams['font.family'] = 'SimHei'
 
 
 class LeNet5(nn.Module):
