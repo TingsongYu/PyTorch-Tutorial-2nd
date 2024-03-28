@@ -72,8 +72,25 @@ def init_model(model_path):
     # 创建context，是一个模型的实例，将用于推理
     context = engine.create_execution_context()
     # 分配CPU锁页内存和GPU显存
-    h_input = cuda.pagelocked_empty(trt.volume(context.get_binding_shape(0)), dtype=np.float32)
-    h_output = cuda.pagelocked_empty(trt.volume(context.get_binding_shape(1)), dtype=np.float32)
+    try:
+        # TRT v8.5之前可用
+        input_shape = context.get_binding_shape(0)
+        output_shape = context.get_binding_shape(1)
+    except Exception as e:
+        print("Exception: ", e)
+        print('since TensorRT 8.5, the concept of Binding is replaced by I/O Tensor,'
+              ' all the APIs with "binding" in their name are deprecated')
+        # since TensorRT 8.5, the concept of Binding is replaced by I/O Tensor,
+        # all the APIs with "binding" in their name are deprecated
+        n_io = engine.num_io_tensors
+        # get a list of I/O tensor names of the engine, because all I/O tensor in Engine and
+        # Excution Context are indexed by name, not binding number like TensorRT 8.4 or before
+        l_tensor_name = [engine.get_tensor_name(ii) for ii in range(n_io)]  # 获取tensor的名称 ['input', 'output']
+        input_shape = context.get_tensor_shape(l_tensor_name[0])  # 输入tensor的名称
+        output_shape = context.get_tensor_shape(l_tensor_name[1])  # 输出tensor的名称
+
+    h_input = cuda.pagelocked_empty(trt.volume(input_shape), dtype=np.float32)
+    h_output = cuda.pagelocked_empty(trt.volume(output_shape), dtype=np.float32)
     d_input = cuda.mem_alloc(h_input.nbytes)
     d_output = cuda.mem_alloc(h_output.nbytes)
 
@@ -86,7 +103,16 @@ def model_infer(context, h_input, h_output, d_input, d_output, stream, img_chw_a
     # 数据迁移, H2D
     cuda.memcpy_htod_async(d_input, h_input, stream)
     # 推理
-    context.execute_async_v2(bindings=[int(d_input), int(d_output)], stream_handle=stream.handle)
+    try:
+        context.execute_async_v2(bindings=[int(d_input), int(d_output)], stream_handle=stream.handle)  # v8.6.1 接口可用
+    except Exception as e:
+        print(e)
+        print("*"*20)
+        print("当前代码仅在trt v8.6.1上通过，更高版本的接口发生变化，已尝试在v10.0.0.6无法运行，请参考官方文档debug，或者采用cuda形式。"
+              "当前TRT版本为:{}".format(trt.__version__))
+        print("*"*20)
+        context.execute_async_v3(stream_handle=stream.handle)  # v10.0.0.6的接口，但是strea_handle的id不正确 todo： 未解决
+        context.execute_async_v2(bindings=[int(d_input), int(d_output)], stream_handle=stream.handle)
     # 数据迁移，D2H
     cuda.memcpy_dtoh_async(h_output, d_output, stream)
     stream.synchronize()
