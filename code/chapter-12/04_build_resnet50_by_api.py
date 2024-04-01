@@ -254,10 +254,60 @@ def build_model_by_trt_api(network, model_path):
     assert pool2
     pool2.stride_nd = (1, 1)
 
-    fc1 = network.add_fully_connected(input=pool2.get_output(0),
-                                      num_outputs=1000,
-                                      kernel=weight_map['fc.weight'],
-                                      bias=weight_map['fc.bias'])
+    # --------------------------------- V 10.x 删除了add_fully_connected方法，v8.6.1版本可用 -----------
+    # input: <tensorrt.tensorrt.ITensor at 0x2e82f233db0>
+    # kernel: nd.array, shape == (2048000, 1)
+    # bias : ndarray, shape == (1000, 1)
+    # fc1 = network.add_fully_connected(input=pool2.get_output(0),
+    #                                   num_outputs=1000,
+    #                                   kernel=weight_map['fc.weight'],
+    #                                   bias=weight_map['fc.bias'])
+    # --------------------------------- V 10.x 删除了add_fully_connected方法，v8.6.1版本可用 -----------
+
+    # ---------------------------------V 10.x 版本删除了add_fully_connected方法--------------------
+    # 需要通过add_matrix_multiply实现权重乘法，再通过add_elementwise实现bias的加法
+    # 其中还需要设置数据的shape，因此把全连接的操作封装为一个函数add_matmul_as_fc
+    # 这个部分参考自TensorRT的github。TRT这方面做得不够友好，在官方api文档中，找不到add_fully_connected被删除的说明及替代方法
+    # 记录整个debug过程:
+    # 0. AttributeError: 'tensorrt.tensorrt.INetworkDefinition' object has no attribute 'add_fully_connected'
+    # 1. 各种文档找'add_fully_connected'，无果；
+    # 2. 官方文档查阅 .INetworkDefinition' 支持的方法，的确没了add_fully_connected，猜测肯定有对应方法替换，找到最相关的
+    # add_matrix_multiply
+    # 3. TRT github仓库搜索add_matrix_multiply， sample.py，发现了FC层实现方法。
+    # https://github.com/NVIDIA/TensorRT/blob/c0c633cc629cc0705f0f69359f531a192e524c0f/samples/python/network_api_pytorch_mnist/sample.py
+
+    def add_matmul_as_fc(net, input, outputs, w, b):
+        assert len(input.shape) >= 3
+        m = 1 if len(input.shape) == 3 else input.shape[0]
+        k = int(np.prod(input.shape) / m)  # 输入大小： 2048
+        assert np.prod(input.shape) == m * k
+        n = int(w.size / k)  # 输出大小： 1000
+        assert w.size == n * k
+        assert b.size == n
+
+        input_reshape = net.add_shuffle(input)
+        input_reshape.reshape_dims = trt.Dims2(m, k)
+
+        filter_const = net.add_constant(trt.Dims2(n, k), w)
+        mm = net.add_matrix_multiply(
+            input_reshape.get_output(0),
+            trt.MatrixOperation.NONE,
+            filter_const.get_output(0),
+            trt.MatrixOperation.TRANSPOSE,
+        )
+
+        bias_const = net.add_constant(trt.Dims2(1, n), b)
+        bias_add = net.add_elementwise(mm.get_output(0), bias_const.get_output(0), trt.ElementWiseOperation.SUM)
+
+        output_reshape = net.add_shuffle(bias_add.get_output(0))
+        output_reshape.reshape_dims = trt.Dims4(m, n, 1, 1)
+        return output_reshape
+    fc_w = weight_map["fc.weight"]
+    fc_b = weight_map["fc.bias"]
+    fc1 = add_matmul_as_fc(network, pool2.get_output(0), 1000, fc_w, fc_b)
+
+    # 实现加法 +bias
+
     assert fc1
 
     fc1.get_output(0).name = "prob"
@@ -273,7 +323,16 @@ def init_model(model_path):
     network = builder.create_network(1 << int(trt.NetworkDefinitionCreationFlag.EXPLICIT_BATCH))
     network = build_model_by_trt_api(network, model_path)
     config = builder.create_builder_config()
-    engine = builder.build_engine(network, config)
+    # -------------------- V 10.x 以前 可用build_engine方法 -------------------
+    # engine = builder.build_engine(network, config)
+    # -------------------- V 10.x 以前 可用build_engine方法 -------------------
+
+    # -------------------- V 10.x 删除了 build_engine方法 -------------------
+    # 参考自：    # https://github.com/NVIDIA/TensorRT/blob/c0c633cc629cc0705f0f69359f531a192e524c0f/samples/python/network_api_pytorch_mnist/sample.py
+    # 替代方式如下：
+    plan = builder.build_serialized_network(network, config)
+    runtime = trt.Runtime(logger)
+    engine = runtime.deserialize_cuda_engine(plan)
     context = engine.create_execution_context()
     context.set_input_shape("data", [1, 3, 224, 224])  # 绑定输入张量的形状
 
