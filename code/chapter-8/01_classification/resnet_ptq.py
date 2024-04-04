@@ -192,7 +192,7 @@ def ptq(args):
     classes = ["NORMAL", "PNEUMONIA"]
     criterion = nn.CrossEntropyLoss()  # 选择损失函数
     loss_m_valid, acc_m_valid, mat_valid = utils.ModelTrainer.evaluate(valid_loader, model, criterion, device, classes)
-    logger.info('PTQ量化后模型ACC :{}'.format(acc_m_valid.avg))
+    logger.info('PTQ量化后模型ACC :{}，scale值计算方法是:{}'.format(acc_m_valid.avg, args.ptq_method))
     # ------------------------------------ step5: 保存ptq量化后模型 ------------------------------------
     dir_name = os.path.dirname(args.ckpt_path)
     ptq_ckpt_path = os.path.join(dir_name, "resnet50_ptq.pth")
