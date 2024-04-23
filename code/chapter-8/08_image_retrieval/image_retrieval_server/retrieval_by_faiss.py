@@ -113,6 +113,7 @@ class CLIPModel(object):
         image = self.preprocess(Image.fromarray(image_rgb)).unsqueeze(0).to(device)
         with torch.no_grad():
             img_feat_vec = self.model.encode_image(image)
+            # # 一定要Normalization！https://github.com/rom1504/clip-retrieval/blob/main/clip_retrieval/clip_back.py#L226
             img_feat_vec /= img_feat_vec.norm(dim=-1, keepdim=True)
             img_feat_vec = img_feat_vec.cpu().numpy()  # 1x512向量
 
@@ -125,9 +126,8 @@ class CLIPModel(object):
         :return:
         """
         token = clip.tokenize([text]).to(self.device)
-        # # 一定要Normalization！https://github.com/rom1504/clip-retrieval/blob/main/clip_retrieval/clip_back.py#L226
         feat_text = self.model.encode_text(token)
-        feat_text /= feat_text.norm(dim=-1, keepdim=True)
+        # feat_text /= feat_text.norm(dim=-1, keepdim=True)  # !!! 图片需要Normalization，text不需要
         feat_text = feat_text.detach().cpu().numpy()  # 1x512向量
 
         return feat_text
