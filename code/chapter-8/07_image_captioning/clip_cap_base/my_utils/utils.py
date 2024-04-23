@@ -122,6 +122,7 @@ def generate2(
 
                 outputs = model.gpt(inputs_embeds=generated)
                 logits = outputs.logits
+                # logits = outputs[0]
                 logits = logits[:, -1, :] / (temperature if temperature > 0 else 1.0)
                 sorted_logits, sorted_indices = torch.sort(logits, descending=True)
                 cumulative_probs = torch.cumsum(

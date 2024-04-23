@@ -17,6 +17,7 @@ if str(ROOT) not in sys.path:
 import tqdm
 from torch.utils.data import DataLoader
 from transformers import AdamW, get_linear_schedule_with_warmup
+# from transformers import AdamW, WarmupLinearSchedule
 from my_models.models import *
 from my_datasets.cocodataset import *
 
@@ -36,6 +37,8 @@ def train(dataset: ClipCocoDataset, model: ClipCaptionModel, args,
     scheduler = get_linear_schedule_with_warmup(
         optimizer, num_warmup_steps=warmup_steps, num_training_steps=epochs * len(train_dataloader)
     )
+    # scheduler = WarmupLinearSchedule(optimizer, warmup_steps=warmup_steps, t_total=epochs * len(train_dataloader))
+
     # save_config(args)
     for epoch in range(epochs):
         print(f">>> Training epoch {epoch}")

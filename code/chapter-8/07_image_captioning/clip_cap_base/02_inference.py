@@ -6,9 +6,15 @@
 @brief      : 模型推理
 
 """
-
+import os
+# os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+# os.environ['HF_ENDPOINT'] = "https://ai.gitee.com/huggingface"
+import os
+os.environ['HTTP_PROXY'] = 'http://127.0.0.1:7890'
+os.environ['HTTPS_PROXY'] = 'http://127.0.0.1:7890'
 import sys
 from pathlib import Path
+
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # project root directory
 if str(ROOT) not in sys.path:
@@ -16,8 +22,10 @@ if str(ROOT) not in sys.path:
 
 # debug: windows下会报错：OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.
 import platform
+
 if platform.system() == 'Windows':
     import os
+
     os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 import clip
@@ -55,7 +63,7 @@ class Predictor(object):
         model = ClipCaptionPrefix(args.prefix_length, clip_length=args.prefix_length, prefix_size=512,
                                   num_layers=args.num_layers, mapping_type=args.mapping_type)
 
-        model.load_state_dict(torch.load(path_ckpt, map_location=torch.device("cpu")))
+        model.load_state_dict(torch.load(path_ckpt, map_location=torch.device("cpu")), strict=False)
         model = model.eval()
         model = model.to(self.device)
         self.model = model
@@ -78,7 +86,8 @@ def main():
     # download from :提取码：mqri](https://pan.baidu.com/s/1CuTDtCeT2-nIvRG7N4iKtw)
     ckpt_path = r'coco_prefix-009-2023-0411.pt'
     path_img = r'G:\deep_learning_data\coco_2014\images\val2014'
-    out_dir = './inference_output'
+    # path_img = r'G:\deep_learning_data\coco_2017\images\train2017\train2017'
+    out_dir = './inference_output2'
 
     # 获取路径
     img_paths = []
@@ -94,7 +103,7 @@ def main():
     for idx, path_img in tqdm(enumerate(img_paths)):
         caps, pil_image = predictor.predict(path_img, False)
         img_bgr = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
-        cv2.putText(img_bgr, caps, (0, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 1)
+        cv2.putText(img_bgr, caps, (0, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)
 
         # 保存
         path_out = os.path.join(out_dir, os.path.basename(path_img))
@@ -105,9 +114,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
