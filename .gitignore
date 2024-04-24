@@ -9,3 +9,5 @@
 .ipynb_checkpoints
 /code/
 *.md
+*.pdf
+*.PDF
