@@ -22,7 +22,7 @@ PyTorch基础。针对刚入门、非科班、本科生，提供PyTorch介绍，
 
 - 在NLP章节，包括RNN、LSTM、Transformer、BERT和GPT模型详解与应用，应用的任务有**文本分类、机器翻译、命名体识别、QA问答和文章生成**五大任务。
 
-  ![NLP-prj]((asset/NLP-prj.gif)
+  ![NLP-prj](asset/NLP-prj.gif)
 
 - 在LLM章节，包括4个LLM部署与代码分析和一个LLM行业应用——**GPT Academic（GPT 学术优化）**，LLM包括国内开源的四大主流模型，**Qwen、ChatGLM、Baichuan和Yi**。
 
