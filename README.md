@@ -28,6 +28,10 @@
 
 PyTorch基础。针对刚入门、非科班、本科生，提供PyTorch介绍，讲解开发环境的搭建，介绍PyTorch的数据、模型、优化、可视化等核心模块，最后利用所讲解的PyTorch知识点构建一套自己的代码结构，为后续的应用打下基础。
 
+<a href="#readme">
+    <img src="https://img.shields.io/badge/-返回顶部-7d09f1.svg" alt="#" align="right">
+</a>
+
 ## 中篇
 
 产业应用。经过上篇，磨了一把好刀，接下来就用它在各领域上大显身手。将会讲解三个主题，分别是计算机视觉（Computer Vision）、自然语言处理（Natural Language Processing）和大语言模型（Large Language Model）。
@@ -44,7 +48,9 @@ PyTorch基础。针对刚入门、非科班、本科生，提供PyTorch介绍，
 
 在NLP章节，包括RNN、LSTM、Transformer、BERT和GPT模型详解与应用，应用的任务有**文本分类、机器翻译、命名体识别、QA问答和文章生成**五大任务。
 
-<img src="asset/NLP-prj.gif" alt="NLP-prj" style="zoom:50%;" />
+<img src="asset/NLP-prj.gif" alt="NLP-prj" style="zoom:50%;" /><a href="#readme">
+    <img src="https://img.shields.io/badge/-返回顶部-7d09f1.svg" alt="#" align="right">
+</a>
 
 ---
 
@@ -61,6 +67,10 @@ PyTorch基础。针对刚入门、非科班、本科生，提供PyTorch介绍，
 工业落地。有了工具，有了场景，接下来就要让它产生价值，变成可用的、好用的算法服务。因此，从pytorch这样一个训练框架、重框架中剥离出来进行部署、加速、量化是常见的方法。本章将介绍**ONNX和TensorRT**的原理与使用，同时借助TensorRT详细分析模型量化概念、**PTQ和QAT量化**实战与原理。
 
 相信经过上、中、下篇的学习，可以帮助入门的同学少走很多弯路，快速掌握PyTorch，具备独当一面的能力，能依据实际场景选择算法模型，可以将模型部署应用，形成闭环，全流程打通。
+
+<a href="#readme">
+    <img src="https://img.shields.io/badge/-返回顶部-7d09f1.svg" alt="#" align="right">
+</a>
 
 # **本书亮点**
 
@@ -80,20 +90,6 @@ PyTorch基础。针对刚入门、非科班、本科生，提供PyTorch介绍，
     <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=TingsongYu/PyTorch-Tutorial-2nd&type=Date" />
     <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=TingsongYu/PyTorch-Tutorial-2nd&type=Date" />
   </picture></a>
-
-# 读者交流
-
- 一群：671103375 (已满)
-
- 二群：773031536 (已满）
-
- 三群：514974779 (已满）
-
- 四群：854620826
-
-为保证群聊质量，入群密码查看[代码](https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Code/4_viewer/5_Show_ConfMat.py)
-
-与作者联系：yts3221@126.com
 
 <a href="#readme">
     <img src="https://img.shields.io/badge/-返回顶部-7d09f1.svg" alt="#" align="right">
