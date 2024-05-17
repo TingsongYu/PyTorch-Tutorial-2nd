@@ -97,15 +97,19 @@ PyTorch基础。针对刚入门、非科班、本科生，提供PyTorch介绍，
 
 # 读者交流
 
-为增强读者阅读氛围，提供交流途径，特地建立了微信交流群。
+为增强读者阅读氛围，提供交流途径，特地建立了QQ交流群。
 
-为保证群内交流质量，请添加微信号（ai-study-society）后，输入四位数字的暗号，方可入群。暗号获取，请查看[代码](https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Code/4_viewer/5_Show_ConfMat.py)
+为保证群内交流质量，入群需要密码，密码获取，请查看[代码](https://github.com/TingsongYu/PyTorch_Tutorial/blob/master/Code/4_viewer/5_Show_ConfMat.py)
 
 近期会在群内分享最新技术文章，包括CV项目实战，LLM推理部署，RAG系统等前沿科技，欢迎加入技术交流。
 
-<img src="./asset/wechat-code.jpg" alt="wechat-code" style="zoom:20%;" />
+一群：671103375 (已满)
 
+ 二群：773031536 (已满）
 
+ 三群：514974779 (已满）
+
+ 四群：854620826
 
 
 
