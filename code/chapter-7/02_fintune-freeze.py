@@ -134,7 +134,7 @@ resnet18_ft.load_state_dict(state_dict_load)
 
 # 法1: 冻结卷积层
 for param in resnet18_ft.parameters():
-    param.requires_grad = True
+    param.requires_grad = False
 print("conv1.weights[0, 0, ...]:\n {}".format(resnet18_ft.conv1.weight[0, 0, ...]))
 
 # 替换fc层
