@@ -117,7 +117,15 @@ PyTorch基础。针对刚入门、非科班、本科生，提供PyTorch介绍，
 
 本作品采用[知识共享署名-非商业性使用 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc/4.0/)进行许可。
 
-## 附录
+
+
+# 点赞支持
+
+如果本教程对你有帮助😀，请作者喝杯茶吧🍵🍵🥂🥂
+
+WeChat：<img src="https://img.picgo.net/2024/05/18/wechat2859fc4f155e9302.jpg" style="width:20%;"/>               Alipay:<img src="https://img.picgo.net/2024/05/18/alipayd96d6d0a325ef7e0.jpg" style="width:20%;"/>
+
+# 附录
 
 ~~**停更记录：**~~
 
