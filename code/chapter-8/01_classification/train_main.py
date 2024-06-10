@@ -216,5 +216,7 @@ classes = ["NORMAL", "PNEUMONIA"]
 if __name__ == "__main__":
     args = get_args_parser().parse_args()
     utils.setup_seed(args.random_seed)
-    args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device_choices = ["cuda", "mps", "cpu"]
+    device = torch.device(args.device) if args.device in device_choices else torch.device("cpu")
+    args.device = device
     main(args)
