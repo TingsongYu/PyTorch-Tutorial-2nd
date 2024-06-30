@@ -12,6 +12,10 @@
 
 ---
 
+本项目已被 HelloGitHub 社区收录，已加入 HelloGitHub 徽章计划
+
+<a href="https://hellogithub.com/repository/1d9880c0dd5f42e28d149902db73fde6" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=1d9880c0dd5f42e28d149902db73fde6&theme=neutral" alt="Featured｜HelloGitHub" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
 # 目录
 
 - [本书内容](#本书内容)
