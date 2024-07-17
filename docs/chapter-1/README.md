@@ -7,6 +7,7 @@
   * [1.4 环境配置之CUDA&cuDNN](1.4-CUDA&cuDNN.md)
   * [1.5 环境配置之PyTorch系列包](1.5-PyTorch-install.md)
   * [1.6 环境配置之Jupyter Notebook](1.6-JupyterNotebook-install.md)
+  * [1.7 PyTorch 2.0 与 torch.compile](1.7-PyTorch2.0.md)
 
 本章，将带领读者踏入PyTorch的环境配置之路，从Python虚拟环境的搭建到IDE的安装，CUDA与cuDNN的配置，再到PyTorch的精细安装，直至Jupyter Notebook的实践，每一步均图文并茂。
 
