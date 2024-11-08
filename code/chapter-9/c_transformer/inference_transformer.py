@@ -44,7 +44,7 @@ def main():
     model_opt = checkpoint['settings']
     src_vocab_len, trg_vocab_len = len(train_set.vocab_en), len(train_set.vocab_fra)  # 2522, 3000
     transformer = Transformer(
-        trg_vocab_len,
+        trg_vocab_len,  # 训练时，若采用了embs_share_weight， 请将src的词表长度设置为trg的词表长度 2024年11月8日
         trg_vocab_len,
         src_pad_idx=train_set.word2index.PAD,
         trg_pad_idx=train_set.word2index.PAD,
@@ -111,5 +111,6 @@ if __name__ == "__main__":
     beam_size = 5
     max_seq_len = 20
     path_model = os.path.join(BASE_DIR, 'result', "model_acc_train_71_val_50.chkpt")
+    path_model = os.path.join(BASE_DIR, 'result', "model_accu_51.090.chkpt")
 
     main()

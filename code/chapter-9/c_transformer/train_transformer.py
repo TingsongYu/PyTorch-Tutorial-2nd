@@ -122,6 +122,9 @@ def eval_epoch(model, valid_loader, device, opt):
     desc = '  - (Validation) '
     with torch.no_grad():
         for idx, batch in enumerate(valid_loader):
+            # if idx > 1:
+            #     continue
+
             src, src_len, trg, trg_len = [x.to(device) for x in batch]
             bos = torch.tensor([valid_loader.dataset.vocab_fra['<bos>']] * trg.shape[0],
                                device=device).reshape(-1, 1)
@@ -298,6 +301,8 @@ def main():
     # ------------------------------------ step2: model ------------------------------------
     src_vocab_len, trg_vocab_len = len(train_set.vocab_en), len(train_set.vocab_fra)
 
+    print("注意：opt.embs_share_weight为{}，当为True时，输入词表大小将被设置为输出词表大小，具体参考Transformer().__init__()中的定义"
+          "".format(opt.embs_share_weight))
     transformer = Transformer(
         src_vocab_len,
         trg_vocab_len,
