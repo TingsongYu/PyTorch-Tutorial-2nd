@@ -89,11 +89,13 @@ PyTorch基础。针对刚入门、非科班、本科生，提供PyTorch介绍，
 - 适用性广：适合AI自学者、AI产品经理、在校学生以及跨领域人士阅读，满足不同背景和需求的读者。
 
 
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=TingsongYu/PyTorch-Tutorial-2nd&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=TingsongYu/PyTorch-Tutorial-2nd&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=TingsongYu/PyTorch-Tutorial-2nd&type=Date" />
-  </picture></a>
+## ⭐ Star History
+
+<a href="https://star-history.com/#TingsongYu/PyTorch-Tutorial-2nd&Date">
+  <img alt="Star History Chart" src="asset/star-history.png" width="100%" />
+</a>
+
+<sub>由 [`scripts/gen_star_history.py`](scripts/gen_star_history.py) 生成，[GitHub Actions](.github/workflows/star-history.yml) 每7天自动更新 · 点击图片查看实时数据</sub>
 
 <a href="#readme">
     <img src="https://img.shields.io/badge/-返回顶部-7d09f1.svg" alt="#" align="right">
